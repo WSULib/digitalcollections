@@ -1,0 +1,11 @@
+#container{
+	max-width:1170px;
+	float:center;
+	margin:auto;
+	display:none;
+}
+
+#siblings ul li{
+	display:inline;
+
+}
