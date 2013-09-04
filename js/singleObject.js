@@ -50,6 +50,8 @@ function loadError(){
 function renderTemplates(){  
   $(document).ready(function(){
     $.Mustache.addFromDom() //read all template from DOM    
+    // Head
+    $('head').mustache('head_t', APIdata);
     // Metadata
     $('#metadata').mustache('metadata_t', APIdata);
     // Children
@@ -77,28 +79,52 @@ function renderTemplates(){
 
 // Updates and Secondary API calls are performed here
 function finishRendering(){
-  // Content Type Handling
-  ctype = APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel[0];
-  switch (ctype) {
-    //Images
-    case "info:fedora/Image":
-      var template = '<a href="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"/></a>';
-      var html = Mustache.to_html(template, APIdata);
-      $("#preview_container").html(html);
-      break;
-    //Collections
-    case "info:fedora/Collection":
-      var template = '<a href="http://silo.lib.wayne.edu/digitalcollections/collectionPage.php?PID={{APIParams.PID}}"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/THUMBNAIL/content"/></a>';
-      var html = Mustache.to_html(template, APIdata);
-      $("#preview_container").html(html);      
-      break;
-    //eBooks
-    case "info:fedora/wayne:CMWSUebook":
-      var template = '<iframe src="http://silo.lib.wayne.edu/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up" width="600px" height="500px" frameborder="0" ></iframe>'
-      var html = Mustache.to_html(template, APIdata);
-      $("#preview_container").html(html);
-      break;
+  
+  function unknownType(){
+    var template = '<img src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORThumbnails/datastreams/Unknown/content"/>';
+    var html = Mustache.to_html(template, APIdata);
+    $("#preview_container").html(html);
   }
+
+
+  // Content Type Handling
+  if (APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel != undefined){ 
+
+    ctype = APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel[0];
+    switch (ctype) {
+      //Images
+      case "info:fedora/Image":
+        var template = '<a href="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"/></a>';
+        var html = Mustache.to_html(template, APIdata);
+        $("#preview_container").html(html);
+        break;
+      //Collections
+      case "info:fedora/Collection":
+        var template = '<a href="http://silo.lib.wayne.edu/digitalcollections/collectionPage.php?PID={{APIParams.PID}}"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/THUMBNAIL/content"/></a>';
+        var html = Mustache.to_html(template, APIdata);
+        $("#preview_container").html(html);      
+        break;
+      //eBooks
+      case "info:fedora/wayne:CMWSUebook":
+        var template = '<iframe src="http://silo.lib.wayne.edu/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up" width="600px" height="500px" frameborder="0" ></iframe>'
+        var html = Mustache.to_html(template, APIdata);
+        $("#preview_container").html(html);
+        break;
+      //Audio
+      case "info:fedora/Audio":
+        // var template = '<embed height="50" width="100" src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content">'
+        var template = '<audio controls height="100" width="100"><source src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content" type="audio/mpeg"></audio>';
+        var html = Mustache.to_html(template, APIdata);
+        $("#preview_container").html(html);
+        break;
+      default:
+        unknownType();
+    }
+  }
+  else{
+    unknownType();
+  }
+
 
 
 }

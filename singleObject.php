@@ -5,6 +5,10 @@ $objectPID = $_REQUEST['PID'];
 
 <html>
 <head>
+    <script id="head_t" type="text/html">
+        <title>{{solr4FedObjsID.response.docs.0.dc_title.0}}</title>
+    </script>
+
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
 
