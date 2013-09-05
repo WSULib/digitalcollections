@@ -99,17 +99,7 @@ $objectPID = $_REQUEST['PID'];
 
     		<!--siblings testing-->
     		<div id="siblings" class="span12">
-                <h3>Siblings</h3>                
-                <script id="siblings_t" type="text/html">
-                    {{#solr4FedObjsID.response.docs.0.rels_isMemberOfCollection}}
-                        <p><strong>Parent Collection: </strong>{{.}}</p>
-                        <ul>
-                            {{#solrSiblings.info:fedora/wayne:collectionCFAI}}
-                                <li><a href="http://silo.lib.wayne.edu/digitalcollections/singleObject.php?PID={{.}}"><img src="http://silo.lib.wayne.edu/fedora/objects/{{.}}/datastreams/THUMBNAIL/content"/></a></li>
-                            {{/solrSiblings.info:fedora/wayne:collectionCFAI}}
-                        </ul>
-                    {{/solr4FedObjsID.response.docs.0.rels_isMemberOfCollection}}                    
-                </script>
+                <h3>Siblings</h3>
 			</div>    		
 
 		</div>
