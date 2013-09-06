@@ -47,7 +47,7 @@ $objectPID = $_REQUEST['PID'];
 
     		<!--image preview testing-->
     		<div id="preview" class="templated span6">
-    			<h3>Preview</h3>    			
+    			<!-- <h3>Preview</h3>    			 -->
                 <div id="preview_container"></div>
 			</div>
 

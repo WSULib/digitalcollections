@@ -1,7 +1,7 @@
 #container{
 	max-width:1170px;
 	float:center;
-	margin:auto;
+	margin:15px auto auto auto;
 	display:none;
 }
 
