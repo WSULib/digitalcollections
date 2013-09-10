@@ -3,9 +3,39 @@
 	float:center;
 	margin:15px auto auto auto;
 	display:none;
+
+}
+
+#search_container{
+	max-width:1170px;
+	float:center;
+	margin:15px auto auto auto;		
 }
 
 #siblings ul li{
 	display:inline;
 
+}
+
+/*SEARCH VIEW*/
+
+
+#facet_refine{
+	background-color:rgba(240,240,240,1);
+	/*display:none;*/
+}
+
+.num_results{
+	background-color:rgba(240,240,240,1);
+}
+
+#search_parameters{	
+}
+
+#search_results{	
+}
+
+.resultObj{
+	margin-bottom:25px;
+	background-color:rgba(240,240,240,1);	
 }

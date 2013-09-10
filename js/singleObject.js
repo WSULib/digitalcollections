@@ -96,6 +96,9 @@ function finishRendering(){
   }
 
   // Content Type Handling  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // These should probably move to external template files eventually, so they can be reused in other views
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel != undefined){ 
 
     ctype = APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel[0];
@@ -125,6 +128,12 @@ function finishRendering(){
         var html = Mustache.to_html(template, APIdata);
         $("#preview_container").html(html);
         break;
+        // THE BEST WAY.
+        // $.get('templatefile',function(template){
+        //   var html = Mustache.to_html(template, APIdata);
+        //   $("#preview_container").html(html);
+        //   break;  
+        // });        
       //Document
       case "info:fedora/CM:Document":
         unknownType();        
