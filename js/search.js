@@ -18,6 +18,14 @@ searchDefs['facet.mincount'] = 2;
 // Global API response data
 APIdata = new Object();
 
+// Facet Hash
+var facetHash = {
+	"dc_date":"Date",
+	"dc_subject":"Subject",
+	"dc_creator":"Creator",
+	"dc_language":"Language"
+}
+
 
 
 
@@ -25,6 +33,9 @@ APIdata = new Object();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updatePage(){
+
+	// get current URL
+	var cURL = document.URL;
 
 	// Set Search Parameters	
 	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
@@ -34,6 +45,20 @@ function updatePage(){
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
+
+	// update query box
+	$("#q").val(mergedParams.q);
+
+	// show "refined by" facets
+	console.log(mergedParams.fq);
+	for (var i = 0; i < mergedParams.fq.length; i++){
+		var facet_string = mergedParams.fq[i];
+		var facet_type = facet_string.split(":")[0];
+		var facet_value = facet_string.split(":")[1];				
+		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
+		console.log(nURL);
+		$("#facet_refine_list").append("<li>"+facetHash[facet_type]+": "+facet_value+" <a href='"+nURL+"'>x</a></li>");
+	}
 
 }
 
@@ -87,6 +112,10 @@ function updateSearch(){
 	searchParams.rows = $("#rows").val();
 	var nURL = updateURLParameter(window.location.href, 'rows', searchParams.rows);
 
+	// update query box
+
+
+
 	// refresh page	
 	console.log(nURL);
 	window.location = nURL;
@@ -101,13 +130,6 @@ function populateFacets(){
 
 	// get current URL
 	var cURL = document.URL;
-		
-	var facetHash = {
-		"dc_date":"Date",
-		"dc_subject":"Subject",
-		"dc_creator":"Creator",
-		"dc_language":"Language"
-	}
 
 	//for each facet field
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {		
@@ -178,4 +200,29 @@ function debugSearchParams(){
 	console.log("mergedParams:");
 	console.log(mergedParams);
 
+}
+
+function removeParameter(url, parameter)
+{
+  var fragment = url.split('#');
+  var urlparts= fragment[0].split('?');
+
+  if (urlparts.length>=2)
+  {
+    var urlBase=urlparts.shift(); //get first part, and remove from array
+    var queryString=urlparts.join("?"); //join it back up
+
+    var prefix = encodeURIComponent(parameter)+'=';
+    var pars = queryString.split(/[&;]/g);
+    for (var i= pars.length; i-->0;) {               //reverse iteration as may be destructive
+      if (pars[i].lastIndexOf(prefix, 0)!==-1) {   //idiom for string.startsWith
+        pars.splice(i, 1);
+      }
+    }
+    url = urlBase+'?'+pars.join('&');
+    if (fragment[1]) {
+      url += "#" + fragment[1];
+    }
+  }
+  return url;
 }

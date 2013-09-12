@@ -51,7 +51,10 @@
         </div>
 
         <div class="row-fluid">
-            <div id="facet_refine" class="span12"><p><strong>Refined By:</strong></p></div>
+            <div id="facet_refine" class="span12">
+                <p><strong>Refined By:</strong></p>
+                <ul id="facet_refine_list"></ul>
+            </div>
         </div>
 
         
