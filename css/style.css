@@ -25,10 +25,6 @@
 	/*display:none;*/
 }
 
-.num_results{
-	background-color:rgba(240,240,240,1);
-}
-
 #search_parameters{	
 }
 
@@ -53,4 +49,8 @@
 	margin-right:10px;
 	background-color:#D2D2D2;
 	padding:5px;
+}
+
+.pagination{
+	text-align:right;
 }

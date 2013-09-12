@@ -35,13 +35,11 @@ var facetHash = {
 function updatePage(){
 
 	// get current URL
-	var cURL = document.URL;
+	var cURL = document.URL;	
 
-	// Set Search Parameters	
-	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
-	// Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();	
+	// update number of results
+	$("#q_string").html(mergedParams.q);	
+	$("#num_results").html(APIdata.solrSearch.response.numFound);
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
@@ -50,15 +48,34 @@ function updatePage(){
 	$("#q").val(mergedParams.q);
 
 	// show "refined by" facets
-	console.log(mergedParams.fq);
 	for (var i = 0; i < mergedParams.fq.length; i++){
 		var facet_string = mergedParams.fq[i];
 		var facet_type = facet_string.split(":")[0];
 		var facet_value = facet_string.split(":")[1];				
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		console.log(nURL);
 		$("#facet_refine_list").append("<li>"+facetHash[facet_type]+": "+facet_value+" <a href='"+nURL+"'>x</a></li>");
 	}
+
+	// pagination
+	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
+	var spage = (mergedParams.start / mergedParams.rows) + 1;
+	if (spage == 0) {
+		spage = 1;
+	}
+	console.log(tpages,spage);
+
+	
+	$('.pagination').bootpag({
+	   total: tpages,
+	   page: spage,
+	   maxVisible: 10,
+	   leaps:true
+	}).on('page', function(event, num){			    
+	    var nURL = updateURLParameter(window.location.href, "start", ((num * mergedParams.rows) - mergedParams.rows) );
+	    console.log(nURL);
+	    // refresh page	
+		window.location = nURL;
+	});
 
 }
 
@@ -69,6 +86,12 @@ function updatePage(){
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
+
+	// Set Search Parameters	
+	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
+	// Merge default and URL search parameters
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+	debugSearchParams();
 	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
@@ -91,6 +114,7 @@ function searchGo(){
 	    console.log("APIdata");
 	    console.log(APIdata);
 	    $(document).ready(function(){
+	    	updatePage();
 	    	populateFacets();
 	    	populateResults();	    		
 	    });
@@ -112,12 +136,7 @@ function updateSearch(){
 	searchParams.rows = $("#rows").val();
 	var nURL = updateURLParameter(window.location.href, 'rows', searchParams.rows);
 
-	// update query box
-
-
-
 	// refresh page	
-	console.log(nURL);
 	window.location = nURL;
 }
 
@@ -131,7 +150,8 @@ function populateFacets(){
 	// get current URL
 	var cURL = document.URL;
 
-	//for each facet field
+	// for each facet field
+	// this needs to create collapsing facets....
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {		
 
 		$("#facets_container").append("<div id='"+facetHash[facet]+"_facet'><p><strong>"+facetHash[facet]+"</strong></p><ul class='facet_list' id='"+facetHash[facet]+"_list'</div>");
@@ -225,4 +245,8 @@ function removeParameter(url, parameter)
     }
   }
   return url;
+}
+
+function jumpToPage(num){
+	console.log(num);
 }
