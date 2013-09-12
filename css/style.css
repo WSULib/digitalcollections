@@ -43,3 +43,14 @@
 .facet_list{
 	list-style-type:none;
 }
+
+#facet_refine_list{
+	list-style-type:none;
+}
+
+#facet_refine_list li{
+	display:inline;
+	margin-right:10px;
+	background-color:#D2D2D2;
+	padding:5px;
+}
