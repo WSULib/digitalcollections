@@ -15,7 +15,8 @@ function APIcall(PID){
 
     $.ajax({          
       url: APIcallURL,      
-      dataType: 'json',            
+      dataType: 'jsonp',    
+      jsonpCallback: "jsonpcallback",            
       success: callSuccess,
       error: callError
     });
@@ -201,7 +202,8 @@ function getSolrSiblings(safeName,PID,start,rows){
   var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='getSolrSiblings'&PID='"+PID+"'&start="+start+"&rows="+rows;
   $.ajax({          
       url: APIcallURL,      
-      dataType: 'json',                
+      dataType: 'jsonp',    
+      jsonpCallback: "jsonpcallback",              
       success: getSolrSiblingsSuccess,
       error: getSolrSiblingsError
     });

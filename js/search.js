@@ -54,12 +54,14 @@ function searchGo(){
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',            
+	  dataType: 'jsonp',	  
+	  jsonpCallback: "jsonpcallback",          
 	  success: callSuccess,
-	  error: callError
+	  // error: callError
 	});
 
-	function callSuccess(response){		
+	function callSuccess(response){
+
 	    APIdata = response;
 	    console.log("APIdata");
 	    console.log(APIdata);
