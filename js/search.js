@@ -101,9 +101,6 @@ function populateFacets(){
 
 	// get current URL
 	var cURL = document.URL;
-
-
-
 		
 	var facetHash = {
 		"dc_date":"Date",
@@ -119,7 +116,7 @@ function populateFacets(){
 		
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
 		for (var i = 0; i < facet_array.length; i = i + 2){		
-			fURL = cURL + "&fq=" + facet + "\:" + facet_array[i];
+			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\"";
 			$("#"+facetHash[facet]+"_list").append("<li><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");
 		}		
 
