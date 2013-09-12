@@ -51,7 +51,7 @@
         </div>
 
         <div class="row-fluid">
-            <div id="facet_refine" class="span12"><p>Hidden until facets are selected...</p></div>
+            <div id="facet_refine" class="span12"><p><strong>Refined By:</strong></p></div>
         </div>
 
         
@@ -83,6 +83,9 @@
 
 <script type="text/javascript">
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
-    searchGo();
+    $(document).ready(function(){
+        updatePage();
+        searchGo();    
+    });    
 </script>
 </html>

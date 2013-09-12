@@ -39,3 +39,7 @@
 	margin-bottom:25px;
 	background-color:rgba(240,240,240,1);	
 }
+
+.facet_list{
+	list-style-type:none;
+}

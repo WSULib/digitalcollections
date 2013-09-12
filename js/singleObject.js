@@ -90,9 +90,10 @@ function renderPage(){
 function finishRendering(){
   
   function unknownType(){
-    var template = '<img src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORThumbnails/datastreams/Unknown/content"/>';
-    var html = Mustache.to_html(template, APIdata);
-    $("#preview_container").html(html);
+    $.get('templates/unknownType',function(template){
+      var html = Mustache.to_html(template, APIdata);
+      $("#preview_container").html(html);  
+        }); 
   }
 
   // Content Type Handling  
@@ -105,55 +106,56 @@ function finishRendering(){
     switch (ctype) {
       //Images
       case "info:fedora/CM:Image":
-        var template = '<a href="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content"/></a>';
-        var html = Mustache.to_html(template, APIdata);
-        $("#preview_container").html(html);
+        $.get('templates/image',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $("#preview_container").html(html);
+        }); 
         break;
       //Collections
       case "info:fedora/CM:Collection":
-        var template = '<a href="http://silo.lib.wayne.edu/digitalcollections/collectionPage.php?PID={{APIParams.PID}}"><img src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/THUMBNAIL/content"/></a>';
-        var html = Mustache.to_html(template, APIdata);
-        $("#preview_container").html(html);      
+        $.get('templates/collection',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $("#preview_container").html(html);
+        });      
         break;
       //eBooks
       case "info:fedora/CM:WSUebook":
-        var template = '<iframe src="http://silo.lib.wayne.edu/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up" width="575px" height="500px" frameborder="0" ></iframe>'
-        var html = Mustache.to_html(template, APIdata);
-        $("#preview_container").html(html);
+        $.get('templates/WSUebook',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $("#preview_container").html(html);
+        }); 
         break;
       //Audio
       case "info:fedora/CM:Audio":
-        // var template = '<embed height="50" width="100" src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content">'
-        var template = '<audio controls height="100" width="100"><source src="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/ACCESS/content" type="audio/mpeg"></audio>';
-        var html = Mustache.to_html(template, APIdata);
-        $("#preview_container").html(html);
-        break;
-        // THE BEST WAY.
-        // $.get('templatefile',function(template){
-        //   var html = Mustache.to_html(template, APIdata);
-        //   $("#preview_container").html(html);
-        //   break;  
-        // });        
+        $.get('templates/audio',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $("#preview_container").html(html);
+        }); 
+        break;       
       //Document
       case "info:fedora/CM:Document":
         unknownType();        
-        // var template = '???';
-        // var html = Mustache.to_html(template, APIdata);
-        // $("#preview_container").html(html);
+        // $.get('templates/document',function(template){
+        //   var html = Mustache.to_html(template, APIdata);
+        //   $("#preview_container").html(html);
+        // }); 
+        break;  
       //Video
       case "info:fedora/CM:Video":
         unknownType();        
-        // var template = '???';
-        // var html = Mustache.to_html(template, APIdata);
-        // $("#preview_container").html(html);
+        // $.get('templates/video',function(template){
+        //   var html = Mustache.to_html(template, APIdata);
+        //   $("#preview_container").html(html);
+        // }); 
         break;
       //Archive
       case "info:fedora/CM:Archive":
         unknownType();        
-        // var template = '???';
-        // var html = Mustache.to_html(template, APIdata);
-        // $("#preview_container").html(html);
-        break;
+        // $.get('templates/archive',function(template){
+        //   var html = Mustache.to_html(template, APIdata);
+        //   $("#preview_container").html(html);
+        // }); 
+        break;  
       default:
         unknownType();
     }

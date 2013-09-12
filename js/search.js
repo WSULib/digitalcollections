@@ -1,35 +1,50 @@
 // Javascript for search view
 
+
+// Variables
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Default Search Parameters (pre form submission)
 var searchDefs = {};
+var mergedParams = {};
 searchDefs.rows = 10;
 searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
 searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language");
+searchDefs.fq = [];
 searchDefs['facet.mincount'] = 2;
 
 // Global API response data
 APIdata = new Object();
 
 
+
+
+// PAGE UPDATE
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function updatePage(){
+
+	// Set Search Parameters	
+	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
+	// Merge default and URL search parameters
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+	debugSearchParams();	
+
+	// update rows selecctor
+	$("#rows").val(mergedParams.rows).prop('selected',true);
+
+}
+
+
+
+
+
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 	
-	console.log("searchParams:");
-	console.log(searchParams);
-	console.log("searchDefs:");
-	console.log(searchDefs);
-
-	// pre-merge
-	// push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...
-
-	// merge defaults and URL parameters
-	var mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
-	console.log("mergedParams:");
-	console.log(mergedParams);
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);
@@ -63,9 +78,6 @@ function searchGo(){
 
 function updateSearch(){
 
-	//write params to URL?
-	// http://stackoverflow.com/questions/5997450/append-to-url-and-refresh-page
-
 	// get current URL
 	var cURL = document.URL;
 
@@ -81,17 +93,15 @@ function updateSearch(){
 
 
 
-
-
-
-
-
-
-
-
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function populateFacets(){
+
+	// get current URL
+	var cURL = document.URL;
+
+
+
 		
 	var facetHash = {
 		"dc_date":"Date",
@@ -107,7 +117,8 @@ function populateFacets(){
 		
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
 		for (var i = 0; i < facet_array.length; i = i + 2){		
-			$("#"+facetHash[facet]+"_list").append("<li>"+facet_array[i]+" - "+facet_array[i+1]+"</li>");
+			fURL = cURL + "&fq=" + facet + "\:" + facet_array[i];
+			$("#"+facetHash[facet]+"_list").append("<li><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");
 		}		
 
 	}
@@ -158,4 +169,14 @@ function updateURLParameter(url, param, paramVal){
 
     var rows_txt = temp + "" + param + "=" + paramVal;
     return baseURL + "?" + newAdditionalURL + rows_txt;
+}
+
+function debugSearchParams(){
+	console.log("searchParams:");
+	console.log(searchParams);
+	console.log("searchDefs:");
+	console.log(searchDefs);
+	console.log("mergedParams:");
+	console.log(mergedParams);
+
 }
