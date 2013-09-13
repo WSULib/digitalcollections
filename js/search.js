@@ -28,14 +28,18 @@ var facetHash = {
 
 
 
-
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updatePage(){
 
 	// get current URL
-	var cURL = document.URL;	
+	var cURL = document.URL;
+
+	// check that start not great than rows, otherwise reset
+	if (mergedParams.start > APIdata.solrSearch.response.numFound )	{
+
+	}
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
@@ -62,7 +66,6 @@ function updatePage(){
 	if (spage == 0) {
 		spage = 1;
 	}
-	console.log(tpages,spage);
 
 	
 	$('.pagination').bootpag({
@@ -72,7 +75,6 @@ function updatePage(){
 	   leaps:true
 	}).on('page', function(event, num){			    
 	    var nURL = updateURLParameter(window.location.href, "start", ((num * mergedParams.rows) - mergedParams.rows) );
-	    console.log(nURL);
 	    // refresh page	
 		window.location = nURL;
 	});
@@ -158,7 +160,7 @@ function populateFacets(){
 		
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
 		for (var i = 0; i < facet_array.length; i = i + 2){		
-			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\"";
+			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; //set start to 0, most elegant way to handle less numFound than start count
 			$("#"+facetHash[facet]+"_list").append("<li><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");
 		}		
 
