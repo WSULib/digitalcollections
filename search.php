@@ -84,7 +84,7 @@
 
             <!-- results -->
             <div id="search_results" class="span8">
-                <h4>Search Results</h4>            
+                <!-- <h4>Search Results</h4>             -->
                 <div id="results_container"></div>
             </div>
             <div class="span8 pull-right pagination"></div>

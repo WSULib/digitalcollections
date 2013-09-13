@@ -95,7 +95,7 @@ $objectPID = $_REQUEST['PID'];
 		</div>
 
 		<!--row3-->
-    	<div class="row-fluid">
+    	<div style="display:none;" class="row-fluid">
 
     		<!--siblings testing-->
     		<div id="siblings" class="span12">
