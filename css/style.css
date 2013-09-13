@@ -33,7 +33,9 @@
 
 .resultObj{
 	margin-bottom:25px;
-	background-color:rgba(240,240,240,1);	
+	/*background-color:rgba(240,240,240,1);	*/	
+	width:100%;
+	clear:both;
 }
 
 .facet_list{

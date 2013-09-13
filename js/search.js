@@ -11,7 +11,7 @@ searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
-searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language");
+searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel");
 searchDefs.fq = [];
 searchDefs['facet.mincount'] = 2;
 
@@ -23,7 +23,17 @@ var facetHash = {
 	"dc_date":"Date",
 	"dc_subject":"Subject",
 	"dc_creator":"Creator",
-	"dc_language":"Language"
+	"dc_language":"Language",
+	"rels_hasContentModel":"Type"
+}
+
+// Content Type Hash 
+var contentTypeHash= {
+	"info:fedora/CM:Image" : "Image",
+	"info:fedora/CM:Document" : "Document",
+	"info:fedora/CM:WSUebook" : "WSUebook",
+	"info:fedora/CM:Collection" : "Collection",
+	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
 }
 
 
@@ -47,10 +57,18 @@ function updatePage(){
 	$("#q").val(mergedParams.q);
 
 	// show "refined by" facets
-	for (var i = 0; i < mergedParams.fq.length; i++){
-		var facet_string = mergedParams.fq[i];
+	for (var i = 0; i < mergedParams.fq.length; i++){		
+		var facet_string = mergedParams.fq[i];		
+		console.log(facet_string);
 		var facet_type = facet_string.split(":")[0];
-		var facet_value = facet_string.split(":")[1];				
+		//content_model special case
+		if (facet_string.contains('rels_hasContentModel')){			
+			var facet_value = facet_string.replace("rels_hasContentModel:","");
+			facet_value = facet_value.replace('info:fedora/CM:','');
+		}
+		else{						
+			var facet_value = facet_string.split(":")[1];				
+		}
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
 		$("#facet_refine_list").append("<li>"+facetHash[facet_type]+": "+facet_value+" <a href='"+nURL+"'>x</a></li>");
 	}
@@ -152,16 +170,35 @@ function populateFacets(){
 		$("#facets_container").append("<div id='"+facetHash[facet]+"_facet'><p><strong>"+facetHash[facet]+"</strong></p><ul class='facet_list' id='"+facetHash[facet]+"_list'</div>");
 
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
-		for (var i = 0; i < facet_array.length; i = i + 2){			
-			// write URL
-			//set start to 0, most elegant way to handle less numFound than start count
-			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
-			// for long facet lists, initially hide facets over ten
-			if (i > facet_limit){ var facet_hidden = "class='hidden_facet'";} else {var facet_hidden = ""}			
-			$("#"+facetHash[facet]+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");			
+		// console.log(facet + "---" + facet_array.length);
+		for (var i = 0; i < facet_array.length; i = i + 2){
+			
+			//special case for Content Types
+			if (facet == "rels_hasContentModel"){
+				var facet_value = contentTypeHash[(facet_array[i])];
+			}
+			else{
+				var facet_value = facet_array[i];
+			}
+
+
+			//skip if blank
+			if (facet_array[i] != ""){
+
+				// write URL
+				//set start to 0, most elegant way to handle less numFound than start count
+				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
+				// for long facet lists, initially hide facets over ten
+				if (i > facet_limit) { 
+					var facet_hidden = "class='hidden_facet'";
+				} 
+				else {
+					var facet_hidden = ""
+				}			
+				$("#"+facetHash[facet]+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
+			}
 		}
-		// add "more" button if longer than ten
-		console.log(facet_array.length);
+		// add "more" button if longer than ten		
 		if (facet_array.length > facet_limit){						
 			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a id='"+facetHash[facet]+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facetHash[facet]+"\"); return false;'>more >></a></strong></p>");
 			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facetHash[facet]+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facetHash[facet]+"\"); return false;'><< less</a></strong></p>");			
@@ -261,7 +298,8 @@ function facetCollapseToggle(type, facet){
 	}	
 }
 
-
+//string contains
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
 
 
 
