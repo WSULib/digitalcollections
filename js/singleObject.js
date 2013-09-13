@@ -91,7 +91,7 @@ function renderPage(){
 function finishRendering(){
   
   function unknownType(){
-    $.get('templates/unknownType',function(template){
+    $.get('templates/unknownType.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $("#preview_container").html(html);  
         }); 
@@ -107,28 +107,28 @@ function finishRendering(){
     switch (ctype) {
       //Images
       case "info:fedora/CM:Image":
-        $.get('templates/image',function(template){
+        $.get('templates/image.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
         break;
       //Collections
       case "info:fedora/CM:Collection":
-        $.get('templates/collection',function(template){
+        $.get('templates/collection.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         });      
         break;
       //eBooks
       case "info:fedora/CM:WSUebook":
-        $.get('templates/WSUebook',function(template){
+        $.get('templates/WSUebook.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
         break;
       //Audio
       case "info:fedora/CM:Audio":
-        $.get('templates/audio',function(template){
+        $.get('templates/audio.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
@@ -136,23 +136,23 @@ function finishRendering(){
       //Document
       case "info:fedora/CM:Document":
         unknownType();        
-        // $.get('templates/document',function(template){
+        // $.get('templates/document.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
         //   $("#preview_container").html(html);
         // }); 
         break;  
       //Video
       case "info:fedora/CM:Video":
-        unknownType();        
-        // $.get('templates/video',function(template){
-        //   var html = Mustache.to_html(template, APIdata);
-        //   $("#preview_container").html(html);
-        // }); 
+        // unknownType();        
+        $.get('templates/video.htm',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $("#preview_container").html(html);
+        }); 
         break;
       //Archive
       case "info:fedora/CM:Archive":
         unknownType();        
-        // $.get('templates/archive',function(template){
+        // $.get('templates/archive.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
         //   $("#preview_container").html(html);
         // }); 
