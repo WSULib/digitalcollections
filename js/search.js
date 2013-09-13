@@ -36,11 +36,6 @@ function updatePage(){
 	// get current URL
 	var cURL = document.URL;
 
-	// check that start not great than rows, otherwise reset
-	if (mergedParams.start > APIdata.solrSearch.response.numFound )	{
-
-	}
-
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
 	$("#num_results").html(APIdata.solrSearch.response.numFound);
@@ -62,7 +57,7 @@ function updatePage(){
 
 	// pagination
 	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
-	var spage = (mergedParams.start / mergedParams.rows) + 1;
+	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
 	if (spage == 0) {
 		spage = 1;
 	}
