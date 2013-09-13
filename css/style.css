@@ -54,3 +54,11 @@
 .pagination{
 	text-align:right;
 }
+
+.hidden_facet{
+	display:none;
+}
+
+.facet_less {
+	display:none;
+}

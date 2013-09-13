@@ -143,24 +143,30 @@ function updateSearch(){
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function populateFacets(){
-
 	// get current URL
 	var cURL = document.URL;
-
+	// set defaults
+	var facet_limit = 20;
 	// for each facet field
-	// this needs to create collapsing facets....
-	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {		
-
+	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
 		$("#facets_container").append("<div id='"+facetHash[facet]+"_facet'><p><strong>"+facetHash[facet]+"</strong></p><ul class='facet_list' id='"+facetHash[facet]+"_list'</div>");
-		
-		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
-		for (var i = 0; i < facet_array.length; i = i + 2){		
-			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; //set start to 0, most elegant way to handle less numFound than start count
-			$("#"+facetHash[facet]+"_list").append("<li><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");
-		}		
 
-	}
-		
+		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
+		for (var i = 0; i < facet_array.length; i = i + 2){			
+			// write URL
+			//set start to 0, most elegant way to handle less numFound than start count
+			fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
+			// for long facet lists, initially hide facets over ten
+			if (i > facet_limit){ var facet_hidden = "class='hidden_facet'";} else {var facet_hidden = ""}			
+			$("#"+facetHash[facet]+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_array[i]+" - "+facet_array[i+1]+"</a></li>");			
+		}
+		// add "more" button if longer than ten
+		console.log(facet_array.length);
+		if (facet_array.length > facet_limit){						
+			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a id='"+facetHash[facet]+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facetHash[facet]+"\"); return false;'>more >></a></strong></p>");
+			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facetHash[facet]+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facetHash[facet]+"\"); return false;'><< less</a></strong></p>");			
+		}
+	}		
 }
 
 function populateResults(){
@@ -244,6 +250,18 @@ function removeParameter(url, parameter)
   return url;
 }
 
-function jumpToPage(num){
-	console.log(num);
+function facetCollapseToggle(type, facet){
+	$("#"+facet+"_less").toggle();
+	$("#"+facet+"_more").toggle();	
+	if (type == "more"){
+		$("#"+facet+"_list.facet_list li.hidden_facet").fadeIn();			
+	}
+	if (type == "less"){
+		$("#"+facet+"_list.facet_list li.hidden_facet").hide();		
+	}	
 }
+
+
+
+
+
