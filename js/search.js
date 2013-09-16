@@ -18,26 +18,6 @@ searchDefs['facet.mincount'] = 2;
 // Global API response data
 APIdata = new Object();
 
-// Facet Hash
-var facetHash = {
-	"dc_date":"Date",
-	"dc_subject":"Subject",
-	"dc_creator":"Creator",
-	"dc_language":"Language",
-	"rels_hasContentModel":"Type"
-}
-
-// Content Type Hash 
-var contentTypeHash= {
-	"info:fedora/CM:Image" : "Image",
-	"info:fedora/CM:Document" : "Document",
-	"info:fedora/CM:WSUebook" : "WSUebook",
-	"info:fedora/CM:Collection" : "Collection",
-	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
-}
-
-
-
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,19 +38,13 @@ function updatePage(){
 
 	// show "refined by" facets
 	for (var i = 0; i < mergedParams.fq.length; i++){		
-		var facet_string = mergedParams.fq[i];		
-		console.log(facet_string);
+		var facet_string = mergedParams.fq[i];				
 		var facet_type = facet_string.split(":")[0];
-		//content_model special case
-		if (facet_string.contains('rels_hasContentModel')){			
-			var facet_value = facet_string.replace("rels_hasContentModel:","");
-			facet_value = facet_value.replace('info:fedora/CM:','');
-		}
-		else{						
-			var facet_value = facet_string.split(":")[1];				
-		}
+		var facet_value = facet_string.split(":").slice(1).join(":");
+	
+
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$("#facet_refine_list").append("<li>"+facetHash[facet_type]+": "+facet_value+" <a href='"+nURL+"'>x</a></li>");
+		$("#facet_refine_list").append("<li>"+rosetta(facet_type)+": "+rosetta(facet_value)+" <a href='"+nURL+"'>x</a></li>");
 	}
 
 	// pagination
@@ -167,19 +141,13 @@ function populateFacets(){
 	var facet_limit = 20;
 	// for each facet field
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-		$("#facets_container").append("<div id='"+facetHash[facet]+"_facet'><p><strong>"+facetHash[facet]+"</strong></p><ul class='facet_list' id='"+facetHash[facet]+"_list'</div>");
+		$("#facets_container").append("<div id='"+rosetta(facet)+"_facet'><p><strong>"+rosetta(facet)+"</strong></p><ul class='facet_list' id='"+rosetta(facet)+"_list'</div>");
 
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
 		for (var i = 0; i < facet_array.length; i = i + 2){
 			
-			//special case for Content Types
-			if (facet == "rels_hasContentModel"){
-				var facet_value = contentTypeHash[(facet_array[i])];
-			}
-			else{
-				var facet_value = facet_array[i];
-			}
-
+			// run through rosetta translation
+			var facet_value = rosetta(facet_array[i]);
 
 			//skip if blank
 			if (facet_array[i] != ""){
@@ -194,13 +162,13 @@ function populateFacets(){
 				else {
 					var facet_hidden = ""
 				}			
-				$("#"+facetHash[facet]+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
+				$("#"+rosetta(facet)+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
 			}
 		}
 		// add "more" button if longer than ten		
 		if (facet_array.length > facet_limit){						
-			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a id='"+facetHash[facet]+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facetHash[facet]+"\"); return false;'>more >></a></strong></p>");
-			$("#"+facetHash[facet]+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facetHash[facet]+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facetHash[facet]+"\"); return false;'><< less</a></strong></p>");			
+			$("#"+rosetta(facet)+"_list").append("<p style='text-align:right;'><strong><a id='"+rosetta(facet)+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+rosetta(facet)+"\"); return false;'>more >></a></strong></p>");
+			$("#"+rosetta(facet)+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+rosetta(facet)+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+rosetta(facet)+"\"); return false;'><< less</a></strong></p>");			
 		}
 	}		
 }
