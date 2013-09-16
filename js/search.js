@@ -169,8 +169,7 @@ function populateFacets(){
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
 		$("#facets_container").append("<div id='"+facetHash[facet]+"_facet'><p><strong>"+facetHash[facet]+"</strong></p><ul class='facet_list' id='"+facetHash[facet]+"_list'</div>");
 
-		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
-		// console.log(facet + "---" + facet_array.length);
+		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
 		for (var i = 0; i < facet_array.length; i = i + 2){
 			
 			//special case for Content Types
