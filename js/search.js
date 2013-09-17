@@ -11,7 +11,7 @@ searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
-searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel");
+searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel","rels_isMemberOfCollection", "dc_coverage");
 searchDefs.fq = [];
 searchDefs['facet.mincount'] = 2;
 
