@@ -37,4 +37,9 @@ var translationDictionary = {
 	"info:fedora/wayne:collectionWSUebooks" : "WSU eBooks",
 	"info:fedora/wayne:collectionWSUDORCollections" : "WSU Digital Collections",
 	"info:fedora/wayne:collectionMOT" : "Michigan Opera Theatre",
+	"info:fedora/wayne:collectionDFQ" : "Detroit Focus Quarterly",
+	"info:fedora/wayne:collectionRENCEN" : "Building of the Renaissance Center",
+	"info:fedora/wayne:collectionBMC" : "BioMed Central Wayne State Publications",
+	"info:fedora/wayne:collectionHeartTransplant" : "First U.S. Human-to-Human Heart Transplant",
+	"info:fedora/wayne:collectionDSJ" : "Detroit Sunday Journal",
 };
