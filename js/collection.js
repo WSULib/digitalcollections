@@ -12,6 +12,7 @@ searchDefs.facet = 'true';
 searchDefs.facets = [];
 searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel");
 searchDefs.fq = [];
+searchDefs.fl = "id dc_title";
 searchDefs['facet.mincount'] = 2;
 
 // Global API response data
@@ -100,12 +101,20 @@ function searchGo(){
 	// Set Search Parameters	
 	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
 	// Merge default and URL search parameters
+	///Gotta encode object/string property value
+	searchParams2 = JSON.stringify(searchParams);
+	console.log(searchParams2);
+	searchParams2 = escape(searchParams2);
+	console.log(searchParams2);
+	// searchParams ($.parseJSON(searchParams));
+	// console.log(searchParams);
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 	debugSearchParams();
 	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);
+	console.log(solrParamsString);
 
 	// Calls API functions
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
@@ -125,7 +134,7 @@ function searchGo(){
 	    console.log(APIdata);
 	    $(document).ready(function(){
 	    	updatePage();
-	    	populateFacets();
+	    	// populateFacets();
 	    	populateResults();	    		
 	    });
 	    
@@ -136,6 +145,19 @@ function searchGo(){
 	}
 }
 
+function updateCollection(){
+
+	// get current URL
+	var cURL = document.URL;
+
+	// check rows to update
+	searchParams.q = $("#q").val();
+	var nURL = updateURLParameter(window.location.href, 'q', searchParams.q);
+
+	// refresh page	
+	window.location = nURL;
+}
+
 
 function updateSearch(){
 
@@ -144,7 +166,7 @@ function updateSearch(){
 
 	// check rows to update
 	searchParams.rows = $("#rows").val();
-	var nURL = updateURLParameter(window.location.href, 'COL', searchParams.rows);
+	var nURL = updateURLParameter(window.location.href, 'rows', searchParams.rows);
 
 	// refresh page	
 	window.location = nURL;
@@ -171,3 +193,77 @@ function populateResults(){
 		});
 	}	
 }
+
+// UTILITIES
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * http://stackoverflow.com/a/10997390/11236
+ */
+function updateURLParameter(url, param, paramVal){
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (i=0; i<tempArray.length; i++){
+            if(tempArray[i].split('=')[0] != param){
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
+}
+
+function debugSearchParams(){
+	console.log("searchParams:");
+	console.log(searchParams);
+	console.log("searchDefs:");
+	console.log(searchDefs);
+	console.log("mergedParams:");
+	console.log(mergedParams);
+
+}
+
+function removeParameter(url, parameter)
+{
+  var fragment = url.split('#');
+  var urlparts= fragment[0].split('?');
+
+  if (urlparts.length>=2)
+  {
+    var urlBase=urlparts.shift(); //get first part, and remove from array
+    var queryString=urlparts.join("?"); //join it back up
+
+    var prefix = encodeURIComponent(parameter)+'=';
+    var pars = queryString.split(/[&;]/g);
+    for (var i= pars.length; i-->0;) {               //reverse iteration as may be destructive
+      if (pars[i].lastIndexOf(prefix, 0)!==-1) {   //idiom for string.startsWith
+        pars.splice(i, 1);
+      }
+    }
+    url = urlBase+'?'+pars.join('&');
+    if (fragment[1]) {
+      url += "#" + fragment[1];
+    }
+  }
+  return url;
+}
+
+function facetCollapseToggle(type, facet){
+	$("#"+facet+"_less").toggle();
+	$("#"+facet+"_more").toggle();	
+	if (type == "more"){
+		$("#"+facet+"_list.facet_list li.hidden_facet").fadeIn();			
+	}
+	if (type == "less"){
+		$("#"+facet+"_list.facet_list li.hidden_facet").hide();		
+	}	
+}
+
+//string contains
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };

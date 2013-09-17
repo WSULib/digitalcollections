@@ -15,7 +15,7 @@
     <!--Pagination-->
     <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>    
     <!-- Local JS -->
-    <script src="js/search.js"></script>
+    <script src="js/collection.js"></script>
     <!-- Local CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -35,7 +35,7 @@
             </div>            
             <div class="span4 pull-right">
 
-                <form class="form-search" action="search.php">                    
+                <form class="form-search" action="collection.php">                    
                     <input style="height:30px;" class="input-large search-query" name='q' id='q' type='text' placeholder="e.g. Detroit"/>
                     <button type="submit" class="btn">Search</button>
                 </form>
@@ -46,9 +46,9 @@
         <div class="row-fluid">
             <div class="span6">
                 <p><strong>Select Collection</strong></p>
-                <select style="width:75px;" id='rows' onchange="updateSearch();">
+                <select style="width:75px;" id='q' onchange="updateCollection();">
+                    <option value="rels_isMemberOfCollection/info\:fedora/wayne\:collectionCFAI">Changing Faces</option>
                     <option value="10">10</option>
-                    <option value="cfai">collectionCFAI</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
@@ -112,6 +112,8 @@
 </body>
 
 <script type="text/javascript">
+// var q = encodeURIComponent($("#q").val());
+// console.log (q);
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
     $(document).ready(function(){
         // updatePage();
