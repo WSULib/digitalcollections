@@ -85,7 +85,7 @@ function searchGo(){
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);
-
+	console.log(solrParamsString);
 	// Calls API functions
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
 
