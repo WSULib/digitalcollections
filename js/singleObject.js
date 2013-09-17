@@ -173,7 +173,7 @@ function finishRendering(){
     for (var i = collectionParents.length - 1; i >= 0; i--) {
       var parentComps = collectionParents[i].split(":");
       var safeName = parentComps[(parentComps.length - 1)]    
-      getSolrSiblings(safeName, collectionParents[i],0,5);    
+      // getSolrSiblings(safeName, collectionParents[i],0,5);    
     };
   }
   // isMemberOf
@@ -183,7 +183,7 @@ function finishRendering(){
     for (var i = memberParents.length - 1; i >= 0; i--) {
       var parentComps = memberParents[i].split(":");
       var safeName = parentComps[(parentComps.length - 1)]    
-      getSolrSiblings(safeName, memberParents[i],0,5);    
+      // getSolrSiblings(safeName, memberParents[i],0,5);    
     };
   }
   else{
@@ -200,6 +200,7 @@ function finishRendering(){
 function getSolrSiblings(safeName,PID,start,rows){  
 
   var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='getSolrSiblings'&PID='"+PID+"'&start="+start+"&rows="+rows;
+  
   $.ajax({          
       url: APIcallURL,      
       dataType: 'jsonp',    

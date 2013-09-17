@@ -19,12 +19,22 @@ var translationDictionary = {
 	"dc_subject":"Subject",
 	"dc_creator":"Creator",
 	"dc_language":"Language",
+	"dc_coverage":"Coverage",
 	"rels_hasContentModel":"Type",
+	"rels_isMemberOfCollection":"Collection",
+	
 	// Content Types
-	"info:fedora/CM:Image" : "Image",
-	// "\"info:fedora/CM:Image\"" : "Image",
+	"info:fedora/CM:Image" : "Image",	
 	"info:fedora/CM:Document" : "Document",
 	"info:fedora/CM:WSUebook" : "WSUebook",
 	"info:fedora/CM:Collection" : "Collection",
-	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
+	"info:fedora/singleObjectCM:WSUebook" : "WSUebook",
+
+	// Collection Names
+	"info:fedora/wayne:collectionCFAI" : "Changing Face of the Auto Industry",
+	"info:fedora/wayne:collectionMIM" : "Made in Michigan Writers Series",
+	"info:fedora/wayne:collectionWSUPress" : "WSU Press",
+	"info:fedora/wayne:collectionWSUebooks" : "WSU eBooks",
+	"info:fedora/wayne:collectionWSUDORCollections" : "WSU Digital Collections",
+	"info:fedora/wayne:collectionMOT" : "Michigan Opera Theatre",
 };
