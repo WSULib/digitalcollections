@@ -35,6 +35,42 @@ var contentTypeHash= {
 	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
 }
 
+//INITIAL LOAD
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function collectionSelect(){
+	mergedParams.q = "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections";
+	debugSearchParams();
+	
+	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
+	solrParamsString = JSON.stringify(mergedParams);
+	// Calls API functions
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'jsonp',	  
+	  jsonpCallback: "jsonpcallback",          
+	  success: callSuccess,
+	  // error: callError
+	});
+
+	function callSuccess(response){
+
+	    APIdata = response;
+	    console.log("APIdata");
+	    console.log(APIdata);
+	    $(document).ready(function(){
+			populateTitleResults();    		
+	    });
+	    
+	}
+
+	function callError(response){
+		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+	}
+}
+
 
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +121,6 @@ function searchGo(){
 	// Merge default and URL search parameters
 
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// mergedParams.q = encodeURIComponent(mergedParams.q);
 	debugSearchParams();
 	
 	
@@ -110,7 +145,6 @@ function searchGo(){
 	    console.log(APIdata);
 	    $(document).ready(function(){
 	    	updatePage();
-	    	// populateFacets();
 	    	populateResults();	    		
 	    });
 	    
@@ -171,6 +205,42 @@ function populateResults(){
 	}	
 }
 
+function populateTitleResults(){
+	
+	//push results to results_container
+	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
+
+  		$.ajax({          
+		  url: 'templates/collectionTitleResultObj.htm',      
+		  dataType: 'html',            
+		  async:false,
+		  success: function(response){		  	
+		  	var template = response;
+		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
+		  	$("#title").append(html);
+		  }		  
+		});
+	}	
+}
+
+function populateCollectionResults(){
+	
+	//push results to results_container
+	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
+
+  		$.ajax({          
+		  url: 'templates/collectionResultObj.htm',      
+		  dataType: 'html',            
+		  async:false,
+		  success: function(response){		  	
+		  	var template = response;
+		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
+		  	$("#title").append(html);
+		  }		  
+		});
+	}	
+}
+
 // UTILITIES
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -204,42 +274,6 @@ function debugSearchParams(){
 	console.log("mergedParams:");
 	console.log(mergedParams);
 
-}
-
-function removeParameter(url, parameter)
-{
-  var fragment = url.split('#');
-  var urlparts= fragment[0].split('?');
-
-  if (urlparts.length>=2)
-  {
-    var urlBase=urlparts.shift(); //get first part, and remove from array
-    var queryString=urlparts.join("?"); //join it back up
-
-    var prefix = encodeURIComponent(parameter)+'=';
-    var pars = queryString.split(/[&;]/g);
-    for (var i= pars.length; i-->0;) {               //reverse iteration as may be destructive
-      if (pars[i].lastIndexOf(prefix, 0)!==-1) {   //idiom for string.startsWith
-        pars.splice(i, 1);
-      }
-    }
-    url = urlBase+'?'+pars.join('&');
-    if (fragment[1]) {
-      url += "#" + fragment[1];
-    }
-  }
-  return url;
-}
-
-function facetCollapseToggle(type, facet){
-	$("#"+facet+"_less").toggle();
-	$("#"+facet+"_more").toggle();	
-	if (type == "more"){
-		$("#"+facet+"_list.facet_list li.hidden_facet").fadeIn();			
-	}
-	if (type == "less"){
-		$("#"+facet+"_list.facet_list li.hidden_facet").hide();		
-	}	
 }
 
 //string contains

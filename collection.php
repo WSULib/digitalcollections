@@ -28,7 +28,11 @@
 <body>
 
     <div id="search_container" class="container-fluid">
-                          
+      <div class="row-fluid">
+        <div class="span12">
+            <h2><a href="collection.php">Collection View</a></h2>
+        </div>
+      </div>                    
         
         <div class="row-fluid">
             <div class="span12">
@@ -37,8 +41,17 @@
         </div>
 
         <div class="row-fluid">
+            <div class="titleSelector">
+                <div class="span6 pull-left">
+                <p><strong>Select Collection</strong></p>
+                <select style="width:250px;" id='q' onchange="updateCollection();">
+                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option>
+                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option>
+                </select>
+            </div>
+            </div>            
             <div class="span6">
-            <div class="span6 pull-left">
+            <div class="span6">
                 <p><strong>Items per Page</strong></p>
                 <select style="width:75px;" id='rows' onchange="updateSearch();">
                     <option value="10">10</option>
@@ -47,17 +60,8 @@
                     <option value="100">100</option>
                 </select>
             </div>
-                <div class="span6 pull-right">
-                <p><strong>Select Collection</strong></p>
-                <select style="width:75px;" id='q' onchange="updateCollection();">
-                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option>
-                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>            
             </div>
-            <div class="span6 pull-right pagination"></div>
+            <div class="span8 pagination"></div>
         </div>
 
         
@@ -80,12 +84,12 @@
 </body>
 
 <script type="text/javascript">
-// var q = encodeURIComponent($("#q").val());
-// console.log (q);
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
     $(document).ready(function(){
         // updatePage();
-        searchGo();    
+        searchGo();
+        // TitleSelect();
+        // collectionSelect();    
     });    
 </script>
 </html>
