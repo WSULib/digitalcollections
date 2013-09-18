@@ -20,7 +20,7 @@ var translationDictionary = {
 	"dc_creator":"Creator",
 	"dc_language":"Language",
 	"dc_coverage":"Coverage",
-	"rels_hasContentModel":"Type",
+	"rels_hasContentModel":"Content Type",
 	"rels_isMemberOfCollection":"Collection",
 	
 	// Content Types
