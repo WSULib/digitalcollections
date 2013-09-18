@@ -12,9 +12,10 @@ searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
 searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel","rels_isMemberOfCollection", "dc_coverage");
+//sorting facets
+searchDefs['f.dc_date.facet.sort'] = "index";
 searchDefs.fq = [];
 searchDefs['facet.mincount'] = 2;
-searchDefs['facet.sort'] = "count";
 
 // Global API response data
 APIdata = new Object();
