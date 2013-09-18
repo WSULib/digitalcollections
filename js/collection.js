@@ -10,10 +10,9 @@ searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
-searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel");
 searchDefs.fq = [];
 searchDefs.fl = "id dc_title";
-searchDefs['facet.mincount'] = 2;
+// searchDefs['facet.mincount'] = 2;
 
 // Global API response data
 APIdata = new Object();
@@ -55,23 +54,6 @@ function updatePage(){
 	// update query box
 	$("#q").val(mergedParams.q);
 
-	// show "refined by" facets
-	for (var i = 0; i < mergedParams.fq.length; i++){		
-		var facet_string = mergedParams.fq[i];		
-		console.log(facet_string);
-		var facet_type = facet_string.split(":")[0];
-		//content_model special case
-		if (facet_string.contains('rels_hasContentModel')){			
-			var facet_value = facet_string.replace("rels_hasContentModel:","");
-			facet_value = facet_value.replace('info:fedora/CM:','');
-		}
-		else{						
-			var facet_value = facet_string.split(":")[1];				
-		}
-		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$("#facet_refine_list").append("<li>"+facetHash[facet_type]+": "+facet_value+" <a href='"+nURL+"'>x</a></li>");
-	}
-
 	// pagination
 	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
 	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
@@ -101,20 +83,14 @@ function searchGo(){
 	// Set Search Parameters	
 	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
 	// Merge default and URL search parameters
-	///Gotta encode object/string property value
-	searchParams2 = JSON.stringify(searchParams);
-	console.log(searchParams2);
-	searchParams2 = escape(searchParams2);
-	console.log(searchParams2);
-	// searchParams ($.parseJSON(searchParams));
-	// console.log(searchParams);
+
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+	// mergedParams.q = encodeURIComponent(mergedParams.q);
 	debugSearchParams();
 	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);
-	console.log(solrParamsString);
 
 	// Calls API functions
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
@@ -151,7 +127,8 @@ function updateCollection(){
 	var cURL = document.URL;
 
 	// check rows to update
-	searchParams.q = $("#q").val();
+	searchParams.q = escape($("#q").val());
+	console.log(searchParams.q);
 	var nURL = updateURLParameter(window.location.href, 'q', searchParams.q);
 
 	// refresh page	
@@ -182,7 +159,7 @@ function populateResults(){
 	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
 
   		$.ajax({          
-		  url: 'templates/searchResultObj.htm',      
+		  url: 'templates/collectionResultObj.htm',      
 		  dataType: 'html',            
 		  async:false,
 		  success: function(response){		  	
