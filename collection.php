@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>WSUDOR - Title of Collection Here</title>
+    <title>WSUDOR - Collection Page</title>
 
     <!--jquery-->
     <script src="http://code.jquery.com/jquery.js"></script>
@@ -16,6 +16,7 @@
     <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>    
     <!-- Local JS -->
     <script src="js/collection.js"></script>
+    <script src="js/rosettaHash.js"></script>
     <!-- Local CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -27,31 +28,25 @@
 
 <body>
 
-    <div id="search_container" class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
-            <h2><a href="collection.php">Collection View</a></h2>
-        </div>
-      </div>                    
+    <div id="title_container" class="navbar navbar-fixed-top">
         
         <div class="row-fluid">
-            <div class="span12">
-                <p>There are <strong><span id='num_results'></span></strong> items in <strong><span id='title'></span></strong>.</p>
-            </div>
-        </div>
+            <h1>
+            </h1>
+            <h2><a href="collection.php"><span id='title'></span></a></h2>
+            <p>There are <strong><span id='num_results'>0</span></strong> items in this collection.</p>
 
-        <div class="row-fluid">
-            <div class="titleSelector">
-                <div class="span6 pull-left">
+<div class="collectionSelector">
+                <div class="span3">
                 <p><strong>Select Collection</strong></p>
                 <select style="width:250px;" id='q' onchange="updateCollection();">
+                    <option value=" " selected = "selected"></option>
                     <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option>
                     <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option>
                 </select>
             </div>
             </div>            
-            <div class="span6">
-            <div class="span6">
+            <div class="span9">
                 <p><strong>Items per Page</strong></p>
                 <select style="width:75px;" id='rows' onchange="updateSearch();">
                     <option value="10">10</option>
@@ -60,12 +55,12 @@
                     <option value="100">100</option>
                 </select>
             </div>
-            </div>
-            <div class="span8 pagination"></div>
+            <div class="span7 pagination"></div>
         </div>
+            </div> <!--close title_container -->
 
         
-
+    <div id="collection_container" class="container-fluid">
         <div class="row-fluid">
 
             <!-- results -->
@@ -73,11 +68,11 @@
                 <h4>Search Results</h4>            
                 <div id="results_container"></div>
             </div>
-            <div class="span8 pagination"></div>
+            <!-- <div class="span8 pagination"></div> -->
 
-        </div><!--closes main second row-->
+        </div>
     
-    </div> <!--closes container-->
+    </div> <!--closes collection_container-->
 
     
 
@@ -88,8 +83,8 @@
     $(document).ready(function(){
         // updatePage();
         searchGo();
-        // TitleSelect();
-        // collectionSelect();    
+        // updateCollectionTitle();
+        // collectionsList();    
     });    
 </script>
 </html>

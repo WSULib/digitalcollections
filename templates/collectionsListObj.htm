@@ -1,0 +1,18 @@
+<select>{{#options}}
+<option value="{{val}}">{{txt}}</option>
+{{/options}}</select>
+
+
+<select style="width:250px;" id='q' onchange="updateCollection();">
+                    <option value=" "></option>
+                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option>
+                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option>
+                </select>
+
+
+<div class="collectionResultObj">
+	<div class="span1" style="width:15%">
+		<div class="thumbnail"><a href="singleObject.php?PID={{id}}"><img src="http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/THUMBNAIL/content"/></a></div>
+		<p><strong>Title: </strong>{{dc_title}}</p>
+	</div>	
+</div>
