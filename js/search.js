@@ -12,6 +12,8 @@ searchDefs.wt = "json";
 searchDefs.facet = 'true';
 searchDefs.facets = [];
 searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel","rels_isMemberOfCollection", "dc_coverage");
+//sorting facets
+searchDefs['f.dc_date.facet.sort'] = "index";
 searchDefs.fq = [];
 searchDefs['facet.mincount'] = 2;
 
@@ -138,20 +140,16 @@ function populateFacets(){
 	// get current URL
 	var cURL = document.URL;
 	// set defaults
-	var facet_limit = 20;
+	var facet_limit = 18;
 	// for each facet field
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-		$("#facets_container").append("<div id='"+rosetta(facet)+"_facet'><p><strong>"+rosetta(facet)+"</strong></p><ul class='facet_list' id='"+rosetta(facet)+"_list'</div>");
+		$("#facets_container").append("<div id='"+facet+"_facet'><p><strong>"+rosetta(facet)+"</strong></p><ul class='facet_list' id='"+facet+"_list'</div>");
 
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
-		for (var i = 0; i < facet_array.length; i = i + 2){
-			
+		for (var i = 0; i < facet_array.length; i = i + 2){			
 			// run through rosetta translation
-			var facet_value = rosetta(facet_array[i]);
-
-			//skip if blank
+			var facet_value = rosetta(facet_array[i]);			
 			if (facet_array[i] != ""){
-
 				// write URL
 				//set start to 0, most elegant way to handle less numFound than start count
 				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
@@ -162,13 +160,13 @@ function populateFacets(){
 				else {
 					var facet_hidden = ""
 				}			
-				$("#"+rosetta(facet)+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
+				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
 			}
 		}
 		// add "more" button if longer than ten		
 		if (facet_array.length > facet_limit){						
-			$("#"+rosetta(facet)+"_list").append("<p style='text-align:right;'><strong><a id='"+rosetta(facet)+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+rosetta(facet)+"\"); return false;'>more >></a></strong></p>");
-			$("#"+rosetta(facet)+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+rosetta(facet)+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+rosetta(facet)+"\"); return false;'><< less</a></strong></p>");			
+			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>more >></a></strong></p>");
+			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'><< less</a></strong></p>");			
 		}
 	}		
 }

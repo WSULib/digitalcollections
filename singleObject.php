@@ -8,34 +8,24 @@ $objectPID = $_REQUEST['PID'];
     <script id="head_t" type="text/html">
         <title>{{solr4FedObjsID.response.docs.0.dc_title.0}}</title>
     </script>
-
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
-
 	<!--load bootstrap js-->    
-    <script src="inc/bootstrap/js/bootstrap.js"></script>        
-
+    <script src="inc/bootstrap/js/bootstrap.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="inc/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="inc/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
     <!--Mustache-->
     <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
 	<script type="text/javascript" src="inc/mustache.js"></script>
-
     <!-- Local JS -->
     <script src="js/singleObject.js"></script>
-
     <!-- Local CSS -->
 	<link href="css/style.css" rel="stylesheet">
-
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
-    
-
-
 </head>
 
 <body>
@@ -52,8 +42,7 @@ $objectPID = $_REQUEST['PID'];
 			</div>
 
     		<!--metadata testing-->
-    		<div id="metadata" class="templated span6">
-    			<h3>Metadata</h3>
+    		<div id="metadata" class="templated span6">    			
     			<script id="metadata_t" type="text/html">
 					<p><strong>Title: </strong>{{solr4FedObjsID.response.docs.0.dc_title.0}}</p>					
 					<p><strong>Description: </strong>{{solr4FedObjsID.response.docs.0.dc_description.0}}</p>
@@ -64,7 +53,7 @@ $objectPID = $_REQUEST['PID'];
                     <p><strong>Subject: </strong>{{.}}</p>
                     {{/solr4FedObjsID.response.docs.0.dc_subject}}
                     <p><span style="color:green; font-weight:bold;">Content Type: {{solr4FedObjsID.response.docs.0.rels_hasContentModel.0}}</span></p>
-				</script>   			
+				</script>                	
 			</div>
 
 		</div>
@@ -87,31 +76,12 @@ $objectPID = $_REQUEST['PID'];
                 <h3>Part of Collection(s):</h3>
                 <script id="parents_t" type="text/html">                   
                     {{#isMemberOfCollection.results}}                                                
-                        <p><a href="http://silo.lib.wayne.edu/digitalcollections/singleObject.php?PID={{subject}}">{{collectionTitle}}</a></p>
+                        <p><a href="http://silo.lib.wayne.edu/digitalcollections/collection.php?PID={{subject}}">{{collectionTitle}}</a></p>
                     {{/isMemberOfCollection.results}}                    
                 </script> 
 			</div>
 
-		</div>
-
-		<!--row3-->
-    	<div style="display:none;" class="row-fluid">
-
-    		<!--siblings testing-->
-    		<div id="siblings" class="span12">
-                <h3>Siblings</h3>
-			</div>    		
-
-		</div>
-
-		<!--row4 Related-->
-        <!--
-    	<div class="row-fluid">    		
-    		<div id="related" class="span12">
-    			<h3>Related</h3>
-			</div>
-		</div>
-        -->
+		</div>		
 		
 	</div>
 
