@@ -15,8 +15,8 @@ function APIcall(PID){
 
     $.ajax({          
       url: APIcallURL,      
-      dataType: 'jsonp',    
-      jsonpCallback: "jsonpcallback",            
+      dataType: 'json',    
+      // jsonpCallback: "jsonpcallback",            
       success: callSuccess,
       error: callError
     });
