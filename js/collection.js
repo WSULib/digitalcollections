@@ -50,8 +50,7 @@ function collectionsList(){
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'jsonp',	  
-	  jsonpCallback: "jsonpcallback",          
+	  dataType: 'json',	  
 	  success: callSuccess,
 	  // error: callError
 	});
@@ -133,8 +132,7 @@ function searchGo(){
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'jsonp',	  
-	  jsonpCallback: "jsonpcallback",          
+	  dataType: 'json',	         
 	  success: callSuccess,
 	  // error: callError
 	});
@@ -143,7 +141,7 @@ function searchGo(){
 
 	    APIdata = response;
 	    console.log("APIdata");
-	    console.log(APIdata);
+	    // console.log(APIdata);
 	    $(document).ready(function(){
 	    	collectionsList();
 	    	updateCollectionTitle();
@@ -160,12 +158,42 @@ function searchGo(){
 
 function updateCollectionTitle(){
 
-    var str = searchParams.q;
-	if (typeof searchParams.q != 'undefined'){
-    searchParams.q = str.split(/:(.+)/)[1];
-    var collectionTitle = rosetta(searchParams.q);
-    $("#title").html(collectionTitle);
-    } 
+	var str = searchParams.q;
+	if (typeof searchParams.q !== 'undefined'){
+		searchParams.q = str.split('/')[1];
+
+	// Calls API functions
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solr4FedObjsID'&PID='"+searchParams.q+"'";			
+
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'json',	  
+	  success: callSuccess,
+	  // error: callError
+	});
+
+	function callSuccess(response){
+
+	    APIdata.collectionMeta = response;
+	    console.log(APIdata);
+	    $(document).ready(function(){
+	    	if (typeof APIdata.collectionMeta.solr4FedObjsID.response.docs[0].dc_title[0] !== 'undefined'){
+			$("#title").html(APIdata.collectionMeta.solr4FedObjsID.response.docs[0].dc_title[0]);
+			}	    		
+	    });
+	    
+	}
+
+	function callError(response){
+		console.log("No Collection Title produced");
+	    $(document).ready(function(){
+			$("#title").html("Untitled Collection");	    		
+	    });
+
+
+	}
+	}
+
 }
 
 function updateCollection(){
