@@ -40,9 +40,11 @@
                 <div class="span3">
                 <p><strong>Select Collection</strong></p>
                 <select style="width:250px;" id='q' onchange="updateCollection();">
-                    <option value=" " selected = "selected"></option>
-                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option>
-                    <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option>
+                    <div id="selector">
+                    <!-- <option value=" " selected = "selected"></option> -->
+                    <!-- <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option> -->
+                    <!-- <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option> -->
+                </div>
                 </select>
             </div>
             </div>            

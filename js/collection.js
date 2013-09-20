@@ -41,7 +41,7 @@ function collectionsList(){
 
 
 
-	mergedParams.q = "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections";
+	mergedParams.q = "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic";
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
 	solrParamsString = JSON.stringify(mergedParams);
@@ -57,11 +57,9 @@ function collectionsList(){
 
 	function callSuccess(response){
 
-	    collectionsListData = response;
-	    console.log("collectionsListData");
-	    console.log(collectionsListData);
+	    APIdata.collectionsList = response;
 	    $(document).ready(function(){
-			// populateCollectionsList();    		
+			populateCollectionsList();    		
 	    });
 	    
 	}
@@ -262,7 +260,7 @@ function populateResults(){
 function populateCollectionsList(){
 	
 	//push results to collectionSelector
-	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
+	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {		
 
   		$.ajax({          
 		  url: 'templates/collectionsListObj.htm',      
@@ -270,7 +268,7 @@ function populateCollectionsList(){
 		  async:false,
 		  success: function(response){		  	
 		  	var template = response;
-		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
+		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
 		  	$(".collectionSelector").append(html);
 		  }		  
 		});
