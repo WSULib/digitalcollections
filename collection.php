@@ -35,19 +35,13 @@
             </h1>
             <h2><a href="collection.php"><span id='title'></span></a></h2>
             <p>There are <strong><span id='num_results'>0</span></strong> items in this collection.</p>
-
-<div class="collectionSelector">
                 <div class="span3">
                 <p><strong>Select Collection</strong></p>
                 <select style="width:250px;" id='q' onchange="updateCollection();">
-                    <div id="selector">
-                    <!-- <option value=" " selected = "selected"></option> -->
-                    <!-- <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections">All Collections</option> -->
-                    <!-- <option value="rels_isMemberOfCollection:info:fedora/wayne:collectionCFAI">Changing Face of the Auto Industry</option> -->
-                </div>
+                    <option value=" " selected = "selected"></option>
                 </select>
             </div>
-            </div>            
+           
             <div class="span9">
                 <p><strong>Items per Page</strong></p>
                 <select style="width:75px;" id='rows' onchange="updateSearch();">

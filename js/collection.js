@@ -269,7 +269,7 @@ function populateCollectionsList(){
 		  success: function(response){		  	
 		  	var template = response;
 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
-		  	$(".collectionSelector").append(html);
+		  	$("select").append(html);
 		  }		  
 		});
 	}	
