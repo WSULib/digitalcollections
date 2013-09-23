@@ -41,7 +41,7 @@
                     <option value=" " selected = "selected"></option>
                 </select>
             </div>
-           
+           <div id="collectionSelector">
             <div class="span9">
                 <p><strong>Items per Page</strong></p>
                 <select style="width:75px;" id='rows' onchange="updateSearch();">
@@ -51,6 +51,7 @@
                     <option value="100">100</option>
                 </select>
             </div>
+        </div>
             <div class="span7 pagination"></div>
         </div>
             </div> <!--close title_container -->
