@@ -81,7 +81,6 @@
     $(document).ready(function(){
         // updatePage();
         searchGo();
-        if (select#collection)
     });    
 </script>
 </html>
