@@ -37,7 +37,8 @@
             <p>There are <strong><span id='num_results'>0</span></strong> items in this collection.</p>
                 <div class="span3">
                 <p><strong>Select Collection</strong></p>
-                <select style="width:250px;" id='q' onchange="updateCollection();">
+                <select style="width:250px;" id='collection' onchange="updateCollection();">
+                    <!-- http://stackoverflow.com/questions/9360183/filling-and-selecting-a-selectbox-in-mustache-js -->
                     <option value=" " selected = "selected"></option>
                 </select>
             </div>
@@ -80,8 +81,7 @@
     $(document).ready(function(){
         // updatePage();
         searchGo();
-        // updateCollectionTitle();
-        // collectionsList();    
+        if (select#collection)
     });    
 </script>
 </html>

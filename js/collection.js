@@ -8,7 +8,6 @@ var mergedParams = {};
 searchDefs.rows = 50;
 searchDefs.start = 0;
 searchDefs.wt = "json";
-// searchDefs.facet = 'true';
 searchDefs.facets = [];
 searchDefs.fq = [];
 searchDefs.fl = "id dc_title";
@@ -33,7 +32,7 @@ var contentTypeHash= {
 	"info:fedora/CM:Collection" : "Collection",
 	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
 }
-/////Gotta add collection selector loading
+
 //INITIAL LOAD
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,6 +73,9 @@ function collectionsList(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updatePage(){
+
+	// make collection equal q, so everything is passed on correctly through the API
+	mergedParams.q = mergedParams.collection;
 
 	// get current URL
 	var cURL = document.URL;
@@ -117,7 +119,9 @@ function searchGo(){
 	// Set Search Parameters	
 	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
 	// Merge default and URL search parameters
+	searchParams.q = searchParams.collection;
 
+	searchParams.q = "rels_isMemberOfCollection:'info:fedora/"+searchParams.q+"'";
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 	debugSearchParams();
 	
@@ -150,24 +154,26 @@ function searchGo(){
 	}
 
 	function callError(response){
+
 		console.log("API Call unsuccessful.  Back to the drawing board.");	  
 	}
 }
 
 function updateCollectionTitle(){
-
+	// searchParams.q = searchParams.collection;
 	var str = searchParams.q;
 	if (typeof searchParams.q !== 'undefined'){
-		searchParams.q = str.split('/')[1];
+		str = str.split('/')[1];
+		searchParams.q = str.replace("'", " ");
 
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solr4FedObjsID'&PID='"+searchParams.q+"'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solr4FedObjsID'&PID="+searchParams.q;
 
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  
 	  success: callSuccess,
-	  // error: callError
+	  error: callError
 	});
 
 	function callSuccess(response){
@@ -183,7 +189,8 @@ function updateCollectionTitle(){
 	}
 
 	function callError(response){
-		console.log("No Collection Title produced");
+		console.log("No Collection Title has been returned from ajax call");
+		console.log(response);
 	    $(document).ready(function(){
 			$("#title").html("Untitled Collection");	    		
 	    });
@@ -195,14 +202,13 @@ function updateCollectionTitle(){
 }
 
 function updateCollection(){
-	updateCollectionTitle();
+
 	// get current URL
 	var cURL = document.URL;
 
 	// check rows to update
-	searchParams.q = escape($("#q").val());
-	console.log(searchParams.q);
-	var nURL = updateURLParameter(window.location.href, 'q', searchParams.q);
+	searchParams.q = $("#collection").val();
+	var nURL = updateURLParameter(window.location.href, 'collection', searchParams.q);
 
 	// refresh page	
 	window.location = nURL;
@@ -269,7 +275,7 @@ function populateCollectionsList(){
 		  success: function(response){		  	
 		  	var template = response;
 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
-		  	$("select#q").append(html);
+		  	$("select#collection").append(html);
 		  }		  
 		});
 	}	
