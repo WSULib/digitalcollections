@@ -25,12 +25,19 @@ $objectPID = $_REQUEST['PID'];
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+    <![endif]-->    
 </head>
 
 <body>
 
 	<div id="container" class="container-fluid">      
+
+        <!--row1-->
+        <div class="row-fluid">
+            <div style="margin-bottom:15px;" class="span4 pull-right">                
+                <button onclick="addFav();"><img src="http://www.fanbuff.com/icons/FavoriteStar_16x16.png"/></button>
+            </div>
+        </div>
     	
 		<!--row1-->
     	<div class="row-fluid">
