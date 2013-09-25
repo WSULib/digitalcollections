@@ -10,6 +10,8 @@ $objectPID = $_REQUEST['PID'];
     </script>
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
+    <!--cookie.js-->
+    <script src="http://silo.lib.wayne.edu/fedoraManager/js/jquery.cookie.js"></script>
 	<!--load bootstrap js-->    
     <script src="inc/bootstrap/js/bootstrap.js"></script>
     <!-- Bootstrap core CSS -->
