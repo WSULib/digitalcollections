@@ -15,26 +15,59 @@ searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_h
 //sorting facets
 searchDefs['f.dc_date.facet.sort'] = "index";
 searchDefs.fq = [];
-searchDefs['facet.mincount'] = 2;
+searchDefs['facet.mincount'] = 1;
 
 // Global API response data
 APIdata = new Object();
 
-//HARD-CODED USER FOR TESTING
-userData.accessID = "oz9000";
+
+// GET FAVs
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function getFavs(){
+
+	var favParams = new Object();
+	favParams.q = "fav_user:"+userData.accessID;
+	favParams.fl = "fav_item";
+	favParams.fq = [];
+	favParams.facets = [];	
+
+	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
+	solrParamsString = JSON.stringify(mergedParams);	
+
+	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='noqescape'";			
+
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'json',
+	  success: callSuccess,
+	  error: callError
+	});
+
+	function callSuccess(response){
+		APIdata.favs = response;	    
+	    console.log(userData.accessID+" favorites:");
+	    console.log(response)
+	    searchGo();
+	}
+	function callError(response){
+		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+	}
+}
+
 
 
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function updatePage(){
+function updatePage(){	
 
 	// get current URL
 	var cURL = document.URL;
 
 	// update user and number of favorites
-	$("#accessID").html(mergedParams.q);	
-	$("#num_results").html(APIdata.solrSearch.response.numFound);
+	$("#accessID").html(userData.accessID);	
+	$("#num_results").html(APIdata.favs.solrSearch.response.numFound);
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
@@ -76,36 +109,39 @@ function updatePage(){
 
 
 
-
-
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 
-	// Set Search Parameters	
-	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
+	// Set Search Parameters
+	// create q based on ALL favorites of user	
+	searchParams.q = "";
+	for (var i in APIdata.favs.solrSearch.response.docs){
+		var fav_item = APIdata.favs.solrSearch.response.docs[i].fav_item[0];
+		searchParams.q += fav_item+" ";		
+	}
+	searchParams.q = "id:("+searchParams.q+")";
+	
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();
-	
+	debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);
-	console.log(solrParamsString);
+	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='escapeterms'";			
 
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  
 	  // jsonpCallback: "jsonpcallback",          
 	  success: callSuccess,
-	  // error: callError
+	  error: callError
 	});
 
 	function callSuccess(response){
 
-	    APIdata = response;
+		mix(response,APIdata);	    
 	    console.log("APIdata");
 	    console.log(APIdata);
 	    $(document).ready(function(){
@@ -196,79 +232,6 @@ function populateResults(){
 
 
 
-// UTILITIES
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * http://stackoverflow.com/a/10997390/11236
- */
-function updateURLParameter(url, param, paramVal){
-    var newAdditionalURL = "";
-    var tempArray = url.split("?");
-    var baseURL = tempArray[0];
-    var additionalURL = tempArray[1];
-    var temp = "";
-    if (additionalURL) {
-        tempArray = additionalURL.split("&");
-        for (i=0; i<tempArray.length; i++){
-            if(tempArray[i].split('=')[0] != param){
-                newAdditionalURL += temp + tempArray[i];
-                temp = "&";
-            }
-        }
-    }
-
-    var rows_txt = temp + "" + param + "=" + paramVal;
-    return baseURL + "?" + newAdditionalURL + rows_txt;
-}
-
-function debugSearchParams(){
-	console.log("searchParams:");
-	console.log(searchParams);
-	console.log("searchDefs:");
-	console.log(searchDefs);
-	console.log("mergedParams:");
-	console.log(mergedParams);
-
-}
-
-function removeParameter(url, parameter)
-{
-  var fragment = url.split('#');
-  var urlparts= fragment[0].split('?');
-
-  if (urlparts.length>=2)
-  {
-    var urlBase=urlparts.shift(); //get first part, and remove from array
-    var queryString=urlparts.join("?"); //join it back up
-
-    var prefix = encodeURIComponent(parameter)+'=';
-    var pars = queryString.split(/[&;]/g);
-    for (var i= pars.length; i-->0;) {               //reverse iteration as may be destructive
-      if (pars[i].lastIndexOf(prefix, 0)!==-1) {   //idiom for string.startsWith
-        pars.splice(i, 1);
-      }
-    }
-    url = urlBase+'?'+pars.join('&');
-    if (fragment[1]) {
-      url += "#" + fragment[1];
-    }
-  }
-  return url;
-}
-
-function facetCollapseToggle(type, facet){
-	$("#"+facet+"_less").toggle();
-	$("#"+facet+"_more").toggle();	
-	if (type == "more"){
-		$("#"+facet+"_list.facet_list li.hidden_facet").fadeIn();			
-	}
-	if (type == "less"){
-		$("#"+facet+"_list.facet_list li.hidden_facet").hide();		
-	}	
-}
-
-//string contains
-String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
 
 
 

@@ -15,6 +15,8 @@
     <!--Pagination-->
     <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>    
     <!-- Local JS -->
+    <script src="js/utilities.js"></script>
+    <script src="js/userData.js"></script>
     <script src="js/search.js"></script>
     <!-- Local CSS -->
 	<link href="css/style.css" rel="stylesheet">

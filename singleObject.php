@@ -19,6 +19,7 @@ $objectPID = $_REQUEST['PID'];
     <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
 	<script type="text/javascript" src="inc/mustache.js"></script>
     <!-- Local JS -->
+    <script src="js/utilities.js"></script>
     <script src="js/userData.js"></script>
     <script src="js/singleObject.js"></script>
     <!-- Local CSS -->

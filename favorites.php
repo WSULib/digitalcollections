@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>WSUDOR - Search</title>
+    <title>WSUDOR - Favorites</title>
 
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -15,6 +15,7 @@
     <!--Pagination-->
     <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>    
     <!-- Local JS -->
+    <script src="js/utilities.js"></script>
     <script src="js/userData.js"></script>
     <script src="js/favorites.js"></script>
     <!-- Local CSS -->
@@ -25,9 +26,6 @@
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
-
-    
-
 </head>
 
 <body>
@@ -91,9 +89,8 @@
 
 <script type="text/javascript">
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
-    $(document).ready(function(){
-        // updatePage();
-        searchGo();    
+    $(document).ready(function(){    
+        getFavs();
     });    
 </script>
 </html>
