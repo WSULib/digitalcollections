@@ -120,12 +120,17 @@ function searchGo(){
 
 function updateSearch(){
 
-	// get current URL
-	var cURL = document.URL;
+	// get current URL	
+	var nURL = window.location.href;
 
 	// check rows to update
 	searchParams.rows = $("#rows").val();
-	var nURL = updateURLParameter(window.location.href, 'rows', searchParams.rows);
+	var nURL = updateURLParameter(nURL, 'rows', searchParams.rows);	
+
+	// adjust start pointer
+	if (searchParams.rows > searchParams.start){		
+		var nURL = updateURLParameter(nURL, 'start', "0");
+	}	
 
 	// refresh page	
 	window.location = nURL;

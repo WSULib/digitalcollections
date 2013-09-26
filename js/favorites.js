@@ -29,10 +29,14 @@ function getFavs(){
 	favParams.q = "fav_user:"+userData.accessID;
 	favParams.fl = "fav_item";
 	favParams.fq = [];
-	favParams.facets = [];	
+	favParams.facets = [];
+	favParams.start = searchParams.start;
+	favParams.rows = searchParams.rows;
 
-	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
-	solrParamsString = JSON.stringify(mergedParams);	
+	mergedFavsParams = jQuery.extend(true,{},searchDefs,favParams);
+	console.log("Merged FAVs Params:");
+	console.log(mergedFavsParams);
+	solrParamsString = JSON.stringify(mergedFavsParams);	
 
 	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='noqescape'";			
@@ -87,8 +91,8 @@ function updatePage(){
 	}
 
 	// pagination
-	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
-	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
+	var tpages = parseInt((APIdata.favs.solrSearch.response.numFound / mergedParams.rows) + 1);
+	var spage = parseInt(mergedFavsParams.start / mergedFavsParams.rows) + 1;
 	if (spage == 0) {
 		spage = 1;
 	}
@@ -120,7 +124,8 @@ function searchGo(){
 		var fav_item = APIdata.favs.solrSearch.response.docs[i].fav_item[0];
 		searchParams.q += fav_item+" ";		
 	}
-	searchParams.q = "id:("+searchParams.q+")";
+	searchParams.q = "id:("+searchParams.q+")";	
+	searchParams.start = 0;	
 	
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
@@ -160,12 +165,17 @@ function searchGo(){
 
 function updateSearch(){
 
-	// get current URL
-	var cURL = document.URL;
+	// get current URL	
+	var nURL = window.location.href;
 
 	// check rows to update
 	searchParams.rows = $("#rows").val();
-	var nURL = updateURLParameter(window.location.href, 'rows', searchParams.rows);
+	var nURL = updateURLParameter(nURL, 'rows', searchParams.rows);	
+
+	// adjust start pointer
+	if (searchParams.rows > searchParams.start){		
+		var nURL = updateURLParameter(nURL, 'start', "0");
+	}	
 
 	// refresh page	
 	window.location = nURL;
