@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>WSUDOR - Search</title>
+    <title>WSUDOR - Favorites</title>
 
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -17,7 +17,7 @@
     <!-- Local JS -->
     <script src="js/utilities.js"></script>
     <script src="js/userData.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/favorites.js"></script>
     <!-- Local CSS -->
 	<link href="css/style.css" rel="stylesheet">
     <!--WSUDOR Translation Dictionary-->
@@ -26,31 +26,16 @@
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
-    
-
 </head>
 
 <body>
 
-	<div id="search_container" class="container-fluid">
+	<div id="search_container" class="container-fluid">       
         
-        <div class="row-fluid" id="search_form">
-            <div class="span4">
-                <h3><a href="search.php">RESET</a></h3>
-            </div>            
-            <div class="span4 pull-right">
-
-                <form class="form-search" action="search.php">                    
-                    <input style="height:30px;" class="input-large search-query" name='q' id='q' type='text' placeholder="e.g. Detroit"/>
-                    <button type="submit" class="btn">Search</button>
-                </form>
-
-            </div>
-        </div>            
         
         <div class="row-fluid">
             <div class="span12">
-                <p>Your search for <strong><span id='q_string'></span></strong> returned <strong><span id='num_results'></span></strong> results.</p>
+                <p>You, <strong><span id='accessID'></span></strong>, have <strong><span id='num_results'></span></strong> favorites.</p>
             </div>
         </div>
 
@@ -104,9 +89,8 @@
 
 <script type="text/javascript">
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
-    $(document).ready(function(){
-        // updatePage();
-        searchGo();    
+    $(document).ready(function(){    
+        getFavs();
     });    
 </script>
 </html>

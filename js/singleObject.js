@@ -4,6 +4,8 @@
 // Globals
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var APIdata = new Object();
+// var userData = new Object();
+
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,33 +15,33 @@ function APIcall(PID){
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='getObjectXML hasMemberOf isMemberOfCollection solr4FedObjsID'&PID="+PID;
   // removed "getSiblings" in favor of Solr approach
 
-    $.ajax({          
-      url: APIcallURL,      
-      dataType: 'json',    
-      // jsonpCallback: "jsonpcallback",            
-      success: callSuccess,
-      error: callError
-    });
+  $.ajax({          
+    url: APIcallURL,      
+    dataType: 'json',    
+    // jsonpCallback: "jsonpcallback",            
+    success: callSuccess,
+    error: callError
+  });
 
-    function callSuccess(response){
-    	console.log(response);  
-      APIdata = response;
+  function callSuccess(response){
+  	console.log(response);  
+    APIdata = response;
 
-      //check object status
-      if (APIdata.getObjectXML.object_status == "Inactive" || APIdata.getObjectXML.object_status == "Absent"){
-        loadError();
-      }
-      else{       
-        // render results on page
-        renderPage();                    
-      }
-    	
+    //check object status
+    if (APIdata.getObjectXML.object_status == "Inactive" || APIdata.getObjectXML.object_status == "Absent"){
+      loadError();
     }
-
-    function callError(response){
-    	console.log("API Call unsuccessful.  Back to the drawing board.");
-      loadError();                
+    else{       
+      // render results on page
+      renderPage();                    
     }
+  	
+  }
+
+  function callError(response){
+  	console.log("API Call unsuccessful.  Back to the drawing board.");
+    loadError();                
+  }
 }
 
 function loadError(){
@@ -165,8 +167,43 @@ function finishRendering(){
 
 
 
-// CONTEXTUAL FUNCTIONS
+// Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function addFav(){   
+
+  // stringify user / item / search object, send to solrAddDoc API function
+  // can encapsulatein "raw" API parameter as jsonAddString
+  var addDoc = new Object();
+  addDoc.id = userData.accessID+"_"+APIdata.APIParams.PID
+  addDoc.fav_user = userData.accessID;
+  addDoc.fav_item = APIdata.APIParams.PID;
+  var jsonAddString = "["+JSON.stringify(addDoc)+"]";
+  console.log(jsonAddString);
+
+  var APIaddURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrAddDoc'&raw='"+jsonAddString+"'";
+  $.ajax({          
+    url: APIaddURL,      
+    dataType: 'json',
+    success: callSuccess,
+    error: callError
+  });
+
+  function callSuccess(response){
+    console.log(response);
+    if (response.solrAddDoc.responseHeader.status == 0){
+      alert("Favorite Added!");
+    }
+    else {
+      alert("There haz problems.");
+    }
+  }
+  function callError(response){
+    console.log(response);
+    alert("There haz problems.");
+  }
+
+
+}
 
 
 

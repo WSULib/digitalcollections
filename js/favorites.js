@@ -20,17 +20,54 @@ searchDefs['facet.mincount'] = 1;
 // Global API response data
 APIdata = new Object();
 
+
+// GET FAVs
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function getFavs(){
+
+	var favParams = new Object();
+	favParams.q = "fav_user:"+userData.accessID;
+	favParams.fl = "fav_item";
+	favParams.fq = [];
+	favParams.facets = [];	
+
+	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
+	solrParamsString = JSON.stringify(mergedParams);	
+
+	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='noqescape'";			
+
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'json',
+	  success: callSuccess,
+	  error: callError
+	});
+
+	function callSuccess(response){
+		APIdata.favs = response;	    
+	    console.log(userData.accessID+" favorites:");
+	    console.log(response)
+	    searchGo();
+	}
+	function callError(response){
+		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+	}
+}
+
+
+
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function updatePage(){
+function updatePage(){	
 
 	// get current URL
 	var cURL = document.URL;
 
-	// update number of results
-	$("#q_string").html(mergedParams.q);	
-	$("#num_results").html(APIdata.solrSearch.response.numFound);
+	// update user and number of favorites
+	$("#accessID").html(userData.accessID);	
+	$("#num_results").html(APIdata.favs.solrSearch.response.numFound);
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
@@ -72,36 +109,39 @@ function updatePage(){
 
 
 
-
-
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 
-	// Set Search Parameters	
-	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
+	// Set Search Parameters
+	// create q based on ALL favorites of user	
+	searchParams.q = "";
+	for (var i in APIdata.favs.solrSearch.response.docs){
+		var fav_item = APIdata.favs.solrSearch.response.docs[i].fav_item[0];
+		searchParams.q += fav_item+" ";		
+	}
+	searchParams.q = "id:("+searchParams.q+")";
+	
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();
-	
+	debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);
-	// console.log(solrParamsString);
+	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='escapeterms'";			
 
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  
 	  // jsonpCallback: "jsonpcallback",          
 	  success: callSuccess,
-	  // error: callError
+	  error: callError
 	});
 
 	function callSuccess(response){
 
-	    mix(response,APIdata);
+		mix(response,APIdata);	    
 	    console.log("APIdata");
 	    console.log(APIdata);
 	    $(document).ready(function(){
@@ -188,6 +228,8 @@ function populateResults(){
 		});
 	}	
 }
+
+
 
 
 
