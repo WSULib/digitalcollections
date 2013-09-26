@@ -122,6 +122,7 @@ function searchGo(){
 	searchParams.q = searchParams.collection;
 
 	searchParams.q = "rels_isMemberOfCollection:'info:fedora/"+searchParams.q+"'";
+	console.log(searchParams.q);
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 	debugSearchParams();
 	
@@ -130,7 +131,7 @@ function searchGo(){
 	solrParamsString = JSON.stringify(mergedParams);
 
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='escapeterms'";			
 
 	$.ajax({          
 	  url: APIcallURL,      
