@@ -38,14 +38,19 @@ var contentTypeHash= {
 
 function collectionsList(){
 
-
-
 	mergedParams.q = "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic";
-	
+
+	// set start as 0 for the collectionsList query
+	mergedParams.start = 0;
+
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
 	solrParamsString = JSON.stringify(mergedParams);
+
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";
+
+	// reset the start param to what the user set, so this doesn't mess with other queries
+	mergedParams.start = searchParams.start;			
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -122,7 +127,6 @@ function searchGo(){
 	searchParams.q = searchParams.collection;
 
 	searchParams.q = "rels_isMemberOfCollection:'info:fedora/"+searchParams.q+"'";
-	console.log(searchParams.q);
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 	debugSearchParams();
 	
@@ -143,8 +147,6 @@ function searchGo(){
 	function callSuccess(response){
 
 	    APIdata = response;
-	    console.log("APIdata");
-	    // console.log(APIdata);
 	    $(document).ready(function(){
 	    	collectionsList();
 	    	updateCollectionTitle();
@@ -265,7 +267,7 @@ function populateResults(){
 }
 
 function populateCollectionsList(){
-	
+
 	//push results to collectionSelector
 	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {		
 
