@@ -52,7 +52,7 @@ function collectionsList(){
 	// reset the start param to what the user set, so this doesn't mess with other queries
 	solrParamsString = JSON.parse(solrParamsString)
 	
-	if (searchParams.start !== 'undefined'){
+	if (typeof searchParams.start !== 'undefined'){
 	solrParamsString.start = searchParams.start;
 	}
 	else{
@@ -61,7 +61,7 @@ function collectionsList(){
 	
 	solrParamsString = JSON.stringify(solrParamsString);
 	
-	if (searchParams.start !== 'undefined'){
+	if (typeof searchParams.start !== 'undefined'){
 	mergedParams.start = searchParams.start;
 	}
 	else{
