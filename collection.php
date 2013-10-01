@@ -79,12 +79,16 @@
 
 </body>
 
-<script type="text/javascript">
-            // collectionsList();
-    var searchParams = <?php echo json_encode($_REQUEST); ?>;    
+<script type="text/javascript"> 
+    var searchParams = <?php echo json_encode($_REQUEST); ?>;
+    if (jQuery.isEmptyObject(searchParams)){
+        collectionsList();
+    }
+    else{    
     $(document).ready(function(){
         // updatePage();
         searchGo();
-    });    
+    });
+    }    
 </script>
 </html>
