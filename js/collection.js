@@ -38,35 +38,11 @@ var contentTypeHash= {
 
 function collectionsList(){
 
-	mergedParams.q = "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic";
-
-	// set start as 0 for the collectionsList query
-	mergedParams.start = 0;
-
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
 	solrParamsString = JSON.stringify(mergedParams);
-
+	var CollectionListParams = '{"rows":50,"start":0,"wt":"json","facets":[],"fq":[],"fl":"id dc_title","sort":"id asc","collection":"wayne:collectionHeartTransplant","q":"rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic"}';
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";
-
-	// reset the start param to what the user set, so this doesn't mess with other queries
-	solrParamsString = JSON.parse(solrParamsString)
-	
-	if (typeof searchParams.start !== 'undefined'){
-	solrParamsString.start = searchParams.start;
-	}
-	else{
-		solrParamsString.start = 0;
-	}
-	
-	solrParamsString = JSON.stringify(solrParamsString);
-	
-	if (typeof searchParams.start !== 'undefined'){
-	mergedParams.start = searchParams.start;
-	}
-	else{
-		mergedParams.start = 0;
-	}			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+CollectionListParams+"'";
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -227,7 +203,9 @@ function updateCollection(){
 
 	// check rows to update
 	searchParams.q = $("#collection").val();
-	var nURL = updateURLParameter(window.location.href, 'collection', searchParams.q);
+	// searchParams.start = 0; 
+	var nURL = updateURLParameter(window.location.href, 'start', 0);
+	var nURL = updateURLParameter(nURL, 'collection', searchParams.q);
 
 	// refresh page	
 	window.location = nURL;
