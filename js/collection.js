@@ -50,7 +50,23 @@ function collectionsList(){
 	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";
 
 	// reset the start param to what the user set, so this doesn't mess with other queries
-	mergedParams.start = searchParams.start;			
+	solrParamsString = JSON.parse(solrParamsString)
+	
+	if (searchParams.start !== 'undefined'){
+	solrParamsString.start = searchParams.start;
+	}
+	else{
+		solrParamsString.start = 0;
+	}
+	
+	solrParamsString = JSON.stringify(solrParamsString);
+	
+	if (searchParams.start !== 'undefined'){
+	mergedParams.start = searchParams.start;
+	}
+	else{
+		mergedParams.start = 0;
+	}			
 
 	$.ajax({          
 	  url: APIcallURL,      

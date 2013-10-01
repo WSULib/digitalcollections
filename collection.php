@@ -70,7 +70,6 @@
                 <h4>Search Results</h4>            
                 <div id="results_container"></div>
             </div>
-            <!-- <div class="span8 pagination"></div> -->
 
         </div>
     
@@ -81,6 +80,7 @@
 </body>
 
 <script type="text/javascript">
+            // collectionsList();
     var searchParams = <?php echo json_encode($_REQUEST); ?>;    
     $(document).ready(function(){
         // updatePage();
