@@ -87,7 +87,7 @@ $objectPID = $_REQUEST['PID'];
                 <h3>Part of Collection(s):</h3>
                 <script id="parents_t" type="text/html">                   
                     {{#isMemberOfCollection.results}}                                                
-                        <p><a href="http://silo.lib.wayne.edu/digitalcollections/collection.php?PID={{subject}}">{{collectionTitle}}</a></p>
+                        <p><a href="http://silo.lib.wayne.edu/digitalcollections/collection.php?collection={{subject}}">{{collectionTitle}}</a></p>
                     {{/isMemberOfCollection.results}}                    
                 </script> 
 			</div>

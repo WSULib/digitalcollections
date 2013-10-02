@@ -24,11 +24,15 @@ var translationDictionary = {
 	"rels_isMemberOfCollection":"Collection",
 	
 	// Content Types
-	"info:fedora/CM:Image" : "Image",	
+	"info:fedora/CM:Image" : "Image",
+	"info:fedora/CM:Audio" : "Audio",
+	"info:fedora/CM:Video" : "Video",	
 	"info:fedora/CM:Document" : "Document",
 	"info:fedora/CM:WSUebook" : "WSUebook",
 	"info:fedora/CM:Collection" : "Collection",
 	"info:fedora/singleObjectCM:WSUebook" : "WSUebook",
+	"info:fedora/CM:Issue": "Issues",
+	"info:fedora/CM:Volume": "Volumes",
 
 	// Collection Names
 	"info:fedora/wayne:collectionCFAI" : "Changing Face of the Auto Industry",
