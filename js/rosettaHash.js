@@ -29,8 +29,7 @@ var translationDictionary = {
 	"info:fedora/CM:Video" : "Video",	
 	"info:fedora/CM:Document" : "Document",
 	"info:fedora/CM:WSUebook" : "WSUebook",
-	"info:fedora/CM:Collection" : "Collection",
-	"info:fedora/singleObjectCM:WSUebook" : "WSUebook",
+	"info:fedora/CM:Collection" : "Collection",	
 	"info:fedora/CM:Issue": "Issues",
 	"info:fedora/CM:Volume": "Volumes",
 
@@ -46,4 +45,5 @@ var translationDictionary = {
 	"info:fedora/wayne:collectionBMC" : "BioMed Central Wayne State Publications",
 	"info:fedora/wayne:collectionHeartTransplant" : "First U.S. Human-to-Human Heart Transplant",
 	"info:fedora/wayne:collectionDSJ" : "Detroit Sunday Journal",
+	"info:fedora/collection:WSUebooks" : "WSU Created eBooks"
 };
