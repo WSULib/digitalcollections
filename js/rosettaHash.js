@@ -45,5 +45,6 @@ var translationDictionary = {
 	"info:fedora/wayne:collectionBMC" : "BioMed Central Wayne State Publications",
 	"info:fedora/wayne:collectionHeartTransplant" : "First U.S. Human-to-Human Heart Transplant",
 	"info:fedora/wayne:collectionDSJ" : "Detroit Sunday Journal",
-	"info:fedora/collection:WSUebooks" : "WSU Created eBooks"
+	"info:fedora/collection:WSUebooks" : "WSU Created eBooks",
+	"info:fedora/collection:Ramsey" : "Ramsey Collection Of Literature For Young People",
 };

@@ -16,6 +16,7 @@ searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_h
 searchDefs['f.dc_date.facet.sort'] = "index";
 searchDefs.fq = [];
 searchDefs['facet.mincount'] = 1;
+searchDefs['fullView'] = '';
 
 // Global API response data
 APIdata = new Object();
