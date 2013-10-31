@@ -6,7 +6,7 @@ $objectPID = $_REQUEST['PID'];
 <html>
 <head>
     <script id="head_t" type="text/html">
-        <title>{{solr4FedObjsID.response.docs.0.dc_title.0}}</title>
+        <title>{{solrGetFedDoc.response.docs.0.dc_title.0}}</title>
     </script>
 	<!--jquery-->
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -26,6 +26,9 @@ $objectPID = $_REQUEST['PID'];
     <script src="js/singleObject.js"></script>
     <!-- Local CSS -->
 	<link href="css/style.css" rel="stylesheet">
+    <!--WSUDOR Translation Dictionary-->
+    <script type="text/javascript" src="js/rosettaHash.js"></script>
+    <script type="text/javascript" src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORTranslations/datastreams/digitalCollectionRosettaHash/content"></script>  
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
@@ -55,15 +58,17 @@ $objectPID = $_REQUEST['PID'];
     		<!--metadata testing-->
     		<div id="metadata" class="templated span6">    			
     			<script id="metadata_t" type="text/html">
-					<p><strong>Title: </strong>{{solr4FedObjsID.response.docs.0.dc_title.0}}</p>					
-					<p><strong>Description: </strong>{{solr4FedObjsID.response.docs.0.dc_description.0}}</p>
-                    <p><strong>Date: </strong>{{solr4FedObjsID.response.docs.0.dc_date.0}}</p>
-                    <p><strong>Language: </strong>{{solr4FedObjsID.response.docs.0.dc_language.0}}</p>
-                    <p><strong>Rights: </strong>{{solr4FedObjsID.response.docs.0.dc_rights.0}}</p>                    
-                    {{#solr4FedObjsID.response.docs.0.dc_subject}}
-                    <p><strong>Subject: </strong>{{.}}</p>
-                    {{/solr4FedObjsID.response.docs.0.dc_subject}}
-                    <p><span style="color:green; font-weight:bold;">Content Type: {{solr4FedObjsID.response.docs.0.rels_hasContentModel.0}}</span></p>
+					<p><strong>Title: </strong>{{solrGetFedDoc.response.docs.0.dc_title.0}}</p>					
+					<p><strong>Description: </strong>{{solrGetFedDoc.response.docs.0.dc_description.0}}</p>
+                    <p><strong>Date: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_date.0}}</a></p>
+                    <p><strong>Language: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_language:"{{solrGetFedDoc.response.docs.0.dc_language.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_language.0}}</a></p>
+                    <p><strong>Rights: </strong>{{solrGetFedDoc.response.docs.0.dc_rights.0}}</p>                    
+                    {{#solrGetFedDoc.response.docs.0.dc_subject}}
+                        <p><strong>Subject: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a></p>
+                    {{/solrGetFedDoc.response.docs.0.dc_subject}}
+                                        
+                        <p><strong>Content Type: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=rels_hasContentModel:"{{solrGetFedDoc.response.docs.0.rels_hasContentModel.0}}"&start=0'>{{translated.contentModelPretty}}</a></p>
+                    
 				</script>                	
 			</div>
 

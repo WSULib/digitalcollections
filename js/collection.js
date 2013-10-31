@@ -2,53 +2,35 @@
 
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Default Search Parameters (pre form submission)
+// Default Search Parameters
 var searchDefs = {};
 var mergedParams = {};
 searchDefs.rows = 50;
 searchDefs.start = 0;
 searchDefs.wt = "json";
-searchDefs.facets = [];
-searchDefs.fq = [];
+// searchDefs.facets = [];
+// searchDefs.fq = [];
 searchDefs.fl = "id dc_title";
 searchDefs.sort = "id asc";
 // Global API response data
 APIdata = new Object();
 
-// Facet Hash
-var facetHash = {
-	"dc_date":"Date",
-	"dc_subject":"Subject",
-	"dc_creator":"Creator",
-	"dc_language":"Language",
-	"rels_hasContentModel":"Type"
-}
-
-// Content Type Hash 
-var contentTypeHash= {
-	"info:fedora/CM:Image" : "Image",
-	"info:fedora/CM:Document" : "Document",
-	"info:fedora/CM:WSUebook" : "WSUebook",
-	"info:fedora/CM:Collection" : "Collection",
-	"info:fedora/singleObjectCM:WSUebook" : "WSUebook"	
-}
 
 //INITIAL LOAD
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function collectionsList(){
 
-	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
-	solrParamsString = JSON.stringify(mergedParams);
-	var CollectionListParams = '{"rows":50,"start":0,"wt":"json","facets":[],"fq":[],"fl":"id dc_title","sort":"id asc","collection":"wayne:collectionHeartTransplant","q":"rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic"}';
+	// WSUAPI v2.0		
+	var CollectionListParams = '{"rows":1000,"start":0,"wt":"json","fl":"id dc_title","sort":"id asc","q":"wayne:collectionWSUDORPublic"}';
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+CollectionListParams+"'";
+	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrGetCollectionObjects&solrParams="+CollectionListParams;
 
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  
 	  success: callSuccess,
-	  // error: callError
+	  error: callError
 	});
 
 	function callSuccess(response){
@@ -79,16 +61,16 @@ function updatePage(){
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
-	$("#num_results").html(APIdata.solrSearch.response.numFound);
+	$("#num_results").html(APIdata.solrGetCollectionObjects.response.numFound);
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
 	// update query box
-	$("#q").val(mergedParams.q);
+	$("#q").val(mergedParams.q);	
 
 	// pagination
-	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
+	var tpages = parseInt((APIdata.solrGetCollectionObjects.response.numFound / mergedParams.rows) + 1);
 	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
 	if (spage == 0) {
 		spage = 1;
@@ -114,20 +96,18 @@ function updatePage(){
 function searchGo(){
 
 	// Set Search Parameters	
-	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
-	// Merge default and URL search parameters
-	searchParams.q = searchParams.collection;
-
-	searchParams.q = "rels_isMemberOfCollection:'info:fedora/"+searchParams.q+"'";
+	searchParams['q'] = searchParams['collection'];
+	delete searchParams['collection'];
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();
-	
+	debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);
+	solrParamsString = JSON.stringify(mergedParams);	
+	console.log(solrParamsString);
 
-	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='escapeterms'";			
+	// WSUAPI v2.0
+	// Usuing new API function solrGetCollectionObjects()
+	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrGetCollectionObjects&solrParams="+solrParamsString;
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -154,15 +134,14 @@ function searchGo(){
 	}
 }
 
-function updateCollectionTitle(){
-	// searchParams.q = searchParams.collection;
+function updateCollectionTitle(){	
 	var str = searchParams.q;
-	if (typeof searchParams.q !== 'undefined'){
-		str = str.split('/')[1];
-		searchParams.q = str.replace("'", " ");
+	// if (typeof searchParams.q !== 'undefined'){
+	// 	str = str.split('/')[1];
+	// 	searchParams.q = str.replace("'", " ");
 
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solr4FedObjsID'&PID="+searchParams.q;
+	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrGetFedDoc&PID="+searchParams.q;
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -173,11 +152,15 @@ function updateCollectionTitle(){
 
 	function callSuccess(response){
 
-	    APIdata.collectionMeta = response;
-	    console.log(APIdata);
+	    APIdata.collectionMeta = response;	    
 	    $(document).ready(function(){
-	    	if (typeof APIdata.collectionMeta.solr4FedObjsID.response.docs[0].dc_title[0] !== 'undefined'){
-			$("#title").html(APIdata.collectionMeta.solr4FedObjsID.response.docs[0].dc_title[0]);
+		    	if (typeof APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0] !== 'undefined'){
+				$("#title").html(APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0]);
+				
+				// update currently selected drop-down
+				$("#collection [value='"+APIdata.collectionMeta.APIParams.PID[0]+"'").attr('id','currentlySelected');
+				document.getElementById('currentlySelected').setAttribute('selected','selected');
+
 			}	    		
 	    });
 	    
@@ -192,7 +175,7 @@ function updateCollectionTitle(){
 
 
 	}
-	}
+	// }
 
 }
 
@@ -230,31 +213,31 @@ function updateSearch(){
 function populateResults(){
 
 	//push results to results_container
-	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
+	for (var i = 0; i < APIdata.solrGetCollectionObjects.response.docs.length; i++) {		
 		if (mergedParams.q == "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections"){
-		$.ajax({          
-		  url: 'templates/collectionResultObjAlt.htm',      
-		  dataType: 'html',            
-		  async:false,
-		  success: function(response){		  	
-		  	var template = response;
-		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
-		  	$("#results_container").append(html);
-		  }		  
-		});
+			$.ajax({          
+			  url: 'templates/collectionResultObjAlt.htm',      
+			  dataType: 'html',            
+			  async:false,
+			  success: function(response){		  	
+			  	var template = response;
+			  	var html = Mustache.to_html(template, APIdata.solrGetCollectionObjects.response.docs[i]);		  	
+			  	$("#results_container").append(html);
+			  }		  
+			});
 	  	}
 
-		 else{
-  		$.ajax({          
-		  url: 'templates/collectionResultObj.htm',      
-		  dataType: 'html',            
-		  async:false,
-		  success: function(response){		  	
-		  	var template = response;
-		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
-		  	$("#results_container").append(html);
-		  }		  
-		});
+		else{
+	  		$.ajax({          
+			  url: 'templates/collectionResultObj.htm',      
+			  dataType: 'html',            
+			  async:false,
+			  success: function(response){		  	
+			  	var template = response;
+			  	var html = Mustache.to_html(template, APIdata.solrGetCollectionObjects.response.docs[i]);		  	
+			  	$("#results_container").append(html);
+			  }		  
+			});
 		 }
 
 	}	
@@ -263,7 +246,7 @@ function populateResults(){
 function populateCollectionsList(){
 
 	//push results to collectionSelector
-	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {		
+	for (var i = 0; i < APIdata.collectionsList.solrGetCollectionObjects.response.docs.length; i++) {		
 
   		$.ajax({          
 		  url: 'templates/collectionsListObj.htm',      
@@ -271,8 +254,9 @@ function populateCollectionsList(){
 		  async:false,
 		  success: function(response){		  	
 		  	var template = response;
-		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
+		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrGetCollectionObjects.response.docs[i]);		  	
 		  	$("select#collection").append(html);
+
 		  }		  
 		});
 	}	

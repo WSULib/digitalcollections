@@ -11,9 +11,9 @@ var APIdata = new Object();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function APIcall(PID){	
 	
-  // Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='getObjectXML hasMemberOf isMemberOfCollection solr4FedObjsID'&PID="+PID;
-  // removed "getSiblings" in favor of Solr approach
+  // Calls API functions	
+  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
+  
 
   $.ajax({          
     url: APIcallURL,      
@@ -31,7 +31,9 @@ function APIcall(PID){
     if (APIdata.getObjectXML.object_status == "Inactive" || APIdata.getObjectXML.object_status == "Absent"){
       loadError();
     }
-    else{       
+    else{
+      // make translations as necessary
+      makeTranslations();       
       // render results on page
       renderPage();                    
     }
@@ -51,6 +53,19 @@ function loadError(){
   $("#container").html(html);
   $("#container").show();  
 }
+
+function makeTranslations(){
+
+  // content model fix  
+  APIdata.translated = new Object();
+  APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0]);
+
+
+  // APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0] = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0]);
+
+
+}
+
 
 
 // Render Page with API call data
@@ -98,40 +113,39 @@ function finishRendering(){
   }
 
   // Content Type Handling
-  if (APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel != undefined){ 
-
-    ctype = APIdata.solr4FedObjsID.response.docs[0].rels_hasContentModel[0];
+  if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != undefined){    
+    ctype = APIdata.translated.contentModelPretty;
     switch (ctype) {
       //Images
-      case "info:fedora/CM:Image":
+      case "Image":
         $.get('templates/image.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
         break;
       //Collections
-      case "info:fedora/CM:Collection":
+      case "Collection":
         $.get('templates/collection.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         });      
         break;
       //eBooks
-      case "info:fedora/CM:WSUebook":
+      case "WSUebook":
         $.get('templates/WSUebook.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
         break;
       //Audio
-      case "info:fedora/CM:Audio":
+      case "Audio":
         $.get('templates/audio.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $("#preview_container").html(html);
         }); 
         break;       
       //Document
-      case "info:fedora/CM:Document":
+      case "Document":
         unknownType();        
         // $.get('templates/document.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
@@ -139,7 +153,7 @@ function finishRendering(){
         // }); 
         break;  
       //Video
-      case "info:fedora/CM:Video":
+      case "Video":
         // unknownType();        
         $.get('templates/video.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
@@ -147,7 +161,7 @@ function finishRendering(){
         }); 
         break;
       //Archive
-      case "info:fedora/CM:Archive":
+      case "Archive":
         unknownType();        
         // $.get('templates/archive.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);

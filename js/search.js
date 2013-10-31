@@ -10,11 +10,10 @@ searchDefs.rows = 10;
 searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
-searchDefs.facets = [];
-searchDefs.facets.push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel","rels_isMemberOfCollection", "dc_coverage");
-//sorting facets
+searchDefs['facets[]'] = [];
+searchDefs['facets[]'].push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel","rels_isMemberOfCollection", "dc_coverage");
 searchDefs['f.dc_date.facet.sort'] = "index";
-searchDefs.fq = [];
+searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
 
@@ -40,8 +39,8 @@ function updatePage(){
 	$("#q").val(mergedParams.q);
 
 	// show "refined by" facets
-	for (var i = 0; i < mergedParams.fq.length; i++){		
-		var facet_string = mergedParams.fq[i];				
+	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
+		var facet_string = mergedParams['fq[]'][i];				
 		var facet_type = facet_string.split(":")[0];
 		var facet_value = facet_string.split(":").slice(1).join(":");
 	
@@ -79,6 +78,12 @@ function updatePage(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 
+	// TESTING - fix facets / fq
+	searchParams['fq[]'] = searchParams['fq'];
+	delete searchParams['fq'];
+
+
+
 	// Set Search Parameters	
 	// Pre-merge? Push default facets to params, such that they don't overwrite? May not be necessary, facets should be hardcoded...	
 	// Merge default and URL search parameters
@@ -90,7 +95,8 @@ function searchGo(){
 	solrParamsString = JSON.stringify(mergedParams);
 	// console.log(solrParamsString);
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'";			
+	// var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions[]=solrSearch&solrParams="+solrParamsString;
+	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
 
 	$.ajax({          
 	  url: APIcallURL,      
