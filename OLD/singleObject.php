@@ -60,14 +60,14 @@ $objectPID = $_REQUEST['PID'];
     			<script id="metadata_t" type="text/html">
 					<p><strong>Title: </strong>{{solrGetFedDoc.response.docs.0.dc_title.0}}</p>					
 					<p><strong>Description: </strong>{{solrGetFedDoc.response.docs.0.dc_description.0}}</p>
-                    <p><strong>Date: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_date.0}}</a></p>
-                    <p><strong>Language: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_language:"{{solrGetFedDoc.response.docs.0.dc_language.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_language.0}}</a></p>
+                    <p><strong>Date: </strong><a href='search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_date.0}}</a></p>
+                    <p><strong>Language: </strong><a href='search.php?q=*&start=0&fq[]=dc_language:"{{solrGetFedDoc.response.docs.0.dc_language.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_language.0}}</a></p>
                     <p><strong>Rights: </strong>{{solrGetFedDoc.response.docs.0.dc_rights.0}}</p>                    
                     {{#solrGetFedDoc.response.docs.0.dc_subject}}
-                        <p><strong>Subject: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a></p>
+                        <p><strong>Subject: </strong><a href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a></p>
                     {{/solrGetFedDoc.response.docs.0.dc_subject}}
                                         
-                        <p><strong>Content Type: </strong><a href='http://silo.lib.wayne.edu/digitalcollections/search.php?q=*&start=0&fq[]=rels_hasContentModel:"{{solrGetFedDoc.response.docs.0.rels_hasContentModel.0}}"&start=0'>{{translated.contentModelPretty}}</a></p>
+                        <p><strong>Content Type: </strong><a href='search.php?q=*&start=0&fq[]=rels_hasContentModel:"{{solrGetFedDoc.response.docs.0.rels_hasContentModel.0}}"&start=0'>{{translated.contentModelPretty}}</a></p>
                     
 				</script>                	
 			</div>
@@ -82,7 +82,7 @@ $objectPID = $_REQUEST['PID'];
     			<h3>Components:</h3>
                 <script id="children_t" type="text/html">    				
                     {{#hasMemberOf.results}}    					
-						<p><a href="http://silo.lib.wayne.edu/digitalcollections/singleObject.php?PID={{object}}">{{memberTitle}}</a></p>
+						<p><a href="singleObject.php?PID={{object}}">{{memberTitle}}</a></p>
 					{{/hasMemberOf.results}}					
 				</script> 
 			</div>
@@ -92,7 +92,7 @@ $objectPID = $_REQUEST['PID'];
                 <h3>Part of Collection(s):</h3>
                 <script id="parents_t" type="text/html">                   
                     {{#isMemberOfCollection.results}}                                                
-                        <p><a href="http://silo.lib.wayne.edu/digitalcollections/collection.php?collection={{subject}}">{{collectionTitle}}</a></p>
+                        <p><a href="collection.php?collection={{subject}}">{{collectionTitle}}</a></p>
                     {{/isMemberOfCollection.results}}                    
                 </script> 
 			</div>
