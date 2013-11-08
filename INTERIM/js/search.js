@@ -140,7 +140,7 @@ function updateSearch(){
 
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function populateFacets(){
+function populateFacets(){	
 
 	// get current URL
 	var cURL = document.URL;

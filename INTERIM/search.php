@@ -28,7 +28,6 @@
             <script src="js/search.js"></script>
             <!--WSUDOR Translation Dictionary-->
             <script type="text/javascript" src="js/rosettaHash.js"></script>
-            // <script type="text/javascript" src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORTranslations/datastreams/digitalCollectionRosettaHash/content"></script>
             <!--Pagination-->
             <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>            
             
@@ -37,6 +36,10 @@
             <style type="text/css">
                 #facet_refine_list{
                     list-style-type:none;
+                }
+                #facet_refine_list li{
+                    /*display:inline;                    */
+                    background-color:#FFFFA9;                    
                 }
                 .hidden_facet {
                     /*display:none;*/
@@ -100,17 +103,24 @@
                     </p>
                 </div>
 
-                <!-- Facet Refines ############################################################################################################ -->
-                <div class="row-fluid">
-                    <div id="facet_refine" class="span12">
-                        <p><strong>Refined By:</strong></p>
-                        <ul id="facet_refine_list"></ul>
-                    </div>
-                </div>
-                <!-- Facet Refines ############################################################################################################ -->
+                
 
                 <div class="row">
-                    <div id="facets_container" class="facets col-lg-3 cl-xlg-3">                        
+                    <div id="facets_container" class="facets col-lg-3 cl-xlg-3">
+                    <!-- Facet Refines ############################################################################################################ -->
+                    <!-- <div class="row-fluid">
+                        <div id="facet_refine">
+                            <h5>Refined By:</h5>
+                            <ul id="facet_refine_list"></ul>
+                        </div>
+                    </div> -->
+                    <ul>                    
+                        <li id="facet_refine">
+                            <h5>Refined By:</h5>
+                            <ul id="facet_refine_list"></ul>
+                        </li>
+                    </ul>
+                    <!-- Facet Refines ############################################################################################################ -->                        
                         
                         <!--
                         <ul>
