@@ -20,14 +20,38 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
 
         <!-- Additions ###################################################################################### -->
+            <!--Mustache-->
+            <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
+            <script type="text/javascript" src="inc/mustache.js"></script>
             <!-- Local JS -->
             <script src="js/utilities.js"></script>        
             <script src="js/search.js"></script>
             <!--WSUDOR Translation Dictionary-->
             <script type="text/javascript" src="js/rosettaHash.js"></script>
-            <script type="text/javascript" src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORTranslations/datastreams/digitalCollectionRosettaHash/content"></script>
+            // <script type="text/javascript" src="http://silo.lib.wayne.edu/fedora/objects/wayne:WSUDORTranslations/datastreams/digitalCollectionRosettaHash/content"></script>
             <!--Pagination-->
-            <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
+            <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>            
+            
+
+            <!-- Temporary CSS -->
+            <style type="text/css">
+                #facet_refine_list{
+                    list-style-type:none;
+                }
+                .hidden_facet {
+                    /*display:none;*/
+                }
+                #resultsControls div{
+                    display:inline;
+                }
+                ul.bootpag li{
+                    display:inline;                    
+                }
+                ul.bootpag li.disabled a{
+                    color:rgb(230,230,230);
+                }
+            </style>
+
         <!-- Additions ###################################################################################### -->
 
     </head>
@@ -86,8 +110,8 @@
                 <!-- Facet Refines ############################################################################################################ -->
 
                 <div class="row">
-                    <div class="facets col-lg-3 cl-xlg-3">
-                        <div id="facets_container"></div>
+                    <div id="facets_container" class="facets col-lg-3 cl-xlg-3">                        
+                        
                         <!--
                         <ul>
                             <li><h5 class="tree-toggler">Content Type</h5>
@@ -97,7 +121,7 @@
                                     <li>Issues (18)</li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul>                        
                         <ul>
                             <li><h5 class="tree-toggler">Collection</h5>
                                 <ul class="tree">
@@ -153,19 +177,31 @@
                             </li>
                         </ul>-->
                     </div>
-                    <div class="browse col-lg-9 cl-xlg-9">
-                        <div class="col-lg-12 col-xlg-12 clearfix">
-                            <select class="form-control pull-right">
-                                <option>Sort by</option>
-                                <option>Relevancy</option>
-                                <option>A-Z</option>
-                                <option>Z-A</option>
-                            </select>
-                        </div>
+                    <div id="results_container" class="browse col-lg-9 cl-xlg-9">
+                        
+                        <!-- <div id="resultsControls"> -->
+                            <div class="col-lg-12 col-xlg-12 clearfix">
+                                <select class="form-control pull-right">
+                                    <option>Sort by</option>
+                                    <option>Relevancy</option>
+                                    <option>A-Z</option>
+                                    <option>Z-A</option>
+                                </select>                                                                
+                                <select class="form-control pull-right" id='rows' onchange="updateSearch();">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                <span class="form-control pull-right"><strong>Items per Page</strong></span>
+                            </div>
+                            
+                        
 
                         <div class="refined-by col-lg-12 col-xlg-12">
                         </div>
 
+                        <!--
                         <div class="row">
                             <div class="collection col-lg-12 col-xlg-12">
                                 <div class="image pull-right col-lg-3 col-xlg-3">
@@ -188,7 +224,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
+
+                        <div class="row">
                             <div class="collection col-lg-12 col-xlg-12">
                                 <div class="image pull-right col-lg-3 col-xlg-3">
                                     <img src="http://placehold.it/460x368">
@@ -442,18 +479,13 @@
 
                         </div> -->
 
-                        <div class="row">
-                            <!-- <div class="pagination clearfix">
-                                <a href="#">«</a>
-                                
-                                <a href="#">1</a>
-                                <strong>2</strong>
-                                <a href="#">3</a>
-                                
-                                <a href="#">»</a>
-                            </div> -->
-                            <div class="span8 pull-right pagination"></div>
+                       
+                    </div> <!-- closes #results_container -->
+
+                    <div class="row">
+                        <div class="pagination clearfix">                            
                         </div>
+                        <!-- <div class="span8 pull-right pagination"></div> -->
                     </div>
 
                 </div>

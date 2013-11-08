@@ -46,7 +46,7 @@ function updatePage(){
 	
 
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$("#facet_refine_list").append("<li>"+rosetta(facet_type)+": "+rosetta(facet_value)+" <a href='"+nURL+"'>x</a></li>");
+		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
 	}
 
 	// pagination
@@ -147,8 +147,8 @@ function populateFacets(){
 	// set defaults
 	var facet_limit = 18;
 	// for each facet field
-	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {		
-		$("#facets_container").append("<div id='"+facet+"_facet'><p><strong>"+rosetta(facet)+"</strong></p><ul class='facet_list' id='"+facet+"_list'</div>");
+	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
+		$("#facets_container").append("<ul class='facet_container' id='"+facet+"_facet'><li><h5 class='tree-toggler'>"+rosetta(facet)+"</h5><ul class='tree' id='"+facet+"_list'></ul></li>");
 
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
 		for (var i = 0; i < facet_array.length; i = i + 2){			
@@ -165,7 +165,7 @@ function populateFacets(){
 				else {
 					var facet_hidden = ""
 				}			
-				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" - "+facet_array[i+1]+"</a></li>");			
+				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");			
 			}
 		}
 		// add "more" button if longer than ten		
