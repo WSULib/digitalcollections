@@ -139,7 +139,7 @@ function updatePage(){
 	// update number of results
 	$("#q_string").html(mergedParams.q);
 
-	$("#num_results").html(APIdata.objectList.solrSearch.response.numFound - 1);
+	$("#num_results").html(APIdata.objectList.solrSearch.response.numFound);
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
