@@ -102,7 +102,6 @@ function collectionsList(type){
 	});
 
 	function callSuccess(response){
-		console.log(response);
 
 	    APIdata.collectionsList = response;
 	    $(document).ready(function(){
@@ -197,7 +196,6 @@ function searchGo(type){
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
-	console.log(solrParamsString);
 
 	// WSUAPI v2.0
 	// Usuing new API function solrSearch()
