@@ -468,7 +468,9 @@
         <script type="text/javascript"> 
             var searchParams = <?php echo json_encode($_REQUEST); ?>;
             if (jQuery.isEmptyObject(searchParams)){
-                collectionsList("collectionPage");                
+                window.location = "allcollections.php";
+
+                // collectionsList("collectionPage");                
             }
             else{    
             $(document).ready(function(){

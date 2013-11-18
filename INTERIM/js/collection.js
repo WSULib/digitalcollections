@@ -185,7 +185,10 @@ function searchGo(type){
 
 	// Set Search Parameters	
 	searchParams['q'] = searchParams['collection'];
+	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['q'];
 	delete searchParams['collection'];
+	searchParams['raw'] = "escapeterms";
+
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -200,7 +203,7 @@ function searchGo(type){
 	// WSUAPI v2.0
 	// Usuing new API function solrSearch()
 	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrSearch&solrParams="+solrParamsString;
-
+	console.log(APIcallURL);
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	         
