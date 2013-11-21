@@ -85,7 +85,7 @@ function collectionsList(type){
 		"start":0,
 		"wt":"json",
 		"sort":"id asc",
-		"q":"rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORPublic",
+		"q":"rels_hasContentModel:info:fedora/CM:Collection",
 		"raw":"escapeterms"
 	}
 	
@@ -348,7 +348,7 @@ function populateResults(){
 
 	//push results to results_container
 	for (var i = 0; i < APIdata.objectList.solrSearch.response.docs.length; i++) {		
-		if (mergedParams.q == "rels_isMemberOfCollection:info:fedora/wayne:collectionWSUDORCollections"){
+		if (mergedParams.q == "rels_hasContentModel:info:fedora/CM:Collection"){
 			$.ajax({          
 			  url: 'templates/collectionResultObjAlt.htm',      
 			  dataType: 'html',            
