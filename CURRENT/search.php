@@ -10,8 +10,10 @@
         <link rel="stylesheet" href="ico/style.css" type="text/css">
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
+        </script>
 
-        <!-- Additions ###################################################################################### -->
             <!--Mustache-->
             <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
             <script type="text/javascript" src="inc/mustache.js"></script>
@@ -21,8 +23,10 @@
             <!--WSUDOR Translation Dictionary-->
             <script type="text/javascript" src="js/rosettaHash.js"></script>
             <!--Pagination-->
-            <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>            
-            
+            <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
+            <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+            <script src="js/main.js" type="text/javascript"></script>
+            <script src="js/jquery.cookie.js" type="text/javascript"></script>           
 
             <!-- Temporary CSS -->
             <style type="text/css">
@@ -47,19 +51,17 @@
                 ul.bootpag li.disabled a{
                     color:rgb(230,230,230);
                 }
-                header {
-                    height: 150px;
-                    background: #efefef;
-                }
+                /*header {
+                    height: 100px;
+                    background: #A2BAB7;
+                }*/
                 header h3 {
                     display: inline;
-                    margin: 10px;
                 }
                 header .search-box {
                   position: relative;
                   width: 50%;
                   float: right;
-                  margin: 10px;
                 }
                 header .searchTerm {
                   position: absolute;
@@ -70,7 +72,7 @@
                   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
                   box-sizing: border-box; 
                   height: 50px;
-                  border: 10px solid #333;
+                  border: 5px solid #333;
                   xborder-radius: 5px;
                   outline: none;
                   padding: 5px 45px 5px 10px;
@@ -110,7 +112,7 @@
                 <div class="search-box">
 
                     <form class="search" action="search.php">
-                        <input class="searchTerm" value="e.g. Detroit" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='e.g. Detroit'" onFocus="if(this.value=='e.g. Detroit')this.value='' " />
+                        <input class="searchTerm" value="e.g. Detroit" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
                         <input class="searchButton" type="submit" />
                         <span class="searchIcon"></span>
                     </form>
@@ -129,6 +131,14 @@
                         <li>&quot;<span id='q_string'></span>&quot;</li>
                         <li><a href="#">Save this Search</a></li>
                     </ul>
+                    <div class="row">
+                        <div class="switch-views">
+                            <div id="list" class="list list-active"></div>
+                            <div id="grid" class="grid"></div>
+                            <div class="filter-on filter-active"></div>
+                            <div class="filter-off"></div>
+                        </div>
+                    </div><!-- /switch-views -->
                 </div><!-- /row for sub-header -->
                 
                 <div id="facets_container" class="facets">
@@ -136,10 +146,19 @@
                 </div><!-- /facets -->
 
                 <div id="results_container" class="main-container">
+                    
+                    <div class="row filtered-by refined-by">
+                        <ul>                    
+                            <li id="facet_refine">
+                                <h5>Refined By:</h5>
+                                <ul id="facet_refine_list"></ul>
+                            </li>
+                        </ul>
+                    </div><!-- /filtered-by -->
                     <ul class="row objects-container">
                         <!-- results template -->
                     </ul>
-                </div>
+                </div><!-- /objects -->
 
                             <!--<div class="col-lg-12 col-xlg-12 clearfix">
                                                                                                
@@ -164,19 +183,11 @@
                             </ul>
                         </div>-->
 
-               
-
-                    
-                    <div class="row">
-                        <div class="pagination clearfix">                            
-                        </div>
-                        <!-- <div class="span8 pull-right pagination"></div> -->
-                    </div>
-
-                </div>
-
-                
-            </div>
+                <div class="pagination-centered">
+                        <!-- pagination -->
+                </div><!-- /pagination -->
+                  
+            </div> <!-- /container -->
 
         <footer>
             <!--<div class="container">
@@ -191,14 +202,7 @@
 
             
             </div>-->
-        </footer>
-        
-        <script type="text/javascript">
-            window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
-        </script>
-        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
-        <script src="js/jquery.cookie.js" type="text/javascript"></script>
+        </footer>        
         <!-- init search -->
         <script type="text/javascript">
         var searchParams = <?php echo json_encode($_REQUEST); ?>;    

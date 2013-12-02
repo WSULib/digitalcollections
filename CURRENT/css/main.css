@@ -1742,7 +1742,8 @@ input[type="button"].btn-block {
 .switch-views {
   height: 25px;
   float: right;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  margin-right: 20px; }
   .switch-views .list {
     background: url(../img/list.png) 50% no-repeat; }
   .switch-views .list:hover {
@@ -1797,26 +1798,27 @@ input[type="button"].btn-block {
   position: relative;
   margin: 0;
   padding: 0 30px 0 0; }
-  .facets section h3 {
-    margin: 0;
-    font-size: 1em;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    cursor: pointer; }
-  .facets section ul {
+  .facets .filter {
     list-style: none;
-    padding: 5px 15px;
-    font-size: 0.9em; }
-    .facets section ul li {
-      padding: 5px 0; }
+    padding: 0; }
+    .facets .filter h3 {
+      margin: 0;
+      font-size: 1em;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      cursor: pointer; }
+    .facets .filter ul {
+      list-style: none;
+      padding: 5px 15px;
+      font-size: 0.9em; }
+      .facets .filter ul li {
+        padding: 5px 0; }
 
 .filtered-by {
-  display: none;
   background: #eeeeee;
-  margin-top: 35px;
-  padding: 10px; }
+  padding: 0 10px; }
 
 .main-container {
   width: 75%;
@@ -1837,7 +1839,8 @@ input[type="button"].btn-block {
 li.object-container-list {
   border-bottom: 1px dotted #ddd;
   margin-top: 35px;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  list-style: none; }
 
 li:first-child.object-container-list {
   padding: 0;
@@ -1862,18 +1865,30 @@ li:last-child.object-container-list {
     font-style: italic;
     margin: 10px 0 20px 0; }
   .object-container-list p {
-    font-size: 0.8em;
-    color: #999999; }
+    font-size: 13px;
+    color: #999999;
+    display: block;
+    /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 80%;
+    height: 54.6px;
+    /* Fallback for non-webkit */
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .object-container-grid {
   width: 33%;
   display: inline-block;
   vertical-align: top;
   padding: 35px 15px 10px 15px; }
-  .object-container-grid:nth-child(3n+1) {
-    padding: 35px 30px 10px 0; }
-  .object-container-grid:nth-child(3n) {
+  .object-container-grid:nth-child(3n+2) {
     padding: 35px 0 10px 30px; }
+  .object-container-grid:nth-child(3n) {
+    padding: 35px 30px 10px 0; }
   .object-container-grid img {
     width: 100%;
     height: auto; }
@@ -3378,7 +3393,8 @@ li:last-child.object-container-list {
   -moz-border-radius: 3px;
   border-radius: 3px; }
   .pagination > li {
-    display: inline-block; }
+    display: inline-block;
+    margin: 2px; }
     .pagination > li > a,
     .pagination > li > span {
       position: relative;

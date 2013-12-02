@@ -628,3 +628,8 @@ $container-lg-desktop:        ((1140px + $grid-gutter-width)) !default;
 
 // X-Large screen / X-Wide desktop
 $container-xlg-desktop:        ((1440px + $grid-gutter-width)) !default;
+
+// Search Object
+$font-size-desc: 			  13px;
+$line-height-desc: 			  1.4;
+$lines-to-show: 			  3;

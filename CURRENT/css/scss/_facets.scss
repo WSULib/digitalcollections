@@ -6,7 +6,10 @@
 	margin: 0;
 	padding: 0 30px 0 0;
 
-	section {
+	.filter {
+
+		list-style: none;
+		padding: 0;
 
 		h3 {
 			margin: 0;
@@ -32,8 +35,6 @@
 
 // Filtered by box
 .filtered-by {
-	display: none;
 	background: $gray-lighter;
-	margin-top: 35px;
-	padding: 10px;
+	padding: 0 10px;
 }

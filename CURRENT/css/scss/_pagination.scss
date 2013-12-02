@@ -20,6 +20,7 @@
 
   > li {
     display: inline-block; // Remove list-style and block-level defaults
+    margin: 2px;
     > a,
     > span {
       position: relative;
