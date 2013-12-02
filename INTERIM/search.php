@@ -37,12 +37,14 @@
                 #facet_refine_list{
                     list-style-type:none;
                 }
-                #facet_refine_list li{
-                    /*display:inline;                    */
-                    background-color:#FFFFA9;                    
+                #facet_refine_list li{                    
+                    /*background-color:#FFFFA9;*/ /*Just to set it off for the moment, see where they are*/
+                }
+                .facet_less {
+                    display:none;
                 }
                 .hidden_facet {
-                    /*display:none;*/
+                    display:none;
                 }
                 #resultsControls div{
                     display:inline;
@@ -60,24 +62,7 @@
     </head>
     <body>
         <div class="page-wrap">
-            <header>
-                <!--<div class="container">
-                <div class="logo">
-                </div>
-    
-                <div class="nav">
-                </div>
-
-                <div class="login">
-                    <ul>
-                        <li>Login</li>
-                        <li>Sign Up</li>
-                    </ul>
-                </div>
-
-                <div class="search-box">
-                </div>
-                </div>-->
+            <header>                
                 <div class="row-fluid" id="search_form">
                     <div class="span4">
                         <h3><a href="search.php">RESET</a></h3>
@@ -107,85 +92,14 @@
 
                 <div class="row">
                     <div id="facets_container" class="facets col-lg-3 cl-xlg-3">
-                    <!-- Facet Refines ############################################################################################################ -->
-                    <!-- <div class="row-fluid">
-                        <div id="facet_refine">
-                            <h5>Refined By:</h5>
-                            <ul id="facet_refine_list"></ul>
-                        </div>
-                    </div> -->
+                    
                     <ul>                    
                         <li id="facet_refine">
                             <h5>Refined By:</h5>
                             <ul id="facet_refine_list"></ul>
                         </li>
                     </ul>
-                    <!-- Facet Refines ############################################################################################################ -->                        
-                        
-                        <!--
-                        <ul>
-                            <li><h5 class="tree-toggler">Content Type</h5>
-                                <ul class="tree">
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>                        
-                        <ul>
-                            <li><h5 class="tree-toggler">Collection</h5>
-                                <ul class="tree">
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h5>Creator</h5>
-                                <ul>
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h5>Date</h5>
-                                <ul>
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h5>Subject</h5>
-                                <ul>
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h5>Location</h5>
-                                <ul>
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li><h5>Language</h5>
-                                <ul>
-                                    <li>Image (2296)</li>
-                                    <li>WSUebook (35)</li>
-                                    <li>Issues (18)</li>
-                                </ul>
-                            </li>
-                        </ul>-->
+                    
                     </div>
                     <div id="results_container" class="browse col-lg-9 cl-xlg-9">
                         
@@ -210,285 +124,6 @@
 
                         <div class="refined-by col-lg-12 col-xlg-12">
                         </div>
-
-                        <!--
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="collection col-lg-12 col-xlg-12">
-                                <div class="image pull-right col-lg-3 col-xlg-3">
-                                    <img src="http://placehold.it/460x368">
-                                </div>
-                        
-                                <div class="collection-details col-lg-9 col-xlg-9">
-                                    <h4 class="object-title">
-                                        Changing Face of the Auto Industry
-                                    </h4>
-                                    <span class="object-creator">
-                                        Creator,
-                                    </span>
-                                    <span class="object-date">
-                                        1920
-                                    </span>
-                                    <p class="object-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate temporibus iste magni quibusdam ex porro ullam perspiciatis exercitationem. Molestias, molestiae voluptatem veritatis laborum repudiandae necessitatibus totam in deserunt architecto.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div> -->
-
                        
                     </div> <!-- closes #results_container -->
 
@@ -505,18 +140,7 @@
         </div>
 
         <footer>
-            <!--<div class="container">
-                <div class="uni-logo">
-                </div>
-
-                <div class="copyright">
-                </div>
-
-                <div class="footer-nav"> links to wsu and library, contact, terms of use, privary policy
-                </div>
-
-            
-            </div>-->
+          
         </footer>
         
         <script type="text/javascript">
@@ -527,7 +151,7 @@
     </body>
     <!-- init search -->
     <script type="text/javascript">
-    var searchParams = <?php echo json_encode($_REQUEST); ?>;    
+    var searchParams = <?php echo json_encode($_REQUEST); ?>;            
     $(document).ready(function(){        
         searchGo();    
     });    

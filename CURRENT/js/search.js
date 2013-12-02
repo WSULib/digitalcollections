@@ -35,7 +35,7 @@ function updatePage(){
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
-	// update query box	
+	// update query box
 	$("#q").val(mergedParams.q);
 
 	// show "refined by" facets
@@ -43,9 +43,9 @@ function updatePage(){
 		var facet_string = mergedParams['fq[]'][i];				
 		var facet_type = facet_string.split(":")[0];
 		var facet_value = facet_string.split(":").slice(1).join(":");
+	
 
-		
-		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string))+"&",'');
+		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
 		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
 	}
 
@@ -76,12 +76,6 @@ function updatePage(){
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
-
-	// default to search all, needs to propoaget to URL though...
-	// if (searchParams['q'] == undefined){
-	// 	searchParams['q'] = "*";
-	// }
-
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -163,8 +157,7 @@ function populateFacets(){
 			if (facet_array[i] != ""){
 				// write URL
 				//set start to 0, most elegant way to handle less numFound than start count
-				cURL = cURL.replace(/\&start=[0-9]+/g,'');
-				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 				
+				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
 				// for long facet lists, initially hide facets over facet_limit
 				if (i > facet_limit) { 
 					var facet_hidden = "class='hidden_facet'";

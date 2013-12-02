@@ -1,0 +1,100 @@
+.main-container {
+  width: 75%;
+  float: left;
+  position: relative;
+  padding: 0 15px;
+}
+
+.main-container-wide {
+	width: 100%;
+	float: left;
+    position: relative;
+    padding: 0 15px;
+}
+
+.main-container ul, .main-container-wide ul {
+	list-style: none;
+	padding: 0;
+}
+
+// List View
+
+li.object-container-list {
+	border-bottom: 1px dotted #ddd;
+	margin-top: 35px;
+	padding-bottom: 10px;
+}
+
+li:first-child.object-container-list {
+	padding: 0;
+	margin-top: 35px;
+	}
+
+li:last-child.object-container-list {
+	border:none;
+}
+
+.object-container-list {
+	min-height: 175px;
+	width: 100%;
+
+	img {
+		height: 140px;
+		width: auto;
+		float: right;
+		margin-left: 50px;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin: 0;
+	}
+
+	h4 {
+		font-size: 0.9em;
+		font-style: italic;
+		margin: 10px 0 20px 0;
+	}
+
+	p {
+		font-size: 0.8em;
+		color: $gray-light;
+	}
+}
+
+// Grid View
+
+.object-container-grid {
+	width: 33%;
+	//float: left;
+	display: inline-block;
+	vertical-align: top;
+	padding: 35px 15px 10px 15px;
+
+	&:nth-child(3n+1) {
+		padding: 35px 30px 10px 0;
+	}
+
+	&:nth-child(3n) {
+		padding: 35px 0 10px 30px;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	h3 {
+		font-size: 1em;
+		margin: 10px 0 5px 0;
+	}
+
+	h4 {
+		font-size: 0.8em;
+		margin: 0;
+	}
+
+	p {
+		display: none;
+	}
+}

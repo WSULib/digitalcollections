@@ -1,0 +1,15 @@
+<!-- image type CM template -->
+<div id="LargeView">
+	<a href="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/PREVIEW/content">
+		<img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/PREVIEW/content&aspectResize=(1024x768)" class="primary-image">	
+	</a>
+</div>
+
+<div class="subcomponents">
+    <!-- Populate with Constituent Objects -->    
+    <ul>
+    	{{#hasMemberOf.results}}
+	        <li><a href="#" onclick="updateLargeView($(this),'{{object}}'); return false;"><img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{object}}/datastreams/PREVIEW/content&aspectResize=(460x368)"/></a></li>
+        {{/hasMemberOf.results}}
+    </ul>
+</div> 

@@ -10,8 +10,6 @@ var APIdata = new Object();
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function APIcall(PID){	
-
-  alert(PID);
 	
   // Calls API functions	
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
@@ -75,8 +73,19 @@ function renderPage(){
     $.Mustache.addFromDom() //read all template from DOM    
     // Head
     $('head').mustache('head_t', APIdata);
+    
     // Metadata
-    $('#metadata').mustache('metadata_t', APIdata);
+    // $('.info-panel').mustache('metadata_t', APIdata);
+    $.get('templates/info-panel.htm',function(template){
+      var html = Mustache.to_html(template, APIdata);
+      $(".info-panel").html(html);
+    });
+    // $('.display-more-info').mustache('metadata_more', APIdata);
+    $.get('templates/display-more-info.htm',function(template){
+      var html = Mustache.to_html(template, APIdata);
+      $(".display-more-info table").html(html);
+    });
+    
     // Children
     if (APIdata.hasMemberOf.results.length > 0){
       $('#children').mustache('children_t', APIdata);   
@@ -104,7 +113,7 @@ function finishRendering(){
   
   // unknown type handler
   function unknownType(){
-    $.get('templates/unknownType.htm',function(template){
+    $.get('templates/singleObject/unknownType.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $(".primary-object-container").html(html);  
         }); 
@@ -112,7 +121,7 @@ function finishRendering(){
 
   // Content Type Handling
   if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != undefined){    
-    ctype = APIdata.translated.contentModelPretty;
+    ctype = APIdata.translated.contentModelPretty;    
     switch (ctype) {
       //Images
       case "Image":
@@ -121,23 +130,30 @@ function finishRendering(){
           $(".primary-object-container").html(html);
         }); 
         break;
+      // Complex Images
+      case "ComplexImage":
+        $.get('templates/singleObject/complexImage.htm',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $(".primary-object-container").html(html);
+        }); 
+        break;
       //Collections
       case "Collection":
-        $.get('templates/collection.htm',function(template){
+        $.get('templates/singleObject/collection.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $(".primary-object-container").html(html);
         });      
         break;
       //eBooks
       case "WSUebook":
-        $.get('templates/WSUebook.htm',function(template){
+        $.get('templates/singleObject/WSUebook.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $(".primary-object-container").html(html);
         }); 
         break;
       //Audio
       case "Audio":
-        $.get('templates/audio.htm',function(template){
+        $.get('templates/singleObject/audio.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $(".primary-object-container").html(html);
         }); 
@@ -145,7 +161,7 @@ function finishRendering(){
       //Document
       case "Document":
         unknownType();        
-        // $.get('templates/document.htm',function(template){
+        // $.get('templates/singleObject/document.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
         //   $(".primary-object-container").html(html);
         // }); 
@@ -153,7 +169,7 @@ function finishRendering(){
       //Video
       case "Video":
         // unknownType();        
-        $.get('templates/video.htm',function(template){
+        $.get('templates/singleObject/video.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
           $(".primary-object-container").html(html);
         }); 
@@ -161,7 +177,7 @@ function finishRendering(){
       //Archive
       case "Archive":
         unknownType();        
-        // $.get('templates/archive.htm',function(template){
+        // $.get('templates/singleObject/archive.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
         //   $(".primary-object-container").html(html);
         // }); 
@@ -218,7 +234,12 @@ function addFav(){
 }
 
 
-
+// swap LargeImage
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function updateLargeView(self,PID){      
+  $("#LargeView a img").attr('src','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+PID+'/datastreams/PREVIEW/content&aspectResize=(1024x768)');
+  $("#LargeView a").attr('href','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+PID+'/datastreams/ACCESS/content');
+}
 
 
 

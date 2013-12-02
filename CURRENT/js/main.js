@@ -14,7 +14,7 @@ $( document ).ready(function() {
 		$('.primary-image').attr('src',$(this).attr('src'));
 	});
 
-	$( ".more-info-clickr" ).on( "click", function() {
+	$( "body" ).on( "click", ".more-info-clickr", function() {
 		$( ".display-more-info" ).fadeToggle(function() {
         $('.more-info').text($(this).is(':visible')? 'Less Info' : 'More Info');
       });

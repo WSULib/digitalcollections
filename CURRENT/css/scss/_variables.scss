@@ -18,9 +18,11 @@ $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -------------------------
 
-$brand-primary:         #f6f6f6 !default;
-$brand-secondary: 		#00565c !default;
-$brand-success:         #5cb85c !default;
+$brand-primary:         #003F5C !default;
+$brand-secondary: 		#A2BAB7 !default;
+$brand-tertiary: 		#F7D879 !default;
+$brand-etc: 			#E3DCC5 !default;
+$brand-success:         #A6DED4 !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 $brand-info:            #5bc0de !default;
@@ -339,9 +341,9 @@ $nav-pills-active-link-hover-color:         #fff !default;
 $pagination-bg:                        #fff !default;
 $pagination-border:                    #ddd !default;
 
-$pagination-hover-bg:                  $gray-lighter !default;
+$pagination-hover-bg:                  $brand-tertiary !default;
 
-$pagination-active-bg:                 $brand-primary !default;
+$pagination-active-bg:                 $brand-secondary !default;
 $pagination-active-color:              #fff !default;
 
 $pagination-disabled-color:            $gray-light !default;
