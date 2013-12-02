@@ -160,7 +160,7 @@ function updatePage(){
 		var facet_value = facet_string.split(":").slice(1).join(":");
 	
 
-		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
+		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string))+"&",'');
 		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
 	}
 
