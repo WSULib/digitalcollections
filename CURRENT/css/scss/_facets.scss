@@ -37,11 +37,10 @@
 .filtered-by {
 	//background: $gray-lighter;
 	padding: 0 10px;
-	margin-bottom: 35px;
 
 	.facet-item a {
 		display: inline-block;
-		margin: 5px;
+		margin: 0 5px 35px 5px;
 		padding: 5px 10px;
 		background: white;
 		border: 1px dotted #ccc;
