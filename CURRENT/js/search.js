@@ -46,7 +46,7 @@ function updatePage(){
 	
 
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
+		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "/*+rosetta(facet_type)+": "*/+rosetta(facet_value)+"</a></span>");
 	}
 
 	// pagination

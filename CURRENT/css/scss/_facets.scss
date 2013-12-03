@@ -1,6 +1,6 @@
 // Facets
 .facets { 
-	width: 25%; 
+	width: 30%; 
 	float: left;
 	position: relative;
 	margin: 0;
@@ -35,6 +35,16 @@
 
 // Filtered by box
 .filtered-by {
-	background: $gray-lighter;
+	//background: $gray-lighter;
 	padding: 0 10px;
+	margin-bottom: 35px;
+
+	.facet-item a {
+		display: inline-block;
+		margin: 5px;
+		padding: 5px 10px;
+		background: white;
+		border: 1px dotted #ccc;
+		text-decoration: none;
+	}
 }

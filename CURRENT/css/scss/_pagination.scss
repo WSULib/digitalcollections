@@ -48,6 +48,17 @@
     }
   }
 
+  > .prev.active > a, 
+  > .next.active > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $pagination-bg;
+      color: $link-color;
+      font-weight: normal;
+    }
+  }
+
   > .active > a,
   > .active > span {
     &,

@@ -45,12 +45,12 @@
                 #resultsControls div{
                     display:inline;
                 }
-                ul.bootpag li{
+                /*ul.bootpag li{
                     display:inline;                    
                 }
                 ul.bootpag li.disabled a{
                     color:rgb(230,230,230);
-                }
+                }*/
                 /*header {
                     height: 100px;
                     background: #A2BAB7;
@@ -112,7 +112,7 @@
                 <div class="search-box">
 
                     <form class="search" action="search.php">
-                        <input class="searchTerm" value="e.g. Detroit" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
+                        <input class="searchTerm" value="Search our digital collections" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
                         <input class="searchButton" type="submit" />
                         <span class="searchIcon"></span>
                     </form>
@@ -132,6 +132,12 @@
                         <li><a href="#">Save this Search</a></li>
                     </ul>
                     <div class="row">
+                        <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
+                            <option value="12">12</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="90">90</option>
+                        </select> -->
                         <div class="switch-views">
                             <div id="list" class="list list-active"></div>
                             <div id="grid" class="grid"></div>
@@ -148,40 +154,12 @@
                 <div id="results_container" class="main-container">
                     
                     <div class="row filtered-by refined-by">
-                        <ul>                    
-                            <li id="facet_refine">
-                                <h5>Refined By:</h5>
-                                <ul id="facet_refine_list"></ul>
-                            </li>
-                        </ul>
+                        <!-- fiters -->
                     </div><!-- /filtered-by -->
                     <ul class="row objects-container">
                         <!-- results template -->
                     </ul>
                 </div><!-- /objects -->
-
-                            <!--<div class="col-lg-12 col-xlg-12 clearfix">
-                                                                                               
-                                <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                                <span class="form-control pull-right"><strong>Items per Page</strong></span>
-                            </div>
-                            
-                        
-
-                        <div class="refined-by col-lg-12 col-xlg-12">
-
-                            <ul>                    
-                                <li id="facet_refine">
-                                    <h5>Refined By:</h5>
-                                    <ul id="facet_refine_list"></ul>
-                                </li>
-                            </ul>
-                        </div>-->
 
                 <div class="pagination-centered">
                         <!-- pagination -->

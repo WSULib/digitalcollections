@@ -75,6 +75,6 @@ $(function(){
         get_filterOn();
     });
 
-    
+    // hide filtered-by div if empty
 
 });
