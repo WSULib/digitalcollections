@@ -207,7 +207,7 @@
                         <li>&quot;<span id='q_string'></span>&quot;</li>
                         <li><a href="#">Save this Search</a></li>
                     </ul>
-                    <div class="row-fluid">
+                    <div class="row-fluid" style="margin-top:-45px;">
                         <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
                             <option value="12">12</option>
                             <option value="36">36</option>
@@ -221,6 +221,7 @@
                             <div class="filter-off"></div>
                         </div>
                     </div><!-- /switch-views -->
+                    
                 </div><!-- /row for sub-header -->
                 
                 <div id="facets_container" class="facets">
