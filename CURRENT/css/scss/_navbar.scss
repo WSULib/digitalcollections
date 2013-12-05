@@ -13,13 +13,14 @@
   z-index: $zindex-navbar;
   min-height: $navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
   margin-bottom: $navbar-margin-bottom;
+  margin-top: $navbar-margin-bottom;
   border: 1px solid transparent;
 
   // Prevent floats from breaking the navbar
   @include clearfix();
 
   @media (min-width: $grid-float-breakpoint) {
-    border-radius: $navbar-border-radius;
+    //border-radius: $navbar-border-radius;
   }
 }
 
@@ -491,7 +492,7 @@
 // Inverse navbar
 
 .navbar-inverse {
-  background-color: $navbar-inverse-bg;
+  background-color: white;
   border-color: $navbar-inverse-border;
 
   .navbar-brand {
@@ -510,6 +511,8 @@
   .navbar-nav {
     > li > a {
       color: $navbar-inverse-link-color;
+      text-transform: uppercase;
+      letter-spacing: .1em;
 
       &:hover,
       &:focus {

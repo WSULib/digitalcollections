@@ -8,6 +8,9 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="ico/style.css" type="text/css">
+        <!-- FONTS -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -45,23 +48,31 @@
                 #resultsControls div{
                     display:inline;
                 }
-                /*ul.bootpag li{
-                    display:inline;                    
+                
+                header {
+                    background: #f9f8f3;
+                    border-bottom: 1px solid #eee;
                 }
-                ul.bootpag li.disabled a{
-                    color:rgb(230,230,230);
-                }*/
-                /*header {
-                    height: 100px;
-                    background: #A2BAB7;
-                }*/
-                header h3 {
+                header h1 {
                     display: inline;
+                }
+                header h1 a {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 900;
+                    color: #062728;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    /*margin-top: 1.5em;
+                    margin-bottom: 1.5em;*/
+                }
+                h1 a:hover {
+                    text-decoration: none;
                 }
                 header .search-box {
                   position: relative;
                   width: 50%;
                   float: right;
+                  margin-top: .5em;
                 }
                 header .searchTerm {
                   position: absolute;
@@ -71,12 +82,13 @@
                   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
                   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
                   box-sizing: border-box; 
-                  height: 50px;
-                  border: 5px solid #333;
-                  xborder-radius: 5px;
+                  height: 40px;
+                  border: 1px solid #A2BAB7;
+                  border-radius: 3px;
                   outline: none;
                   padding: 5px 45px 5px 10px;
                 }
+
                 header .searchButton,
                 header .searchIcon {
                   display: block;
@@ -84,13 +96,13 @@
                   top: 0;
                   right: 0;
                   width: 40px;
-                  height: 50px;
-                  line-height: 50px;
+                  height: 40px;
+                  line-height: 40px;
                   font-family: 'FontAwesome';
-                  background: #333;
+                  background: #A2BAB7;
                   text-align: center;
                   color: #fff;
-                  xborder-radius: 5px;
+                  border-radius: 3px;
                   -webkit-font-smoothing: subpixel-antialiased;
                   font-smooth: always;
                   cursor: pointer;
@@ -99,30 +111,93 @@
                   opacity: 0;
                   z-index: 1;
                 }
+
                 header .searchIcon:before {
                   content: '\f002';
+                }
+                .top-head {
+                    background: #0c5449;
+                    border-bottom: 1px solid #ddd;
+                    font-size: 0.75em;
+                    color: #333;
+                    margin-bottom: 2.5em;
+                }
+                .top-head a {
+                    color: #333;
+                }
+                .top-head .container {
+                    height: 30px;
+                }
+                .libraries {
+                    display: inline-block;
+                    padding: 6px 0;
+                    text-transform: uppercase;
+                    letter-spacing: .1em;
+                    word-spacing: .1em;
+                }
+                .libraries a {
+                    color: #fff;
+                }
+                .top-nav {
+                    list-style: none;
+                    padding: 6px 0;
+                    float: right;
+                    text-transform: uppercase;
+                    letter-spacing: .1em;
+                }
+                .top-nav li {
+                    display: inline-block;
+                }
+                .top-nav li a {
+                    padding: 10px 15px;
+                    color: #fff;
                 }
             </style>
 
     </head>
     <body>
         <header>
+            <div class="row-fluid top-head">
+                <div class="container">
+                    <div class="libraries">
+                        <a href="">Wayne State University Libraries</a>
+                    </div>
+                    <ul class="top-nav">
+                        <li><a href="">Login</a></li>
+                        <li><a href="">Sign Up</a>  </li>
+                    </ul>
+                </div>
+            </div>
             <div class="row-fluid" id="search_form">
-                <h3><a href="search.php">RESET</a></h3>
-                <div class="search-box">
+                <div class="container">
+                    <div class="row-fluid">
+                        <h1 class="brand"><a href="search.php">Digital Collections</a></h1>
+                        <div class="search-box">
 
-                    <form class="search" action="search.php">
-                        <input class="searchTerm" value="Search our digital collections" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
-                        <input class="searchButton" type="submit" />
-                        <span class="searchIcon"></span>
-                    </form>
+                            <form class="search" action="search.php">
+                                <input class="searchTerm" value="Search our digital collections" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
+                                <input class="searchButton" type="submit" />
+                                <span class="searchIcon"></span>
+                            </form>
 
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <nav class="navbar navbar-inverse" role="navigation">
+                          <ul class="nav navbar-nav">
+                            <li><a href="collection.php">Collections</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Etc</a></li>
+                          </ul>
+                        </nav>
+                    </div>
                 </div>
             </div> 
         </header>
 
             <div class="container">
-                <div class="row sub-header">
+                <div class="row-fluid sub-header">
                    <h2>
                         Search Results
                     </h2>
@@ -131,7 +206,7 @@
                         <li>&quot;<span id='q_string'></span>&quot;</li>
                         <li><a href="#">Save this Search</a></li>
                     </ul>
-                    <div class="row">
+                    <div class="row-fluid">
                         <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
                             <option value="12">12</option>
                             <option value="36">36</option>
@@ -153,10 +228,10 @@
 
                 <div id="results_container" class="main-container">
                     
-                    <div class="row filtered-by refined-by">
+                    <div class="row-fluid filtered-by refined-by">
                         <!-- fiters -->
                     </div><!-- /filtered-by -->
-                    <ul class="row objects-container">
+                    <ul class="row-fluid objects-container">
                         <!-- results template -->
                     </ul>
                 </div><!-- /objects -->
