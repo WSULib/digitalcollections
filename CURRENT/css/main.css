@@ -1747,8 +1747,7 @@ input[type="button"].btn-block {
 .switch-views {
   height: 25px;
   float: right;
-  margin-bottom: 35px;
-  margin-right: 20px; }
+  margin-bottom: 35px; }
   .switch-views .list {
     background: url(../img/list.png) 50% no-repeat; }
   .switch-views .list:hover {
