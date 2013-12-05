@@ -83,7 +83,7 @@
                   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
                   box-sizing: border-box; 
                   height: 40px;
-                  border: 1px solid #A2BAB7;
+                  border: 1px solid #062728;
                   border-radius: 3px;
                   outline: none;
                   padding: 5px 45px 5px 10px;
@@ -99,7 +99,7 @@
                   height: 40px;
                   line-height: 40px;
                   font-family: 'FontAwesome';
-                  background: #A2BAB7;
+                  background: #062728;
                   text-align: center;
                   color: #fff;
                   border-radius: 3px;
@@ -160,7 +160,8 @@
             <div class="row-fluid top-head">
                 <div class="container">
                     <div class="libraries">
-                        <a href="">Wayne State University Libraries</a>
+                        <a href="">Wayne State University</a> <span style="color:white;">&raquo;</span> 
+                        <a href="">Libraries</a>
                     </div>
                     <ul class="top-nav">
                         <li><a href="">Login</a></li>
