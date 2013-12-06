@@ -1,8 +1,12 @@
 // User Accounts
 
-// NOT TERRIBLY IMPORTANT ANYMORE, CONSIDER PHASING OUT, HAVE 'WSUDOR' COOKIE NOW
-// The 'userData' object then becomes available to all views that load this JS 
+//Global 
 var userData = new Object();
+
+
+// NOT TERRIBLY IMPORTANT ANYMORE, CONSIDER PHASING OUT, HAVE 'WSUDOR' COOKIE NOW
+//////////////////////////////////////////////////////////////////////////////////////////
+// The 'userData' object then becomes available to all views that load this JS 
 // var extractData = $.cookie('validUser');
 // if (typeof extractData != 'undefined'){
 // 	extractData= extractData.split(":");
@@ -17,6 +21,8 @@ var userData = new Object();
 // else{
 // 	userData.loggedIn_libCookie = false;
 // }
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 // check WSUDOR cookie
 $(document).ready(function(){
@@ -29,7 +35,15 @@ $(document).ready(function(){
 		userData.displayName = WSUDORcookie.displayName;
 
 		if (userData.loggedIn_WSUDOR == true){      			
-			$("#login_status").html("<a onclick='$.removeCookie(\"WSUDOR\"); location.reload();' href='#'>Welcome "+userData.displayName+"! (Logout)</a>");
+			// $("#login_status").html("Welcome "+userData.displayName+"! <a onclick='$.removeCookie(\"WSUDOR\"); location.reload();' href='#'>(Logout)</a>");
+			$("#login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
+			$("#login_status").parent().append("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  
 	}           
 });
+
+function logoutUser(){
+	$.removeCookie("WSUDOR");
+	// $("#fav_link").remove(); 
+	location.reload();
+}

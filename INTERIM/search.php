@@ -81,7 +81,7 @@
                     </div>
                 </div> 
                 <ul class="top-nav">
-                    <li id="login_status"><a href="login.php">Login / SignUp</a></li>                    
+                    <li id="login_status"><a href="login.php">Login / SignUp</a></li>
                 </ul>
             </header>
 
