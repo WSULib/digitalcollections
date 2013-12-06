@@ -6,6 +6,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world by @mdo and @fat.
+ * 
+ * Modified for Wayne State University Libraries Digital Collections.
  */
 
 // Core variables and mixins
@@ -26,6 +28,10 @@
 @import "buttons";
 
 // Components
+@import "sub-header";
+@import "switch-views";
+@import "facets";
+@import "objects";
 @import "component-animations";
 @import "glyphicons";
 @import "dropdowns";
@@ -34,7 +40,7 @@
 @import "navs";
 @import "navbar";
 @import "breadcrumbs";
-//@import "pagination";
+@import "pagination";
 @import "pager";
 @import "labels";
 @import "badges";

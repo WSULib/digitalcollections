@@ -1,5 +1,4 @@
-// Javascript for search view
-
+// Favorites
 
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +38,7 @@ function getFavs(){
 	solrParamsString = JSON.stringify(mergedFavsParams);	
 
 	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
-	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrSearch'&GETparams='"+solrParamsString+"'&raw='noqescape'";			
+	var APIcallURL = "http://silo.lib.wayne.edu/api/index.php?functions[]='solrSearch'&GETparams='"+solrParamsString+"'&raw='noqescape'";			
 
 	$.ajax({          
 	  url: APIcallURL,      

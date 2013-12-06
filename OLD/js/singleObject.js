@@ -10,6 +10,8 @@ var APIdata = new Object();
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function APIcall(PID){	
+
+  alert(PID);
 	
   // Calls API functions	
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
@@ -58,11 +60,7 @@ function makeTranslations(){
 
   // content model fix  
   APIdata.translated = new Object();
-  APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0]);
-
-
-  // APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0] = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[0]);
-
+  APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
 
 }
 
@@ -108,40 +106,40 @@ function finishRendering(){
   function unknownType(){
     $.get('templates/unknownType.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
-      $("#preview_container").html(html);  
+      $(".primary-object-container").html(html);  
         }); 
   }
 
   // Content Type Handling
-  if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != undefined){    
+  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != undefined){    
     ctype = APIdata.translated.contentModelPretty;
     switch (ctype) {
       //Images
       case "Image":
-        $.get('templates/image.htm',function(template){
+        $.get('templates/singleObject/image.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
-          $("#preview_container").html(html);
+          $(".primary-object-container").html(html);
         }); 
         break;
       //Collections
       case "Collection":
         $.get('templates/collection.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
-          $("#preview_container").html(html);
+          $(".primary-object-container").html(html);
         });      
         break;
       //eBooks
       case "WSUebook":
         $.get('templates/WSUebook.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
-          $("#preview_container").html(html);
+          $(".primary-object-container").html(html);
         }); 
         break;
       //Audio
       case "Audio":
         $.get('templates/audio.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
-          $("#preview_container").html(html);
+          $(".primary-object-container").html(html);
         }); 
         break;       
       //Document
@@ -149,7 +147,7 @@ function finishRendering(){
         unknownType();        
         // $.get('templates/document.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
-        //   $("#preview_container").html(html);
+        //   $(".primary-object-container").html(html);
         // }); 
         break;  
       //Video
@@ -157,7 +155,7 @@ function finishRendering(){
         // unknownType();        
         $.get('templates/video.htm',function(template){
           var html = Mustache.to_html(template, APIdata);
-          $("#preview_container").html(html);
+          $(".primary-object-container").html(html);
         }); 
         break;
       //Archive
@@ -165,7 +163,7 @@ function finishRendering(){
         unknownType();        
         // $.get('templates/archive.htm',function(template){
         //   var html = Mustache.to_html(template, APIdata);
-        //   $("#preview_container").html(html);
+        //   $(".primary-object-container").html(html);
         // }); 
         break;  
       default:
@@ -183,8 +181,7 @@ function finishRendering(){
 
 // Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function addFav(){   
-
+function addFav(){
   // stringify user / item / search object, send to solrAddDoc API function
   // can encapsulatein "raw" API parameter as jsonAddString
   var addDoc = new Object();
@@ -215,8 +212,6 @@ function addFav(){
     console.log(response);
     alert("There haz problems.");
   }
-
-
 }
 
 

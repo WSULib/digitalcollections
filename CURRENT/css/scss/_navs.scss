@@ -15,15 +15,21 @@
   > li {
     position: relative;
     display: block;
+    border-right: 1px solid #ddd;
 
     > a {
       position: relative;
       display: block;
       padding: $nav-link-padding;
+      font-size: 0.8em;
       &:hover,
       &:focus {
         text-decoration: none;
         background-color: $nav-link-hover-bg;
+        -webkit-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+       -moz-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+         -o-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
+            transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); /* ease (default) */
       }
     }
 

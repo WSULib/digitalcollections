@@ -55,7 +55,7 @@ $objectPID = $_REQUEST['PID'];
                 <div id="preview_container"></div>
 			</div>
 
-    		<!--metadata testing-->
+    		<!--metadata -->
     		<div id="metadata" class="templated span6">    			
     			<script id="metadata_t" type="text/html">
 					<p><strong>Title: </strong>{{solrGetFedDoc.response.docs.0.dc_title.0}}</p>					
@@ -101,7 +101,7 @@ $objectPID = $_REQUEST['PID'];
 		
 	</div>
 
-	<!--Testing API call-->
+	<!--API call-->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var PID = "<?php echo $objectPID; ?>";			
