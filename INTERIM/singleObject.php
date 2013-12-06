@@ -53,7 +53,9 @@ $objectPID = $_REQUEST['PID'];
     <body>
         <div class="page-wrap">
             <header>
-                <!-- Magic from Axa -->
+                <ul class="top-nav">
+                    <li id="login_status"><a href="login.php">Login / SignUp</a></li>                    
+                </ul>
             </header>
 
             <div id="templateCM">

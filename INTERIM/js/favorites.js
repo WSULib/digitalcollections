@@ -25,7 +25,7 @@ APIdata = new Object();
 function getFavs(){
 
 	var favParams = new Object();
-	favParams.q = "fav_user:"+userData.accessID_libCookie;
+	favParams.q = "fav_user:"+userData.username_WSUDOR;
 	favParams.fl = "fav_item";	
 	favParams.start = searchParams.start;
 	favParams.rows = searchParams.rows;
@@ -51,7 +51,7 @@ function getFavs(){
 
 	function callSuccess(response){
 		APIdata.favs = response;	    
-	    console.log(userData.accessID_libCookie+" favorites:");
+	    console.log(userData.username_WSUDOR+" favorites:");
 	    console.log(response)
 	    searchGo();
 	}
@@ -70,7 +70,7 @@ function updatePage(){
 	var cURL = document.URL;
 
 	// update fav_user
-	$("#fav_user").html(userData.accessID_libCookie);	
+	$("#fav_user").html(userData.username_WSUDOR);	
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
@@ -253,11 +253,11 @@ function favObjRemove(PID){
 	// this works: http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw={"delete":{"id":"ej2929_wayne:RENCEN21l"}}
 	alert("Removing "+PID);	
     
-    if (typeof userData.accessID_libCookie != "undefined"){
+    if (typeof userData.username_WSUDOR != "undefined"){
       // stringify user / item / search object, send to solrAddDoc API function  
       var addDoc = new Object();
-      addDoc.id = userData.accessID_libCookie+"_"+PID
-      // addDoc.fav_user = userData.accessID_libCookie;
+      addDoc.id = userData.username_WSUDOR+"_"+PID
+      // addDoc.fav_user = userData.username_WSUDOR;
       // addDoc.fav_item = APIdata.APIParams.PID;
       var jsonAddString = '{"delete":'+JSON.stringify(addDoc)+'}';
       console.log(jsonAddString);

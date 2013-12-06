@@ -75,7 +75,10 @@
                     <div class="span4">
                         <h3><a href="favorites.php">RESET</a></h3>
                     </div>
-                </div> 
+                </div>
+                <ul class="top-nav">
+                    <li id="login_status"><a href="login.php">Login / SignUp</a></li>                    
+                </ul> 
             </header>
 
             <div class="container main-content">
