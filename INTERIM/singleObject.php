@@ -29,6 +29,7 @@ $objectPID = $_REQUEST['PID'];
             <script src="http://code.jquery.com/jquery.js"></script>
             <!--Mustache-->
             <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
+
             <script type="text/javascript" src="inc/mustache.js"></script>  
             <!--cookie.js-->
             <script src="inc/jquery.cookie.js"></script>                      
@@ -36,6 +37,7 @@ $objectPID = $_REQUEST['PID'];
             <script src="js/utilities.js"></script>        
             <script src="js/singleObject.js"></script>
             <script src="js/userData.js"></script>
+
             <!--WSUDOR Translation Dictionary-->
             <script type="text/javascript" src="js/rosettaHash.js"></script>
             <!--Pagination-->
@@ -77,6 +79,32 @@ $objectPID = $_REQUEST['PID'];
 
                     <!-- metadata new -->
                     <div class="info-panel col-lg-3 col-xlg-3">
+<<<<<<< HEAD
+=======
+                        
+                            <!-- trying this in external template.... -->
+                            <!-- <h3 class="title">
+                                {{solrGetFedDoc.response.docs.0.dc_title.0}}
+                            </h3>
+                            
+                            <p class="description">
+                                {{solrGetFedDoc.response.docs.0.dc_description.0}}
+                            </p>
+                        
+
+                            <ul class="buttons">
+                                <li class="more-info-clickr">
+                                    <i class="icon-info"></i> <span class="more-info">More Info</span>
+                                </li>
+                                <li class="add-to-favorites">
+                                    <i class="icon-star"></i> Add to Favorites
+                                </li>
+                                <li class="share">                                    
+                                    <i class="icon-share"></i> Share
+                                </li>
+                            </ul> -->
+
+>>>>>>> 5ee5685785f8a09a299d1150987e75c13c9a9ca0
                     </div>
 
                 </div>                

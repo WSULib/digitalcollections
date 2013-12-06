@@ -197,6 +197,7 @@ function finishRendering(){
 
 // Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 function addFav(){  
     alert('adding favorite');
     
@@ -236,6 +237,42 @@ function addFav(){
   else {
     alert("No user defined!");
   }  
+=======
+function addFav(){   
+
+  // stringify user / item / search object, send to solrAddDoc API function
+  // can encapsulatein "raw" API parameter as jsonAddString
+  var addDoc = new Object();
+  addDoc.id = userData.accessID+"_"+APIdata.APIParams.PID
+  addDoc.fav_user = userData.accessID;
+  addDoc.fav_item = APIdata.APIParams.PID;
+  var jsonAddString = "["+JSON.stringify(addDoc)+"]";
+  console.log(jsonAddString);
+
+  var APIaddURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrAddDoc'&raw='"+jsonAddString+"'";
+  $.ajax({          
+    url: APIaddURL,      
+    dataType: 'json',
+    success: callSuccess,
+    error: callError
+  });
+
+  function callSuccess(response){
+    console.log(response);
+    if (response.solrAddDoc.responseHeader.status == 0){
+      alert("Favorite Added!");
+    }
+    else {
+      alert("There haz problems.");
+    }
+  }
+  function callError(response){
+    console.log(response);
+    alert("There haz problems.");
+  }
+
+
+>>>>>>> 5ee5685785f8a09a299d1150987e75c13c9a9ca0
 }
 
 
