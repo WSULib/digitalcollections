@@ -1,4 +1,4 @@
-// Javascript for search view
+// Javascript for favorites view
 
 
 // Variables
@@ -20,6 +20,47 @@ searchDefs['fullView'] = '';
 // Global API response data
 APIdata = new Object();
 
+// GET FAVs
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function getFavs(){
+
+	var favParams = new Object();
+	favParams.q = "fav_user:"+userData.accessID_libCookie;
+	favParams.fl = "fav_item";	
+	favParams.start = searchParams.start;
+	favParams.rows = searchParams.rows;
+	favParams.facet = 'false';	
+	favParams['raw'] = "noescape";
+
+	// zip it up
+	mergedFavsParams = jQuery.extend(true,{},searchDefs,favParams);
+	console.log("Merged FAVs Params:");
+	console.log(mergedFavsParams);
+	solrParamsString = JSON.stringify(mergedFavsParams);	
+
+	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
+	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getUserFavorites&solrParams="+solrParamsString;		
+	console.log(APIcallURL);	
+
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'json',
+	  success: callSuccess,
+	  error: callError
+	});
+
+	function callSuccess(response){
+		APIdata.favs = response;	    
+	    console.log(userData.accessID_libCookie+" favorites:");
+	    console.log(response)
+	    searchGo();
+	}
+	function callError(response){
+		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+	}
+}
+
+
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,6 +68,9 @@ function updatePage(){
 
 	// get current URL
 	var cURL = document.URL;
+
+	// update fav_user
+	$("#fav_user").html(userData.accessID_libCookie);	
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
@@ -75,12 +119,15 @@ function updatePage(){
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){
+function searchGo(){	
 
-	// default to search all, needs to propoaget to URL though...
-	// if (searchParams['q'] == undefined){
-	// 	searchParams['q'] = "*";
-	// }
+	// create q based on ALL favorites of user	
+	searchParams.q = "";
+	for (var i in APIdata.favs.getUserFavorites.response.docs){		
+		var fav_item = APIdata.favs.getUserFavorites.response.docs[i].fav_item;
+		searchParams.q += fav_item+" ";		
+	}
+	searchParams.q = "id:("+searchParams.q+")";
 
 
 	// fix facets / fq
@@ -142,8 +189,6 @@ function updateSearch(){
 }
 
 
-
-
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function populateFacets(){	
@@ -188,7 +233,7 @@ function populateResults(){
 	//push results to results_container
 	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
   		$.ajax({          
-		  url: 'templates/searchResultObj.htm',      
+		  url: 'templates/favoritesObj.htm',      
 		  dataType: 'html',            
 		  async:false,
 		  success: function(response){		  	
@@ -201,6 +246,49 @@ function populateResults(){
 }
 
 
+// favObjs CRUD
 
+// remove object
+function favObjRemove(PID){
+	// this works: http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw={"delete":{"id":"ej2929_wayne:RENCEN21l"}}
+	alert("Removing "+PID);	
+    
+    if (typeof userData.accessID_libCookie != "undefined"){
+      // stringify user / item / search object, send to solrAddDoc API function  
+      var addDoc = new Object();
+      addDoc.id = userData.accessID_libCookie+"_"+PID
+      // addDoc.fav_user = userData.accessID_libCookie;
+      // addDoc.fav_item = APIdata.APIParams.PID;
+      var jsonAddString = '{"delete":'+JSON.stringify(addDoc)+'}';
+      console.log(jsonAddString);
+
+      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrRemoveDoc&raw="+jsonAddString;
+      console.log(APIaddURL);
+
+      $.ajax({          
+        url: APIaddURL,      
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+      });
+
+      function callSuccess(response){
+        console.log(response);
+        alert("Favorite Removed :(");        
+      }
+      function callError(response){
+        console.log(response);
+        alert("Error.");
+      }
+    }
+  else {
+    alert("No user defined!");
+  }
+}
+
+// add object to list
+function favObjAdd(PID){
+	alert("we're adding to list "+PID);
+}
 
 

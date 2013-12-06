@@ -7,7 +7,7 @@
     <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
@@ -24,12 +24,11 @@
             <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
             <script type="text/javascript" src="inc/mustache.js"></script>
             <!--cookie.js-->
-            <script src="inc/jquery.cookie.js"></script>        
+            <script src="inc/jquery.cookie.js"></script>                      
             <!-- Local JS -->
             <script src="js/utilities.js"></script>        
-            <script src="js/search.js"></script>
+            <script src="js/favorites.js"></script>
             <script src="js/userData.js"></script>
-
             <!--WSUDOR Translation Dictionary-->
             <script type="text/javascript" src="js/rosettaHash.js"></script>
             <!--Pagination-->
@@ -59,6 +58,11 @@
                 ul.bootpag li.disabled a{
                     color:rgb(230,230,230);
                 }
+                .favObjCRUD{
+                    list-style:none;
+                    font-size:9px;
+                    padding-top:20px;                    
+                }
             </style>
 
         <!-- Additions ###################################################################################### -->
@@ -69,55 +73,44 @@
             <header>                
                 <div class="row-fluid" id="search_form">
                     <div class="span4">
-                        <h3><a href="search.php">RESET</a></h3>
-                    </div>            
-                    <div class="span4 pull-right">
-
-                        <form class="form-search" action="search.php">                    
-                            <input style="height:30px;" class="input-large search-query" name='q' id='q' type='text' placeholder="e.g. Detroit"/>
-                            <button type="submit" class="btn">Search</button>
-                        </form>
-
+                        <h3><a href="favorites.php">RESET</a></h3>
                     </div>
                 </div> 
-                <ul class="top-nav">
-                    <li id="login_status"><a href="login.php">Login / SignUp</a></li>                    
-                </ul>
             </header>
 
             <div class="container main-content">
                 <h2>
-                    Search Results
+                    Favorites for <span id="fav_user"></span>
                 </h2>
                 <div class="collection-details">
                     <p>
-                        <span class="items-in-collection"><span id='num_results'></span> Objects</span><span class="items-in-collection">Your search for '<span id='q_string'></span>'</span><span class="save-search"><a href="#">Save this Search</a></span>
+                        <span id='num_results'></span> Objects
                     </p>
                 </div>
 
                 
 
                 <div class="row">
-                    <div id="facets_container" class="facets col-lg-3 cl-xlg-3">
+
+                    <!--Facets / Lists-->
+                    
+                    <div id="favorites_tools" class="facets col-lg-3 cl-xlg-3">
+                    
                     
                     <ul>                    
                         <li id="facet_refine">
-                            <h5>Refined By:</h5>
+                            <h5>Lists</h5>
                             <ul id="facet_refine_list"></ul>
                         </li>
                     </ul>
                     
-                    </div>
+                    
+                    </div>                    
+
                     <div id="results_container" class="browse col-lg-9 cl-xlg-9">
                         
                         <!-- <div id="resultsControls"> -->
-                            <div class="col-lg-12 col-xlg-12 clearfix">
-                                <select class="form-control pull-right">
-                                    <option>Sort by</option>
-                                    <option>Relevancy</option>
-                                    <option>A-Z</option>
-                                    <option>Z-A</option>
-                                </select>                                                                
+                            <div class="col-lg-12 col-xlg-12 clearfix">                                                                                              
                                 <select class="form-control pull-right" id='rows' onchange="updateSearch();">
                                     <option value="10">10</option>
                                     <option value="20">20</option>
@@ -125,9 +118,7 @@
                                     <option value="100">100</option>
                                 </select>
                                 <span class="form-control pull-right"><strong>Items per Page</strong></span>
-                            </div>
-                            
-                        
+                            </div>                        
 
                         <div class="refined-by col-lg-12 col-xlg-12">
                         </div>
@@ -160,7 +151,8 @@
     <script type="text/javascript">
     var searchParams = <?php echo json_encode($_REQUEST); ?>;            
     $(document).ready(function(){        
-        searchGo();    
+        getFavs();
+        // searchGo();    
     });    
 </script>
 </html>

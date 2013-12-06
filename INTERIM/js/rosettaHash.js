@@ -13,7 +13,7 @@ function rosetta(input){
 	};
 
 	// fold in hardcoded values
-	APIdata.solrTranslationHash = jQuery.extend(APIdata.solrTranslationHash,facetHash);
+	APIdata.solrTranslationHash = jQuery.extend(APIdata.solrTranslationHash,facetHash);		
 
 	// strip quotes
 	var s_input = input.replace(/"|'/g,'')
