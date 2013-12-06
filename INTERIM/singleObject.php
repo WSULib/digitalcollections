@@ -81,32 +81,7 @@ $objectPID = $_REQUEST['PID'];
 
                     <!-- metadata new -->
                     <div class="info-panel col-lg-3 col-xlg-3">
-<<<<<<< HEAD
-=======
-                        
-                            <!-- trying this in external template.... -->
-                            <!-- <h3 class="title">
-                                {{solrGetFedDoc.response.docs.0.dc_title.0}}
-                            </h3>
-                            
-                            <p class="description">
-                                {{solrGetFedDoc.response.docs.0.dc_description.0}}
-                            </p>
-                        
 
-                            <ul class="buttons">
-                                <li class="more-info-clickr">
-                                    <i class="icon-info"></i> <span class="more-info">More Info</span>
-                                </li>
-                                <li class="add-to-favorites">
-                                    <i class="icon-star"></i> Add to Favorites
-                                </li>
-                                <li class="share">                                    
-                                    <i class="icon-share"></i> Share
-                                </li>
-                            </ul> -->
-
->>>>>>> 5ee5685785f8a09a299d1150987e75c13c9a9ca0
                     </div>
 
                 </div>                
