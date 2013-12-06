@@ -70,7 +70,7 @@ function updatePage(){
 	var cURL = document.URL;
 
 	// update fav_user
-	$("#fav_user").html(userData.username_WSUDOR);	
+	$("#fav_user").html(userData.displayName);	
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
@@ -249,10 +249,7 @@ function populateResults(){
 // favObjs CRUD
 
 // remove object
-function favObjRemove(PID){
-	// this works: http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw={"delete":{"id":"ej2929_wayne:RENCEN21l"}}
-	alert("Removing "+PID);	
-    
+function favObjRemove(PID){    
     if (typeof userData.username_WSUDOR != "undefined"){
       // stringify user / item / search object, send to solrAddDoc API function  
       var addDoc = new Object();
@@ -274,7 +271,8 @@ function favObjRemove(PID){
 
       function callSuccess(response){
         console.log(response);
-        alert("Favorite Removed :(");        
+        alert(PID+" Removed :(");        
+        location.reload();
       }
       function callError(response){
         console.log(response);

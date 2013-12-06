@@ -197,14 +197,12 @@ function finishRendering(){
 
 // Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function addFav(){  
-    alert('adding favorite');
-    
-    if (typeof userData.accessID_libCookie != "undefined"){
+function addFav(){    
+    if (typeof userData.username_WSUDOR != "undefined"){
       // stringify user / item / search object, send to solrAddDoc API function  
       var addDoc = new Object();
-      addDoc.id = userData.accessID_libCookie+"_"+APIdata.APIParams.PID
-      addDoc.fav_user = userData.accessID_libCookie;
+      addDoc.id = userData.username_WSUDOR+"_"+APIdata.APIParams.PID
+      addDoc.fav_user = userData.username_WSUDOR;
       addDoc.fav_item = APIdata.APIParams.PID;
       var jsonAddString = "["+JSON.stringify(addDoc)+"]";
       console.log(jsonAddString);
