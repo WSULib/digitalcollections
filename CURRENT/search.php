@@ -164,8 +164,7 @@
                         <a href="">Libraries</a>
                     </div>
                     <ul class="top-nav">
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Sign Up</a>  </li>
+                        <li><a href="">Login / Sign up</a></li>
                     </ul>
                 </div>
             </div>
@@ -174,13 +173,11 @@
                     <div class="row-fluid">
                         <h1 class="brand"><a href="search.php">Digital Collections</a></h1>
                         <div class="search-box">
-
                             <form class="search" action="search.php">
                                 <input class="searchTerm" value="Search our digital collections" name="q" id="q" type="text" onBlur="if(this.value=='')this.value='Search our digital collections'" onFocus="if(this.value=='Search our digital collections')this.value='' " />
                                 <input class="searchButton" type="submit" />
                                 <span class="searchIcon"></span>
                             </form>
-
                         </div>
                     </div>
                     <div class="row-fluid">
