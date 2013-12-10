@@ -3,13 +3,13 @@
 // Globals
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var APIdata = new Object();
+var userPackage = new Object();
 
 // Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function loginGo(){
-  $("#messages_container").append("<p>Starting login process.</p>"); 
-
+  $("#messages_container").append("<p>Starting login process.</p>");
 }
 
 function loginForm(){   
@@ -30,7 +30,7 @@ function loginForm(){
         APIdata.loginWSUDORCheck = response;
         console.log(APIdata.loginWSUDORCheck);
         // WSUDOR account not found 
-        if (APIdata.loginWSUDORCheck.userSearch.response.docs.length === 0){
+        if (APIdata.loginWSUDORCheck.userSearch.extant == false){
           console.log("No WSUDOR account. Yet...")
           // next step checking for LDAP 
           console.log("checking LDAP for account, then credentials.");
@@ -63,7 +63,7 @@ function loginForm(){
         else {          
           console.log("WSUDOR account found.");          
           // WSU affiliated
-          if (typeof (APIdata.loginWSUDORCheck.userSearch.response.docs[0].user_WSU) != 'undefined' && APIdata.loginWSUDORCheck.userSearch.response.docs[0].user_WSU[0] == true ){
+          if (APIdata.loginWSUDORCheck.userSearch.user_WSU == true ){
             console.log("WSU affilated. Check password against LDAP.");
             checkLDAPPassword();
           }
@@ -81,15 +81,33 @@ function loginForm(){
 
   // check WSUDOR credentials (not LDAP account)
   function checkWSUDORPassword(){
-    console.log("checking WSUDOR password.");
-    if (APIdata.loginWSUDORCheck.userSearch.response.docs[0].user_password[0] === postData.password) {
-      console.log("WSUDOR credentials check out.")
-      grantAccess(APIdata.loginWSUDORCheck.userSearch.response.docs[0].user_username[0]);
-    }
-    else {
-      console.log("WSUDOR credentials don't match.")
-      denyAccess();
-    }
+    console.log("checking WSUDOR password.");  
+    console.log(postData);
+
+    var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=WSUDORuserAuth";    
+    $.ajax({    
+      type: "POST",      
+      url: APIcallURL,      
+      dataType: 'json',
+      data: postData,         
+      success: function(response){        
+        console.log("WSUDOR password check response:")
+        APIdata.passwordWSUDORcheck = response;
+        console.log(APIdata.passwordWSUDORcheck);
+        if (APIdata.passwordWSUDORcheck.WSUDORuserAuth.WSUDORcheck == true) {
+          console.log("WSUDOR credentials check out.")
+          grantAccess(postData.username);
+        }
+        else {
+          console.log("WSUDOR credentials don't match.")
+          denyAccess();
+        }
+
+      },
+      error: function(response){
+        console.log(response);
+      }
+    });
   }
 
   // check LDAP credentials (trumps WSUDOR account)
@@ -157,7 +175,7 @@ function createAccountPrep(type){
       success: function(response){
         APIdata.userSearch = response;
         console.log(response);      
-        if (APIdata.userSearch.userSearch.response.docs.length > 0){
+        if (APIdata.userSearch.userSearch.extant == true){
           console.log("Username not available in WSUDOR.");
           createAccountFail();
         }
@@ -228,20 +246,21 @@ function createAccount(params,type){
     createAccountFail();
     return;
   }
-
+  
   params.id = params.user_username;
-  var jsonAddString = "["+JSON.stringify(params)+"]";
-  console.log(jsonAddString);
+  var postData = params;
 
-  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=solrAddDoc&raw="+jsonAddString;
+  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=createUserAccount";
   console.log(APIaddURL);
 
   $.ajax({          
-    url: APIaddURL,      
+    url: APIaddURL,
+    type: "POST",
+    data: postData,      
     dataType: 'json',
     success: function(response){
       console.log(response);
-      if (response.solrAddDoc.responseHeader.status == 0){      
+      if (response.createUserAccount.responseHeader.status == 0){      
         createAccountSuccess(params.user_username);
       }
       else {
@@ -264,7 +283,7 @@ function denyAccess(){
 }
 
 function grantAccess(username){
-  $("#messages_container").append("<p style='color:green;'>Access Permitted for "+username+".  Setting Cookie.</p>");     
+  $("#messages_container").append("<p style='color:green;'>Access Permitted for "+username+".  Setting Cookie.</p>");       
   setWSUDORCookie(username);
 }
 
@@ -286,7 +305,7 @@ function setWSUDORCookie(username){
   // check WSUDOR status    
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=userSearch";  
   var postData = new Object ();
-  postData.username = username;
+  postData.username = username;  
   $.ajax({    
     type: "POST",      
     url: APIcallURL,      
@@ -294,9 +313,10 @@ function setWSUDORCookie(username){
     data: postData,            
     success: function(response){
       console.log(response);
-      userData.displayName = response.userSearch.response.docs[0].user_displayName[0];
+      userData.displayName = response.userSearch.displayName;
       userData.loggedIn_WSUDOR = true;  
       userData.username_WSUDOR = username;
+      userData.clientHash = response.userSearch.clientHash;
       $.cookie("WSUDOR", JSON.stringify(userData));
       // consider heading back?
       window.history.back();
@@ -305,6 +325,9 @@ function setWSUDORCookie(username){
       console.log("Could not retrieve displayName for cookie purposes");
     }
   });  
+  
+  
+
 }
 
 

@@ -33,9 +33,42 @@ $(document).ready(function(){
 		userData.username_WSUDOR = WSUDORcookie.username_WSUDOR;
 		userData.loggedIn_WSUDOR = WSUDORcookie.loggedIn_WSUDOR;
 		userData.displayName = WSUDORcookie.displayName;
+		userData.clientHash = WSUDORcookie.clientHash;
 
-		if (userData.loggedIn_WSUDOR == true){      			
-			// $("#login_status").html("Welcome "+userData.displayName+"! <a onclick='$.removeCookie(\"WSUDOR\"); location.reload();' href='#'>(Logout)</a>");
+		if (userData.loggedIn_WSUDOR == true){
+
+			// If validating cookies in JS, this would happen here.  
+			// Send username and hash to server, if matches, returns true
+				// possible to interrupt this, send changed username and intercept loading of page, change flag to true.  
+				// that might be possible, but only for a moment (as in console commands, a new page load would undo that)
+
+			var postData = new Object();
+			postData.username = userData.username_WSUDOR;
+			postData.clientHash = userData.clientHash;
+			var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=cookieAuth";
+			console.log(APIaddURL);
+			$.ajax({          
+				url: APIaddURL,
+				type: "POST",
+				data: postData,      
+				dataType: 'json',
+				success: function(response){
+				  console.log("cookieAuth response:");
+				  console.log(response);
+				  if (response.cookieAuth.hashMatch == false){
+				  	console.log("Attack!  Attack!  Deleting cookie and refreshing.");
+				  	logoutUser();				  	
+				  }
+				  
+				},
+				error: function(response){
+				  console.log(response);
+				  alert("Error.");
+				}
+			}); 
+
+			
+
 			$("#login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
 			$("#login_status").parent().append("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  
