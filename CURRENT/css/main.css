@@ -1875,8 +1875,9 @@ li:last-child.object-container-list {
     height: 150px;
     margin-left: 50px; }
   .object-container-list img {
-    width: 100%;
-    height: auto; }
+    height: 100%;
+    width: auto;
+    float: right; }
   .object-container-list h3 {
     font-size: 1em;
     margin: 0; }
