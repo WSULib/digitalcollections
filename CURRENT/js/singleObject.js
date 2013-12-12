@@ -9,9 +9,9 @@ var APIdata = new Object();
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function APIcall(PID){	
-	
-  // Calls API functions	
+function APIcall(PID){  
+  
+  // Calls API functions  
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
   
 
@@ -24,7 +24,7 @@ function APIcall(PID){
   });
 
   function callSuccess(response){
-  	console.log(response);  
+    console.log(response);  
     APIdata = response;
 
     //check object status
@@ -37,11 +37,11 @@ function APIcall(PID){
       // render results on page
       renderPage();                    
     }
-  	
+    
   }
 
   function callError(response){
-  	console.log("API Call unsuccessful.  Back to the drawing board.");
+    console.log("API Call unsuccessful.  Back to the drawing board.");
     loadError();                
   }
 }
@@ -137,13 +137,6 @@ function finishRendering(){
           $(".primary-object-container").html(html);
         }); 
         break;
-      //Collections
-      case "Collection":
-        $.get('templates/singleObject/collection.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        });      
-        break;
       //eBooks
       case "WSUebook":
         $.get('templates/singleObject/WSUebook.htm',function(template){
@@ -151,6 +144,13 @@ function finishRendering(){
           $(".primary-object-container").html(html);
         }); 
         break;
+      //Collections
+      case "Collection":
+        $.get('templates/singleObject/collection.htm',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $(".primary-object-container").html(html);
+        });      
+        break;      
       //Audio
       case "Audio":
         $.get('templates/singleObject/audio.htm',function(template){
@@ -197,40 +197,43 @@ function finishRendering(){
 
 // Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function addFav(){   
+function addFav(){    
+    if (typeof userData.username_WSUDOR != "undefined"){
+      // stringify user / item / search object, send to solrAddDoc API function  
+      var addDoc = new Object();
+      addDoc.id = userData.username_WSUDOR+"_"+APIdata.APIParams.PID
+      addDoc.fav_user = userData.username_WSUDOR;
+      addDoc.fav_item = APIdata.APIParams.PID;
+      var jsonAddString = "["+JSON.stringify(addDoc)+"]";
+      console.log(jsonAddString);
 
-  // stringify user / item / search object, send to solrAddDoc API function
-  // can encapsulatein "raw" API parameter as jsonAddString
-  var addDoc = new Object();
-  addDoc.id = userData.accessID+"_"+APIdata.APIParams.PID
-  addDoc.fav_user = userData.accessID;
-  addDoc.fav_item = APIdata.APIParams.PID;
-  var jsonAddString = "["+JSON.stringify(addDoc)+"]";
-  console.log(jsonAddString);
+      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
+      console.log(APIaddURL);
 
-  var APIaddURL = "http://silo.lib.wayne.edu/api/index.php?functions='solrAddDoc'&raw='"+jsonAddString+"'";
-  $.ajax({          
-    url: APIaddURL,      
-    dataType: 'json',
-    success: callSuccess,
-    error: callError
-  });
+      $.ajax({          
+        url: APIaddURL,      
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+      });
 
-  function callSuccess(response){
-    console.log(response);
-    if (response.solrAddDoc.responseHeader.status == 0){
-      alert("Favorite Added!");
+      function callSuccess(response){
+        console.log(response);
+        if (response.solrAddDoc.responseHeader.status == 0){
+          alert("Favorite Added!");
+        }
+        else {
+          alert("Error");
+        }
+      }
+      function callError(response){
+        console.log(response);
+        alert("Error.");
+      }
     }
-    else {
-      alert("There haz problems.");
-    }
-  }
-  function callError(response){
-    console.log(response);
-    alert("There haz problems.");
-  }
-
-
+  else {
+    alert("No user defined!");
+  }  
 }
 
 

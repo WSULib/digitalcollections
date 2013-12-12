@@ -194,52 +194,52 @@
             </div> 
         </header>
 
-            <div class="container">
-                <div class="row-fluid sub-header">
-                   <h2>
-                        Search Results
-                    </h2>
-                    <ul>
-                        <li><span id='num_results'></span> Objects</li>
-                        <li>&quot;<span id='q_string'></span>&quot;</li>
-                        <li><a href="#">Save this Search</a></li>
-                    </ul>
-                    <div class="row-fluid" style="margin-top:-45px;">
-                        <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                            <option value="12">12</option>
-                            <option value="36">36</option>
-                            <option value="48">48</option>
-                            <option value="90">90</option>
-                        </select> -->
-                        <div class="switch-views">
-                            <div id="list" class="list list-active"></div>
-                            <div id="grid" class="grid"></div>
-                            <div class="filter-on filter-active"></div>
-                            <div class="filter-off"></div>
-                        </div>
-                    </div><!-- /switch-views -->
-                    
-                </div><!-- /row for sub-header -->
+        <div class="container">
+            <div class="row-fluid sub-header">
+               <h2>
+                    Search Results
+                </h2>
+                <ul>
+                    <li><span id='num_results'></span> Objects</li>
+                    <li>&quot;<span id='q_string'></span>&quot;</li>
+                    <li><a href="#">Save this Search</a></li>
+                </ul>
+                <div class="row-fluid" style="margin-top:-45px;">
+                    <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
+                        <option value="12">12</option>
+                        <option value="36">36</option>
+                        <option value="48">48</option>
+                        <option value="90">90</option>
+                    </select> -->
+                    <div class="switch-views">
+                        <div id="list" class="list list-active"></div>
+                        <div id="grid" class="grid"></div>
+                        <div class="filter-on filter-active"></div>
+                        <div class="filter-off"></div>
+                    </div>
+                </div><!-- /switch-views -->
                 
-                <div id="facets_container" class="facets">
-                    <!-- facets template -->
-                </div><!-- /facets -->
+            </div><!-- /row for sub-header -->
+            
+            <div id="facets_container" class="facets">
+                <!-- facets template -->
+            </div><!-- /facets -->
 
-                <div id="results_container" class="main-container">
-                    
-                    <div class="row-fluid filtered-by refined-by">
-                        <!-- fiters -->
-                    </div><!-- /filtered-by -->
-                    <ul class="row-fluid objects-container">
-                        <!-- results template -->
-                    </ul>
-                </div><!-- /objects -->
+            <div id="results_container" class="main-container">
+                
+                <div class="row-fluid filtered-by refined-by">
+                    <!-- fiters -->
+                </div><!-- /filtered-by -->
+                <ul class="row-fluid objects-container">
+                    <!-- results template -->
+                </ul>
+            </div><!-- /objects -->
 
-                <div class="pagination-centered">
-                        <!-- pagination -->
-                </div><!-- /pagination -->
-                  
-            </div> <!-- /container -->
+            <div class="pagination-centered">
+                    <!-- pagination -->
+            </div><!-- /pagination -->
+              
+        </div> <!-- /container -->
 
         <footer>
             <!--<div class="container">

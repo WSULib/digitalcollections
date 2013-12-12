@@ -43,13 +43,14 @@ li:last-child.object-container-list {
 	.crop {
 		overflow: hidden;
 		float: right;
-		width: 175px;
-		height: 150px;
-		margin-left: 50px;
+		width: 185px;
+		height: 130px;
+		margin-left: 40px;
 	}
 
 	img {
-		height: 100%;
+		max-height: 100%;
+		max-width: 100%;
 		width: auto;
 		float:right;
 	}

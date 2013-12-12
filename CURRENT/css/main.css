@@ -1871,11 +1871,12 @@ li:last-child.object-container-list {
   .object-container-list .crop {
     overflow: hidden;
     float: right;
-    width: 175px;
-    height: 150px;
-    margin-left: 50px; }
+    width: 185px;
+    height: 130px;
+    margin-left: 40px; }
   .object-container-list img {
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
     width: auto;
     float: right; }
   .object-container-list h3 {
