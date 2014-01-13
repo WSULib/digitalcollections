@@ -1,4 +1,4 @@
-<div class="collection col-lg-4 cl-xlg-4">
+<!-- <div class="collection col-lg-4 cl-xlg-4">
     <a href='../INTERIM/singleObject.php?PID={{id}}'>
     <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/PREVIEW/content&aspectResize=(480x368)">
     </a>
@@ -10,4 +10,23 @@
             <span class="items-in-collection">{{count}} Objects</span>  <a href="collection.php?start=0&collection={{id}}">View Collection</a>
         </p>
     </div>
-</div>
+</div> -->
+
+<!-- allcollections.php -->
+
+<li class="collection object-container-grid">
+    <div class="crop">
+        <a href='collection.php?collection=wayne:collectionCFAI&start=0'>
+            <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/PREVIEW/content&aspectResize=(480x368)">
+        </a>
+    </div>
+    <h3>
+        <a href="singleObject.php?PID={{id}}">{{dc_title}}</a>
+    </h3>
+    <h4>
+        <!--{{dc_creator}}, -->{{dc_date}}
+    </h4>
+    <p>
+        <span class="items-in-collection">{{count}} Objects</span>  <a href="collection.php?start=0&collection={{id}}">View Collection</a>
+    </p>
+</li>
