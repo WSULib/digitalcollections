@@ -1,8 +1,8 @@
-    <div class="collection col-lg-4 cl-xlg-4">
-    <!-- ********* TESTING ********** -->
-    <!-- <img src="http://fedoratest.lib.wayne.edu:8080/imagemanip/ImageManipulation?url=http://141.217.54.89/~colehudson/Repos/mediumgifs/{{id}}&op=resize&newWidth=460"> -->
-    <!--<img src="http://fedoratest.lib.wayne.edu:8080/imagemanip/ImageManipulation?url=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/ACCESS/content&op=resize&newWidth=460">-->
-    <!-- ********* TESTING ********** -->
+<!--     <div class="collection col-lg-4 cl-xlg-4">
+    ********* TESTING **********
+    <img src="http://fedoratest.lib.wayne.edu:8080/imagemanip/ImageManipulation?url=http://141.217.54.89/~colehudson/Repos/mediumgifs/{{id}}&op=resize&newWidth=460">
+    <img src="http://fedoratest.lib.wayne.edu:8080/imagemanip/ImageManipulation?url=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/ACCESS/content&op=resize&newWidth=460">
+    ********* TESTING **********
     <a href='../INTERIM/singleObject.php?PID={{id}}'>
         <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/THUMBNAIL/content">
 
@@ -12,7 +12,22 @@
                 {{dc_title}}
             </h4>
         </div>
+    </div> -->
+
+
+<li class="obj-cnt object-container-grid">
+    <div class="crop">
+        <a href="singleObject.php?PID={{id}}">
+            <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/THUMBNAIL/content" alt="{{dc_title}}">
+        </a>
     </div>
-
-
-    
+    <h3>
+        <a href="singleObject.php?PID={{id}}">{{dc_title}}</a>
+    </h3>
+    <h4>
+        <!--{{dc_creator}}, -->{{dc_date}}
+    </h4>
+    <p class="truncate">
+        {{dc_description}}
+    </p>
+</li>

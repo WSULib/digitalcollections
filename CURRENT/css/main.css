@@ -2099,10 +2099,6 @@ li:last-child.object-container-list {
   display: inline-block;
   vertical-align: top;
   padding: 0 15px 35px 15px; }
-  .object-container-grid:nth-child(3n+2) {
-    padding: 0 0 35px 30px; }
-  .object-container-grid:nth-child(3n) {
-    padding: 0 30px 35px 0; }
   .object-container-grid .crop {
     overflow: hidden;
     height: 175px; }
