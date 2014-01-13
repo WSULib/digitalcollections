@@ -148,7 +148,7 @@ function populateFacets(){
 	var facet_limit = 18;
 	// for each facet field
 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
+		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span>&#9660;</span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
 		for (var i = 0; i < facet_array.length; i = i + 2){			
@@ -170,8 +170,8 @@ function populateFacets(){
 		}
 		// add "more" button if longer than facet_limit		
 		if (facet_array.length > facet_limit){						
-			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>more &raquo;</a></strong></p>");
-			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; less</a></strong></p>");			
+			$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
+			$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");			
 		}
 	}		
 }

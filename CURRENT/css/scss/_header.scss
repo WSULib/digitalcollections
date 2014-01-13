@@ -15,13 +15,14 @@
 }
 
 header {
-    background: #f9f8f3;
+    // background: #f9f8f3;
+    background: #f1f1ea;
     border-bottom: 1px solid #eee;
 }
 header h1 {
     display: inline;
 }
-header h1 a {
+header h1 a, header h1 a:visited  {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     color: #062728;
@@ -30,7 +31,7 @@ header h1 a {
     /*margin-top: 1.5em;
     margin-bottom: 1.5em;*/
 }
-h1 a:hover {
+h1 a:hover, h1 a:active {
     text-decoration: none;
 }
 header .search-box {
@@ -48,14 +49,14 @@ header .searchTerm {
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box; 
   height: 40px;
-  border: 1px solid #062728;
+  border: 1px solid #d5d5d5;
   border-radius: 3px;
   outline: none;
   padding: 5px 45px 5px 10px;
 }
 
-header .searchButton,
-header .searchIcon {
+// header .searchButton,
+ header .searchIcon {
   display: block;
   position: absolute;
   top: 0;
@@ -63,13 +64,15 @@ header .searchIcon {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  font-family: 'FontAwesome';
-  background: #062728;
+  // font-family: 'FontAwesome';
+  // background: #062728;
+  background: url("../img/search-icon.png") no-repeat scroll center transparent;
+  padding: 20px;
   text-align: center;
   color: #fff;
-  border-radius: 3px;
-  -webkit-font-smoothing: subpixel-antialiased;
-  font-smooth: always;
+  // border-radius: 3px;
+  // -webkit-font-smoothing: subpixel-antialiased;
+  // font-smooth: always;
   cursor: pointer;
 }
 header .searchButton {
@@ -85,7 +88,7 @@ header .searchIcon:before {
     border-bottom: 1px solid #ddd;
     font-size: 0.75em;
     color: #333;
-    margin-bottom: 2.5em;
+    // margin-bottom: 1.5em;
 }
 .top-head a {
     color: #333;
@@ -100,8 +103,12 @@ header .searchIcon:before {
     letter-spacing: .1em;
     word-spacing: .1em;
 }
-.libraries a {
+.libraries a, .libraries a:visited, .top-nav a, .top-nav a:visited {
     color: #fff;
+}
+.libraries a:hover, .libraries a:active, .top-nav a:hover, .top-nav a:active {
+  color: #ffd969;
+  text-decoration: none;
 }
 .top-nav {
     list-style: none;
@@ -114,6 +121,10 @@ header .searchIcon:before {
     display: inline-block;
 }
 .top-nav li a {
-    padding: 10px 15px;
+    // padding: 10px 15px;
     color: #fff;
+}
+
+.brand-search {
+  margin: $navbar-margin-bottom 0;
 }

@@ -5,14 +5,15 @@ $(document).ready(function(){
 	$.easing.def = "easeOutExpo";
 
 	/* Binding a click event handler to the links: */
-	$('li.button a').click(function(e){
+	$('.facet-toggle').click(function(e){
 	
 		/* Finding the drop down list that corresponds to the current section: */
 		var dropDown = $(this).parent().next();
 		
 		/* Closing all other drop down sections, except the current one */
-		$('.dropdown').not(dropDown).slideUp('slow');
+		//$('.facet').not(dropDown).slideUp('slow');
 		dropDown.slideToggle('slow');
+		$(this).html("&#9660;");
 		
 		/* Preventing the default event (which would be to navigate the browser to the link's address) */
 		e.preventDefault();

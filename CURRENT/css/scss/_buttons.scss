@@ -2,9 +2,53 @@
 // Buttons
 // --------------------------------------------------
 
+/* #Clouds Flat Button
+==================================================*/
 
 // Base styles
 // --------------------------------------------------
+
+
+
+.buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 11px 0 0;
+    width: 100%;
+    padding: 11px 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    background: #F9F8F3;
+    cursor: pointer;
+
+    img {
+      height: 14px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.facets .buttons {
+  text-align: center;
+}
+
+.more-info-clickr img {
+  padding-left: 9px;
+  padding-right: 4px;
+}
+
+.add-to-favorites img {
+  padding-left: 3px;
+  padding-right: 2px;
+}
+
+.share img {
+  padding-left: 4px;
+}
+
 
 // Core styles
 .btn {

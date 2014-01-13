@@ -14,6 +14,16 @@ th {
 
 // Baseline styles
 
+.table tbody tr td:nth-child(1), .metadata .table tbody tr td:nth-child(1) {
+  border-right: 1px dotted $table-border-color;
+  width: 110px;
+  text-align: right;
+}
+
+.table tbody tr:nth-child(1) td {
+  border-top: 0;
+}
+
 .table {
   width: 100%;
   margin-bottom: $line-height-computed;
@@ -28,7 +38,7 @@ th {
         line-height: $line-height-base;
         vertical-align: top;
         border-top: 1px dotted $table-border-color;
-        font-size: 0.9em;
+        font-size: 13px;
       }
     }
   }

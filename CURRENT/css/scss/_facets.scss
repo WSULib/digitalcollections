@@ -4,22 +4,27 @@
 	float: left;
 	position: relative;
 	margin: 0;
-	margin-top: 3em;
+	margin-top: 22px;
 	padding: 0 30px 0 0;
 
 	.filter {
 
 		list-style: none;
 		padding: 0;
-		// background: #F9F8F3;
-		border: 1px solid #DDD;
-		margin-bottom: 2em;
+		background: #F9F8F3;
+		border: 1px solid #eee;
+		margin-bottom: 1em;
+
+		li {
+			padding: 0;
+		}
 
 		h3 {
 			margin: 0;
 			font-size: 1em;
-			border-top: 1px solid #ddd;
-			border-bottom: 1px solid #ddd;
+			// border-top: 1px solid #ddd;
+			// border-bottom: 1px solid #ddd;
+			background: #f3f1e8;
 			padding: 10px 15px;
 			text-transform: uppercase;
 			cursor: pointer;
@@ -53,4 +58,34 @@
 		-moz-border-radius: 3px;
 		border-radius: 3px;
 	}
+}
+
+li span.facet-toggle, .tree-toggler span {
+background-color: transparent;
+display: inline-block;
+float: left;
+font-size: 11px;
+margin-right: 8px;
+}
+
+.toc > li, .filter > li {
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height: 110%;
+	text-rendering: optimizeLegibility;
+-webkit-font-smoothing: subpixel-antialiased;
+// border-bottom: 1px solid #e0e0e0;
+padding: 10px 10px 10px 10px;
+position: relative;
+margin: 0;
+margin-top: -1px;
+width: 100%;
+}
+
+.filter > li > ul li a {
+	text-transform: capitalize;
+}
+
+.facet-more {
+	margin-top: 11px;
 }

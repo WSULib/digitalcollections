@@ -73,8 +73,8 @@ h6 {
 }
 
 h1, .h1 { font-size: floor($font-size-base * 2.60); } // ~36px
-h2, .h2 { font-size: floor($font-size-base * 2.15); } // ~30px
-h3, .h3 { font-size: ceil($font-size-base * 1.70); } // ~24px
+h2, .h2 { font-size: floor($font-size-base * 1.7); } // ~30px
+h3, .h3 { font-size: ceil($font-size-base * 1.15);} // ~24px
 h4, .h4 { font-size: ceil($font-size-base * 1.25); } // ~18px
 h5, .h5 { font-size:  $font-size-base; }
 h6, .h6 { font-size: ceil($font-size-base * 0.85); } // ~12px
@@ -84,7 +84,9 @@ h2 small, .h2 small { font-size: ceil($font-size-base * 1.25); } // ~18px
 h3 small, .h3 small,
 h4 small, .h4 small { font-size: $font-size-base; }
 
-
+.info-panel h3.title {
+  text-transform: uppercase;
+}
 // Page header
 // -------------------------
 
