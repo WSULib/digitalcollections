@@ -9,9 +9,9 @@ var APIdata = new Object();
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function APIcall(PID){  
-  
-  // Calls API functions  
+function APIcall(PID){	
+	
+  // Calls API functions	
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
   
 
@@ -24,7 +24,7 @@ function APIcall(PID){
   });
 
   function callSuccess(response){
-    console.log(response);  
+  	console.log(response);  
     APIdata = response;
 
     //check object status
@@ -37,11 +37,11 @@ function APIcall(PID){
       // render results on page
       renderPage();                    
     }
-    
+  	
   }
 
   function callError(response){
-    console.log("API Call unsuccessful.  Back to the drawing board.");
+  	console.log("API Call unsuccessful.  Back to the drawing board.");
     loadError();                
   }
 }
