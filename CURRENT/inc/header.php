@@ -2,8 +2,8 @@
     <div class="row-fluid top-head">
         <div class="container">
             <div class="libraries">
-                <a href="">Wayne State University</a> <span style="color:white;">&raquo;</span> 
-                <a href="">Libraries</a>
+                <a href="http://wayne.edu/">Wayne State University</a> <span style="color:white;">&raquo;</span> 
+                <a href="http://library.wayne.edu/">Libraries</a>
             </div>
             <ul class="top-nav">
                 <li><a href="login.php">Login / Sign up</a></li>

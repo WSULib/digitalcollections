@@ -76,8 +76,6 @@
                             </ul>
                         </li>
                     </ul>
-
-
                     <!-- facets template -->
                 </div><!-- /facets -->
 
