@@ -33,7 +33,9 @@
         <script src="js/jquery.cookie.js" type="text/javascript"></script>    
 
         <style>
-
+            .toc > li {
+                margin: 0;
+            }
         </style>
 
         <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
@@ -60,7 +62,7 @@
             <p class="volumes-header"><span>Volumes in the Collection</span></p>
 
             <ul class="toc">
-                <li class="button"><span class="facet-toggle">&#9654;</span> <a href="journal-volume.php">Volume 1</a></li>
+                <li class="button"><span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 1</a></li>
                 <li class="facet active">
                     <ul>
                         <li><a href="journal-volume-issue.php">Issue 1</a></li>
@@ -69,7 +71,7 @@
                     </ul>
                 </li>
                 <li class="button">
-                    <span class="facet-toggle">&#9654;</span> <a href="journal-volume.php">Volume 2</a></li>
+                    <span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 2</a></li>
                 <li class="facet">
                     <ul>
                         <li>Issue 1</li>
@@ -78,7 +80,7 @@
                     </ul>
                 </li>
                 <li class="button">
-                    <span class="facet-toggle">&#9654;</span> <a href="journal-volume.php">Volume 3</a></li>
+                    <span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 3</a></li>
                 <li class="facet">
                     <ul>
                         <li>Issue 1</li>

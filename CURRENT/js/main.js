@@ -100,9 +100,5 @@ $( document ).ready(function() {
         $('.more-info').text($(this).is(':visible')? 'Less Info' : 'More Info');
       });
     });
-//view volumes and issues
-    // $( ".view" ).on( "click", function() {
-    //     $(".toc").show();
-    //     $(".view").hide();
-    // });
+
 });

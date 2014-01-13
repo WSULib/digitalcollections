@@ -13,7 +13,6 @@ $(document).ready(function(){
 		/* Closing all other drop down sections, except the current one */
 		//$('.facet').not(dropDown).slideUp('slow');
 		dropDown.slideToggle('slow');
-		$(this).html("&#9660;");
 		
 		/* Preventing the default event (which would be to navigate the browser to the link's address) */
 		e.preventDefault();

@@ -1824,7 +1824,7 @@ header .searchTerm {
   outline: none;
   padding: 5px 45px 5px 10px; }
 
-header .searchIcon {
+header .searchButton {
   display: block;
   position: absolute;
   top: 0;
@@ -1832,14 +1832,12 @@ header .searchIcon {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: url("../img/search-icon.png") no-repeat scroll center transparent;
+  background: url("../img/search-icon.png") no-repeat scroll center;
   padding: 20px;
   text-align: center;
-  color: #fff;
-  cursor: pointer; }
-
-header .searchButton {
-  opacity: 0;
+  color: transparent;
+  cursor: pointer;
+  border: 0;
   z-index: 1; }
 
 header .searchIcon:before {
@@ -2001,16 +1999,22 @@ li span.facet-toggle, .tree-toggler span {
   font-size: 11px;
   margin-right: 8px; }
 
+.toc .button {
+  text-transform: uppercase;
+  background: #f3f1e8;
+  margin-top: 11px; }
+
+.toc .facet li {
+  font-size: 12px;
+  background: #F9F8F3; }
+
 .toc > li, .filter > li {
   font-size: 13px;
-  text-transform: uppercase;
   line-height: 110%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: subpixel-antialiased;
   padding: 10px 10px 10px 10px;
   position: relative;
-  margin: 0;
-  margin-top: -1px;
   width: 100%; }
 
 .filter > li > ul li a {
@@ -4361,8 +4365,8 @@ button.close {
   content: "";
   position: absolute;
   height: 5px;
-  border-bottom: 1px solid #666;
-  border-top: 1px solid #666;
+  border-bottom: 1px solid #d5d5d5;
+  border-top: 1px solid #d5d5d5;
   top: 0;
   width: 30px; }
 
@@ -4374,8 +4378,8 @@ button.close {
   content: "";
   position: absolute;
   height: 5px;
-  border-bottom: 1px solid #666;
-  border-top: 1px solid #666;
+  border-bottom: 1px solid #d5d5d5;
+  border-top: 1px solid #d5d5d5;
   top: 0;
   width: 30px; }
 

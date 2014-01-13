@@ -18,7 +18,7 @@
                     <form class="search" action="search.php">
                         <input class="searchTerm" value="" name="q" id="q" type="text" placeholder="Search our digital collections" />
                         <input class="searchButton" type="submit" />
-                        <span class="searchIcon"></span>
+                        <!-- <span class="searchIcon"></span> -->
                     </form>
                 </div>
             </div>

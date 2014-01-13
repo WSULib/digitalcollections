@@ -55,8 +55,7 @@ header .searchTerm {
   padding: 5px 45px 5px 10px;
 }
 
-// header .searchButton,
- header .searchIcon {
+ header .searchButton {
   display: block;
   position: absolute;
   top: 0;
@@ -66,17 +65,15 @@ header .searchTerm {
   line-height: 40px;
   // font-family: 'FontAwesome';
   // background: #062728;
-  background: url("../img/search-icon.png") no-repeat scroll center transparent;
+  background: url('../img/search-icon.png') no-repeat scroll center;
   padding: 20px;
   text-align: center;
-  color: #fff;
+  color: transparent;
   // border-radius: 3px;
   // -webkit-font-smoothing: subpixel-antialiased;
   // font-smooth: always;
   cursor: pointer;
-}
-header .searchButton {
-  opacity: 0;
+  border: 0;
   z-index: 1;
 }
 
