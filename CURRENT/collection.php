@@ -68,6 +68,16 @@
                 </div><!-- /row for sub-header -->
 
                 <div id="facets_container" class="facets">
+                    <ul class="facet_container filter" id="search_facet">
+                        <li>
+                            <h3 class="tree-toggler">Filter by Keyword</h3>
+                            <ul class="tree facet_list" id="search_facet_box">
+                                <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
+                            </ul>
+                        </li>
+                    </ul>
+
+
                     <!-- facets template -->
                 </div><!-- /facets -->
 
