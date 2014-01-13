@@ -43,7 +43,6 @@
                     </h2>
                     <ul>
                         <li><span id='num_results'></span> Objects</li>
-                        <li>&quot;<span id='q_string'></span>&quot;</li>
                         <li>                        
                             <select class="form-control" onchange="updateCollection();">
                                 <option>View different collection</option>

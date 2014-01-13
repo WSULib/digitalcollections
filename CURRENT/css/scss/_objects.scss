@@ -186,6 +186,30 @@ li:last-child.object-container-list {
 	margin-top: 33px;
 }
 
+.primary-object-container .subcomponents {
+max-height: 80px;
+margin-top: 10px;
+}
+
+.primary-object-container .subcomponents ul {
+	text-align: center;
+}
+
+.primary-object-container .subcomponents ul li {
+display: inline;
+margin: 0 4px;
+}
+
+.primary-object-container .subcomponents img {
+max-height: 60px;
+}
+
+.primary-object-container img {
+margin: 0 auto;
+max-width: 100%;
+max-height: 500px;
+}
+
 #templateCM {
 	font-size: 13px;
 }
