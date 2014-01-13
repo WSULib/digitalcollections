@@ -6,7 +6,7 @@
                 <a href="">Libraries</a>
             </div>
             <ul class="top-nav">
-                <li><a href="">Login / Sign up</a></li>
+                <li><a href="login.php">Login / Sign up</a></li>
             </ul>
         </div>
     </div>
