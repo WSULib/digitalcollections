@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-    <!--<![endif]-->
+<!DOCTYPE php>
+<html>
     <head>
         <meta charset="utf-8">
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-        <title></title>
+        <title>Digital Collections - Wayne State University Libraries</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <!-- <link rel="stylesheet" href="img/sprites/sprites.css" type="text/css"> -->
-        <link rel="stylesheet" href="css/global.css" type="text/css">
-        <link rel="stylesheet" href="ico/style.css" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        
+        <!-- Typography -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
 
-        <!-- Additions ###################################################################################### -->
-            <!--Mustache-->
-            <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
-            <script type="text/javascript" src="inc/mustache.js"></script>
-            <!--cookie.js-->
-            <script src="inc/jquery.cookie.js"></script>                      
-            <!-- Local JS -->
-            <script src="js/utilities.js"></script>        
-            <script src="js/favorites.js"></script>
-            <script src="js/userData.js"></script>
-            <!--WSUDOR Translation Dictionary-->
-            <script type="text/javascript" src="js/rosettaHash.js"></script>
-            <!--Pagination-->
-            <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script>            
+        <!--Mustache-->
+        <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
+        <script type="text/javascript" src="inc/mustache.js"></script>
+
+        <script src="inc/jquery.cookie.js" type="text/javascript"></script>           
+        
+        <!-- Local JS -->
+        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/utilities.js"></script>        
+        <script src="js/favorites.js"></script>
+        <script src="js/userData.js"></script>
+        
+        <!--WSUDOR Translation Dictionary-->
+        <script type="text/javascript" src="js/rosettaHash.js"></script>
+        
+        <!--Pagination-->
+        <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
+        
+        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>          
             
 
             <!-- Temporary CSS -->
@@ -70,7 +70,9 @@
     </head>
     <body>
         <div class="page-wrap">
-            <header>                
+
+            <?php include('inc/header.php'); ?>
+            <!-- <header>                
                 <div class="row-fluid" id="search_form">
                     <div class="span4">
                         <h3><a href="favorites.php">RESET</a></h3>
@@ -79,7 +81,7 @@
                 <ul class="top-nav">
                     <li id="login_status"><a href="login.php">Login / SignUp</a></li>                    
                 </ul> 
-            </header>
+            </header> -->
 
             <div class="container main-content">
                 <h2>
@@ -143,12 +145,6 @@
         <footer>
           
         </footer>
-        
-        <script type="text/javascript">
-            window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
-        </script>
-        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/main.min.js" type="text/javascript"></script>
     </body>
     <!-- init search -->
     <script type="text/javascript">
