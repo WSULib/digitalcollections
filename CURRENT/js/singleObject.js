@@ -244,9 +244,6 @@ function updateLargeView(self,PID){
   $("#LargeView a").attr('href','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+PID+'/datastreams/ACCESS/content');
 }
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //unleash the Kraken - show #container when things load and templates rendered
 $(document).ready(function(){

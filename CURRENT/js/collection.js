@@ -119,7 +119,7 @@ function collectionsList(type){
 	}
 
 	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+		console.log("API Call unsuccessful.  Back to the drawing board.");
 	}
 }
 
@@ -255,7 +255,7 @@ function updateCollectionTitle(){
 	    $(document).ready(function(){
 
 		    	if (APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0] !== 'undefined'){
-				$("h2#title").html(APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0]);
+				$("#collection_title").html(APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0]);
 
 			}	    		
 
@@ -267,7 +267,7 @@ function updateCollectionTitle(){
 		console.log("No Collection Title has been returned from ajax call");
 		console.log(response);
 	    $(document).ready(function(){
-			$("h2#title").html("Untitled Collection");	    		
+			$("#collection_title").html("Untitled Collection");	    		
 	    });
 
 

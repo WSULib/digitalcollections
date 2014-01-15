@@ -2173,6 +2173,7 @@ li:last-child.object-container-list {
 
 .primary-object-container img {
   margin: 0 auto;
+  display: block;
   max-width: 100%;
   max-height: 500px; }
 

@@ -36,6 +36,7 @@ $objectPID = $_REQUEST['PID'];
         
         <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/script.js"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script> 
 
     </head>
@@ -50,7 +51,15 @@ $objectPID = $_REQUEST['PID'];
                 <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
             </div>
 
-            <div class="primary-object-container col-lg-6 col-xlg-6 ">
+            <div class="col-lg-6 col-xlg-6 primary-object">
+                <div class="primary-object-container">
+                </div>
+
+                <div class="display-more-info" id="more-info">
+                    <table class="table table-hover">
+                    </table>
+                </div>
+
             </div>
 
             <!-- metadata new -->
@@ -58,11 +67,8 @@ $objectPID = $_REQUEST['PID'];
             </div>
 
 
-            <div class="col-lg-6 col-lg-offset-3 col-xlg-6 col-xlg-offset-3">
-                <div class="display-more-info" id="more-info">
-                    <table class="table table-hover">
-                    </table>
-                </div>
+            <div class="col-lg-6 col-lg-offset-3 col-xlg-6 col-xlg-offset-3 display-more">
+                
             </div>
 
         </div> <!-- closes templateCM -->
