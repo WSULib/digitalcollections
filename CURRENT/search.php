@@ -20,7 +20,10 @@
         
         <!-- Local JS -->
         <script src="js/main.js" type="text/javascript"></script>
-        <script src="js/utilities.js"></script>        
+        <script src="js/utilities.js"></script>
+        <script src="js/favorites.js"></script>
+        <script src="js/userData.js"></script>
+                
         <script src="js/search.js"></script>
         
         <!--WSUDOR Translation Dictionary-->

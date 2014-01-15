@@ -69,9 +69,9 @@
 
     </head>
     <body>
-        <div class="page-wrap">
 
             <?php include('inc/header.php'); ?>
+
             <!-- <header>                
                 <div class="row-fluid" id="search_form">
                     <div class="span4">
@@ -140,11 +140,6 @@
 
                 
             </div>
-        </div>
-
-        <footer>
-          
-        </footer>
     </body>
     <!-- init search -->
     <script type="text/javascript">

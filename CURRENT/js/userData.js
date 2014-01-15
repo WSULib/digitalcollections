@@ -70,7 +70,7 @@ $(document).ready(function(){
 			
 
 			$("#login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
-			$("#login_status").parent().append("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
+			$('.top-nav li:eq(0)').before("<li class='fave-top'><a href='favorites.php' id='fav_link'>&#9733; Your Favorites</a></li>");
 		}  
 	}           
 });

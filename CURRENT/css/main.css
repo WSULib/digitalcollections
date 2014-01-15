@@ -1784,6 +1784,11 @@ input[type="button"].btn-block {
 #resultsControls div {
   display: inline; }
 
+.fave-top {
+  padding-right: 15px;
+  border-right: 1px solid #aaa;
+  margin-right: 15px; }
+
 header {
   background: #f1f1ea;
   border-bottom: 1px solid #eee; }
@@ -1848,10 +1853,10 @@ header .searchIcon:before {
   background: #0c5449;
   border-bottom: 1px solid #ddd;
   font-size: 0.75em;
-  color: #333; }
+  color: #fff; }
 
 .top-head a {
-  color: #333; }
+  color: #fff; }
 
 .top-head .container {
   height: 30px; }

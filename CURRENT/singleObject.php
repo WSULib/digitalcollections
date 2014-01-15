@@ -27,6 +27,7 @@ $objectPID = $_REQUEST['PID'];
         <script src="js/utilities.js"></script>        
         <script src="js/singleObject.js"></script>
         <script src="js/userData.js"></script>
+        <script src="js/favorites.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
