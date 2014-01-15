@@ -1,3 +1,4 @@
+@import url(http://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
 /*!
  * Bootstrap v3.0.0
  *
@@ -4422,6 +4423,150 @@ button.close {
 
 iframe, object, embed {
   max-width: 100%; }
+
+.brand-login {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 38px;
+  margin-top: 80px;
+  margin-bottom: 30px; }
+
+body {
+  font-family: 'Roboto'; }
+
+.flat-form {
+  background: #F9F8F3;
+  margin: 25px auto;
+  width: 390px;
+  height: 380px;
+  position: relative;
+  font-family: 'Roboto';
+  border: 1px solid #eee; }
+
+.tabs {
+  background: #e8e4d1;
+  height: 46px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 20px; }
+
+.tabs li {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0; }
+
+.tabs a {
+  background: #e8e4d1;
+  display: block;
+  float: left;
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  padding: 12px 22px 12px 22px;
+  /*border-right: 1px solid @tab-border;*/ }
+
+.tabs li:last-child a {
+  border-right: none;
+  width: 174px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center; }
+
+.tabs a.active {
+  background: #F9F8F3;
+  color: #000;
+  border-right: none;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  transition: all 0.5s linear; }
+
+.form-action {
+  padding: 0 40px;
+  position: relative; }
+
+.form-action h1 {
+  font-size: 42px;
+  padding-bottom: 0; }
+
+.form-action p {
+  font-size: 12px;
+  padding-bottom: 10px;
+  line-height: 1.4em; }
+
+.flat-form form {
+  padding: 0 !important; }
+.flat-form form input[type=text],
+.flat-form form input[type=password],
+.flat-form form input[type=submit] {
+  font-family: 'Roboto'; }
+.flat-form form input[type=text],
+.flat-form form input[type=password] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  background: #fff;
+  border: 1px solid #eee;
+  color: #333;
+  outline: none; }
+
+.dark-box {
+  background: #5e0400;
+  box-shadow: 1px 3px 3px #3d0100 inset;
+  height: 40px;
+  width: 50px; }
+
+.form-action .dark-box.bottom {
+  position: absolute;
+  right: 0;
+  bottom: -24px; }
+
+.tabs + .dark-box.top {
+  position: absolute;
+  right: 0;
+  top: 0px; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }
+
+.button {
+  border: none;
+  margin-top: 11px;
+  display: block;
+  background: #107263;
+  height: 40px;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border-bottom: 1px solid #0e6356;
+  /*box-shadow: 0px 3px 1px #2075aa;*/
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear; }
+
+.button:hover {
+  background: #128170;
+  /*box-shadow: 0 3px 1px #237bb2;*/ }
+
+.button:active {
+  background: #107263;
+  /*box-shadow: 0 3px 1px #0f608c;*/ }
+
+.flat-form :-moz-placeholder {
+  /* Firefox 18- */ }
+.flat-form ::-moz-placeholder {
+  /* Firefox 19+ */ }
 
 .modal-open {
   overflow: hidden; }
