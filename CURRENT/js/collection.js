@@ -12,8 +12,8 @@ searchDefs.fl = "id dc_title";
 searchDefs.sort = "id asc";
 searchDefs.facet = 'true';
 searchDefs['facets[]'] = [];
-searchDefs['facets[]'].push("dc_date","dc_subject","dc_creator","dc_language","rels_hasContentModel", "dc_coverage");
-searchDefs['f.dc_date.facet.sort'] = "index";
+searchDefs['facets[]'].push("facet_mods_year","dc_subject","dc_creator","dc_language","rels_hasContentModel", "dc_coverage");
+searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 
@@ -144,7 +144,7 @@ function updatePage(){
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
 	// update query box
-	$("#q").val(mergedParams.q);	
+	// $("#q").val(mergedParams.q);	
 
 	// pagination
 	var tpages = parseInt((APIdata.objectList.solrSearch.response.numFound / mergedParams.rows) + 1);
@@ -184,9 +184,10 @@ function updatePage(){
 function searchGo(type){
 
 	// Set Search Parameters	
+	searchParams['collectionTitle'] ="info:fedora/"+searchParams['collection'];
 	searchParams['q'] = searchParams['collection'];
 	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['q'];
-	delete searchParams['collection'];
+	// delete searchParams['collection'];
 	searchParams['raw'] = "escapeterms";
 
 
@@ -237,42 +238,15 @@ function searchGo(type){
 }
 
 function updateCollectionTitle(){	
-	var str = searchParams.q;
 
-	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrGetFedDoc&PID="+searchParams.q;
-
-	$.ajax({          
-	  url: APIcallURL,      
-	  dataType: 'json',	  
-	  success: callSuccess,
-	  error: callError
-	});
-
-	function callSuccess(response){
-
-	    APIdata.collectionMeta = response;	    
-	    $(document).ready(function(){
-
-		    	if (APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0] !== 'undefined'){
-				$("#collection_title").html(APIdata.collectionMeta.solrGetFedDoc.response.docs[0].dc_title[0]);
-
-			}	    		
-
-	    });
-	    
-	}
-
-	function callError(response){
-		console.log("No Collection Title has been returned from ajax call");
-		console.log(response);
-	    $(document).ready(function(){
-			$("#collection_title").html("Untitled Collection");	    		
-	    });
-
+	if (APIdata.solrTranslationHash[searchParams['collectionTitle']] !== 'undefined'){
+		$("h2#collection_title").html(APIdata.solrTranslationHash[searchParams['collectionTitle']]);
 
 	}
-	// }
+
+	else {
+		$("h2#collection_title").html("Collection Title Unknown");
+	} 
 
 }
 

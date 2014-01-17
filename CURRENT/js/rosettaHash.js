@@ -4,6 +4,7 @@ function rosetta(input){
 	// hardcoded facet translations
 	var facetHash = {
 		"dc_date":"Date",
+		"facet_mods_year":"Date",
 		"dc_subject":"Subject",
 		"dc_creator":"Creator",
 		"dc_language":"Language",

@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="row-fluid sub-header">
                    <h2 id='collection_title'>
-                        <!-- title of collection -->Title of Collection
+                        <!-- title of collectionTitle of Collection -->
                     </h2>
                     <ul>
                         <li><span id='num_results'></span> Objects</li>
