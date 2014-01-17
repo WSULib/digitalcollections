@@ -79,9 +79,6 @@ function updatePage(){
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
-	// update query box	
-	$("#q").val(mergedParams.q);
-
 	// show "refined by" facets
 	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
 		var facet_string = mergedParams['fq[]'][i];				
