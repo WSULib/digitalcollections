@@ -317,7 +317,10 @@ function setWSUDORCookie(username){
       userData.loggedIn_WSUDOR = true;  
       userData.username_WSUDOR = username;
       userData.clientHash = response.userSearch.clientHash;
-      $.cookie("WSUDOR", JSON.stringify(userData));
+      $.cookie("WSUDOR", JSON.stringify(userData),{
+          path:"/"
+        }
+      );
       // consider heading back?
       window.history.back();
     },

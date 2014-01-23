@@ -76,7 +76,10 @@ $(document).ready(function(){
 });
 
 function logoutUser(){
-	$.removeCookie("WSUDOR");
+	$.removeCookie("WSUDOR",{
+          path:"/"
+        }
+    );
 	// $("#fav_link").remove(); 
 	location.reload();
 }
