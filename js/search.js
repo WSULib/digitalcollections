@@ -23,7 +23,7 @@ APIdata = new Object();
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function updatePage(){
+function updatePage(type){
 
 	// get current URL
 	var cURL = document.URL;
@@ -35,8 +35,10 @@ function updatePage(){
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
-	// update query box
-	$("#q").val(mergedParams.q);
+	// update query box	
+	if (cURL.indexOf("?q=") != -1 && cURL.endsWith("?q=") == false ){
+		$("#q").val(mergedParams.q);
+	}
 
 	// show "refined by" facets
 	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
@@ -69,17 +71,39 @@ function updatePage(){
 
 }
 
+//REFINE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function refine(){
 
+	var cURL = window.location.href;
 
+	//get word from box
+	var filter_input = $('#filter_input').val();	
+
+	// check rows to update and add to fq[]
+	var nURL = cURL+"&fq[]=text:"+filter_input;
+	// var nURL = updateURLParameter(window.location.href, 'fq[]', "text:"+filter_input);
+	console.log(nURL);
+
+	// refresh page	
+	window.location = nURL;
+}
 
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 
+	console.log(searchParams);
+
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
-	delete searchParams['fq'];
+	delete searchParams['fq'];	
+
+	if (searchParams['q'] == undefined || searchParams['q'] == "" ) {
+		var type = "empty_search"
+		searchParams['q'] = "*";
+	};
 
 	// Set Search Parameters		
 	// Merge default and URL search parameters
@@ -140,10 +164,20 @@ function updateSearch(){
 
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function populateFacets(){	
+function populateFacets(type){	
 
 	// get current URL
 	var cURL = document.URL;
+
+	// tack on "*" to empty search	
+	if (cURL.indexOf("?q=") == -1 ){
+		cURL+="?q=*";
+	}
+	if (cURL.endsWith("?q=") == true ){
+		cURL+="*";
+	}
+
+
 	// set defaults
 	var facet_limit = 18;
 	// for each facet field
