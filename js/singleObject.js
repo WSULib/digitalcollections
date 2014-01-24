@@ -58,7 +58,12 @@ function makeTranslations(){
 
   // content model fix  
   APIdata.translated = new Object();
-  APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
+  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
+    APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
+  }
+  else {
+    APIdata.translated.contentModelPretty = "Unknown";
+  }
 }
 
 
@@ -119,7 +124,7 @@ function finishRendering(){
   }
 
   // Content Type Handling
-  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != undefined){    
+  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){        
     ctype = APIdata.translated.contentModelPretty;    
     switch (ctype) {
       //Images
@@ -160,10 +165,10 @@ function finishRendering(){
       //Document
       case "Document":
         unknownType();        
-        // $.get('templates/singleObject/document.htm',function(template){
-        //   var html = Mustache.to_html(template, APIdata);
-        //   $(".primary-object-container").html(html);
-        // }); 
+        $.get('templates/singleObject/document.htm',function(template){
+          var html = Mustache.to_html(template, APIdata);
+          $(".primary-object-container").html(html);
+        }); 
         break;  
       //Video
       case "Video":
@@ -180,7 +185,7 @@ function finishRendering(){
         //   var html = Mustache.to_html(template, APIdata);
         //   $(".primary-object-container").html(html);
         // }); 
-        break;  
+        break;        
       default:
         unknownType();
     }
