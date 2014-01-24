@@ -75,7 +75,7 @@
                         <li>
                             <h3 class="tree-toggler">Filter by Keyword</h3>
                             <ul class="tree facet_list" id="search_facet_box">
-                                <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
+                                <form onsubmit="refine(); return false;"><input id="filter_input" placeholder="Filter by keyword" class="search-filter"></form>
                             </ul>
                         </li>
                     </ul>

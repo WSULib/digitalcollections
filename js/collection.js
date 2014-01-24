@@ -161,7 +161,7 @@ function updatePage(){
 	
 
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
+		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "/*+rosetta(facet_type)+": "*/+rosetta(facet_value)+"</a></span>");
 	}
 
 	
@@ -179,12 +179,32 @@ function updatePage(){
 }
 
 
+//REFINE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function refine(){
+
+	var cURL = window.location.href;
+
+	//get word from box
+	var filter_input = $('#filter_input').val();
+
+	// //URL ENCODE
+	// var encoded = encodeURIComponent('&fq[]=text:');
+
+	// check rows to update and add to fq[]
+	var nURL = cURL+"&fq[]=text:"+filter_input;
+	// var nURL = updateURLParameter(window.location.href, 'fq[]', "text:"+filter_input);
+	console.log(nURL);
+
+	// refresh page	
+	window.location = nURL;
+}
+
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(type){
 
 	// Set Search Parameters	
-	searchParams['collectionTitle'] ="info:fedora/"+searchParams['collection'];
 	searchParams['q'] = searchParams['collection'];
 	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['q'];
 	// delete searchParams['collection'];
@@ -239,8 +259,9 @@ function searchGo(type){
 
 function updateCollectionTitle(){	
 
-	if (APIdata.solrTranslationHash[searchParams['collectionTitle']] !== 'undefined'){
-		$("h2#collection_title").html(APIdata.solrTranslationHash[searchParams['collectionTitle']]);
+	var collectionTitle = "info:fedora/"+searchParams['collection'];
+	if (APIdata.solrTranslationHash[collectionTitle] !== 'undefined'){
+		$("h2#collection_title").html(APIdata.solrTranslationHash[collectionTitle]);
 
 	}
 
