@@ -72,6 +72,11 @@ function facetCollapseToggle(type, facet){
 //string contains
 String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
 
+// string endsWith
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 // mix objects
 function mix(source, target) {
    for(var key in source) {
@@ -81,3 +86,4 @@ function mix(source, target) {
    }
 
 }
+
