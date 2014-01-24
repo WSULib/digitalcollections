@@ -59,7 +59,6 @@ function makeTranslations(){
   // content model fix  
   APIdata.translated = new Object();
   APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
-
 }
 
 
