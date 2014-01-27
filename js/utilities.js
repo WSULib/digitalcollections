@@ -236,7 +236,7 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(templateLocation){
+function populateResults(templateLocation,destination){
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
@@ -247,7 +247,7 @@ function populateResults(templateLocation){
       success: function(response){        
         var template = response;
         var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);       
-        $("#results_container").append(html);
+        $(destination).append(html);
       }     
     });
   } 
