@@ -158,7 +158,7 @@ function updatePage(){
 
 //REFINE
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function refine(){
+function refineByKeyword(){
 
 	var cURL = window.location.href;
 
@@ -171,7 +171,9 @@ function refine(){
 	// check rows to update and add to fq[]
 	var nURL = cURL+"&fq[]=text:"+filter_input;
 	// var nURL = updateURLParameter(window.location.href, 'fq[]', "text:"+filter_input);
-	console.log(nURL);
+
+	// Run URL Cleaner
+	nURL = URLcleaner(nURL);
 
 	// refresh page	
 	window.location = nURL;
@@ -276,42 +278,6 @@ function updateSearch(){
 
 //DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////
-function populateFacets(){	
-
-	// get current URL
-	var cURL = document.URL;
-	// set defaults
-	var facet_limit = 18;
-	// for each facet field
-	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {		
-		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
-
-		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
-		for (var i = 0; i < facet_array.length; i = i + 2){			
-			// run through rosetta translation			
-
-			var facet_value = rosetta(facet_array[i]);			
-			if (facet_array[i] != ""){
-				// write URL
-				//set start to 0, most elegant way to handle less numFound than start count
-				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
-				// for long facet lists, initially hide facets over facet_limit
-				if (i > facet_limit) { 
-					var facet_hidden = "class='hidden_facet'";
-				} 
-				else {
-					var facet_hidden = ""
-				}			
-				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");			
-			}
-		}
-		// add "more" button if longer than facet_limit		
-		if (facet_array.length > facet_limit){						
-			$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All >></a></strong></p>");
-			$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'><< View Less</a></strong></p>");			
-		}
-	}		
-}
 
 function populateResults(){
 

@@ -188,42 +188,42 @@ function updateSearch(){
 
 // DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function populateFacets(){	
+// function populateFacets(){	
 
-	// get current URL
-	var cURL = document.URL;
-	// set defaults
-	var facet_limit = 18;
-	// for each facet field
-	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-		$("#facets_container").append("<ul class='facet_container' id='"+facet+"_facet'><li><h5 class='tree-toggler'>"+rosetta(facet)+"</h5><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
+// 	// get current URL
+// 	var cURL = document.URL;
+// 	// set defaults
+// 	var facet_limit = 18;
+// 	// for each facet field
+// 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
+// 		$("#facets_container").append("<ul class='facet_container' id='"+facet+"_facet'><li><h5 class='tree-toggler'>"+rosetta(facet)+"</h5><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
-		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
-		for (var i = 0; i < facet_array.length; i = i + 2){			
-			// run through rosetta translation
-			var facet_value = rosetta(facet_array[i]);			
-			if (facet_array[i] != ""){
-				// write URL
-				//set start to 0, most elegant way to handle less numFound than start count
-				cURL = cURL.replace(/\&start=[0-9]+/g,'');
-				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 				
-				// for long facet lists, initially hide facets over facet_limit
-				if (i > facet_limit) { 
-					var facet_hidden = "class='hidden_facet'";
-				} 
-				else {
-					var facet_hidden = ""
-				}			
-				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");			
-			}
-		}
-		// add "more" button if longer than facet_limit		
-		if (facet_array.length > facet_limit){						
-			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>more >></a></strong></p>");
-			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'><< less</a></strong></p>");			
-		}
-	}		
-}
+// 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
+// 		for (var i = 0; i < facet_array.length; i = i + 2){			
+// 			// run through rosetta translation
+// 			var facet_value = rosetta(facet_array[i]);			
+// 			if (facet_array[i] != ""){
+// 				// write URL
+// 				//set start to 0, most elegant way to handle less numFound than start count
+// 				cURL = cURL.replace(/\&start=[0-9]+/g,'');
+// 				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 				
+// 				// for long facet lists, initially hide facets over facet_limit
+// 				if (i > facet_limit) { 
+// 					var facet_hidden = "class='hidden_facet'";
+// 				} 
+// 				else {
+// 					var facet_hidden = ""
+// 				}			
+// 				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");			
+// 			}
+// 		}
+// 		// add "more" button if longer than facet_limit		
+// 		if (facet_array.length > facet_limit){						
+// 			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>more >></a></strong></p>");
+// 			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'><< less</a></strong></p>");			
+// 		}
+// 	}		
+// }
 
 function populateResults(){
 	
