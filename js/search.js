@@ -44,30 +44,6 @@ function updatePage(type){
 
 }
 
-//REFINE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function refine(){
-
-	var cURL = window.location.href;
-
-	//get word from box
-	var filter_input = $('#filter_input').val();	
-
-	// tack on "*" to empty search	
-	if (cURL.indexOf("?q=") == -1 ){
-		cURL+="?q=*";
-	}
-	if (cURL.endsWith("?q=") == true ){
-		cURL+="*";
-	}
-
-	// check rows to update and add to fq[]
-	var nURL = cURL+"&fq[]=text:"+filter_input;		
-
-	// refresh page	
-	window.location = nURL;
-}
-
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

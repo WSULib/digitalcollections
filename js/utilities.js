@@ -99,9 +99,16 @@ function URLcleaner(URL){
   // remove hanging ampersand
   if (URL.endsWith("&")){
     URL = URL.substring(0, URL.length - 1);
+  }
+
+  // remove hanging question mark
+  if (URL.endsWith("?")){
+    URL = URL.substring(0, URL.length - 1);
   }  
 
-  // remove multiple "start=0"
+
+
+  // remove multiple "start=0"?
   return URL;  
 
 }
@@ -154,7 +161,31 @@ function paginationUpdate(){
 }
 
 
+function refineByKeyWord(){
 
+  var cURL = window.location.href;
+
+  //get word from box
+  var filter_input = $('#filter_input').val();  
+
+  // tack on "*" to empty search  
+  if (cURL.indexOf("?q=") == -1 ){
+    cURL+="?q=*";
+  }
+  if (cURL.endsWith("?q=") == true ){
+    cURL+="*";
+  }
+
+  // check rows to update and add to fq[]
+  var nURL = cURL+"&fq[]=text:"+filter_input;
+
+  // clean URL
+  nURL = URLcleaner(nURL);
+
+  // refresh page 
+  window.location = nURL;
+
+}
 
 
 
