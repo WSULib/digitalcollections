@@ -87,3 +87,89 @@ function mix(source, target) {
 
 }
 
+// function to clean URL
+function URLcleaner(URL){
+
+  // remove mult ampersands
+  URL = URL.replace(/[&]+/g, "&");  
+
+  // remove hanging "q=*"
+  URL = URL.replace(/q=\*/g,"");  
+
+  // remove hanging ampersand
+  if (URL.endsWith("&")){
+    URL = URL.substring(0, URL.length - 1);
+  }  
+
+  // remove multiple "start=0"
+  return URL;  
+
+}
+
+// update page functions
+
+// show facets
+function showFacets(){
+  // get current URL
+  var cURL = document.URL;
+
+  for (var i = 0; i < mergedParams['fq[]'].length; i++){    
+    var facet_string = mergedParams['fq[]'][i];       
+    var facet_type = facet_string.split(":")[0];
+    var facet_value = facet_string.split(":").slice(1).join(":");
+  
+
+    var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
+    nURL = URLcleaner(nURL);
+    $(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "/*+rosetta(facet_type)+": "*/+rosetta(facet_value)+"</a></span>");
+  }
+}
+
+function updateNumbers(){
+  // update number of results
+  $("#q_string").html(mergedParams.q);  
+  $("#num_results").html(APIdata.solrSearch.response.numFound);
+  // update rows selecctor
+  $("#rows").val(mergedParams.rows).prop('selected',true);
+}
+
+function paginationUpdate(){
+  // pagination
+  var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
+  var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
+  if (spage == 0) {
+    spage = 1;
+  }
+  
+  $('.pagination-centered').bootpag({
+     total: tpages,
+     page: spage,
+     maxVisible: 10,
+     leaps:false
+  }).on('page', function(event, num){         
+      var nURL = updateURLParameter(window.location.href, "start", ((num * mergedParams.rows) - mergedParams.rows) );
+      // refresh page 
+    window.location = nURL;
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

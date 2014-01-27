@@ -28,46 +28,19 @@ function updatePage(type){
 	// get current URL
 	var cURL = document.URL;
 
-	// update number of results
-	$("#q_string").html(mergedParams.q);	
-	$("#num_results").html(APIdata.solrSearch.response.numFound);
-
-	// update rows selecctor
-	$("#rows").val(mergedParams.rows).prop('selected',true);
-
 	// update query box	
 	if (cURL.indexOf("?q=") != -1 && cURL.endsWith("?q=") == false ){
 		$("#q").val(mergedParams.q);
 	}
 
+	// update number of results
+	updateNumbers();	
+
 	// show "refined by" facets
-	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
-		var facet_string = mergedParams['fq[]'][i];				
-		var facet_type = facet_string.split(":")[0];
-		var facet_value = facet_string.split(":").slice(1).join(":");
-	
+	showFacets();	
 
-		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "/*+rosetta(facet_type)+": "*/+rosetta(facet_value)+"</a></span>");
-	}
-
-	// pagination
-	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
-	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
-	if (spage == 0) {
-		spage = 1;
-	}
-	
-	$('.pagination-centered').bootpag({
-	   total: tpages,
-	   page: spage,
-	   maxVisible: 10,
-	   leaps:false
-	}).on('page', function(event, num){			    
-	    var nURL = updateURLParameter(window.location.href, "start", ((num * mergedParams.rows) - mergedParams.rows) );
-	    // refresh page	
-		window.location = nURL;
-	});
+	// // pagination
+	paginationUpdate();
 
 }
 
