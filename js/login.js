@@ -250,7 +250,7 @@ function createAccount(params,type){
   params.id = params.user_username;
   var postData = params;
 
-  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=createUserAccount";
+  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=createUserAccount";
   console.log(APIaddURL);
 
   $.ajax({          
