@@ -140,6 +140,14 @@ function updatePage(){
 
 	$("#num_results").html(APIdata.objectList.solrSearch.response.numFound);
 
+	// update link to the Collection's single object page
+	// 	var collectionTitle = "info:fedora/"+searchParams['collection'];
+	// if (APIdata.solrTranslationHash[collectionTitle] !== 'undefined'){
+	// 	$("h2#collection_title").html(APIdata.solrTranslationHash[collectionTitle]);
+
+	$("#learn_more").html("<a href='singleObject.php?PID="+searchParams['collection']+"'>Learn more about this collection</a>");
+
+
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 
@@ -262,7 +270,6 @@ function updateCollectionTitle(){
 	var collectionTitle = "info:fedora/"+searchParams['collection'];
 	if (APIdata.solrTranslationHash[collectionTitle] !== 'undefined'){
 		$("h2#collection_title").html(APIdata.solrTranslationHash[collectionTitle]);
-
 	}
 
 	else {
