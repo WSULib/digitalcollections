@@ -90,22 +90,46 @@ function mix(source, target) {
 // function to clean URL
 function URLcleaner(URL){
 
-  // // remove mult ampersands
-  // URL = URL.replace(/[&]+/g, "&");  
+  // remove mult ampersands
+  URL = URL.replace(/[&]+/g, "&");  
 
   // // remove hanging "q=*"
-  // URL = URL.replace(/q=\*/g,"");     
+  // URL = URL.replace(/q=\*/g,"");       
 
-  // // remove "start=0"?  
-  // URL = URL.replace(/start=0/g,"");
-
-  // // remove hanging offenders
-  // while ( URL.endsWith("?") || URL.endsWith("&") ){
-  //   URL = URL.substring(0, URL.length - 1);
-  // }
+  // remove hanging offenders
+  while ( URL.endsWith("?") || URL.endsWith("&") ){
+    URL = URL.substring(0, URL.length - 1);
+  }
 
   return URL;  
 
+}
+
+// refine by keyword function, triggered by keyword search form
+function refineByKeyWord(context){
+
+  var cURL = window.location.href;
+
+  //get word from box
+  var filter_input = $('#filter_input').val();  
+
+  if (context == "search"){
+    // tack on "*" to empty search  
+    if (cURL.indexOf("?q=") == -1 ){
+      cURL+="?q=*";
+    }
+    if (cURL.endsWith("?q=") == true ){
+      cURL+="*";
+    }  
+  }  
+
+  // check rows to update and add to fq[]
+  var nURL = cURL+"&fq[]=text:"+filter_input;   
+
+  nURL = URLcleaner(nURL);
+
+  // refresh page 
+  window.location = nURL;
 }
 
 // update page functions
@@ -180,12 +204,16 @@ function populateFacets(){
     for (var i = 0; i < facet_array.length; i = i + 2){     
       // run through rosetta translation
       var facet_value = rosetta(facet_array[i]);      
-      if (facet_array[i] != ""){
-        // write URL
+      if (facet_array[i] != ""){                
         
-        // set start to 0, most elegant way to handle less numFound than start count
         // find and replace start value with 0
-        fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 
+        fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""/*+"&start=0"*/; 
+        if (fURL.contains("start=")){
+          fURL = fURL.replace(/start=([0-9]+)/g,"start=0");
+        }
+        else {
+          fURL+="&start=0";
+        }
         
         // for long facet lists, initially hide facets over facet_limit
         if (i > facet_limit) { 
@@ -196,7 +224,7 @@ function populateFacets(){
         }     
         $("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");     
       }
-      
+
     }
     // add "more" button if longer than facet_limit   
     if (facet_array.length > facet_limit){            
@@ -208,12 +236,12 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(){
+function populateResults(templateLocation){
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
-      $.ajax({          
-      url: 'templates/searchResultObj.htm',      
+      $.ajax({                
+      url: templateLocation,      
       dataType: 'html',            
       async:false,
       success: function(response){        
