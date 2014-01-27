@@ -46,7 +46,7 @@
                     </h2>
                     <ul>
                         <li><span id='num_results'></span> Objects</li>
-                        <li>Learn more about this collection</li>
+                        <li><span id='learn_more'>Learn more about this collection</span></li>
                         <li>                        
                             <select class="form-control" onchange="updateCollection();">
                                 <option>View different collection</option>

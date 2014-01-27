@@ -25,7 +25,7 @@
             <div class="row-fluid">
                 <nav class="navbar navbar-inverse" role="navigation">
                   <ul class="nav navbar-nav">
-                    <li><a href="collection.php">Collections</a></li>
+                    <li><a href="allcollections.php">Collections</a></li>
                     <li><a href="#">Services</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Etc</a></li>
