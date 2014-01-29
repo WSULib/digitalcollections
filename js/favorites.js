@@ -97,7 +97,7 @@ function updatePage(){
 		spage = 1;
 	}
 	
-	$('.pagination').bootpag({
+	$('.pagination-centered').bootpag({
 	   total: tpages,
 	   page: spage,
 	   maxVisible: 10,

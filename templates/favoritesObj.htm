@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="collection col-lg-12 col-xlg-12">
         <div class="favorite-CRUD pull-right col-lg-1 col-xlg-1">            
             <ul id="" class="favObjCRUD">
@@ -28,8 +28,30 @@
     </div>
 </div>
 
+ -->
 
 
 
 
-
+<li class="obj-cnt object-container-list">
+    <div class="favorite-CRUD pull-right col-lg-1 col-xlg-1">            
+        <ul id="" class="favObjCRUD">
+            <!-- <li onclick="favObjAdd('{{id}}'); return false;" class="btn btn-default btn-xs"><a href="#">add_to_list</a></li> -->
+            <li onclick="favObjRemove('{{id}}'); return false;" class="btn btn-default btn-xs"><a href="#">remove</a></li>
+        </ul>
+    </div>
+    <div class="crop">
+        <a href="singleObject.php?PID={{id}}">
+            <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{id}}/datastreams/THUMBNAIL/content" alt="{{dc_title}}">
+        </a>
+    </div>
+    <h3>
+        <a href="singleObject.php?PID={{id}}">{{dc_title}}</a>
+    </h3>
+    <h4>
+        <!--{{dc_creator}}, -->{{dc_date}}
+    </h4>
+    <p class="truncate">
+        {{dc_description}}
+    </p>
+</li>
