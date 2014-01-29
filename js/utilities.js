@@ -254,9 +254,10 @@ function populateResults(templateLocation,destination){
 }
 
 
-
-
-
+// strip info:fedora/ prefix
+String.prototype.stripFedRDFPrefix = function() {    
+    return this.substring(12);
+};
 
 
 

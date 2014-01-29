@@ -321,6 +321,7 @@ function populateCollectionsView(){
 		  async:false,
 		  success: function(response){		  	
 		  	var template = response;
+		  	APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
 		  	$(".collection_contents").append(html);
 
@@ -328,3 +329,17 @@ function populateCollectionsView(){
 		});
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
