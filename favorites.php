@@ -129,59 +129,6 @@
 
         <?php include('inc/footer.php'); ?>
 
-
-
-
-        <!-- 
-
-            <div class="container main-content">
-                <h2>
-                    Favorites for <span id="fav_user"></span>
-                </h2>
-                <div class="collection-details">
-                    <p>
-                        <span id='num_results'></span> Objects
-                    </p>
-                </div>
-
-                
-
-                <div class="row">
-
-                    
-                    <div id="favorites_tools" class="facets col-lg-3 cl-xlg-3">
-                        <ul>                    
-                            <li id="facet_refine">
-                                <h5>Lists</h5>
-                                <ul id="facet_refine_list"></ul>
-                            </li>
-                        </ul>
-                    </div>                    
-
-                    <div id="results_container" class="browse col-lg-9 cl-xlg-9">
-                        
-                        <div class="col-lg-12 col-xlg-12 clearfix">   
-                            <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                            <span class="form-control pull-right"><strong>Items per Page</strong></span>
-                        </div>                        
-
-                        <div class="refined-by col-lg-12 col-xlg-12">
-                        </div>
-                   
-                    </div> 
-                </div>
-                <div class="row">
-                    <div class="pagination clearfix">                            
-                    </div>
-                </div>
-
-                
-            </div> -->
     </body>
     <!-- init search -->
     <script type="text/javascript">
