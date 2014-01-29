@@ -2177,7 +2177,7 @@ li:last-child.object-container-list {
 .primary-object-container .subcomponents img {
   max-height: 60px; }
 
-.primary-object-container img {
+.primary-object-container #LargeView img {
   margin: 0 auto;
   display: block;
   max-width: 100%;
