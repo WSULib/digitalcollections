@@ -72,7 +72,7 @@ function collectionsCount(){
 	}
 
 	function callError(response){
-		console.log("collectionCount Error");
+		console.log("collectionsCount Error");
 		console.log(response);
 	}
 }
@@ -145,7 +145,7 @@ function updatePage(){
 	paginationUpdate();
 
 	// update link to the Collection's single object page
-	$("#learn_more").html("<a href='singleObject.php?PID="+searchParams['collection']+"'>Learn more about this collection</a>");
+	$("#learn_more").html("<a href='singleObject.php?id="+searchParams['id']+"'>Learn more about this collection</a>");
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
@@ -184,7 +184,8 @@ function updatePage(){
 function searchGo(type){
 
 	// Set Search Parameters	
-	searchParams['q'] = searchParams['collection'];
+	searchParams['q'] = searchParams['id'];
+	// Note: to Change your page to collection=, PID=, id=, etc you need to change lines 148 and 244 to match as well
 	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['q'];
 	// delete searchParams['collection'];
 	searchParams['raw'] = "escapeterms";
@@ -241,7 +242,7 @@ function searchGo(type){
 
 function updateCollectionTitle(){	
 
-	var collectionTitle = "info:fedora/"+searchParams['collection'];
+	var collectionTitle = "info:fedora/"+searchParams['id'];
 	if (APIdata.solrTranslationHash[collectionTitle] !== 'undefined'){
 		$("h2#collection_title").html(APIdata.solrTranslationHash[collectionTitle]);
 	}
@@ -284,27 +285,53 @@ function updateSearch(){
 //DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////
 
-function populateCollectionsList(){
-
-	//push results to collectionSelector
-	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {		
-
-  		$.ajax({          
-		  url: 'templates/collectionsListObj.htm',      
-		  dataType: 'html',            
-		  async:false,
-		  success: function(response){		  	
-		  	var template = response;
-		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
-		  	$("select.form-control").append(html);
-
-		  }		  
-		});
-	}	
+// populate results - display uniqueness is found in templates
+function populateResults(templateLocation,destination){
+  
+  //push results to results_container
+  for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
+  	if (typeof(APIdata.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy = [];
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
+  	}
+  	else {
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
+  	}
+    	$.ajax({                
+    	url: templateLocation,      
+    	dataType: 'html',            
+    	async:false,
+    	success: function(response){        
+        var template = response;
+        var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);  
+        $(destination).append(html);
+      }     
+    });
+  } 
 }
+
+// function populateCollectionsList(){
+
+// 	//push results to collectionSelector
+// 	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {		
+
+//   		$.ajax({          
+// 		  url: 'templates/collectionsListObj.htm',      
+// 		  dataType: 'html',            
+// 		  async:false,
+// 		  success: function(response){		  	
+// 		  	var template = response;
+// 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
+// 		  	// $("select.form-control").append(html);
+
+// 		  }		  
+// 		});
+// 	}	
+// }
 
 function populateCollectionsView(){
 	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {
+
 		var collectionObject = APIdata.collectionsList.solrSearch.response.docs[i].id;
 		collectionObject = "info:fedora/"+collectionObject;
 
@@ -315,13 +342,21 @@ function populateCollectionsView(){
 			console.log("nothing");
 		}
 
+	  	if (typeof(APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
+	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy = [];
+	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
+	  	}
+	  	else {
+	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
+	  	}
+
   		$.ajax({          
 		  url: 'templates/collectionsViewObj.htm',      
 		  dataType: 'html',            
 		  async:false,
 		  success: function(response){		  	
 		  	var template = response;
-		  	APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
+		  	// APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
 		  	$(".collection_contents").append(html);
 

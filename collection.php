@@ -23,8 +23,8 @@
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>             
         
-        <script src="js/collection.js"></script>
         <script src="js/utilities.js"></script>
+        <script src="js/collection.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
@@ -47,11 +47,11 @@
                     <ul>
                         <li><span id='num_results'></span> Objects</li>
                         <li><span id='learn_more'>Learn more about this collection</span></li>
-                        <li>                        
+<!--                         <li>                        
                             <select class="form-control" onchange="updateCollection();">
                                 <option>View different collection</option>
                             </select>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="row-fluid">
                         <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
