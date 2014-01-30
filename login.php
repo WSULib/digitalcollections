@@ -78,11 +78,12 @@ $objectPID = $_REQUEST['PID'];
                 <form onsubmit="createAccountPrep('userDefined'); return false;">
                     <ul>
                         <li>
-                            <input id="create_displayName" type="text" name="create_displayName" placeholder="Username" />
+                            <input id="create_displayName" type="text" name="create_displayName" placeholder="Your Name / Display Name" />
                         </li>
                         <li>
-                            <input id="create_username" type="password" name="create_username" placeholder="Password" />
+                            <input id="create_username" type="text" name="create_username" placeholder="Username" />
                         </li>
+                        <li><input id="create_password" type="password" name="password" placeholder="Password"></li>
                         <li>
                             <input type="submit" value="Sign Up" class="button" />
                         </li>
