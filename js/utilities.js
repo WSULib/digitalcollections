@@ -55,6 +55,7 @@ function removeParameter(url, parameter)
       url += "#" + fragment[1];
     }
   }
+  url = URLcleaner(url);
   return url;
 }
 
@@ -91,12 +92,21 @@ function mix(source, target) {
 function URLcleaner(URL){
 
   // remove mult ampersands
-  URL = URL.replace(/[&]+/g, "&");  
+  URL = URL.replace(/[&]+/g, "&");    
+  
+  while ( URL.endsWith("start=0") ){
+    URL = URL.substring(0, URL.length - 8);
+  }
 
-  // // remove hanging "q=*"
-  // URL = URL.replace(/q=\*/g,"");       
+  while ( URL.endsWith("?q=") ){
+    URL = URL.substring(0, URL.length - 3);
+  }  
 
-  // remove hanging offenders
+  while ( URL.endsWith("?q=*") ){
+    URL = URL.substring(0, URL.length - 4);
+  }
+
+  // remove single hanging offenders
   while ( URL.endsWith("?") || URL.endsWith("&") ){
     URL = URL.substring(0, URL.length - 1);
   }
@@ -130,7 +140,7 @@ function refineByKeyWord(context){
 
   // refresh page 
   window.location = nURL;
-    
+
 }
 
 // update page functions
@@ -147,7 +157,7 @@ function showFacets(){
   
 
     var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-    nURL = URLcleaner(nURL);
+    nURL = URLcleaner(nURL);     
     $(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "+rosetta(facet_value)+"</a></span>");
   }
 }

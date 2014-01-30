@@ -30,7 +30,11 @@ function updatePage(type){
 
 	// update query box	
 	if (cURL.indexOf("?q=") != -1 && cURL.endsWith("?q=") == false ){
-		$("#q").val(mergedParams.q);
+		if (cURL.contains("q=*")){
+			$("#q").val("");	
+		}
+		else { $("#q").val(mergedParams.q); }
+		
 	}
 
 	// update number of results
@@ -78,15 +82,15 @@ function searchGo(){
 
 	function callSuccess(response){
 
-	    mix(response,APIdata);
-	    console.log("APIdata");
-	    console.log(APIdata);
-	    $(document).ready(function(){
-	    	updatePage();
-	    	populateFacets();
-	    	populateResults('templates/searchResultObj.htm',"#results_container");	    		
-	    });
-	    
+		mix(response,APIdata);
+		console.log("APIdata");
+		console.log(APIdata);
+		$(document).ready(function(){
+			updatePage();
+			populateFacets();
+			populateResults('templates/searchResultObj.htm',"#results_container");	    		
+		});
+		
 	}
 
 	function callError(response){
@@ -113,7 +117,37 @@ function updateSearch(){
 	window.location = nURL;
 }
 
+// populate results
+function populateResults(templateLocation,destination,templateData){
+  
+  //push results to results_container
+  for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {	
 
+  	if (typeof(APIdata.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy = [];
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
+  	}
+  	else {
+  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
+  	}
+
+	$.ajax({                
+		url: templateLocation,      
+		dataType: 'html',            
+		async:false,
+		success: function(response){        
+			var template = response;
+			if (typeof(templateData) == 'undefined') {          
+			  var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
+			}
+			else {
+			  var html = Mustache.to_html(template, templateData);           
+			}        
+			$(destination).append(html);
+		}     
+	});
+  } 
+}
 
 
 

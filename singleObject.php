@@ -1,6 +1,6 @@
 <?php 
 //Barebones of Single Object Page
-$objectPID = $_REQUEST['PID'];
+$objectPID = $_REQUEST['id'];
 ?>
 
 <!DOCTYPE php>
