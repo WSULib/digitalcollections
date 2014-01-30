@@ -29,6 +29,7 @@ function loginForm(){
         console.log('result of WSUDOR account check:');            
         APIdata.loginWSUDORCheck = response;
         console.log(APIdata.loginWSUDORCheck);
+        
         // WSUDOR account not found 
         if (APIdata.loginWSUDORCheck.userSearch.extant == false){
           console.log("No WSUDOR account. Yet...")
@@ -59,7 +60,8 @@ function loginForm(){
               console.log(response);
             }
           });
-        }        
+        } 
+        // WSUDOR account found       
         else {          
           console.log("WSUDOR account found.");          
           // WSU affiliated
@@ -96,7 +98,7 @@ function loginForm(){
         console.log(APIdata.passwordWSUDORcheck);
         if (APIdata.passwordWSUDORcheck.WSUDORuserAuth.WSUDORcheck == true) {
           console.log("WSUDOR credentials check out.")
-          grantAccess(postData.username);
+          grantAccess(postData.username,APIdata.passwordWSUDORcheck.WSUDORuserAuth.clientHash);
         }
         else {
           console.log("WSUDOR credentials don't match.")
@@ -124,9 +126,9 @@ function loginForm(){
         APIdata.LDAPCredCheck = response;     
         console.log(APIdata.LDAPCredCheck);
 
-        if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser[0].length > 1){
+        if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser.LDAP_result_set[0].length > 1){
           console.log("LDAP credentials confirmed.")
-          grantAccess(APIdata.LDAPCredCheck.authUser[0][1].uid[0]);
+          grantAccess(APIdata.LDAPCredCheck.authUser.LDAP_result_set[0][1].uid[0],APIdata.LDAPCredCheck.authUser.clientHash);
         }
         else {
           console.log("LDAP credentials don't jive.");  
@@ -250,7 +252,7 @@ function createAccount(params,type){
   params.id = params.user_username;
   var postData = params;
 
-  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=createUserAccount";
+  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=createUserAccount";
   console.log(APIaddURL);
 
   $.ajax({          
@@ -278,13 +280,13 @@ function createAccount(params,type){
 // Reusable
 ////////////////////////////////////////////////////////////////////////////////////
 
-function denyAccess(){
+function denyAccess(){  
   $("#messages_container").append("<p style='color:red;'>Access Denied.</p>");    
 }
 
-function grantAccess(username){
+function grantAccess(username,clientHash){
   $("#messages_container").append("<p style='color:green;'>Access Permitted for "+username+".  Setting Cookie.</p>");       
-  setWSUDORCookie(username);
+  setWSUDORCookie(username,clientHash);
 }
 
 function createAccountSuccess(username){
@@ -299,7 +301,8 @@ function createAccountFail(message){
   }      
 }
 
-function setWSUDORCookie(username){
+/* Need to rework this such that you pass username AND clientHash from userSearch() call.*/
+function setWSUDORCookie(username,clientHash){
   console.log("setting WSUDOR cookie for "+username);
   // hit WSUDOR for displayName
   // check WSUDOR status    
@@ -316,7 +319,11 @@ function setWSUDORCookie(username){
       userData.displayName = response.userSearch.displayName;
       userData.loggedIn_WSUDOR = true;  
       userData.username_WSUDOR = username;
-      userData.clientHash = response.userSearch.clientHash;
+      // pull clientHash from authUser() *LDAP function, or WSUDORuserAuth();
+      userData.clientHash = clientHash;
+
+      console.log("userData:",userData);
+
       $.cookie("WSUDOR", JSON.stringify(userData),{
           path:"/"
         }

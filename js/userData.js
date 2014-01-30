@@ -4,26 +4,6 @@
 var userData = new Object();
 
 
-// NOT TERRIBLY IMPORTANT ANYMORE, CONSIDER PHASING OUT, HAVE 'WSUDOR' COOKIE NOW
-//////////////////////////////////////////////////////////////////////////////////////////
-// The 'userData' object then becomes available to all views that load this JS 
-// var extractData = $.cookie('validUser');
-// if (typeof extractData != 'undefined'){
-// 	extractData= extractData.split(":");
-// 	userData.accessID_libCookie = extractData[1];	
-// 	if (typeof userData.accessID_libCookie != 'undefined') {
-// 		userData.loggedIn_libCookie = true;
-// 	}
-// 	else {
-// 		userData.loggedIn_libCookie = false;
-// 	}
-// }
-// else{
-// 	userData.loggedIn_libCookie = false;
-// }
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
 // check WSUDOR cookie
 $(document).ready(function(){
 	console.log("Checking WSUDOR cookie");
@@ -45,7 +25,7 @@ $(document).ready(function(){
 			var postData = new Object();
 			postData.username = userData.username_WSUDOR;
 			postData.clientHash = userData.clientHash;
-			var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=cookieAuth";
+			var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=cookieAuth";
 			console.log(APIaddURL);
 			$.ajax({          
 				url: APIaddURL,
@@ -55,7 +35,7 @@ $(document).ready(function(){
 				success: function(response){
 				  console.log("cookieAuth response:");
 				  console.log(response);
-				  if (response.cookieAuth.hashMatch == false){
+				  if (response.cookieAuth.hashMatch == false || typeof(response.cookieAuth.hashMatch) == "undefined"){
 				  	console.log("Attack!  Attack!  Deleting cookie and refreshing.");
 				  	logoutUser();				  	
 				  }
@@ -65,9 +45,7 @@ $(document).ready(function(){
 				  console.log(response);
 				  alert("Error.");
 				}
-			}); 
-
-			
+			});			
 
 			$("#login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
 			$('nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
