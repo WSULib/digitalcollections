@@ -106,9 +106,9 @@ function URLcleaner(URL){
 }
 
 // refine by keyword function, triggered by keyword search form
-function refineByKeyWord(context){
+function refineByKeyWord(context){   
 
-  var cURL = window.location.href;
+  var cURL = window.location.href;  
 
   //get word from box
   var filter_input = $('#filter_input').val();  
@@ -126,10 +126,11 @@ function refineByKeyWord(context){
   // check rows to update and add to fq[]
   var nURL = cURL+"&fq[]=text:"+filter_input;   
 
-  nURL = URLcleaner(nURL);
+  nURL = URLcleaner(nURL);  
 
   // refresh page 
   window.location = nURL;
+    
 }
 
 // update page functions
@@ -236,7 +237,7 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(templateLocation,destination){
+function populateResults(templateLocation,destination,templateData){
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
@@ -246,7 +247,12 @@ function populateResults(templateLocation,destination){
       async:false,
       success: function(response){        
         var template = response;
-        var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);       
+        if (typeof(templateData) == 'undefined') {          
+          var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
+        }
+        else {
+          var html = Mustache.to_html(template, templateData);           
+        }        
         $(destination).append(html);
       }     
     });

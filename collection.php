@@ -22,8 +22,9 @@
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>             
-        <script src="js/utilities.js"></script>
+        
         <script src="js/collection.js"></script>
+        <script src="js/utilities.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
@@ -73,8 +74,8 @@
                     <ul class="facet_container filter" id="search_facet">
                         <li>
                             <h3 class="tree-toggler">Filter by Keyword</h3>
-                            <ul class="tree facet_list" id="search_facet_box">
-                                <form onsubmit="refineByKeyword("collection"); return false;"><input id="filter_input" placeholder="Filter by keyword" class="search-filter"></form>
+                            <ul class="tree facet_list" id="search_facet_box">                                
+                                <form onsubmit="refineByKeyWord('collection'); return false;"><input id="filter_input" placeholder="Filter by keyword" class="search-filter"></form>
                             </ul>
                         </li>
                     </ul>
