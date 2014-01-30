@@ -94,9 +94,9 @@ function URLcleaner(URL){
   // remove mult ampersands
   URL = URL.replace(/[&]+/g, "&");    
   
-  while ( URL.endsWith("start=0") ){
-    URL = URL.substring(0, URL.length - 8);
-  }
+  // while ( URL.endsWith("start=0") ){
+  //   URL = URL.substring(0, URL.length - 8);
+  // }
 
   while ( URL.endsWith("?q=") ){
     URL = URL.substring(0, URL.length - 3);
@@ -134,7 +134,7 @@ function refineByKeyWord(context){
   }  
 
   // check rows to update and add to fq[]
-  var nURL = cURL+"&fq[]=text:"+filter_input;   
+  var nURL = cURL+"&fq[]=text:"+filter_input+"&start=0";   
 
   nURL = URLcleaner(nURL);  
 
