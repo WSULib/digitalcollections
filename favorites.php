@@ -43,6 +43,9 @@
                 #facet_refine_list li{                    
                     /*background-color:#FFFFA9;*/ /*Just to set it off for the moment, see where they are*/
                 }
+                .main-container {
+                    width: 100%;
+                }
                 .facet_less {
                     display:none;
                 }
@@ -81,24 +84,24 @@
                 <ul>
                     <li><span id='num_results'></span> Objects</li>
                 </ul>
-                <div class="row-fluid">
-                    <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
+               <!--  <div class="row-fluid">
+                    <select class="form-control pull-right" id='rows' onchange="updateSearch();">
                         <option value="12">12</option>
                         <option value="36">36</option>
                         <option value="48">48</option>
                         <option value="90">90</option>
-                    </select> -->
+                    </select> 
                     <div class="switch-views">
-                   <!--      <div id="list" class="list list-active"></div>
+                        <div id="list" class="list list-active"></div>
                         <div id="grid" class="grid"></div>
                         <div class="filter-on filter-active"></div>
                         <div class="filter-off"></div>
-                    --> </div>
-                </div><!-- /switch-views -->
+                    </div>
+                </div> /switch-views -->
                 
             </div><!-- /row for sub-header -->
             
-            <div id="list_container" class="facets">
+            <!-- <div id="list_container" class="facets">
                 <ul class="facet_container filter" id="search_facet">
                     <li>
                         <h3 class="tree-toggler">Lists</h3>
@@ -108,14 +111,10 @@
                         <div class="btn">Add New</div>
                     </li>
                 </ul>
-                <!-- facets template -->
-            </div><!-- /facets -->
+            </div> /facets --> 
 
-            <div id="results_container" class="main-container">
+            <div id="results_container" class="main-container-wide">
                 
-                <div class="row-fluid filtered-by refined-by">
-                    <!-- fiters -->
-                </div><!-- /filtered-by -->
                 <ul class="row-fluid objects-container">
                     <!-- results template -->
                 </ul>
