@@ -12,33 +12,17 @@
 
 <ul class="toc">
 
-    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php">Volume 1</a></li>
+    {{#serialMeta.cleanVols}}
+
+    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{object}}">Volume {{#counter.count}}{{/counter.count}}</a></li>
     <li class="facet active">
         <ul>
-            <li><a href="journal-volume-issue.php">Issue 1</a></li>
-            <li>Issue 2</li>
-            <li>Issue 3</li>
-        </ul>
-    </li>
-
-    <li class="button">
-        <span class="facet-toggle">&#9660;</span> <a href="serial-volume.php">Volume 2</a></li>
-    <li class="facet">
-        <ul>
-            <li>Issue 1</li>
-            <li>Issue 2</li>
-            <li>Issue 3</li>
-        </ul>
-    </li>
-
-    <li class="button">
-        <span class="facet-toggle">&#9660;</span> <a href="serial-volume.php">Volume 3</a></li>
-    <li class="facet">
-        <ul>
-            <li>Issue 1</li>
-            <li>Issue 2</li>
-            <li>Issue 3</li>
+            {{#.}}
+                <li><a href="singleObject.php?id={{0}}">{{1}}</a></li>            
+            {{/.}}
         </ul>
     </li>
     
+    {{/serialMeta.cleanVols}}
+
 </ul>
