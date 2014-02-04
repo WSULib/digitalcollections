@@ -186,45 +186,6 @@ function updateSearch(){
 }
 
 
-// DISPLAY RESULTS
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// function populateFacets(){	
-
-// 	// get current URL
-// 	var cURL = document.URL;
-// 	// set defaults
-// 	var facet_limit = 18;
-// 	// for each facet field
-// 	for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-// 		$("#facets_container").append("<ul class='facet_container' id='"+facet+"_facet'><li><h5 class='tree-toggler'>"+rosetta(facet)+"</h5><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
-
-// 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];		
-// 		for (var i = 0; i < facet_array.length; i = i + 2){			
-// 			// run through rosetta translation
-// 			var facet_value = rosetta(facet_array[i]);			
-// 			if (facet_array[i] != ""){
-// 				// write URL
-// 				//set start to 0, most elegant way to handle less numFound than start count
-// 				cURL = cURL.replace(/\&start=[0-9]+/g,'');
-// 				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""+"&start=0"; 				
-// 				// for long facet lists, initially hide facets over facet_limit
-// 				if (i > facet_limit) { 
-// 					var facet_hidden = "class='hidden_facet'";
-// 				} 
-// 				else {
-// 					var facet_hidden = ""
-// 				}			
-// 				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");			
-// 			}
-// 		}
-// 		// add "more" button if longer than facet_limit		
-// 		if (facet_array.length > facet_limit){						
-// 			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>more >></a></strong></p>");
-// 			$("#"+facet+"_list").append("<p style='text-align:right;'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'><< less</a></strong></p>");			
-// 		}
-// 	}		
-// }
-
 function populateResults(){
 	
 	//push results to results_container
@@ -250,14 +211,12 @@ function favObjRemove(PID){
     if (typeof userData.username_WSUDOR != "undefined"){
       // stringify user / item / search object, send to solrAddDoc API function  
       var addDoc = new Object();
-      addDoc.id = userData.username_WSUDOR+"_"+PID
-      // addDoc.fav_user = userData.username_WSUDOR;
-      // addDoc.fav_item = APIdata.APIParams.PID;
+      addDoc.id = userData.username_WSUDOR+"_"+PID      
       var jsonAddString = '{"delete":'+JSON.stringify(addDoc)+'}';
       console.log(jsonAddString);
 
       var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrRemoveDoc&raw="+jsonAddString;
-      console.log(APIaddURL);
+      console.log("URL to remove:",APIaddURL);
 
       $.ajax({          
         url: APIaddURL,      
@@ -268,22 +227,13 @@ function favObjRemove(PID){
 
       function callSuccess(response){
         console.log(response);
-        alert(PID+" Removed :(");        
+        alert("Favorte "+PID+" has been removed.");        
         location.reload();
       }
       function callError(response){
         console.log(response);
-        alert("Error.");
+        alert("Could not remove favorite.");
       }
-    }
-  else {
-    alert("No user defined!");
-  }
+    }  
 }
-
-// add object to list
-function favObjAdd(PID){
-	alert("we're adding to list "+PID);
-}
-
 

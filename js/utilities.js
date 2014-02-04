@@ -328,6 +328,16 @@ function renderSerialNavBlock(){
 
 
 
+// cleans empty rows from "more-info" pane
+function cleanEmptyMetaRows(){
+  var tds = $("td");
+  tds.each(function(i,el) { 
+    var elhtml = $(el).html();    
+    if($.trim($(el).html())==''){      
+      $(el).parent().hide();
+    }
+  });
+}
 
 
 
