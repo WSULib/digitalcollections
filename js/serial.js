@@ -34,10 +34,8 @@ function launch(PID){
 			loadError();
 		}
 		else{
-	  		// render serialBlockNav
-			renderSerialNavBlock();
-			// render serial-root-content
-			renderMain();
+	  		// render serialBlockNav, also fires renderMain() as defined locally
+			renderSerialNavBlock();			
 		}
 			
 	}

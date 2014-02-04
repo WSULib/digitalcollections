@@ -320,6 +320,7 @@ function renderSerialNavBlock(){
       var template = response;
       var html = Mustache.to_html(template, APIdata);       
       $("#serial-nav").append(html);
+      renderMain();
     }     
   });
 
