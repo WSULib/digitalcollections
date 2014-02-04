@@ -16,10 +16,8 @@ function launch(PID){
 		error: callError
 	});
 
-	function callSuccess(response){
-		console.log("Serial metadata response:",response);		
-		APIdata.serialMeta = response;
-		// APIdata.serialMeta.cleanVols = cleanSerialWalk(response.serialWalk.results);		
+	function callSuccess(response){		
+		APIdata.serialMeta = response;		
 		APIdata.counter = new Object();
 		APIdata.counter = {
 			'val':1,

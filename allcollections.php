@@ -60,7 +60,7 @@
         <script type="text/javascript"> 
             var searchParams = <?php echo json_encode($_REQUEST); ?>;
             if (jQuery.isEmptyObject(searchParams)){
-                collectionsList("allCollections");
+                collectionsList("allCollections");                
             }
             else{    
             $(document).ready(function(){

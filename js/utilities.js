@@ -294,10 +294,13 @@ function renderSerialNavBlock(){
         vols[node.volume].push(temp);
       }
     } 
-    
+
+    // push key-value pair
+    APIdata.serialMeta.keyVols = vols;
+
+    // alphanumeric sort sort by volume name
     sortingArray.alphanumSort();
-    APIdata.sortingArray = sortingArray;
-    console.log(APIdata.sortingArray);
+    APIdata.sortingArray = sortingArray;    
     
     // pluck to array
     for (var i=0; i<APIdata.sortingArray.length; i++){
