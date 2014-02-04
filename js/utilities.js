@@ -269,6 +269,79 @@ function populateResults(templateLocation,destination,templateData){
   } 
 }
 
+// render serials navigation block
+function renderSerialNavBlock(){
+
+  function cleanSerialWalk(results){
+
+    var vols = {};
+    var volsArray = []; 
+    var sortingArray = [];
+    for (var i=0; i<results.length; i++){
+      var node = results[i];
+      if (sortingArray.indexOf(node.volume) == -1){
+        sortingArray.push(node.volume);
+      }     
+      if (vols.hasOwnProperty(node.volume) == false ){
+        vols[node.volume] = [];
+        var temp = [];
+        temp.push(node.issue,node.issueTitle);
+        vols[node.volume].push(temp);     
+      }
+      else{
+        var temp = [];
+        temp.push(node.issue,node.issueTitle);
+        vols[node.volume].push(temp);
+      }
+    } 
+    
+    sortingArray.alphanumSort();
+    APIdata.sortingArray = sortingArray;
+    console.log(APIdata.sortingArray);
+    
+    // pluck to array
+    for (var i=0; i<APIdata.sortingArray.length; i++){
+      volsArray.push(vols[APIdata.sortingArray[i]])
+    }
+
+    return volsArray;
+  }
+
+  APIdata.serialMeta.cleanVols = cleanSerialWalk(APIdata.serialMeta.serialWalk.results);
+
+  $.ajax({                
+    url: "templates/serial-nav.htm",      
+    dataType: 'html',            
+    async:true,
+    success: function(response){        
+      var template = response;
+      var html = Mustache.to_html(template, APIdata);       
+      $("#serial-nav").append(html);
+    }     
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PROTOTYPES
 
 // strip info:fedora/ prefix
 String.prototype.stripFedRDFPrefix = function() {    
