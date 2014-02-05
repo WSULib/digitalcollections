@@ -14,12 +14,12 @@
 
     {{#serialMeta.cleanVols}}
 
-    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{object}}">Volume {{#counter.count}}{{/counter.count}}</a></li>
+    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
     <li class="facet active">
         <ul>
-            {{#.}}
-                <li><a href="singleObject.php?id={{0}}">{{1}}</a></li>            
-            {{/.}}
+            {{#issuesArray}}
+                <li><a href="singleObject.php?id={{issuePID}}">{{issueTitle}}</a></li>            
+            {{/issuesArray}}
         </ul>
     </li>
     

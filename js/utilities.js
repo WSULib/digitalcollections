@@ -272,25 +272,32 @@ function populateResults(templateLocation,destination,templateData){
 // render serials navigation block
 function renderSerialNavBlock(){
 
-  function cleanSerialWalk(results){
+  function prepareSerialWalk(results){
 
     var vols = {};
     var volsArray = []; 
     var sortingArray = [];
+    var volNames = {};
+
     for (var i=0; i<results.length; i++){
       var node = results[i];
+      // push to sorting array
       if (sortingArray.indexOf(node.volume) == -1){
         sortingArray.push(node.volume);
+        volNames[node.volume] = node.volumeTitle;        
       }     
+      // push to volumes object
       if (vols.hasOwnProperty(node.volume) == false ){
-        vols[node.volume] = [];
-        var temp = [];
-        temp.push(node.issue,node.issueTitle);
+        vols[node.volume] = [];                   
+        var temp = {};
+        temp.issuePID = node.issue;
+        temp.issueTitle = node.issueTitle;        
         vols[node.volume].push(temp);     
       }
-      else{
-        var temp = [];
-        temp.push(node.issue,node.issueTitle);
+      else{        
+        var temp = {};
+        temp.issuePID = node.issue;
+        temp.issueTitle = node.issueTitle;        
         vols[node.volume].push(temp);
       }
     } 
@@ -304,25 +311,29 @@ function renderSerialNavBlock(){
     
     // pluck to array
     for (var i=0; i<APIdata.sortingArray.length; i++){
-      volsArray.push(vols[APIdata.sortingArray[i]])
+      var wholeVolObj = {};
+      wholeVolObj.volPID = APIdata.sortingArray[i];
+      wholeVolObj.volTitle = volNames[APIdata.sortingArray[i]]
+      wholeVolObj.issuesArray = vols[APIdata.sortingArray[i]]
+      volsArray.push(wholeVolObj)
     }
 
-    return volsArray;
+    APIdata.serialMeta.cleanVols = volsArray;
   }
 
-  APIdata.serialMeta.cleanVols = cleanSerialWalk(APIdata.serialMeta.serialWalk.results);
+  prepareSerialWalk(APIdata.serialMeta.serialWalk.results);
 
   $.ajax({                
-    url: "templates/serial-nav.htm",      
+    url: "templates/serial-nav-full.htm",      
     dataType: 'html',            
     async:true,
     success: function(response){        
       var template = response;
       var html = Mustache.to_html(template, APIdata);       
-      $("#serial-nav").append(html);
+      $("#serial-nav").append(html);      
       renderMain();
     }     
-  });
+  });  
 
 }
 
