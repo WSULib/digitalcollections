@@ -43,7 +43,7 @@ $(document).ready(function(){
 				},
 				error: function(response){
 				  console.log(response);
-				  alert("Error.");
+				  alert("userData Error.");
 				}
 			});			
 
