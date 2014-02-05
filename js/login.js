@@ -332,7 +332,7 @@ function setWSUDORCookie(username,clientHash){
         }
       );
       // navigate back
-      // navBack();
+      navBack();
     },
     error:function(response){
       console.log("Could not retrieve displayName for cookie purposes");
