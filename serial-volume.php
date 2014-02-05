@@ -1,4 +1,7 @@
 <!DOCTYPE php>
+<?php
+$serialObjPID = $_REQUEST['id'];
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -21,6 +24,7 @@
         <!-- Local JS -->
         <script src="js/utilities.js"></script>        
         <script src="js/search.js"></script>
+        <script src="js/serial-volume.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
@@ -48,99 +52,27 @@
     <?php include('inc/header.php'); ?>
 
 	<div class="container">
-		<div class="facets volume-view">
-            <img src="img/DFQ.png" alt="" style="max-width:100%;border: 1px solid #ddd;">
-            <ul class="buttons">
-                <li class="add-to-favorites" onclick="addFav();">
-                    <img src="img/star.png" alt=""> Add to Favorites
-                </li>
-                <li class="share">                                    
-                    <img src="img/share.png" alt=""> Share Object
-                </li>
-            </ul>
-
-            <p class="volumes-header"><span>Volumes in the Collection</span></p>
-
-            <ul class="toc">
-                <li class="button"><span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 1</a></li>
-                <li class="facet active">
-                    <ul>
-                        <li><a href="http://lib/digitalcollections/CURRENT/singleObject.php?PID=wayne:DFQv3i2">Issue 1</a></li>
-                        <li>Issue 2</li>
-                        <li>Issue 3</li>
-                    </ul>
-                </li>
-                <li class="button">
-                    <span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 2</a></li>
-                <li class="facet">
-                    <ul>
-                        <li>Issue 1</li>
-                        <li>Issue 2</li>
-                        <li>Issue 3</li>
-                    </ul>
-                </li>
-                <li class="button">
-                    <span class="facet-toggle">&#9660;</span> <a href="journal-volume.php">Volume 3</a></li>
-                <li class="facet">
-                    <ul>
-                        <li>Issue 1</li>
-                        <li>Issue 2</li>
-                        <li>Issue 3</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+		<div id="serial-nav" class="facets volume-view"></div>
 		<div class="main-container">
-			<h3 class="title">
-                    <a href="journal.php">Detroit Focus Quarterly</a> &raquo; Volume 1
-                </h3>
-                
-                <ul class="row-fluid issues-container">
-                	<li class="issue-container-grid">
-                		<div class="crop">
-                			<a href="http://lib/digitalcollections/CURRENT/singleObject.php?PID=wayne:DFQv3i2">
-                				<img src="img/dfq_1.jpg" alt="">
-                			</a>
-                		</div>
-                        <h3>Detroit Focus Quarterly Volume 1 Issue 1</h3>
-                	</li>
-                	<li class="issue-container-grid">
-                		<div class="crop">
-                			<a href="">
-                				<img src="img/dfq_1.jpg" alt="">
-                			</a>
-                		</div>
-                        <h3>Detroit Focus Quarterly Volume 1 Issue 2</h3>
-                	</li>
-                	<li class="issue-container-grid">
-                		<div class="crop">
-                			<a href="">
-                				<img src="img/dfq_1.jpg" alt="">
-                			</a>
-                		</div>
-                        <h3>Detroit Focus Quarterly Volume 1 Issue 3</h3>
-                	</li>
-                    <li class="issue-container-grid">
-                        <div class="crop">
-                            <a href="">
-                                <img src="img/dfq_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <h3>Detroit Focus Quarterly Volume 1 Issue 4</h3>
-                    </li>
-                    <li class="issue-container-grid">
-                        <div class="crop">
-                            <a href="">
-                                <img src="img/dfq_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <h3>Detroit Focus Quarterly Volume 1 Issue 5</h3>
-                    </li>
-                </ul>
-		</div>
+            <div id="serial-volume-content"></div>
+        </div>
 	</div>
 
     <?php include('inc/footer.php'); ?>
+
+            <!-- loading serials -->
+        <script type="text/javascript"> 
+            var searchParams = <?php echo json_encode($_REQUEST); ?>;
+            if (jQuery.isEmptyObject(searchParams)){
+                window.location = "serial.php";             
+            }
+            else{    
+            $(document).ready(function(){
+                launch(searchParams);
+            });
+            }    
+        </script>
+        <!-- ********************************************* -->
 	
 </body>
 </html>

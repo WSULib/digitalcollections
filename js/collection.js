@@ -198,7 +198,7 @@ function searchGo(type){
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 	debugSearchParams();	
 	
-	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
+	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
 	solrParamsString = JSON.stringify(mergedParams);	
 
 	// WSUAPI v2.0
