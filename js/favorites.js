@@ -74,10 +74,10 @@ function updatePage(){
 
 	// update number of results
 	$("#q_string").html(mergedParams.q);	
-	$("#num_results").html(APIdata.solrSearch.response.numFound);
+	$("#num_results").html(APIdata.favs.getUserFavorites.response.numFound);
 
 	// update rows selecctor
-	$("#rows").val(mergedParams.rows).prop('selected',true);
+	// $("#rows").val(mergedParams.rows).prop('selected',true);
 
 	// show "refined by" facets
 	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
@@ -91,7 +91,8 @@ function updatePage(){
 	}
 
 	// pagination
-	var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
+	var tpages = parseInt((APIdata.favs.getUserFavorites.response.numFound / mergedParams.rows) + 1);
+	console.log("Total pages:",tpages);
 	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
 	if (spage == 0) {
 		spage = 1;
@@ -120,12 +121,18 @@ function searchGo(){
 
 	// create q based on ALL favorites of user	
 	searchParams.q = "";
-	for (var i in APIdata.favs.getUserFavorites.response.docs){		
+	// for (var i in APIdata.favs.getUserFavorites.response.docs){
+	for (var i=0; i<APIdata.favs.getUserFavorites.response.docs.length; i++){		
 		var fav_item = APIdata.favs.getUserFavorites.response.docs[i].fav_item;
 		searchParams.q += fav_item+" ";		
 	}
 	searchParams.q = "id:("+searchParams.q+")";
 
+	///////////////////////////////////////////////////////////////////////////
+	// toss up current start, set to zero, return before query	
+	var juggledValue = searchParams.start;
+	searchParams['start'] = 0;
+	///////////////////////////////////////////////////////////////////////////
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -140,6 +147,12 @@ function searchGo(){
 	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	
 	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
+
+	///////////////////////////////////////////////////////////////////////////
+	// return to juggled value
+	searchParams['start'] = juggledValue;
+	mergedParams['start'] = juggledValue;
+	///////////////////////////////////////////////////////////////////////////
 
 	$.ajax({          
 	  url: APIcallURL,      
