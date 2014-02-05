@@ -318,6 +318,9 @@ function renderSerialNavBlock(){
       volsArray.push(wholeVolObj)
     }
 
+    // push volNames to global
+    APIdata.serialMeta.volNames = volNames;
+
     APIdata.serialMeta.cleanVols = volsArray;
   }
 
