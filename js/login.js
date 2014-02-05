@@ -262,9 +262,10 @@ function createAccount(params,type){
     data: postData,      
     dataType: 'json',
     success: function(response){
-      console.log(response);
-      if (response.createUserAccount.responseHeader.status == 0){      
-        createAccountSuccess(params.user_username);
+      console.log("This is what you have to work with for creating account:",response);
+
+      if (response.createUserAccount.createResponse.responseHeader.status == 0){      
+        createAccountSuccess(params.user_username,response.createUserAccount.clientHash);
       }
       else {
         alert("Account Creation Error");
@@ -291,9 +292,9 @@ function grantAccess(username,clientHash){
   setWSUDORCookie(username,clientHash);
 }
 
-function createAccountSuccess(username){
+function createAccountSuccess(username,clientHash){
   $("#messages_container").append("<p style='color:green;'>Account Created.  Setting Cookie.</p>"); 
-  grantAccess(username);      
+  grantAccess(username,clientHash);      
 }
 
 function createAccountFail(message){
@@ -331,7 +332,7 @@ function setWSUDORCookie(username,clientHash){
         }
       );
       // navigate back
-      navBack();
+      // navBack();
     },
     error:function(response){
       console.log("Could not retrieve displayName for cookie purposes");
