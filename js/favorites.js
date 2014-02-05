@@ -215,7 +215,7 @@ function favObjRemove(PID){
       var jsonAddString = '{"delete":'+JSON.stringify(addDoc)+'}';
       console.log(jsonAddString);
 
-      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrRemoveDoc&raw="+jsonAddString;
+      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=solrRemoveDoc&raw="+jsonAddString;
       console.log("URL to remove:",APIaddURL);
 
       $.ajax({          

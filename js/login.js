@@ -12,7 +12,7 @@ function loginGo(){
   $("#messages_container").append("<p>Starting login process.</p>");
 }
 
-function loginForm(){   
+function loginForm(){
 
   var postData = new Object();
   postData.username = $("#username").val();
@@ -46,7 +46,8 @@ function loginForm(){
               APIdata.LDAPCredCheck = response;     
               console.log(APIdata.LDAPCredCheck);
 
-              if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser[0].length > 1){
+              // this scenario fires for first time LDAP creation
+              if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser.LDAP_result_set[0].length > 1){
                 console.log("LDAP credentials confirmed.  Creating WSU account on-the-fly.")
                 // in this case, create account on-the-fly, and set cookie
                 createAccountPrep('LDAPDefined');
@@ -150,8 +151,8 @@ function createAccountPrep(type){
   if (type == "LDAPDefined"){
     // set params for solr account creation
     var params = new Object();
-    params.user_displayName = APIdata.LDAPCredCheck.authUser[0][1].givenName[0];
-    params.user_username = APIdata.LDAPCredCheck.authUser[0][1].uid[0]
+    params.user_displayName = APIdata.LDAPCredCheck.authUser.LDAP_result_set[0][1].givenName[0];
+    params.user_username = APIdata.LDAPCredCheck.authUser.LDAP_result_set[0][1].uid[0]
     params.user_password = ""
     params.user_WSU = 1;
 
@@ -281,7 +282,8 @@ function createAccount(params,type){
 ////////////////////////////////////////////////////////////////////////////////////
 
 function denyAccess(){  
-  $("#messages_container").append("<p style='color:red;'>Access Denied.</p>");    
+  $("#messages_container").append("<p style='color:red;'>Access Denied.</p>");
+  alert("Login credentials don't match, please try again.");
 }
 
 function grantAccess(username,clientHash){
@@ -328,18 +330,23 @@ function setWSUDORCookie(username,clientHash){
           path:"/"
         }
       );
-      // consider heading back?
-      window.history.back();
+      // navigate back
+      navBack();
     },
     error:function(response){
       console.log("Could not retrieve displayName for cookie purposes");
     }
   });  
-  
-  
-
 }
 
+function navBack(){
+  if (document.referrer == ""){
+    alert("You are logged into WSU digitalcollections.");
+  }
+  else{
+    window.location = document.referrer;
+  }
+}
 
 
 

@@ -60,7 +60,7 @@ $objectPID = $_REQUEST['PID'];
                 <h1>Hello World.</h1>
                 <div id="login_form">
                     <p>Login with your AccessID/Username and Password. If you don't have an AccessID or Username, please sign up!</p>
-                    <form onsubmit="loginForm(); return false">
+                    <form onsubmit="loginForm(); return false;">
                         <ul>
                             <li><input id="username" type="text" name="username" placeholder="Username"></li>
                             <li><input id="password" type="password" name="password" placeholder="Password"></li>
