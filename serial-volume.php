@@ -66,7 +66,8 @@ $serialObjPID = $_REQUEST['id'];
             var searchParams = <?php echo json_encode($_REQUEST); ?>;
             console.log(searchParams);
             if (jQuery.isEmptyObject(searchParams.vol)){
-                window.location = "serial.php?id="+searchParams.id;             
+                // window.location = "serial.php?id="+searchParams.id;
+                // Redirect to 404 page
             }
             else{    
             $(document).ready(function(){
