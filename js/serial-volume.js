@@ -47,27 +47,11 @@ function launch(PID){
 function renderMain(){
 
 	// Here's the set of issues for the current volume
-	var currentIssues = APIdata.serialMeta.searchParams.vol;
-	APIdata.serialMeta.currentIssues = APIdata.serialMeta.keyVols[currentIssues];
+	var volOfCurrentIssues = APIdata.serialMeta.searchParams.vol;
+	APIdata.serialMeta.currentIssues = APIdata.serialMeta.keyVols[volOfCurrentIssues];
 
-	// Here's the current title
-	// Currently, it's clunky as it iterates through all matches (matches = number of issues in current volume); maybe use .each()
-	var len = APIdata.serialMeta.serialWalk.results.length;
-	for(var i =0; i < len; i++) {
-		if (currentIssues == APIdata.serialMeta.serialWalk.results[i].volume) {
-			APIdata.serialMeta.currentTitle = APIdata.serialMeta.serialWalk.results[i].volumeTitle;
-		}
-	}
-
-	// Break out Volume from Title and set it inside APIdata.SerialMeta as currentVolume
-	// Set pattern to compare complete title against
-	var pattern = APIdata.serialMeta.solrGetFedDoc.response.docs[0].dc_title[0];
-	var completeTitle = APIdata.serialMeta.currentTitle;
-	// Extract out the volume from the complete title and then remove whitespace
-	var volume = completeTitle.replace(pattern, "");
-	// var whitespaceRemoval = new RegExp(' ');
-	volume = volume.replace(new RegExp(' '), "");
-	APIdata.serialMeta.currentVolume = volume;
+	// Here's the current volume title
+	APIdata.serialMeta.currentTitle = APIdata.serialMeta.volNames[volOfCurrentIssues];
 
 	var templateData = new Object();
 

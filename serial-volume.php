@@ -23,7 +23,8 @@ $serialObjPID = $_REQUEST['id'];
         
         <!-- Local JS -->
         <script src="js/utilities.js"></script>        
-        <script src="js/search.js"></script>
+        <script src="js/favorites.js"></script>
+        <script src="js/userData.js"></script>
         <script src="js/serial-volume.js"></script>
         
         <!--WSUDOR Translation Dictionary-->

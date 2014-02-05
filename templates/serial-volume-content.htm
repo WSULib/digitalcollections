@@ -1,17 +1,17 @@
             <h3 class="title">
-                    <a href="serial.php?id={{serialMeta.searchParams.id}}">{{serialMeta.solrGetFedDoc.response.docs.0.dc_title.0}}</a> &raquo; {{serialMeta.currentVolume}}
+                    <a href="serial.php?id={{serialMeta.searchParams.id}}">{{serialMeta.solrGetFedDoc.response.docs.0.dc_title.0}}</a> &raquo; {{serialMeta.currentTitle}}
                 </h3>
 
                 <ul class="row-fluid issues-container">
                   {{#serialMeta.currentIssues}}
                     <li class="issue-container-grid">
                         <div class="crop">
-                            <a href="http://silo.lib.wayne.edu/digitalcollections/singleObject.php?id={{0}}">
-                                <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{0}}/datastreams/THUMBNAIL/content&aspectResize=(1024x768)" alt="">
+                            <a href="http://silo.lib.wayne.edu/digitalcollections/singleObject.php?id={{issuePID}}">
+                                <img src="http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/{{issuePID}}/datastreams/THUMBNAIL/content&aspectResize=(1024x768)" alt="">
                             </a>
                         </div>
 
-                        <h3>{{1}}</h3>
+                        <h3>{{issueTitle}}</h3>
                     </li>
                   {{/serialMeta.currentIssues}}
                 </ul>

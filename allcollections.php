@@ -58,16 +58,8 @@
 
         <!-- loading collections -->
         <script type="text/javascript"> 
-            var searchParams = <?php echo json_encode($_REQUEST); ?>;
-            if (jQuery.isEmptyObject(searchParams)){
-                collectionsList("allCollections");                
-            }
-            else{    
-            $(document).ready(function(){
-                // updatePage();
-                // searchGo("allCollections");
-            });
-            }    
+            var searchParams = {};
+            collectionsList("allCollections");                
         </script>
     </body>
 </html>
