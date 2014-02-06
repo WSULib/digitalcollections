@@ -27,18 +27,17 @@ function getFavs(){
 	var favParams = new Object();
 	favParams.q = "fav_user:"+userData.username_WSUDOR;
 	favParams.fl = "fav_item";	
-	favParams.start = searchParams.start;
-	favParams.rows = searchParams.rows;
+	if (typeof searchParams.start != "undefined"){ favParams.start = searchParams.start; }
+	else{ searchParams.start = 0; }	
+	favParams.rows = searchParams.rows;	
 	favParams.facet = 'false';	
 	favParams['raw'] = "noescape";
 
 	// zip it up
-	mergedFavsParams = jQuery.extend(true,{},searchDefs,favParams);
-	console.log("Merged FAVs Params:");
-	console.log(mergedFavsParams);
-	solrParamsString = JSON.stringify(mergedFavsParams);	
-
-	// "raw" parameter as wildcard, used in solr.py to not escape query in this instance
+	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
+	console.log("Merged FAVs Params:",mergedParams);	
+	solrParamsString = JSON.stringify(mergedParams);	
+	
 	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getUserFavorites&solrParams="+solrParamsString;		
 	console.log(APIcallURL);	
 
@@ -52,7 +51,7 @@ function getFavs(){
 	function callSuccess(response){
 		APIdata.favs = response;	    
 	    console.log(userData.username_WSUDOR+" favorites:");
-	    console.log(response)
+	    console.log(response)	    
 	    searchGo();
 	}
 	function callError(response){
@@ -68,36 +67,17 @@ function updatePage(){
 
 	// get current URL
 	var cURL = document.URL;
-
 	// update fav_user
 	$("#fav_user").html(userData.displayName);	
-
-	// update number of results
-	$("#q_string").html(mergedParams.q);	
+	// update number of results	
 	$("#num_results").html(APIdata.favs.getUserFavorites.response.numFound);
 
-	// update rows selecctor
-	// $("#rows").val(mergedParams.rows).prop('selected',true);
-
-	// show "refined by" facets
-	for (var i = 0; i < mergedParams['fq[]'].length; i++){		
-		var facet_string = mergedParams['fq[]'][i];				
-		var facet_type = facet_string.split(":")[0];
-		var facet_value = facet_string.split(":").slice(1).join(":");
-
-		
-		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string))+"&",'');
-		$("#facet_refine_list").append("<li><a href='"+nURL+"'>x</a> "+rosetta(facet_type)+": "+rosetta(facet_value)+"</li>");
-	}
-
-	// pagination
-	var tpages = parseInt((APIdata.favs.getUserFavorites.response.numFound / mergedParams.rows) + 1);
-	console.log("Total pages:",tpages);
-	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
+	// pagination	
+	var tpages = tpagesPaginate(APIdata.favs.getUserFavorites.response.numFound,mergedParams.rows);
+	var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;	
 	if (spage == 0) {
 		spage = 1;
-	}
-	
+	}	
 	$('.pagination-centered').bootpag({
 	   total: tpages,
 	   page: spage,
@@ -108,11 +88,7 @@ function updatePage(){
 	    // refresh page	
 		window.location = nURL;
 	});
-
 }
-
-
-
 
 
 // QUERYING
@@ -125,14 +101,11 @@ function searchGo(){
 	for (var i=0; i<APIdata.favs.getUserFavorites.response.docs.length; i++){		
 		var fav_item = APIdata.favs.getUserFavorites.response.docs[i].fav_item;
 		searchParams.q += fav_item+" ";		
-	}
-	searchParams.q = "id:("+searchParams.q+")";
-
-	///////////////////////////////////////////////////////////////////////////
-	// toss up current start, set to zero, return before query	
-	var juggledValue = searchParams.start;
-	searchParams['start'] = 0;
-	///////////////////////////////////////////////////////////////////////////
+	}	
+	
+	// toss up current start, set to zero, return before query		
+	var juggledValue = searchParams.start;		
+	searchParams.start = 0;	
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -147,12 +120,10 @@ function searchGo(){
 	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	
 	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
-
-	///////////////////////////////////////////////////////////////////////////
+	
 	// return to juggled value
-	searchParams['start'] = juggledValue;
-	mergedParams['start'] = juggledValue;
-	///////////////////////////////////////////////////////////////////////////
+	searchParams.start = juggledValue;
+	mergedParams.start = juggledValue;	
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -160,20 +131,17 @@ function searchGo(){
 	  success: callSuccess,
 	  error: callError
 	});
-
 	function callSuccess(response){
 
 	    mix(response,APIdata);
 	    console.log("APIdata");
 	    console.log(APIdata);
 	    $(document).ready(function(){
-	    	updatePage();
-	    	populateFacets();
+	    	updatePage();	    	
 	    	populateResults();	    		
 	    });
 	    
 	}
-
 	function callError(response){
 		console.log("API Call unsuccessful.  Back to the drawing board.");	  
 	}

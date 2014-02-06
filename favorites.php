@@ -133,8 +133,7 @@
     <script type="text/javascript">
     var searchParams = <?php echo json_encode($_REQUEST); ?>;            
     $(document).ready(function(){        
-        getFavs();
-        // searchGo();    
+        getFavs(searchParams);        
     });    
 </script>
 </html>

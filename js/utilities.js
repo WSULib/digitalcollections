@@ -171,8 +171,8 @@ function updateNumbers(){
 }
 
 function paginationUpdate(){
-  // pagination
-  var tpages = parseInt((APIdata.solrSearch.response.numFound / mergedParams.rows) + 1);
+  // pagination  
+  var tpages = tpagesPaginate(APIdata.solrSearch.response.numFound,mergedParams.rows);
   var spage = parseInt(mergedParams.start / mergedParams.rows) + 1;
   if (spage == 0) {
     spage = 1;
@@ -354,8 +354,15 @@ function cleanEmptyMetaRows(){
 }
 
 
-
-
+function tpagesPaginate(results,rows){
+	var tpage_dec = results / rows;
+	if (tpage_dec % 1 != 0){
+		return parseInt(tpage_dec) + 1
+	}
+	else {
+		return tpage_dec
+	}
+}
 
 
 
