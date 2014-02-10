@@ -1,11 +1,8 @@
 // Controller for Single Object Page
 
-
 // Globals
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var APIdata = new Object();
-// var userData = new Object();
-
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,16 +75,16 @@ function renderPage(){
     // Head
     $('head').mustache('head_t', APIdata);
     
-    // Metadata
-    // $('.info-panel').mustache('metadata_t', APIdata);
+    // Metadata    
     $.get('templates/info-panel.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $(".info-panel").html(html);
-    });
-    // $('.display-more-info').mustache('metadata_more', APIdata);
+      cleanEmptyMetaRows();
+    });    
     $.get('templates/display-more-info.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $(".display-more-info table").html(html);
+      cleanEmptyMetaRows();
     });
     
     // Children
@@ -198,7 +195,6 @@ function finishRendering(){
 }
 
 
-
 // Add Item to Favorites
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function addFav(){    
@@ -251,6 +247,6 @@ function updateLargeView(self,PID){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //unleash the Kraken - show #container when things load and templates rendered
 $(document).ready(function(){
-  $("#container").show();  
+  $("#container").show();    
 });
 
