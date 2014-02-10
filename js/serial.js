@@ -56,6 +56,7 @@ function renderMain(){
 			var template = response;
 			var html = Mustache.to_html(template, APIdata);       
 			$("#serial-root-content").append(html);
+			cleanEmptyMetaRows();
 		}     
 	});
 }
