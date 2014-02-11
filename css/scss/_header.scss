@@ -131,3 +131,16 @@ header .searchIcon:before {
 .brand-search {
   margin: $navbar-margin-bottom 0;
 }
+
+
+#mobile-header {
+    display: none;
+}
+@media only screen and (max-width: 767px){
+    #mobile-header {
+        display: block;
+    }
+    #navigation {
+        display: none;
+    }
+}

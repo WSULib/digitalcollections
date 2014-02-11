@@ -1891,6 +1891,15 @@ header .searchIcon:before {
 .brand-search {
   margin: 22px 0; }
 
+#mobile-header {
+  display: none; }
+
+@media only screen and (max-width: 767px) {
+  #mobile-header {
+    display: block; }
+
+  #navigation {
+    display: none; } }
 .sub-header {
   margin: 0 0 1.75em 0; }
   .sub-header ul {

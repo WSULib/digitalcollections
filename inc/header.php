@@ -23,13 +23,19 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <nav class="navbar navbar-inverse" role="navigation">
-                  <ul class="nav navbar-nav">
-                    <li><a href="allcollections.php">Collections</a></li>
-                    <li><a href="search.php">Browse</a></li>
-                    <li><a href="#">Contact</a></li>
-                  </ul>
-                </nav>
+                <div id="mobile-header">
+                    <a id="responsive-menu-button" href="#sidr-main">Menu</a>
+                </div>
+                 
+                <div id="navigation">
+                    <nav class="nav navbar navbar-inverse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="allcollections.php">Collections</a></li>
+                            <li><a href="search.php">Browse</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div> 
