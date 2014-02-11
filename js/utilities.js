@@ -235,13 +235,13 @@ function populateFacets(){
           var facet_hidden = ""
         }     
         $("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
-        
-        // hide empty facets
-        $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
       }
 
 
     }
+    // hide empty facets
+        $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
+        
     // add "more" button if longer than facet_limit   
     if (facet_array.length > facet_limit){            
       $("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
