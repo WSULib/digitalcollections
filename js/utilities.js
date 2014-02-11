@@ -211,6 +211,7 @@ function populateFacets(){
   for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
     $("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span>&#9660;</span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
+
     var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];    
     for (var i = 0; i < facet_array.length; i = i + 2){     
       // run through rosetta translation
@@ -233,8 +234,12 @@ function populateFacets(){
         else {
           var facet_hidden = ""
         }     
-        $("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>");     
+        $("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
+        
+        // hide empty facets
+        $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
       }
+
 
     }
     // add "more" button if longer than facet_limit   
