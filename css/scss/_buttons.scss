@@ -38,7 +38,7 @@ background: transparent;
   left:0;
   right:0;
   margin:auto;
-  padding:120px 0 10px 0;
+  padding:95px 0 10px 0;
   
   width:200px;
   height:20px;
@@ -90,17 +90,18 @@ input[type="checkbox"]{display:none;}
   margin:auto;
   color:#fff;
   height:46px;
-  width:180px;
-  background:#3B5998;
+  width:152px;
+  // background:#3B5998;
   padding:0;
   list-style:none;
+  // border: solid 1px #ddd;
 }
 
 #content ul li a {
   font-size:20px;
-  color: white;
+  color: black;
   cursor:pointer;
-  width:60px;
+  width:50px;
   margin:0;
   padding:12px 0;
   text-align:center;
@@ -127,11 +128,17 @@ input[type="checkbox"]{display:none;}
 // }
 
 #content li a[class*="facebook"] {
+  // background: #eee;
   height: 100%;
+  border-right: solid 1px #eee;
 }
 
-#content li a[class*="twitter"] {background:#6CDFEA;padding:12px 0;height:100%;}
-#content li a[class*="mail"] {background:#E34429;padding:12px 0;height:100%;}
+#content li a[class*="twitter"] {
+  // background:#eee;
+  padding:12px 0;height:100%;border-right: solid 1px #eee;}
+#content li a[class*="mail"] {
+  // background:#eee;
+  padding:12px 0;height:100%;}
 
 
 .buttons {
