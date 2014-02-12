@@ -6,7 +6,7 @@
                 <a href="http://library.wayne.edu/">Libraries</a>
             </div>
             <ul class="top-nav">
-                <li id="login_status"><a href="login.php">Login / Sign Up</a></li>
+                <li class="login_status"><a href="login.php">Login / Sign Up</a></li>
             </ul>
         </div>
     </div>

@@ -12,17 +12,19 @@
 
 <ul class="toc">
 
-    {{#serialMeta.cleanVols}}
+ {{#serialMeta.cleanVols}}
 
-    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
-    <li class="facet active">
-        <ul>
-            {{#issuesArray}}
+    <ul class="facet_container filter">
+        <li>
+            <h3 class="tree-toggler"><span class="entypo-plus"></span><a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></h3>
+            <ul>
+                {{#issuesArray}}
                 <li><a href="singleObject.php?id={{issuePID}}">{{issueTitle}}</a></li>            
-            {{/issuesArray}}
-        </ul>
-    </li>
+                {{/issuesArray}}
+            </ul>
+        </li>
+    </ul>
     
-    {{/serialMeta.cleanVols}}
+  {{/serialMeta.cleanVols}}
 
 </ul>

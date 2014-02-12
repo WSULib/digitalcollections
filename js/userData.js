@@ -47,7 +47,8 @@ $(document).ready(function(){
 				}
 			});			
 
-			$("#login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
+			$("li.login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
+			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'>Logout</a>");
 			$('nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 			$('#sidr-main nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  
