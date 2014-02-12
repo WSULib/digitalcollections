@@ -1,3 +1,4 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
 @import url(http://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
 /*!
  * Bootstrap v3.0.0
@@ -1530,6 +1531,101 @@ table th[class*="col-"] {
         border-bottom: 0; } }
 /* #Clouds Flat Button
 ==================================================*/
+.share-buttons {
+  display: none; }
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif; }
+
+::selection {
+  background: transparent; }
+
+#content {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 120px 0 10px 0;
+  width: 200px;
+  height: 20px; }
+
+input[type="checkbox"] {
+  display: none; }
+
+.checkbox:checked + .label {
+  background: #7B7484;
+  color: #231733; }
+
+.checkbox:checked ~ .social {
+  opacity: 1;
+  -webkit-transform: scale(1) translateY(-90px);
+  -moz-transform: scale(1) translateY(-90px);
+  -o-transform: scale(1) translateY(-90px);
+  transform: scale(1) translateY(-90px);
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s; }
+
+.label {
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 10%;
+  color: #7B7484; }
+
+.social {
+  transform-origin: 50% 0%;
+  -webkit-transform: scale(0) translateY(-190px);
+  -moz-transform: scale(0) translateY(-190px);
+  -o-transform: scale(0) translateY(-190px);
+  transform: scale(0) translateY(-190px);
+  opacity: 0; }
+
+#content ul {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #fff;
+  height: 46px;
+  width: 180px;
+  background: #3B5998;
+  padding: 0;
+  list-style: none; }
+
+#content ul li a {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  margin: 0;
+  padding: 12px 0;
+  text-align: center;
+  float: left;
+  display: block;
+  height: 22px; }
+
+#content ul li a:hover {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none; }
+
+#content li a[class*="facebook"] {
+  height: 100%; }
+
+#content li a[class*="twitter"] {
+  background: #6CDFEA;
+  padding: 12px 0;
+  height: 100%; }
+
+#content li a[class*="mail"] {
+  background: #E34429;
+  padding: 12px 0;
+  height: 100%; }
+
 .buttons {
   list-style: none;
   margin: 0;

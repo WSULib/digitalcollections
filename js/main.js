@@ -107,6 +107,9 @@ $( document ).ready(function() {
       source: '#navigation'
     });
 
+   $("body").on("click", ".view-share-buttons", function() {
+        $('.share-buttons').slideToggle();
+   });
 
 });
 
@@ -114,7 +117,7 @@ $(document).ready(function(){
     /* This code is executed after the DOM has been completely loaded */
 
     /* Changing thedefault easing effect - will affect the slideUp/slideDown methods: */
-    $.easing.def = "easeOutExpo";   
+    $.easing.def = "easeOutExpo";
 
     /* Using event delegation, listens for click on ".facet-toggle": */
     $(document).on('click','.tree-toggler',function(e){
