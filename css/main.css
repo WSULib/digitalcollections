@@ -1625,6 +1625,9 @@ input[type="checkbox"] {
   padding: 12px 0;
   height: 100%; }
 
+.buttons li.favorited {
+  background: #eee; }
+
 .buttons {
   list-style: none;
   margin: 0;
@@ -1905,7 +1908,7 @@ h1 a:hover, h1 a:active {
 
 header .search-box {
   position: relative;
-  width: 50%;
+  width: 100%;
   float: right;
   margin-top: .5em; }
 
@@ -1991,10 +1994,24 @@ header .searchIcon:before {
 
 @media only screen and (max-width: 767px) {
   #mobile-header {
-    display: block; }
+    display: inline-block;
+    margin-right: 20px; }
+
+  h1 {
+    font-size: 2em; }
+
+  header .search-box {
+    position: static;
+    margin: 20px 0; }
 
   #navigation {
-    display: none; } }
+    display: none; }
+
+  .top-head {
+    display: none; }
+
+  .brand-search {
+    margin-top: 0; } }
 .sub-header {
   margin: 0 0 1.75em 0; }
   .sub-header ul {
@@ -2082,6 +2099,8 @@ header .searchIcon:before {
       padding: 10px 15px;
       text-transform: uppercase;
       cursor: pointer; }
+      .facets .filter h3 span {
+        float: right; }
     .facets .filter ul {
       list-style: none;
       padding: 5px 15px;

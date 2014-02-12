@@ -209,7 +209,7 @@ function populateFacets(){
   var facet_limit = 18;
   // for each facet field
   for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
-    $("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span>&#9660;</span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
+    $("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='entypo-minus'></span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
 
     var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];    

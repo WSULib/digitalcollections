@@ -220,7 +220,7 @@ function addFav(){
       function callSuccess(response){
         console.log(response);
         if (response.solrAddDoc.responseHeader.status == 0){
-          alert("Favorite Added!");
+          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites').addClass('favorited');
         }
         else {
           alert("Error");
