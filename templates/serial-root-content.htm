@@ -51,3 +51,22 @@
         </tbody>
     </table>
 </div>
+
+<p class="volumes-header"><span>Volumes in the Collection</span></p>
+
+<ul class="toc">
+
+    {{#serialMeta.cleanVols}}
+
+    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
+    <li class="facet active">
+        <ul>
+            {{#issuesArray}}
+                <li><a href="singleObject.php?id={{issuePID}}">{{issueTitle}}</a></li>            
+            {{/issuesArray}}
+        </ul>
+    </li>
+    
+    {{/serialMeta.cleanVols}}
+
+</ul>

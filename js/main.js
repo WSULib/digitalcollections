@@ -101,4 +101,48 @@ $( document ).ready(function() {
       });
     });
 
+
+   $('#responsive-menu-button').sidr({
+      name: 'sidr-main',
+      source: '#navigation'
+    });
+
+   $("body").on("click", ".view-share-buttons", function() {
+        $('.share-buttons').slideToggle();
+   });
+
+});
+
+$(document).ready(function(){
+    /* This code is executed after the DOM has been completely loaded */
+
+    /* Changing thedefault easing effect - will affect the slideUp/slideDown methods: */
+    $.easing.def = "easeOutExpo";
+
+    /* Using event delegation, listens for click on ".facet-toggle": */
+    $(document).on('click','.tree-toggler',function(e){
+    
+        /* Finding the drop down list that corresponds to the current section: */
+        var dropDown = $(this).next('ul');
+        
+        /* Closing all other drop down sections, except the current one */
+        //$('.facet').not(dropDown).slideUp('slow');
+        dropDown.slideToggle('slow');
+        
+        /* Preventing the default event (which would be to navigate the browser to the link's address) */
+        e.preventDefault();
+
+        // Toggle the class and check if the class has been already added or not  
+            $(this).find('span').toggleClass('entypo-minus');
+  
+            if($(this).find('span').hasClass('entypo-plus')){
+                $(this).find('span').removeClass('entypo-plus').addClass('entypo-minus');
+            }else{
+                $(this).find('span').removeClass('entypo-minus').addClass('entypo-plus');
+            }
+  
+    });
+
+    
+    
 });
