@@ -1,53 +1,111 @@
 <tbody>
-<tr>
-    <td>Content Type:</td>
-    <td>{{translated.contentModelPretty}}</td>
-<tr>
-    <td>Date:</td>
-    <td><a href='search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{solrGetFedDoc.response.docs.0.dc_date.0}}</a></td>
-</tr>
-<tr>
-    <td>Collection:</td>
-    <td>
-        {{#isMemberOfCollection.results}}                                                
-            <a href="collection.php?id={{subject}}">{{collectionTitle}}</a><br>
-        {{/isMemberOfCollection.results}}
-    </td>
-</tr>
-<tr>
-    <td>Subject:</td>
-    <td>
-        {{#solrGetFedDoc.response.docs.0.dc_subject}}
-            <a href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a><br>                                            
-        {{/solrGetFedDoc.response.docs.0.dc_subject}}
-    </td>
-</tr>
+	<!--Content Type(s)-->
+	<tr>
+	    <td>Content Type:</td>
+	    <td>{{translated.contentModelPretty}}</td>
+    </tr>
 
-<tr>
-    <td>Rights:</td>
-    <td>
-    {{#solrGetFedDoc.response.docs.0.dc_rights}}
-    	{{{.}}}</br></br>
-    {{/solrGetFedDoc.response.docs.0.dc_rights}}
-    </td>
-</tr>
+    <!--Date-->
+	<tr>
+	    <td>Date:</td>
+	    <td>
+	    	{{#solrGetFedDoc.response.docs.0.facet_mods_year}}
+	    		<a href='search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{.}}</a>
+	    	{{/solrGetFedDoc.response.docs.0.facet_mods_year}}
+    	</td>
+	</tr>
 
-<tr>
-    <td>Components:</td>
-    <td>
-    {{#hasMemberOf.results}}        
-        {{memberTitle}}<br>
-    {{/hasMemberOf.results}}
-    </td>
-</tr>
-<tr>
-    <td>Transcription:</td>
-    <td>
-    	{{{solrGetFedDoc.response.docs.0.mods_abstract_transcription_ms.0}}}
-    </td>
-</tr>
-<tr>
-    <td>Full record:</td>
-    <td><a href="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">Download MODS File</a></td>
-</tr>                                
+	<!--Collections-->
+	<tr>
+	    <td>Collection:</td>
+	    <td>
+	        {{#isMemberOfCollection.results}}                                                
+	            <a href="collection.php?id={{subject}}">{{collectionTitle}}</a><br>
+	        {{/isMemberOfCollection.results}}
+	    </td>
+	</tr>
+
+	<!--Subjects-->
+	<tr>
+	    <td>Subject:</td>
+	    <td>
+	        {{#solrGetFedDoc.response.docs.0.dc_subject}}
+	            <a href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a><br>                                            
+	        {{/solrGetFedDoc.response.docs.0.dc_subject}}
+	    </td>
+	</tr>
+
+	<!--Coverage-->
+	<tr>
+	    <td>Coverage:</td>
+	    <td>
+	        {{#solrGetFedDoc.response.docs.0.dc_coverage}}
+	            <a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br>                                            
+	        {{/solrGetFedDoc.response.docs.0.dc_coverage}}
+	    </td>
+	</tr>
+
+	<!--MODS Resource Type-->
+	<tr>
+	    <td>Resource Type:</td>
+	    <td>
+	        {{#solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
+	            <a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br>	            
+	        {{/solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
+	    <!-- </td> -->	
+
+	<!--Publisher-->
+	<tr>
+	    <td>Publisher:</td>
+	    <td>
+	        {{#solrGetFedDoc.response.docs.0.dc_publisher}}
+	            <a href='search.php?q=*&start=0&fq[]=dc_publisher:"{{.}}"&start=0'>{{.}}</a><br>                                            
+	        {{/solrGetFedDoc.response.docs.0.dc_publisher}}
+	    </td>
+	</tr>
+
+	<!--Source-->
+	<tr>
+	    <td>Source:</td>
+	    <td>
+	        {{#solrGetFedDoc.response.docs.0.dc_source}}
+	            <!-- <a href='search.php?q=*&start=0&fq[]=dc_source:"{{.}}"&start=0'>{{.}}</a><br> -->
+	            {{.}}<br>
+	        {{/solrGetFedDoc.response.docs.0.dc_source}}
+	    </td>
+	</tr>
+
+	<!--Rights-->
+	<tr>
+	    <td>Rights:</td>
+	    <td>
+	    {{#solrGetFedDoc.response.docs.0.dc_rights}}
+	    	{{{.}}}</br></br>
+	    {{/solrGetFedDoc.response.docs.0.dc_rights}}
+	    </td>
+	</tr>
+
+	<!--Components-->
+	<tr>
+	    <td>Components:</td>
+	    <td>
+	    {{#hasMemberOf.results}}        
+	        {{memberTitle}}<br>
+	    {{/hasMemberOf.results}}
+	    </td>
+	</tr>
+
+	<!--Transcripts-->
+	<tr>
+	    <td>Transcription:</td>
+	    <td>
+	    	{{{solrGetFedDoc.response.docs.0.mods_abstract_transcription_ms.0}}}
+	    </td>
+	</tr>
+
+	<!--MODS, full record-->
+	<tr>
+	    <td>Full record:</td>
+	    <td><a href="http://silo.lib.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">Download MODS File</a></td>
+	</tr>                                
 </tbody>

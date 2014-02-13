@@ -134,7 +134,7 @@
     </body>
     <!-- init search -->
     <script type="text/javascript">
-    var searchParams = <?php echo json_encode($_REQUEST); ?>;            
+    var searchParams = <?php echo json_encode($_GET); ?>;            
     $(document).ready(function(){        
         getFavs(searchParams);        
     });    

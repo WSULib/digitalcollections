@@ -109,7 +109,7 @@
 
         <!-- loading collections -->
         <script type="text/javascript"> 
-            var searchParams = <?php echo json_encode($_REQUEST); ?>;
+            var searchParams = <?php echo json_encode($_GET); ?>;
             if (jQuery.isEmptyObject(searchParams)){
                 window.location = "allcollections.php";
 
