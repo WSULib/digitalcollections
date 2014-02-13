@@ -1,3 +1,21 @@
+.toc ul li ul {
+	display: none;
+}
+
+ul.toc-2-col {
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+
+    li {
+    	font-size: 14px;
+    	padding: 10px 0;
+    }
+}
+
 // Facets
 .facets { 
 	width: 30%; 

@@ -54,19 +54,21 @@
 
 <p class="volumes-header"><span>Volumes in the Collection</span></p>
 
-<ul class="toc">
+<ul class="toc-2-col">
 
     {{#serialMeta.cleanVols}}
 
-    <li class="button"><span class="facet-toggle">&#9660;</span> <a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
-    <li class="facet active">
-        <ul>
-            {{#issuesArray}}
-                <li><a href="singleObject.php?id={{issuePID}}">{{issueTitle}}</a></li>            
-            {{/issuesArray}}
-        </ul>
-    </li>
+    <li class="serial-volume"><span class="entypo-doc-text" style="margin-right:10px;"></span><a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
     
     {{/serialMeta.cleanVols}}
 
 </ul>
+
+<!--[if lt IE 10]>
+<style>
+li {
+    width: 25%;
+    float: left
+}
+</style>
+<![endif]-->

@@ -2077,6 +2077,20 @@ header .searchIcon:before {
 .hide-me {
   display: none; }
 
+.toc ul li ul {
+  display: none; }
+
+ul.toc-2-col {
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 20px; }
+  ul.toc-2-col li {
+    font-size: 14px;
+    padding: 10px 0; }
+
 .facets {
   width: 30%;
   float: left;
