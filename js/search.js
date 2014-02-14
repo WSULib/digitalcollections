@@ -125,14 +125,6 @@ function populateResults(templateLocation,destination,templateData){
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {	
 
-  	if (typeof(APIdata.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy = [];
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
-  	}
-  	else {
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
-  	}
-
 	$.ajax({                
 		url: templateLocation,      
 		dataType: 'html',            

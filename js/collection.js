@@ -290,13 +290,7 @@ function populateResults(templateLocation,destination){
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
-  	if (typeof(APIdata.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy = [];
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
-  	}
-  	else {
-  		APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
-  	}
+
     	$.ajax({                
     	url: templateLocation,      
     	dataType: 'html',            
@@ -339,24 +333,15 @@ function populateCollectionsView(){
 			APIdata.collectionsList.solrSearch.response.docs[i]['count'] = APIdata.collectionsCount.solrFacetSearch[collectionObject];
 		}
 		else {
-			console.log("nothing");
-		}
-
-	  	if (typeof(APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy) == "undefined"){  		
-	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy = [];
-	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = 'singleObject';
-	  	}
-	  	else {
-	  		APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
-	  	}
+			// console.log("nothing");
+		}	  	
 
   		$.ajax({          
 		  url: 'templates/collectionsViewObj.htm',      
 		  dataType: 'html',            
 		  async:false,
 		  success: function(response){		  	
-		  	var template = response;
-		  	// APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0] = APIdata.collectionsList.solrSearch.response.docs[i].rels_isRenderedBy[0].stripFedRDFPrefix();
+		  	var template = response;		  	
 		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
 		  	$(".collection_contents").append(html);
 
