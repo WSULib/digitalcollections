@@ -1948,7 +1948,7 @@ header .searchIcon:before {
   content: '\f002'; }
 
 .top-head {
-  background: #0c5449;
+  background: #062722;
   border-bottom: 1px solid #ddd;
   font-size: 0.75em;
   color: #fff; }
@@ -2012,14 +2012,12 @@ header .searchIcon:before {
 
   .brand-search {
     margin-top: 0; } }
-/* Custom page footer */
-.footer {
+footer {
+  font-size: 0.7em;
   color: #999;
   border-top: 6px solid #0c5449;
-  background: #062722; }
-
-footer {
-  font-size: 0.7em; }
+  background: #062722;
+  padding: 20px 0; }
 
 footer a > i,
 footer a > span {
@@ -5874,11 +5872,11 @@ html {
   min-height: 100%; }
 
 body {
-  margin: 0 0 100px; }
+  margin: 0 0 66px; }
 
 footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 100px;
+  height: 66px;
   width: 100%; }
