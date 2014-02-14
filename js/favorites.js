@@ -208,7 +208,7 @@ function favObjRemove(PID){
 
       function callSuccess(response){
         console.log(response);
-        alert("Favorte "+PID+" has been removed.");        
+        // alert("Favorte "+PID+" has been removed.");  
         location.reload();
       }
       function callError(response){

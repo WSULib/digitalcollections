@@ -56,20 +56,7 @@
                             </select>
                         </li> -->
                     </ul>
-                    <div class="row-fluid">
-                        <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                            <option value="12">12</option>
-                            <option value="36">36</option>
-                            <option value="48">48</option>
-                            <option value="90">90</option>
-                        </select> -->
-                        <div class="switch-views">
-                       <!--      <div id="list" class="list list-active"></div>
-                            <div id="grid" class="grid"></div>
-                            <div class="filter-on filter-active"></div>
-                            <div class="filter-off"></div>
-                        --> </div>
-                    </div><!-- /switch-views -->
+                   
                     
                 </div><!-- /row for sub-header -->
 
@@ -109,7 +96,7 @@
 
         <!-- loading collections -->
         <script type="text/javascript"> 
-            var searchParams = <?php echo json_encode($_REQUEST); ?>;
+            var searchParams = <?php echo json_encode($_GET); ?>;
             if (jQuery.isEmptyObject(searchParams)){
                 window.location = "allcollections.php";
 

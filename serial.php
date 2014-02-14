@@ -1,6 +1,6 @@
 <!DOCTYPE php>
 <?php
-$serialObjPID = $_REQUEST['id'];
+$serialObjPID = $_GET['id'];
 ?>
 <html>
     <head>

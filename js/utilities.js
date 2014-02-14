@@ -241,6 +241,8 @@ function populateFacets(){
     }
     // hide empty facets
         $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
+        $('#search_facet').show();
+
         
     // add "more" button if longer than facet_limit   
     if (facet_array.length > facet_limit){            

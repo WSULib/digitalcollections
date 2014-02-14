@@ -1888,20 +1888,19 @@ input[type="button"].btn-block {
   margin-right: 15px; }
 
 header {
-  background: #f1f1ea;
+  background: #f1efe5;
   border-bottom: 1px solid #eee; }
 
 header h1 {
-  display: inline; }
+  display: inline-block;
+  margin-top: 20px; }
 
 header h1 a, header h1 a:visited {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   color: #062728;
   text-transform: uppercase;
-  text-decoration: none;
-  /*margin-top: 1.5em;
-  margin-bottom: 1.5em;*/ }
+  text-decoration: none; }
 
 h1 a:hover, h1 a:active {
   text-decoration: none; }
@@ -1910,7 +1909,8 @@ header .search-box {
   position: relative;
   width: 100%;
   float: right;
-  margin-top: .5em; }
+  margin: 18px 0;
+  display: inline-block; }
 
 header .searchTerm {
   position: absolute;
@@ -2012,6 +2012,36 @@ header .searchIcon:before {
 
   .brand-search {
     margin-top: 0; } }
+/* Custom page footer */
+.footer {
+  color: #999;
+  border-top: 6px solid #0c5449;
+  background: #062722; }
+
+footer {
+  font-size: 0.7em; }
+
+footer a > i,
+footer a > span {
+  padding: 0 5px; }
+
+footer ul {
+  list-style: none; }
+  footer ul li {
+    display: inline;
+    margin: 0 10px; }
+
+footer ul.pull-right > li {
+  text-align: right; }
+
+footer ul > li > a, footer ul > li > a:visited {
+  color: #999;
+  border-bottom: 1px dotted #666; }
+
+footer ul > li > a:hover, footer ul > li > a:active {
+  color: #ffcc33;
+  border-bottom: 1px dotted #666; }
+
 .sub-header {
   margin: 0 0 1.75em 0; }
   .sub-header ul {
@@ -2264,8 +2294,9 @@ li:last-child.object-container-list {
     margin: auto;
     display: block; }
   .object-container-grid h3 {
-    font-size: 13px;
-    margin: 10px 0 5px 0; }
+    font-size: 14px;
+    margin: 10px 0 5px 0;
+    text-align: center; }
   .object-container-grid h4 {
     font-size: 0.8em;
     margin: 0;
@@ -5838,5 +5869,16 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin: 0 0 100px; }
+
 footer {
-  background: #08362f; }
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%; }

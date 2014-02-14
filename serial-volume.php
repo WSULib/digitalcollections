@@ -65,7 +65,7 @@ $serialObjPID = $_REQUEST['id'];
 
             <!-- loading serials -->
         <script type="text/javascript"> 
-            var searchParams = <?php echo json_encode($_REQUEST); ?>;
+            var searchParams = <?php echo json_encode($_GET); ?>;
             console.log(searchParams);
             if (jQuery.isEmptyObject(searchParams.vol)){
                 // window.location = "serial.php?id="+searchParams.id;

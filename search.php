@@ -53,7 +53,7 @@
                 <ul>
                     <li><span id='num_results'></span> Objects</li>
                     <li>&quot;<span id='q_string'></span>&quot;</li>
-                    <li><a href="#">Save this Search</a></li>
+                    <!-- <li><a href="#">Save this Search</a></li> -->
                 </ul>
                 <div class="row-fluid">
                     <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
@@ -104,7 +104,7 @@
 
         <!-- init search -->
         <script type="text/javascript">
-        var searchParams = <?php echo json_encode($_REQUEST); ?>;    
+        var searchParams = <?php echo json_encode($_GET); ?>;
         $(document).ready(function(){        
             searchGo();    
         });    
@@ -112,3 +112,4 @@
         
     </body>
 </html>
+

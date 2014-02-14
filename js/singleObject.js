@@ -9,8 +9,7 @@ var APIdata = new Object();
 function APIcall(PID){	
 	
   // Calls API functions	
-  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
-  
+  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
 
   $.ajax({          
     url: APIcallURL,      
@@ -75,12 +74,14 @@ function renderPage(){
     // Head
     $('head').mustache('head_t', APIdata);
     
-    // Metadata    
+    // Metadata
+    // info-panel    
     $.get('templates/info-panel.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $(".info-panel").html(html);
       cleanEmptyMetaRows();
     });    
+    // display-more-info
     $.get('templates/display-more-info.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
       $(".display-more-info table").html(html);

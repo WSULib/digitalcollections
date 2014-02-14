@@ -36,6 +36,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="allcollections.php">Collections</a></li>
                         <li><a href="search.php">Browse</a></li>
+                        <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
