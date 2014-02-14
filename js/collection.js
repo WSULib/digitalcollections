@@ -145,7 +145,7 @@ function updatePage(){
 	paginationUpdate();
 
 	// update link to the Collection's single object page
-	$("#learn_more").html("<a href='singleObject.php?id="+searchParams['id']+"'>Learn more about this collection</a>");
+	$("#learn_more").html("<a href='singleObject.php?rendered=singleObject&id="+searchParams['id']+"'>Learn more about this collection</a>");
 
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
