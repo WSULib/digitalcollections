@@ -28,8 +28,7 @@ if( isset($_GET["id"]) ){
 	$query_response = $client->query($query);
 	$response = $query_response->getResponse();	
 
-	if ( isset($response['response']['docs'][0]['rels_isRenderedBy']) ){
-		echo "We got something.  Going there.";
+	if ( isset($response['response']['docs'][0]['rels_isRenderedBy']) ){		
 		$isRenderedBy_string = $response['response']['docs'][0]['rels_isRenderedBy'][0];
 		$isRenderedBy_temp = explode("info:fedora/",$isRenderedBy_string);
 		$isRenderedBy = $isRenderedBy_temp[1];
