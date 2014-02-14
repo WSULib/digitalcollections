@@ -54,6 +54,8 @@ function searchGo(){
 
 	console.log(searchParams);
 
+	
+
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
 	delete searchParams['fq'];	

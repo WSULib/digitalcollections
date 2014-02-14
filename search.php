@@ -104,7 +104,7 @@
 
         <!-- init search -->
         <script type="text/javascript">
-        var searchParams = <?php echo json_encode($_GET); ?>;    
+        var searchParams = <?php echo json_encode($_GET); ?>;
         $(document).ready(function(){        
             searchGo();    
         });    
@@ -112,3 +112,4 @@
         
     </body>
 </html>
+
