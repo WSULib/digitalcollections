@@ -1,5 +1,4 @@
-<?php 
-//Barebones of Single Object Page
+<?php
 $objectPID = $_REQUEST['id'];
 ?>
 
