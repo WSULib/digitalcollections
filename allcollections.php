@@ -23,8 +23,9 @@
         <!-- Local JS -->
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/favorites.js"></script>
-        <script src="js/userData.js"></script>             
-        <script src="js/collection.js"></script>
+        <script src="js/userData.js"></script>
+        <script src="js/collection-shared.js"></script>             
+        <script src="js/allcollections.js"></script>
         <script src="js/utilities.js"></script>
 
         
@@ -47,7 +48,7 @@
                     Collections
                 </h2>
                 <div class="row">
-                    <div class="collection_contents"> <!-- Added by Cole -->
+                    <div class="collection_contents">
                     </div>
                 </div>
 
@@ -62,7 +63,7 @@
         <!-- loading collections -->
         <script type="text/javascript"> 
             var searchParams = {};
-            collectionsList("allCollections");                
+            searchGo("allCollections");                
         </script>
     </body>
 </html>

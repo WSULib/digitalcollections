@@ -26,6 +26,7 @@
         <script src="js/userData.js"></script>             
         
         <script src="js/utilities.js"></script>
+        <script src="js/collection-shared.js"></script>            
         <script src="js/collection.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
@@ -50,11 +51,6 @@
                     <ul>
                         <li><span id='num_results'></span> Objects</li>
                         <li><span id='learn_more'>Learn more about this collection</span></li>
-<!--                         <li>                        
-                            <select class="form-control" onchange="updateCollection();">
-                                <option>View different collection</option>
-                            </select>
-                        </li> -->
                     </ul>
                    
                     
@@ -80,7 +76,6 @@
                         <!-- results template -->
                         <div class="row">
                             <div class="collection_contents"> 
-                                <!-- Added by Cole -->
                             </div>
                         </div>
                     </ul>
@@ -97,17 +92,9 @@
         <!-- loading collections -->
         <script type="text/javascript"> 
             var searchParams = <?php echo json_encode($_GET); ?>;
-            if (jQuery.isEmptyObject(searchParams)){
-                window.location = "allcollections.php";
-
-                // collectionsList("collectionPage");                
-            }
-            else{    
             $(document).ready(function(){
-                // updatePage();
                 searchGo("collectionPage");
             });
-            }    
         </script>
         <!-- ********************************************* -->
     </body>
