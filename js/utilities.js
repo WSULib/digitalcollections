@@ -197,8 +197,8 @@ function populateFacets(){
   var cURL = document.URL;
 
   // tack on "*" to empty search  
-  if (cURL.indexOf("?q=") == -1 ){
-    cURL+="?q=*";
+  if (cURL.indexOf("?") == -1 ){
+    cURL+="?";
   }
   if (cURL.endsWith("?q=") == true ){
     cURL+="*";

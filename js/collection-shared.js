@@ -3,12 +3,12 @@
 function searchGo(type){
 
 	// Set Search Parameters	
-	searchParams['q'] = searchParams['id'];
+	// searchParams['q'] = searchParams['id'];
 
-	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['q'];
-
+	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['id'];
+console.log("STUFF", searchParams['id']);
 	searchParams['raw'] = "escapeterms";
-
+console.log("STUFF", searchParams.q);
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -34,6 +34,7 @@ function searchGo(type){
 		function callSuccess(response){
 			mix(response, APIdata);
 			$(document).ready(function(){
+				console.log("RESULTS", response);
 				if (type == "collectionPage"){
 
 					updateCollectionTitle();
