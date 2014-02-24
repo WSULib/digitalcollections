@@ -2009,7 +2009,8 @@ header .nav-wrap {
 
 nav.header-primary {
   position: absolute;
-  top: 60px; }
+  top: 60px;
+  width: 1140px; }
   nav.header-primary.navbar ul {
     background: rgba(255, 255, 255, 0.9);
     height: auto;
@@ -2042,13 +2043,22 @@ nav.header-global {
     float: left; }
   nav.header-global .login {
     float: right;
-    font-size: 0.8em; }
+    font-size: 0.8em;
+    padding-right: 20px; }
+
+ul.slider li {
+  display: inline-block;
+  border: 5px solid white;
+  margin: 5px;
+  width: 100px;
+  height: 70px;
+  margin-top: 25px; }
 
 .masthead {
   z-index: 1; }
 
 .masthead .slides-wrap {
-  height: 380px;
+  height: 360px;
   max-width: 1470px;
   width: 100%;
   position: relative;
@@ -2108,8 +2118,6 @@ header .container {
 footer {
   font-size: 0.7em;
   color: #999;
-  border-top: 6px solid #0c5449;
-  background: #062722;
   padding: 20px 0; }
 
 footer a > i,

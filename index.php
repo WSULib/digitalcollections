@@ -51,7 +51,11 @@
            <p>Text about image/collection Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, sunt quidem error sed aperiam dignissimos voluptatum aliquam ducimus porro vero. Read more &raquo;</p>
         </div>
         <div class="col-md-4">
-            carousel/slider options
+            <ul class="slider">
+                <li>img 1</li>
+                <li>img 2</li>
+                <li>img 3</li>
+            </ul>
         </div>
     </div>
 

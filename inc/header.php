@@ -8,7 +8,7 @@
             </ul>
 
             <ul class="login">
-                <li class="login-status"><a href="login.php">Log In / Sign Up</a></li>
+                <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
             </ul>
         </nav>
 

@@ -179,11 +179,7 @@ position: relative;
 nav.header-primary {
   position: absolute;
   top: 60px;
-  // z-index: 2;
-
-  &.navbar {
-
-  }
+  width: 1140px;
 
   &.navbar ul {
   background: rgba(255,255,255, 0.9);
@@ -230,17 +226,26 @@ width: 100%;
   .login {
     float: right;
     font-size: 0.8em;
+    padding-right: 20px;
   }
 
 }
 
 
+ul.slider li {
+  display: inline-block;
+  border: 5px solid white;
+  margin: 5px;
+  width: 100px;
+  height: 70px;
+  margin-top: 25px;
+}
 
 .masthead {
 z-index: 1;
 }
 .masthead .slides-wrap {
-height: 380px;
+height: 360px;
 max-width: 1470px;
 width: 100%;
 position: relative;
