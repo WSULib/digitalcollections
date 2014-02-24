@@ -104,7 +104,7 @@ $( document ).ready(function() {
 
    $('#responsive-menu-button').sidr({
       name: 'sidr-main',
-      source: '#navigation, .top-nav'
+      source: '#navigation, .login'
     });
 
    $("body").on("click", ".view-share-buttons", function() {

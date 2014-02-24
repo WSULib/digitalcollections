@@ -61,14 +61,17 @@
 
     <div class="container feature-bottom">
         <div class="col-md-4">
+            <h5>Welcome to the WSU Digital Collections</h5>
             about digital collections
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, numquam, itaque, ipsum sunt eos illum ipsam alias repudiandae minus eligendi ea rerum et excepturi assumenda vitae sit expedita ad veritatis saepe esse est animi consequuntur quod nam perferendis non suscipit nulla minima aliquid facilis at deserunt deleniti reiciendis aliquam quo.
         </div>
         <div class="col-md-4">
+            <h5>News / Blog posts</h5>
             news and blogs and stuffs
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, similique, unde numquam reprehenderit necessitatibus cumque modi incidunt nesciunt maxime sapiente impedit eum error ratione id sequi excepturi fugit doloremque quibusdam corporis culpa et quia ducimus doloribus eaque eius alias suscipit voluptatum perspiciatis dolores inventore adipisci porro iusto mollitia. Magnam, sit!
         </div>
         <div class="col-md-4">
+            <h5>Exhibition / More news / posts</h5>
             news and blogs and stuffs
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, accusantium, excepturi, pariatur, quis libero odio consequatur praesentium quam placeat vel ipsum quo molestiae obcaecati iusto modi. Animi, voluptates, architecto fugit est iure dolor perspiciatis ipsum dolore vel voluptatem labore ipsa quos sed fuga laborum earum nisi provident id dicta ut.
         </div>

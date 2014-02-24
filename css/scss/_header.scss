@@ -101,7 +101,7 @@ header .searchIcon:before {
 }
 
 .top-level li {
-  margin-right: 20px;
+  margin-right: 5px;
 }
 .libraries a, .libraries a:visited, .top-nav a, .top-nav a:visited {
     color: #fff;
@@ -283,6 +283,7 @@ header .container {
 .feature-bottom {
   background: white;
   padding: 30px;
+  font-size: 0.9em;
 }
 
 .search-form {
@@ -300,6 +301,10 @@ header .container {
   z-index: 1000;
 }
 
+.login_status {
+  color: white;
+}
+
 /* line 115, scss/base/_forms.scss */
 .search-form fieldset button {
   background: #fc3;
@@ -315,4 +320,21 @@ header .container {
   position: absolute;
   width: 44px;
   z-index: 1002;
+}
+
+.sidr-class-login_status {
+  list-style: none;
+  display: block;
+  margin: 0;
+  line-height: 48px;
+  // border-top: 1px solid #4d4d4d;
+  // border-bottom: 1px solid #1a1a1a;
+
+}
+
+.sidr-class-login_status a {
+  padding: 0 15px;
+  display: block;
+  text-decoration: none;
+  color: white;
 }
