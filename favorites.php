@@ -87,34 +87,8 @@
                 <ul>
                     <li><span id='num_results'></span> Objects</li>
                 </ul>
-               <!--  <div class="row-fluid">
-                    <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                        <option value="12">12</option>
-                        <option value="36">36</option>
-                        <option value="48">48</option>
-                        <option value="90">90</option>
-                    </select> 
-                    <div class="switch-views">
-                        <div id="list" class="list list-active"></div>
-                        <div id="grid" class="grid"></div>
-                        <div class="filter-on filter-active"></div>
-                        <div class="filter-off"></div>
-                    </div>
-                </div> /switch-views -->
                 
-            </div><!-- /row for sub-header -->
-            
-            <!-- <div id="list_container" class="facets">
-                <ul class="facet_container filter" id="search_facet">
-                    <li>
-                        <h3 class="tree-toggler">Lists</h3>
-                        <ul class="tree facet_list" id="fav-list">
-                            
-                        </ul>
-                        <div class="btn">Add New</div>
-                    </li>
-                </ul>
-            </div> /facets --> 
+            </div><!-- /row for sub-header -->            
 
             <div id="results_container" class="main-container-wide">
                 
@@ -134,9 +108,9 @@
     </body>
     <!-- init search -->
     <script type="text/javascript">
-    var searchParams = <?php echo json_encode($_GET); ?>;            
-    $(document).ready(function(){        
-        getFavs(searchParams);        
+    var searchParams = <?php echo json_encode($_GET); ?>;                
+    $(document).ready(function(){         	
+    	getFavs(searchParams);    	        
     });    
 </script>
 </html>

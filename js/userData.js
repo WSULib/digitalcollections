@@ -17,11 +17,6 @@ $(document).ready(function(){
 
 		if (userData.loggedIn_WSUDOR == true){
 
-			// If validating cookies in JS, this would happen here.  
-			// Send username and hash to server, if matches, returns true
-				// possible to interrupt this, send changed username and intercept loading of page, change flag to true.  
-				// that might be possible, but only for a moment (as in console commands, a new page load would undo that)
-
 			var postData = new Object();
 			postData.username = userData.username_WSUDOR;
 			postData.clientHash = userData.clientHash;
@@ -43,7 +38,7 @@ $(document).ready(function(){
 				},
 				error: function(response){
 				  console.log(response);
-				  alert("userData Error.");
+				  // alert("userData Error.");
 				}
 			});			
 
@@ -52,7 +47,10 @@ $(document).ready(function(){
 			$('nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 			$('#sidr-main nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  
-	}           
+	}      
+	else {
+		userData.loggedIn_WSUDOR = false;
+	}     
 });
 
 function logoutUser(){

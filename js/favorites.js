@@ -24,6 +24,14 @@ APIdata = new Object();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getFavs(){
 
+	// redirect if no longer logged in
+	if (userData.loggedIn_WSUDOR != false){
+		getFavs(searchParams);
+	}
+	else {
+		window.location = 'search.php';
+	}
+
 	var favParams = new Object();
 	favParams.q = "fav_user:"+userData.username_WSUDOR;
 	favParams.fl = "fav_item";	

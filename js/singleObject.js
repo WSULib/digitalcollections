@@ -233,7 +233,7 @@ function addFav(){
       }
     }
   else {
-    alert("No user defined!");
+    alert("User not found.  Please login or sign up to save favorites.");
   }  
 }
 
