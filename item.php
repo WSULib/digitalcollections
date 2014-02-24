@@ -46,8 +46,7 @@ elseif( isset($_REQUEST["id"]) ){
 }
 
 // else, PID not provided, load 404 page
-else{
-	echo "PID not provided, this will render 404 page."; 
+else{	
 	$fileTemplate = "404.php"; 
 	renderTemplate($fileTemplate); 	
 }

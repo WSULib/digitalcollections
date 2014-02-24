@@ -67,15 +67,16 @@ $serialObjPID = $_REQUEST['id'];
         <script type="text/javascript"> 
             var searchParams = <?php echo json_encode($_GET); ?>;
             console.log(searchParams);
-            if (jQuery.isEmptyObject(searchParams.vol)){
-                // window.location = "serial.php?id="+searchParams.id;
-                // Redirect to 404 page
-            }
-            else{    
-            $(document).ready(function(){
-                launch(searchParams);
-            });
-            }    
+            launch(searchParams);
+            // if (jQuery.isEmptyObject(searchParams.vol)){
+            //     // window.location = "serial.php?id="+searchParams.id;
+            //     // Redirect to 404 page
+            // }
+            // else{    
+	           //  $(document).ready(function(){
+	           //      launch(searchParams);
+	           //  });
+            // }    
         </script>
         <!-- ********************************************* -->
 	
