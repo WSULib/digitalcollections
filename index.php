@@ -41,9 +41,44 @@
 
 	<div class="masthead cf masthead-overflowing">
         <div class="slides-wrap">
-            <div class="slide photo" id="mh-slide-24956" style="z-index: -1; opacity: 1;"><img data-pm-sized="yes" src="img/masthead.jpeg"></div>
+            <div class="slide photo" id="mh-slide-24956" style="z-index: -1; opacity: 1;"><img data-pm-sized="yes" src="img/masthead1.jpeg"></div>
         </div>
     </div>
+
+<!--     <div class="connected-carousels">
+        <div class="stage">
+            <div class="carousel carousel-stage">
+                <ul>
+                    <li><img src="../_shared/img/img1.jpg" width="600" height="400" alt=""></li>
+                    <li><img src="../_shared/img/img2.jpg" width="600" height="400" alt=""></li>
+                    <li><img src="../_shared/img/img3.jpg" width="600" height="400" alt=""></li>
+                    <li><img src="../_shared/img/img4.jpg" width="600" height="400" alt=""></li>
+                    <li><img src="../_shared/img/img5.jpg" width="600" height="400" alt=""></li>
+                    <li><img src="../_shared/img/img6.jpg" width="600" height="400" alt=""></li>
+                </ul>
+            </div>
+            <p class="photo-credits">
+                Photos by <a href="http://www.mw-fotografie.de">Marc Wiegelmann</a>
+            </p>
+            <a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
+            <a href="#" class="next next-stage"><span>&rsaquo;</span></a>
+        </div>
+
+        <div class="navigation">
+            <a href="#" class="prev prev-navigation">&lsaquo;</a>
+            <a href="#" class="next next-navigation">&rsaquo;</a>
+            <div class="carousel carousel-navigation">
+                <ul>
+                    <li><img src="../_shared/img/img1_thumb.jpg" width="50" height="50" alt=""></li>
+                    <li><img src="../_shared/img/img2_thumb.jpg" width="50" height="50" alt=""></li>
+                    <li><img src="../_shared/img/img3_thumb.jpg" width="50" height="50" alt=""></li>
+                    <li><img src="../_shared/img/img4_thumb.jpg" width="50" height="50" alt=""></li>
+                    <li><img src="../_shared/img/img5_thumb.jpg" width="50" height="50" alt=""></li>
+                    <li><img src="../_shared/img/img6_thumb.jpg" width="50" height="50" alt=""></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
 
     <div class="container feature">
         <div class="col-md-8">
