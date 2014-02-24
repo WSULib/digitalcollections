@@ -1888,18 +1888,16 @@ input[type="button"].btn-block {
   margin-right: 15px; }
 
 header {
-  background: #f1efe5;
-  border-bottom: 1px solid #eee; }
+  background: rgba(6, 39, 34, 0.8); }
 
 header h1 {
   display: inline-block;
-  margin-top: 20px; }
+  font-family: 'Marcellus SC', serif;
+  margin-top: 11px;
+  z-index: 1002; }
 
 header h1 a, header h1 a:visited {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
-  color: #062728;
-  text-transform: uppercase;
+  color: white;
   text-decoration: none; }
 
 h1 a:hover, h1 a:active {
@@ -1947,24 +1945,13 @@ header .searchButton {
 header .searchIcon:before {
   content: '\f002'; }
 
-.top-head {
-  background: #062722;
-  border-bottom: 1px solid #ddd;
-  font-size: 0.75em;
-  color: #fff; }
+.top-level {
+  font-family: 'Marcellus SC', serif;
+  font-size: 0.9em;
+  padding-left: 20px; }
 
-.top-head a {
-  color: #fff; }
-
-.top-head .container {
-  height: 30px; }
-
-.libraries {
-  display: inline-block;
-  padding: 6px 0;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  word-spacing: .1em; }
+.top-level li {
+  margin-right: 20px; }
 
 .libraries a, .libraries a:visited, .top-nav a, .top-nav a:visited {
   color: #fff; }
@@ -2012,6 +1999,112 @@ header .searchIcon:before {
 
   .brand-search {
     margin-top: 0; } }
+header {
+  border-top: 32px solid #062722;
+  height: 175px;
+  z-index: 4; }
+
+header .nav-wrap {
+  position: relative; }
+
+nav.header-primary {
+  position: absolute;
+  top: 60px; }
+  nav.header-primary.navbar ul {
+    background: rgba(255, 255, 255, 0.9);
+    height: auto;
+    width: 100%; }
+    nav.header-primary.navbar ul li a {
+      text-transform: uppercase;
+      font-size: 1em; }
+
+nav.header-global {
+  position: absolute;
+  width: auto; }
+
+nav.header-primary ul, nav.header-global ul {
+  width: auto;
+  z-index: 2; }
+
+nav.header-primary ul li, nav.header-global ul li {
+  display: inline-block;
+  list-style-type: none;
+  float: left; }
+
+nav.header-global ul li a {
+  color: white; }
+
+nav.header-global {
+  top: -26px;
+  z-index: 3;
+  width: 100%; }
+  nav.header-global .top-level {
+    float: left; }
+  nav.header-global .login {
+    float: right;
+    font-size: 0.8em; }
+
+.masthead {
+  z-index: 1; }
+
+.masthead .slides-wrap {
+  height: 380px;
+  max-width: 1470px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto; }
+
+.masthead .slide {
+  overflow: hidden;
+  position: absolute;
+  top: -200px; }
+
+header .container {
+  padding: 0;
+  position: relative; }
+
+.feature {
+  background: rgba(241, 239, 229, 0.9);
+  min-height: 140px;
+  padding: 10px 30px; }
+  .feature h3 {
+    font-weight: 700; }
+  .feature p {
+    font-size: 0.9em; }
+
+.feature-bottom {
+  background: white;
+  padding: 30px; }
+
+.search-form {
+  display: inline-block;
+  width: 100%; }
+
+/* line 105, scss/base/_forms.scss */
+.search-form fieldset input {
+  border: none;
+  float: left;
+  height: 44px;
+  padding: 0 54px 0 10px;
+  width: 99.8%;
+  z-index: 1000; }
+
+/* line 115, scss/base/_forms.scss */
+.search-form fieldset button {
+  background: #fc3;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: #000;
+  cursor: pointer;
+  float: right;
+  height: 44px;
+  right: 0;
+  top: 0;
+  padding: 0;
+  position: absolute;
+  width: 44px;
+  z-index: 1002; }
+
 footer {
   font-size: 0.7em;
   color: #999;
@@ -4081,6 +4174,11 @@ a.list-group-item.active > .badge,
         padding-right: 60px; }
       .jumbotron h1 {
         font-size: 72px; } }
+
+.masthead {
+  background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
+  width: 100%;
+  z-index: 2; }
 
 .thumbnail {
   display: block; }

@@ -38,3 +38,11 @@
     }
   }
 }
+
+.masthead {
+  background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
+  // margin: -75px auto 0;
+  // max-width: 1210px;
+  width: 100%;
+  z-index: 2;
+}

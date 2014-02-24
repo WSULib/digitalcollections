@@ -41,6 +41,16 @@ $objectPID = $_REQUEST['id'];
         <script src="js/jquery.cookie.js" type="text/javascript"></script> 
         <script src="inc/sidr/jquery.sidr.min.js"></script>
 
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">stLight.options({publisher: "5131cbe9-49f8-4ed4-80d3-75fa951eadad", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+        <style>
+        .social ul li {
+            display: inline;
+        }
+        </style>
+
     </head>
 
     <body>
