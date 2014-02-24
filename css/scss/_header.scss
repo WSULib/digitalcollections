@@ -31,15 +31,15 @@ header {
 header h1 {
     display: inline-block;
     // margin-top: 20px;
-    font-family: 'Marcellus SC', serif;
+    // font-family: 'Marcellus SC', serif;
     margin-top: 11px;
     z-index: 1002;
 }
 header h1 a, header h1 a:visited  {
-    // font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     // font-weight: 900;
     color: white;
-    // text-transform: uppercase;
+    text-transform: uppercase;
     text-decoration: none;
     // margin-bottom: 1.5em;
 }

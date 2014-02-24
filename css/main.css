@@ -1892,12 +1892,13 @@ header {
 
 header h1 {
   display: inline-block;
-  font-family: 'Marcellus SC', serif;
   margin-top: 11px;
   z-index: 1002; }
 
 header h1 a, header h1 a:visited {
+  font-family: 'Roboto', sans-serif;
   color: white;
+  text-transform: uppercase;
   text-decoration: none; }
 
 h1 a:hover, h1 a:active {
