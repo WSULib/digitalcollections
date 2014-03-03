@@ -41,8 +41,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="allcollections.php">Collections</a></li>
                     <li><a href="search.php">Browse</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
         </div>
