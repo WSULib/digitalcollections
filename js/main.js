@@ -80,6 +80,13 @@ $(function(){
 });
 
 $( document ).ready(function() {
+
+ //index background
+
+    $('.thumbs img').click(function(){
+        $('.slide.photo img').empty();
+        $('.slide.photo img').attr('src',$(this).attr('src'));
+    });
  
  //collections
 
