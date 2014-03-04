@@ -7,7 +7,8 @@
 // -------------------------
 
 p {
-  margin: $line-height-computed 0 ($line-height-computed / 2);
+  margin: 0 0 $line-height-computed;
+  font-weight: 300;
 }
 .lead {
   margin-bottom: $line-height-computed;

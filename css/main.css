@@ -334,7 +334,8 @@ hr {
   border: 0; }
 
 p {
-  margin: 22px 0 11px; }
+  margin: 0 0 22px;
+  font-weight: 300; }
 
 .lead {
   margin-bottom: 22px;
