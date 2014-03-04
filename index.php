@@ -42,12 +42,17 @@
 	<div class="masthead cf masthead-overflowing">
         <div class="slides-wrap">
             <div class="slide photo" id="mh-slide-24956" style="z-index: -1; opacity: 1;"><img data-pm-sized="yes" src="img/masthead1.jpeg"></div>
+            <div class="container">
+                <h2>Featured Collection:</h2>
+                <h3>Changing Face of the Auto Industry</h3>
+                <a href="#" class="button-feat">View Collection</a>
+            </div>
         </div>
     </div>
 
     <div class="container feature">
         <div class="col-md-8">
-            <h3>Changing Face of the Auto Industry</h3>
+            <h3>About the Changing Face of the Auto Industry collection</h3>
            <p>Text about image/collection Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, sunt quidem error sed aperiam dignissimos voluptatum aliquam ducimus porro vero. Read more &raquo;</p>
         </div>
         <div class="col-md-4">
