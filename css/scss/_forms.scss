@@ -82,6 +82,67 @@ input[type="number"] {
   }
 }
 
+.contact-form {
+
+  label {
+    display: block;
+    margin-top: ($line-height-computed);
+    font-weight: 300;
+    font-size: 24px;
+  }
+
+  input {
+    height: 3.5em;
+  }
+
+  textarea {
+    height: 160px;
+    margin-bottom: 20px;
+  }
+
+  input, textarea {
+    padding: 15px;
+    width: 90%;
+    border: 3px solid #eee;
+    border-radius: 4px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: #333;
+    font-size: 13px;
+  }
+
+  // Highlight current box
+  input:focus, textarea:focus {
+    border: 3px solid $wsu-gold;
+    outline: none;
+  }
+
+  // Override iOS and Firefox top shadow
+  input[type="text"], input[type="email"], textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none; /* mobile firefox too! */
+  }
+}
+
+// Post submission message
+.thanks {
+  font-size: 1.75em;
+  font-weight: 300;
+  // padding: 205px 0;
+  text-align: center;
+
+  strong {
+    text-transform: uppercase;
+  }
+}
+
+.validation {
+    font-size: 24px;
+    color: #ef493b;
+}
+
 
 // Placeholder
 //

@@ -47,7 +47,7 @@
 
     <div class="container feature">
         <div class="col-md-8">
-            <h3>Text about image/collection</h3>
+            <h3>Changing Face of the Auto Industry</h3>
            <p>Text about image/collection Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, sunt quidem error sed aperiam dignissimos voluptatum aliquam ducimus porro vero. Read more &raquo;</p>
         </div>
         <div class="col-md-4">

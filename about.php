@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Page Not Found</title>
+	<title>About</title>
 
 	<link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
@@ -42,6 +42,8 @@
 
 	<div class="container">
 		<h2>About</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, ducimus eum porro dolore at maxime numquam laudantium. Id, fuga, reiciendis sapiente autem iure quaerat eius doloremque et magnam magni odit libero vero illum. Similique aliquid quas illum rerum. Inventore, mollitia, eaque, fugiat pariatur animi incidunt eius necessitatibus vel sed blanditiis cumque aliquam debitis eos dolores enim harum laboriosam quo exercitationem suscipit consectetur ducimus perferendis et. Quam, eius omnis aperiam aliquid repellendus excepturi sit voluptates deserunt quibusdam delectus. Corrupti, quo, saepe amet eum odio porro nulla facilis illum eos quas velit eaque expedita quod aliquid incidunt sapiente similique deleniti sed quaerat.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda distinctio eligendi architecto mollitia modi totam deleniti veniam natus sint corporis. Cupiditate, nemo, aspernatur nam aliquid earum possimus deleniti eos aliquam ipsa ducimus? Voluptates, aut pariatur voluptatibus. Libero, ducimus, beatae, animi, cumque deserunt ea est sint ad vel iusto inventore rerum nam eius harum repellat quae laudantium facilis nesciunt sit ipsam necessitatibus nostrum itaque eaque numquam corporis adipisci nisi totam in quas. Aspernatur, ad, quaerat, nesciunt obcaecati quam repellat distinctio ratione quasi non sequi ex error enim nulla consequatur dignissimos. Aliquid, iste odio quibusdam suscipit illo nobis reprehenderit animi numquam voluptate!</p>
 	</div>
 	
 	<?php include('inc/footer.php'); ?>
