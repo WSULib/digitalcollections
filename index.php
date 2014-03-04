@@ -62,18 +62,15 @@
     <div class="container feature-bottom">
         <div class="col-md-4">
             <h5>Welcome to the WSU Digital Collections</h5>
-            about digital collections
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, numquam, itaque, ipsum sunt eos illum ipsam alias repudiandae minus eligendi ea rerum et excepturi assumenda vitae sit expedita ad veritatis saepe esse est animi consequuntur quod nam perferendis non suscipit nulla minima aliquid facilis at deserunt deleniti reiciendis aliquam quo.
+            <p>about digital collections Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, incidunt, doloribus, repellat, distinctio voluptas ullam odit tempore necessitatibus placeat ad sunt doloremque molestiae quam eum animi sit hic veritatis neque dignissimos voluptate sequi consectetur molestias. Ipsam, placeat minus fuga earum quibusdam doloremque reprehenderit error! Sed, iure dolorem consectetur necessitatibus ipsam?</p>
         </div>
         <div class="col-md-4">
             <h5>News / Blog posts</h5>
-            news and blogs and stuffs
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, similique, unde numquam reprehenderit necessitatibus cumque modi incidunt nesciunt maxime sapiente impedit eum error ratione id sequi excepturi fugit doloremque quibusdam corporis culpa et quia ducimus doloribus eaque eius alias suscipit voluptatum perspiciatis dolores inventore adipisci porro iusto mollitia. Magnam, sit!
+            <p>news and blogs and other announcements Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, ipsum, sapiente, suscipit nisi totam illo repellendus voluptatum ex quos quaerat voluptates reprehenderit ipsam magnam sit similique debitis nihil odit alias consequuntur molestias distinctio cum laboriosam tempora modi numquam harum provident sequi doloribus neque recusandae quia vel autem ea. Voluptatum, est.</p>
         </div>
         <div class="col-md-4">
             <h5>Exhibition / More news / posts</h5>
-            news and blogs and stuffs
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, accusantium, excepturi, pariatur, quis libero odio consequatur praesentium quam placeat vel ipsum quo molestiae obcaecati iusto modi. Animi, voluptates, architecto fugit est iure dolor perspiciatis ipsum dolore vel voluptatem labore ipsa quos sed fuga laborum earum nisi provident id dicta ut.
+            <p>More of the same Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, nostrum, aut nam velit numquam et explicabo amet quis voluptatibus expedita accusantium voluptatum ipsum ullam nemo distinctio reiciendis tempora voluptates harum maxime cum! Deserunt, recusandae id commodi laudantium pariatur sit doloremque natus facilis doloribus eum sapiente assumenda a ipsam sint esse?</p>
         </div>
     </div>
 	
