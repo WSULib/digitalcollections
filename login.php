@@ -76,7 +76,7 @@ $objectPID = $_REQUEST['PID'];
             <div id="createAccount_container" class="form-action hide">
                 <h1>Register.</h1>
                 <p>
-                    If you don't have a WSU accessID, you should totes sign up for an account. It's what all the cool kids are doing.
+                    Want to save your favorites? If you do not have a WSU accessID, then fill out the information below to sign up for an account.
                 </p>
                 <form onsubmit="createAccountPrep('userDefined'); return false;">
                     <ul>
