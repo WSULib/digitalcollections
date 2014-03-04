@@ -3,12 +3,8 @@
 function searchGo(type){
 
 	// Set Search Parameters	
-	// searchParams['q'] = searchParams['id'];
-
 	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['id'];
-console.log("STUFF", searchParams['id']);
 	searchParams['raw'] = "escapeterms";
-console.log("STUFF", searchParams.q);
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
