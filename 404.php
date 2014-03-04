@@ -42,7 +42,7 @@
 
 	<div class="container">
 		<h2>Page Not Found</h2>
-		<p>The page you were looking for does not exist. Please <a href="contact.php">contact us</a> with any questions.</p>
+		<p class="push">The page you were looking for does not exist. Please <a href="contact.php">contact us</a> with any questions.</p>
 	</div>
 	
 	<?php include('inc/footer.php'); ?>

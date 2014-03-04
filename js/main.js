@@ -167,7 +167,7 @@ jQuery(document).ready(function() {
         var postdata = $('.contact-form form').serialize();
         $.ajax({
             type: 'POST',
-            url: 'inc/sendmail.php',
+            url: 'inc/contactengine.php',
             data: postdata,
             dataType: 'json',
             success: function(json) {
