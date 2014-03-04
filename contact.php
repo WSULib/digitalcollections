@@ -45,10 +45,10 @@
 
                     <div class="row">
                         <div class="hidden-xs col-sm-6 col-md-6">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, illum, natus, id beatae voluptate perferendis vitae sequi consectetur incidunt quia dolorem eos exercitationem optio quibusdam veniam minus mollitia neque minima autem nulla adipisci suscipit sapiente. Laudantium, nostrum, amet excepturi ipsam molestiae illo commodi dolores et necessitatibus magni ut adipisci blanditiis?</p>
+                           <p class="push">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, illum, natus, id beatae voluptate perferendis vitae sequi consectetur incidunt quia dolorem eos exercitationem optio quibusdam veniam minus mollitia neque minima autem nulla adipisci suscipit sapiente. Laudantium, nostrum, amet excepturi ipsam molestiae illo commodi dolores et necessitatibus magni ut adipisci blanditiis?</p>
                         </div>
                         <div class="col-sm-6 col-md-6 contact-form">
-                            <form method="post" action="inc/sendmail.php">
+                            <form method="post" action="inc/contactengine.php">
                                 <label for="name" class="nameLabel">Name</label>
                                   <input id="name" type="text" name="name" placeholder="Enter your name">
                                 <label for="email" class="emailLabel">Email</label>
