@@ -2,10 +2,11 @@
 
 $EmailFrom = "axa.liauw@wayne.edu";
 $EmailTo = "axa.liauw@wayne.edu";
-$Subject = "Message for Digital Collections at Wayne State University";
-$Name = Trim(stripslashes($_POST['name'])); 
-$Email = Trim(stripslashes($_POST['email'])); 
-$Message = Trim(stripslashes($_POST['message'])); 
+$Subject = "Message for Copyright at Wayne State University";
+$Name = Trim(stripslashes($_POST['Name'])); 
+$Tel = Trim(stripslashes($_POST['Tel'])); 
+$Email = Trim(stripslashes($_POST['Email'])); 
+$Message = Trim(stripslashes($_POST['Message'])); 
 
 // validation
 $validationOK=true;
@@ -22,6 +23,10 @@ $Body .= "\n";
 $Body .= "\n";
 $Body .= "Email: ";
 $Body .= $Email;
+$Body .= "\n";
+$Body .= "\n";
+$Body .= "Tel: ";
+$Body .= $Tel;
 $Body .= "\n";
 $Body .= "\n";
 $Body .= "Message: ";
