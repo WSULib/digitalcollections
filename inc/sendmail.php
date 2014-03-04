@@ -8,12 +8,12 @@ function isEmail($email) {
 if($_POST) {
 
     // Enter the email where you want to receive the message
-    $emailTo = 'donotreply@cgi.lib.wayne.edu';
-    $emailFrom = 'axa.liauw@wayne.edu';
+    $emailTo = 'axa.liauw@wayne.edu';
+    $emailFrom = 'donotreply@cgi.lib.wayne.edu';
 
     $clientName = trim($_POST['name']);
     $clientEmail = trim($_POST['email']);
-    $subject = trim($_POST['subject']);
+    $subject = 'Message from Digital Collections';
     $message = trim($_POST['message']);
 
     $array = array();
