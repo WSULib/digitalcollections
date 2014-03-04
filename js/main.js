@@ -157,36 +157,36 @@ $(document).ready(function(){
 /*
     Contact form
 */
-jQuery(document).ready(function() {
-    $('.contact-form form').submit(function() {
+// jQuery(document).ready(function() {
+//     $('.contact-form form').submit(function() {
 
-        $('.contact-form form .nameLabel').html('Name');
-        $('.contact-form form .emailLabel').html('Email');
-        $('.contact-form form .messageLabel').html('Message');
+//         $('.contact-form form .nameLabel').html('Name');
+//         $('.contact-form form .emailLabel').html('Email');
+//         $('.contact-form form .messageLabel').html('Message');
 
-        var postdata = $('.contact-form form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: 'inc/contactengine.php',
-            data: postdata,
-            dataType: 'json',
-            success: function(json) {
-                if(json.nameMessage !== '') {
-                    $('.contact-form form .nameLabel').append(' - <span class="validation"> ' + json.nameMessage + '</span>');
-                }
-                if(json.emailMessage !== '') {
-                    $('.contact-form form .emailLabel').append(' - <span class="validation"> ' + json.emailMessage + '</span>');
-                }
-                if(json.messageMessage !== '') {
-                    $('.contact-form form .messageLabel').append(' - <span class="validation"> ' + json.messageMessage + '</span>');
-                }
-                if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '') {
-                    $('.contact-form form').fadeOut('fast', function() {
-                        $('.contact-form').append('<p class="thanks"><strong>Thanks for reaching out!</strong><br/>We will get back to you very soon.</p>');
-                    });
-                }
-            }
-        });
-        return false;
-    });
-});
+//         var postdata = $('.contact-form form').serialize();
+//         $.ajax({
+//             type: 'POST',
+//             url: 'inc/contactengine.php',
+//             data: postdata,
+//             dataType: 'json',
+//             success: function(json) {
+//                 if(json.nameMessage !== '') {
+//                     $('.contact-form form .nameLabel').append(' - <span class="validation"> ' + json.nameMessage + '</span>');
+//                 }
+//                 if(json.emailMessage !== '') {
+//                     $('.contact-form form .emailLabel').append(' - <span class="validation"> ' + json.emailMessage + '</span>');
+//                 }
+//                 if(json.messageMessage !== '') {
+//                     $('.contact-form form .messageLabel').append(' - <span class="validation"> ' + json.messageMessage + '</span>');
+//                 }
+//                 if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '') {
+//                     $('.contact-form form').fadeOut('fast', function() {
+//                         $('.contact-form').append('<p class="thanks"><strong>Thanks for reaching out!</strong><br/>We will get back to you very soon.</p>');
+//                     });
+//                 }
+//             }
+//         });
+//         return false;
+//     });
+// });
