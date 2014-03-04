@@ -40,6 +40,7 @@ $objectPID = $_REQUEST['id'];
         <script src="js/script.js"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script> 
         <script src="inc/sidr/jquery.sidr.min.js"></script>
+        <script src="js/vendor/enquire.min.js"></script>
 
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -58,12 +59,12 @@ $objectPID = $_REQUEST['id'];
 
 
         <div id="templateCM" class="container">
-            <div class="breadcrumb col-lg-3">
+            <div class="breadcrumb col-md-3">
                
                 <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
             </div>
 
-            <div class="col-lg-6 primary-object">
+            <div class="col-md-6 primary-object">
                 <div class="primary-object-container">
                 </div>
 
@@ -75,12 +76,12 @@ $objectPID = $_REQUEST['id'];
             </div>
 
             <!-- metadata new -->
-            <div class="info-panel col-lg-3">
+            <div class="info-panel col-md-3">
             </div>
 
 
-            <div class="col-lg-6 col-lg-offset-3 col-xlg-6 col-xlg-offset-3 display-more">
-                
+            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">
+                <div id="empty"></div>
             </div>
 
         </div> <!-- closes templateCM -->
@@ -97,6 +98,15 @@ $objectPID = $_REQUEST['id'];
         })      
     </script>
     
-
+<script type="text/javascript">
+    enquire.register("screen and (max-width:991px)", {
+        match : function() { 
+                $('.display-more-info').insertBefore('#empty');
+        },
+        unmatch : function() {
+                $('.display-more-info').insertAfter('.primary-object-container');
+        }
+    }).listen();
+</script>
 
 </html>

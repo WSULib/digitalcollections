@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/vendor/jquery-1.10.1.min.js"></script>
+    <script src="js/vendor/enquire.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+    <div class="row">
+        <div class="threecol" id="tertiary-col">
+            <p>Column 1</p>
+        </div>
+        <div class="sixcol" id="main-col">
+            <p>Column 2</p>
+        </div>
+        <div class="threecol last" id="secondary-col">
+            <p>Column 3</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    enquire.register("screen and (max-width:850px)", {
+        match : function() { 
+                $('#tertiary-col').insertAfter('#secondary-col');
+        },
+        unmatch : function() {
+                $('#tertiary-col').insertBefore('#main-col');
+        }
+    }).listen();
+</script>
+    
+</body>
+</html>

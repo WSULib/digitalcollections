@@ -40,9 +40,25 @@
 }
 
 .masthead {
-  background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
+  // background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
   // margin: -75px auto 0;
   // max-width: 1210px;
   width: 100%;
   z-index: 2;
+
+  h2,h3 {
+    background: white;
+    padding: 5px;
+  }
+
+  h2 {
+        margin-top: 100px;
+
+    display: block;
+    width: 260px;
+  }
+  h3 {
+    display: inline-block;
+    margin-bottom: 30px;
+  }
 }

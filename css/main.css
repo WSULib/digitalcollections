@@ -1620,6 +1620,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 .thanks {
   font-size: 1.75em;
   font-weight: 300;
+  padding-top: 22px;
   text-align: center; }
   .thanks strong {
     text-transform: uppercase; }
@@ -1855,6 +1856,12 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 
 /* #Clouds Flat Button
 ==================================================*/
+.button-feat {
+  width: 250px;
+  background: white;
+  display: block;
+  padding: 10px 15px; }
+
 .share-buttons {
   display: none; }
 
@@ -2334,8 +2341,7 @@ header .nav-wrap {
 
 nav.header-primary {
   position: absolute;
-  top: 60px;
-  width: 1140px; }
+  top: 60px; }
   nav.header-primary.navbar ul {
     background: rgba(255, 255, 255, 0.9);
     height: auto;
@@ -4525,9 +4531,18 @@ a.list-group-item.active > .badge,
         font-size: 72px; } }
 
 .masthead {
-  background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
   width: 100%;
   z-index: 2; }
+  .masthead h2, .masthead h3 {
+    background: white;
+    padding: 5px; }
+  .masthead h2 {
+    margin-top: 100px;
+    display: block;
+    width: 260px; }
+  .masthead h3 {
+    display: inline-block;
+    margin-bottom: 30px; }
 
 .thumbnail {
   display: block; }
