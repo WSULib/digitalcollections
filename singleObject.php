@@ -22,6 +22,8 @@ $objectPID = $_REQUEST['id'];
         <!--Mustache-->
         <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
         <script type="text/javascript" src="inc/mustache.js"></script>
+
+        <script src="js/vendor/bootbox.min.js"></script>
         
         <!-- Local JS -->
         <script src="js/utilities.js"></script>        
@@ -81,7 +83,6 @@ $objectPID = $_REQUEST['id'];
 
 
             <div class="col-md-6 col-md-offset-3 display-more" id="display-more">
-                <div id="empty"></div>
             </div>
 
         </div> <!-- closes templateCM -->
@@ -101,7 +102,7 @@ $objectPID = $_REQUEST['id'];
 <script type="text/javascript">
     enquire.register("screen and (max-width:991px)", {
         match : function() { 
-                $('.display-more-info').insertBefore('#empty');
+                $('.display-more-info').prependTo('.display-more');
         },
         unmatch : function() {
                 $('.display-more-info').insertAfter('.primary-object-container');

@@ -25,7 +25,7 @@ function launch(PID){
 		
 		// determine what collection(s) / publication it's from
 		if (response.isMemberOfCollection.results.length > 1){
-			alert("uh-oh...");
+			bootbox.alert("uh-oh...");
 		}
 		else {
 			var collectionPID = response.isMemberOfCollection.results[0].subject;
@@ -96,5 +96,5 @@ function renderMain(){
 }
 
 function loadError(){
-	alert("move me to utilities!  same goes for singleObject page.");
+	bootbox.alert("move me to utilities!  same goes for singleObject page.");
 }

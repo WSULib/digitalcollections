@@ -25,6 +25,8 @@ $objectPID = $_REQUEST['PID'];
         <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
         <script type="text/javascript" src="inc/mustache.js"></script>
 
+        <script src="js/vendor/bootbox.min.js"></script>
+
         <script src="inc/jquery.cookie.js" type="text/javascript"></script>           
         
         <!-- Local JS -->

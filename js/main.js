@@ -182,7 +182,7 @@ jQuery(document).ready(function() {
                 }
                 if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '') {
                     $('.contact-form form').fadeOut('fast', function() {
-                        $('.contact-form').append('<p class="thanks"><strong>Thanks for reaching out!</strong><br/>We will get back to you very soon.</p>');
+                        $('.contact-form').append('<p class="thanks"><strong>Thanks for contacting us!</strong><br/>We will get back to you very soon.</p>');
                     });
                 }
             }
