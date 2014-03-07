@@ -25,18 +25,19 @@ APIdata = new Object();
 function getFavs(){
 
 	// redirect if no longer logged in
-	if (userData.loggedIn_WSUDOR != false){
-		getFavs(searchParams);
-	}
-	else {
-		window.location = 'search.php';
+	if (userData.loggedIn_WSUDOR != true){
+		window.location = 'index.php';
 	}
 
 	var favParams = new Object();
 	favParams.q = "fav_user:"+userData.username_WSUDOR;
 	favParams.fl = "fav_item";	
-	if (typeof searchParams.start != "undefined"){ favParams.start = searchParams.start; }
-	else{ searchParams.start = 0; }	
+	if (typeof searchParams.start != "undefined"){ 
+			favParams.start = searchParams.start; 
+	}
+	else { 
+		searchParams.start = 0;
+	}	
 	favParams.rows = searchParams.rows;	
 	favParams.facet = 'false';	
 	favParams['raw'] = "noescape";
