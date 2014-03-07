@@ -221,7 +221,7 @@ function favObjRemove(PID){
       }
       function callError(response){
         console.log(response);
-        alert("Could not remove favorite.");
+        bootbox.alert("Could not remove favorite.");
       }
     }  
 }

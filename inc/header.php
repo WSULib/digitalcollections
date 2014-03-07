@@ -1,7 +1,7 @@
-<header>
+<header class="header">
     <div class="container">
         
-        <nav class="header-global">
+       <!--  <nav class="header-global">
             <ul class="top-level">
                 <li><a href="#">Wayne State University</a></li>
                 <li><a href="#">Libraries</a></li>
@@ -10,17 +10,17 @@
             <ul class="login">
                 <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
             </ul>
-        </nav>
+        </nav> -->
 
-        <div class="col-md-5">
+        <div class="logo-container">
             <h1>
                 <div id="mobile-header">
                     <a href="#sidr-main" id="responsive-menu-button" class="entypo-menu"></a>
                 </div>
-                <a href="index.php">Digital Collections</a>
+                <a href="index.php"><img src="img/logo.png" alt="" class="logo"></a>
             </h1>
         </div>
-        <div class="col-md-7">
+        <div class="search-container">
             <div class="search-box">
                 <form action="search.php" class="inline-form search-form" >
                     <fieldset>
@@ -44,6 +44,12 @@
                     <li><a href="search.php">Browse</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </nav>
+
+            <nav>
+                <ul class="nav navbar-right">
+                    <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
                 </ul>
             </nav>
         </div>

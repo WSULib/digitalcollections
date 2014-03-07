@@ -20,37 +20,71 @@
   margin-right: 15px;
 }
 
+.header {
+    padding-top: 10px;
+    margin: 0 auto;
+    background: rgba(9, 63, 57, 1);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(9, 63, 57, 1)), color-stop(100%, rgba(12, 84, 73, 1)));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
+    height: 185px;
+    /* W3C */
+    // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#093f39', endColorstr='#0c5449', GradientType=0 );
+    /* IE6-9 */
+}
 
+// header {
+//     // background: #f9f8f3;
+//     // background: rgba($wsu-brown, 0.9);
+//     background: rgba($wsu-green-dark, 0.8);
+//     // border-bottom: 1px solid #eee;
+// }
+// header h1 {
+//     display: inline-block;
+//     // margin-top: 20px;
+//     // font-family: 'Marcellus SC', serif;
+//     margin-top: 11px;
+//     z-index: 1002;
+// }
+// header h1 a, header h1 a:visited  {
+//     font-family: 'Roboto', sans-serif;
+//     // font-weight: 900;
+//     color: white;
+//     text-transform: uppercase;
+//     text-decoration: none;
+//     // margin-bottom: 1.5em;
+// }
+// h1 a:hover, h1 a:active {
+//     text-decoration: none;
+// }
 
-header {
-    // background: #f9f8f3;
-    // background: rgba($wsu-brown, 0.9);
-    background: rgba(6, 39, 34, 0.8);
-    // border-bottom: 1px solid #eee;
+.logo {
+  margin-left: 20px;
 }
-header h1 {
-    display: inline-block;
-    // margin-top: 20px;
-    // font-family: 'Marcellus SC', serif;
-    margin-top: 11px;
-    z-index: 1002;
+.logo-container {
+  width: 30%;
+  float: left;
+  margin-top: 8px;
 }
-header h1 a, header h1 a:visited  {
-    font-family: 'Roboto', sans-serif;
-    // font-weight: 900;
-    color: white;
-    text-transform: uppercase;
-    text-decoration: none;
-    // margin-bottom: 1.5em;
-}
-h1 a:hover, h1 a:active {
-    text-decoration: none;
+.search-container {
+  width: 70%;
+  float: left;
+  padding-left: 20px;
 }
 header .search-box {
   position: relative;
   width: 100%;
   float: right;
-  margin: 18px 0;
+  margin: 40px 0 0;
   display: inline-block;
 }
 header .searchTerm {
@@ -159,11 +193,11 @@ header .searchIcon:before {
 }
 
 
-header {
-border-top: 32px solid $wsu-green-dark;
-height: 175px;
-z-index: 4;
-}
+// header {
+// border-top: 32px solid $wsu-green-dark;
+// height: 175px;
+// z-index: 4;
+// }
 
 header .nav-wrap {
 // height: 150px;
@@ -176,13 +210,64 @@ position: relative;
 // // width: 980px;
 // }
 
+/* line 34, scss/objects/_nav.scss */
+.navbar-nav {
+  float: left;
+}
+/* line 37, scss/objects/_nav.scss */
+.navbar-nav > li + li {
+  margin-left: 0;
+  border-left: 1px solid rgba(6, 39, 34, 0.6);
+}
+/* line 42, scss/objects/_nav.scss */
+.navbar-nav > li > a {
+  background: #062722;
+  color: white;
+  font-weight: 500;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+/* line 50, scss/objects/_nav.scss */
+.navbar-nav > .open a, .navbar-nav a:hover {
+  background: white;
+  color: black;
+}
+
+/* line 56, scss/objects/_nav.scss */
+.navbar-right {
+  float: right;
+}
+/* line 59, scss/objects/_nav.scss */
+.navbar-right a {
+  background: transparent;
+  color: white;
+  font-weight: 500;
+  padding: 10px 15px;
+}
+/* line 66, scss/objects/_nav.scss */
+.navbar-right a:hover {
+  color: #ffcc33;
+  background: transparent;
+}
+
+.navbar-right.nav {
+  position: absolute;
+  top: 143px;
+  right: 0;
+
+  & > li > a {
+    display: inline;
+  }
+}
+
+
 nav.header-primary {
   position: absolute;
-  top: 60px;
+  top: 110px;
   // width: 1140px;
 
   &.navbar ul {
-  background: rgba(255,255,255, 0.9);
+  background: transparent;
   height: auto;
   width: 100%;
 
@@ -255,7 +340,24 @@ margin: 0 auto;
 overflow: hidden;
 position: absolute;
 top: -200px;
+}
 
+@media (min-width: 1000px) {
+  .masthead .slide {
+    top: -100px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .masthead .slides-wrap {
+    height: 480px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .masthead .slide {
+    top: -150px;
+  }
 }
 
 // .index-bg {

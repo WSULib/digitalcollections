@@ -224,16 +224,16 @@ function addFav(){
           $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites').addClass('favorited');
         }
         else {
-          alert("Error");
+          bootbox.alert("Error");
         }
       }
       function callError(response){
         console.log(response);
-        alert("Error.");
+        bootbox.alert("Error.");
       }
     }
   else {
-    alert("User not found.  Please login or sign up to save favorites.");
+    bootbox.alert("User not found.  Please login or sign up to save favorites.");
   }  
 }
 

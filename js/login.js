@@ -268,12 +268,12 @@ function createAccount(params,type){
         createAccountSuccess(params.user_username,response.createUserAccount.clientHash);
       }
       else {
-        alert("Account Creation Error");
+        bootbox.alert("Account Creation Error");
       }
     },
     error: function(response){
       console.log(response);
-      alert("Error.");
+      bootbox.alert("Error.");
     }
   });  
 }
@@ -284,7 +284,7 @@ function createAccount(params,type){
 
 function denyAccess(){  
   $("#messages_container").append("<p style='color:red;'>Access Denied.</p>");
-  alert("Login credentials don't match, please try again.");
+  bootbox.alert("Login credentials don't match, please try again.");
 }
 
 function grantAccess(username,clientHash){
@@ -299,6 +299,7 @@ function createAccountSuccess(username,clientHash){
 
 function createAccountFail(message){
   $("#messages_container").append("<p style='color:red;'>Could Not Create Account.</p>");
+  bootbox.alert("Could not create account.");
   if (typeof message != 'undefined'){
     $("#messages_container").append("<p style='color:red;'>"+message+"</p>");
   }      
@@ -342,7 +343,7 @@ function setWSUDORCookie(username,clientHash){
 
 function navBack(){
   if (document.referrer == ""){
-    alert("You are logged into WSU digitalcollections.");
+    bootbox.alert("You are logged into WSU digitalcollections.");
   }
   else{
     window.location = document.referrer;

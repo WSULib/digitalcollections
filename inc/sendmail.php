@@ -17,7 +17,7 @@ if($_POST) {
 
     //Required fields
     if($message == '') {
-        $array['messageMessage'] = "Please enter your message.";
+        $array['messageMessage'] = "This is a required field.";
     }
     if($message != '') {
         // Send email

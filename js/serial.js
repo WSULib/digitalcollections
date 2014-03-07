@@ -63,7 +63,7 @@ function renderMain(){
 
 
 function loadError(){
-	alert("move me to utilities!  same goes for singleObject page.");
+	bootbox.alert("move me to utilities!  same goes for singleObject page.");
 }
 
 
