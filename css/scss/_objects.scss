@@ -7,7 +7,7 @@ img {
   float: left;
   position: relative;
   padding: 0 0 0 15px;
-  margin-top: 1em;
+  // margin-top: 1em;
 }
 
 .main-container-wide {
@@ -136,6 +136,44 @@ li:last-child.object-container-list {
 	}
 }
 
+// share this
+
+
+
+.st_sharethis_custom{
+	background: url("../img/glyphicons_308_share_alt.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_facebook_custom{
+	background: url("../img/glyphicons_social_30_facebook.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_twitter_custom{
+	background: url("../img/glyphicons_social_31_twitter.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_email_custom{
+	background: url("../img/glyphicons_010_envelope.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_googleplus_custom{
+	background: url("../img/glyphicons_social_02_google_plus.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
 // Issues
 
 .issue-container-grid {
@@ -196,7 +234,7 @@ margin-top: 10px;
 	text-align: center;
 }
 
-.primary-object-container .subcomponents ul li {
+.primary-object-container .subcomponents > ul > li  {
 display: inline;
 margin: 0 4px;
 }

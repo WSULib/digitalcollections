@@ -261,12 +261,21 @@ position: relative;
   }
 }
 
-.glyphicons.home, .glyphicons.log_out, .glyphicons.user {
+.glyphicons.search {
+  margin-top: -9px;
+}
+
+.glyphicons.home, .glyphicons.log_out, .glyphicons.user, .glyphicons.delete {
   margin-top: -24px;
 }
 
 .glyphicons.user {
   margin-right: 5px;
+}
+
+.glyphicons.delete {
+  color: $gray;
+  margin-right: 3px;
 }
 
 a.logout {

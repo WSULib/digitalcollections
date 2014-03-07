@@ -9,14 +9,11 @@
 }
 .pagination {
   display: inline-block;
-  border-radius: $border-radius-base;
+  // border-radius: $border-radius-base;
   margin: 20px 3px 20px 0;
   padding: 4px 12px;
   text-decoration: none;
   line-height: 1.5em;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
 
   > li {
     display: inline-block; // Remove list-style and block-level defaults
@@ -37,14 +34,7 @@
   > li > span {
     &:hover,
     &:focus {
-      background-color: $pagination-hover-bg;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      -webkit-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
-       -moz-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
-         -o-transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); 
-            transition: all 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000); /* ease (default) */
+      background-color: $wsu-brown-light;
     }
   }
 
@@ -65,14 +55,10 @@
     &:hover,
     &:focus {
       z-index: 2;
-      color: $pagination-active-color;
-      background-color: $pagination-active-bg;
-      border-color: $pagination-active-bg;
+      color: white;
+      background-color: $wsu-green;
       cursor: default;
       font-weight: 700;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
       
     }
   }

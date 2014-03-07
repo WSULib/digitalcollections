@@ -28,7 +28,7 @@
                         <label for="search-field" class="hide">Search</label>
                         <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" x-webkit-speech="" />
                         <button type="submit" class="search-submit">
-                            <span class="entypo-search" aria-hidden="true"></span>
+                            <span class="glyphicons search" aria-hidden="true"></span>
                             <span class="hide">Search</span>
                         </button>
                     </fieldset>
