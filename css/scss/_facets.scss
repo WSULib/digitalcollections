@@ -22,7 +22,7 @@ ul.toc-2-col {
 	float: left;
 	position: relative;
 	margin: 0;
-	margin-top: 22px;
+	// margin-top: 22px;
 	padding: 0 30px 0 0;
 
 	.filter {
@@ -67,18 +67,18 @@ ul.toc-2-col {
 // Filtered by box
 .filtered-by {
 	//background: $gray-lighter;
-	padding: 0 10px;
+	// padding: 0 10px;
 
 	.facet-item a {
 		display: inline-block;
-		margin: 0 5px 35px 5px;
+		margin: 0 5px 35px 0;
 		padding: 5px 10px;
-		background: white;
-		border: 1px dotted #ccc;
+		background: $wsu-brown-light;
+		color: black;
+		font-size: 13px;
+		font-family: "Roboto Condensed";
+		text-transform: uppercase;
 		text-decoration: none;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
 	}
 }
 

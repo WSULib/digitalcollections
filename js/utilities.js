@@ -158,7 +158,7 @@ function showFacets(){
 
     var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
     nURL = URLcleaner(nURL);     
-    $(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'>x "+rosetta(facet_value)+"</a></span>");
+    $(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'><span class='glyphicons delete'></span> "+rosetta(facet_value)+"</a></span>");
   }
 }
 
