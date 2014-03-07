@@ -21,7 +21,7 @@
 }
 
 .header {
-    padding: 0;
+    padding-top: 10px;
     margin: 0 auto;
     background: rgba(9, 63, 57, 1);
     /* Old browsers */
@@ -69,7 +69,16 @@
 
 .logo {
   margin-left: 20px;
-  margin-bottom: 30px;
+}
+.logo-container {
+  width: 30%;
+  float: left;
+  margin-top: 8px;
+}
+.search-container {
+  width: 70%;
+  float: left;
+  padding-left: 20px;
 }
 header .search-box {
   position: relative;
@@ -241,16 +250,20 @@ position: relative;
   background: transparent;
 }
 
-.navbar-right {
+.navbar-right.nav {
   position: absolute;
   top: 143px;
   right: 0;
+
+  & > li > a {
+    display: inline;
+  }
 }
 
 
 nav.header-primary {
   position: absolute;
-  top: 120px;
+  top: 110px;
   // width: 1140px;
 
   &.navbar ul {
@@ -329,9 +342,21 @@ position: absolute;
 top: -200px;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1000px) {
+  .masthead .slide {
+    top: -100px;
+  }
+}
+
+@media (min-width: 1400px) {
   .masthead .slides-wrap {
-    height: 560px;
+    height: 480px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .masthead .slide {
+    top: -150px;
   }
 }
 

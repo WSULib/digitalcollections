@@ -12,7 +12,7 @@
             </ul>
         </nav> -->
 
-        <div class="facets">
+        <div class="logo-container">
             <h1>
                 <div id="mobile-header">
                     <a href="#sidr-main" id="responsive-menu-button" class="entypo-menu"></a>
@@ -20,7 +20,7 @@
                 <a href="index.php"><img src="img/logo.png" alt="" class="logo"></a>
             </h1>
         </div>
-        <div class="main-container">
+        <div class="search-container">
             <div class="search-box">
                 <form action="search.php" class="inline-form search-form" >
                     <fieldset>

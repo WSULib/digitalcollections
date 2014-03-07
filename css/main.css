@@ -2219,7 +2219,7 @@ input[type="button"].btn-block {
   margin-right: 15px; }
 
 .header {
-  padding: 0;
+  padding-top: 10px;
   margin: 0 auto;
   background: #093f39;
   /* Old browsers */
@@ -2239,8 +2239,17 @@ input[type="button"].btn-block {
   /* IE6-9 */ }
 
 .logo {
-  margin-left: 20px;
-  margin-bottom: 30px; }
+  margin-left: 20px; }
+
+.logo-container {
+  width: 30%;
+  float: left;
+  margin-top: 8px; }
+
+.search-container {
+  width: 70%;
+  float: left;
+  padding-left: 20px; }
 
 header .search-box {
   position: relative;
@@ -2379,14 +2388,16 @@ header .nav-wrap {
   color: #ffcc33;
   background: transparent; }
 
-.navbar-right {
+.navbar-right.nav {
   position: absolute;
   top: 143px;
   right: 0; }
+  .navbar-right.nav > li > a {
+    display: inline; }
 
 nav.header-primary {
   position: absolute;
-  top: 120px; }
+  top: 110px; }
   nav.header-primary.navbar ul {
     background: transparent;
     height: auto;
@@ -2445,9 +2456,15 @@ ul.slider li {
   position: absolute;
   top: -200px; }
 
-@media (min-width: 1600px) {
+@media (min-width: 1000px) {
+  .masthead .slide {
+    top: -100px; } }
+@media (min-width: 1400px) {
   .masthead .slides-wrap {
-    height: 560px; } }
+    height: 480px; } }
+@media (min-width: 1600px) {
+  .masthead .slide {
+    top: -150px; } }
 header .container {
   padding: 0;
   position: relative; }
