@@ -21,6 +21,7 @@
 }
 
 .header {
+  font-family: 'Roboto Condensed';
     padding-top: 10px;
     margin: 0 auto;
     background: rgba(9, 63, 57, 1);
@@ -217,15 +218,15 @@ position: relative;
 /* line 37, scss/objects/_nav.scss */
 .navbar-nav > li + li {
   margin-left: 0;
-  border-left: 1px solid rgba(6, 39, 34, 0.6);
+  border-left: 1px solid rgba($wsu-green, 0.6);
 }
 /* line 42, scss/objects/_nav.scss */
 .navbar-nav > li > a {
-  background: #062722;
+  // background: #062722;
+  background: rgba($wsu-green-dark, 0.5);
   color: white;
   font-weight: 500;
   padding: 10px 15px;
-  text-transform: uppercase;
 }
 /* line 50, scss/objects/_nav.scss */
 .navbar-nav > .open a, .navbar-nav a:hover {
@@ -260,6 +261,17 @@ position: relative;
   }
 }
 
+.glyphicons.home, .glyphicons.log_out, .glyphicons.user {
+  margin-top: -24px;
+}
+
+.glyphicons.user {
+  margin-right: 5px;
+}
+
+a.logout {
+  color: $wsu-green-dark;
+}
 
 nav.header-primary {
   position: absolute;

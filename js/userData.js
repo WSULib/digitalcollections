@@ -42,8 +42,8 @@ $(document).ready(function(){
 				}
 			});			
 
-			$("li.login_status").html("Welcome "+userData.displayName+"! <a onclick='logoutUser(); return false;' href='#'>(Logout)</a>");
-			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'>Logout</a>");
+			$("li.login_status").html("<a href='favorites.php'><span class='glyphicons user'></span> Welcome, "+userData.displayName+"!</a> <a onclick='logoutUser(); return false;' href='#' class='logout'><span class='glyphicons log_out'></span> Log Out</a>");
+			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'><span class='glyphicons log_out'></span> Log Out</a>");
 			$('nav.header-primary ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 			$('#sidr-main nav ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  

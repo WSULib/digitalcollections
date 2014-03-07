@@ -39,7 +39,6 @@
         <div id="navigation" class="col-md-12">
             <nav class="header-primary nav navbar" role="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.php">Home</a></li>
                     <li><a href="allcollections.php">Collections</a></li>
                     <li><a href="search.php">Browse</a></li>
                     <li><a href="about.php">About</a></li>
