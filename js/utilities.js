@@ -277,7 +277,7 @@ function populateResults(templateLocation,destination,templateData){
 }
 
 // render serials navigation block
-function renderSerialNavBlock(){
+function renderSerialNavBlock(){  
 
   function prepareSerialWalk(results){
 
