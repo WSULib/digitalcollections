@@ -11,12 +11,11 @@
                 <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
             </ul>
         </nav> -->
-
+        <div id="mobile-header">
+            <a href="#sidr-main" id="responsive-menu-button"><img src="img/menu.svg" alt="Menu"></a>
+        </div>
         <div class="logo-container">
             <h1>
-                <div id="mobile-header">
-                    <a href="#sidr-main" id="responsive-menu-button" class="entypo-menu"></a>
-                </div>
                 <a href="index.php"><img src="img/logo.png" alt="" class="logo"></a>
             </h1>
         </div>
@@ -26,7 +25,7 @@
                     <fieldset>
                         <legend class="hide">Search</legend>
                         <label for="search-field" class="hide">Search</label>
-                        <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" x-webkit-speech="" />
+                        <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" lang="en" x-webkit-speech />
                         <button type="submit" class="search-submit">
                             <span class="glyphicons search" aria-hidden="true"></span>
                             <span class="hide">Search</span>
@@ -36,7 +35,7 @@
             </div>
         </div>
 
-        <div id="navigation" class="col-md-12">
+        <div id="navigation" class="col-sm-12">
             <nav class="header-primary nav navbar" role="navigation">
                 <ul class="nav navbar-nav">
                     <li><a href="allcollections.php">Collections</a></li>

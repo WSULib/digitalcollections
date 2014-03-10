@@ -1,10 +1,8 @@
 <!DOCTYPE php>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>Digital Collections - Wayne State University Libraries</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta charset="UTF-8">
+        <title>Collections</title>
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
@@ -27,7 +25,7 @@
         <script src="js/userData.js"></script>             
         
         <script src="js/utilities.js"></script>
-        <script src="js/collection-shared.js"></script>            
+        <script src="js/collection-shared.js"></script>  
         <script src="js/collection.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
@@ -45,17 +43,17 @@
         <?php include('inc/header.php'); ?>
 
             <div class="container">
-                <div class="row-fluid sub-header">
-                   <h2 id='collection_title'>
+                <div class="sub-header">
+                   <h2 id="collection_title">
                         <!-- title of collectionTitle of Collection -->
                     </h2>
                     <ul>
-                        <li><span id='num_results'></span> Objects</li>
-                        <li><span id='learn_more'>Learn more about this collection</span></li>
+                        <li><span id="num_results"></span> Objects</li>
+                        <li><span id="learn_more">Learn more about this collection</span></li>
                     </ul>
                    
                     
-                </div><!-- /row for sub-header -->
+                </div><!-- / sub-header -->
 
                 <div id="facets_container" class="facets">
                     <ul class="facet_container filter" id="search_facet">
@@ -80,11 +78,10 @@
                             </div>
                         </div>
                     </ul>
-                </div><!-- /objects -->
-
-               <div class="pagination-centered">
+                    <div class="pagination-centered">
                     <!-- pagination -->
-                </div><!-- /pagination -->
+                    </div><!-- /pagination -->
+                </div><!-- /objects -->
                 
             </div>
 
