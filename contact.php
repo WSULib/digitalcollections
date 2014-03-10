@@ -43,22 +43,22 @@
 
     <div class="container">
         <h2>Contact</h2>
-                 <div class="row">
-                        <div class="hidden-xs col-sm-6 col-md-6">
-                           <p class="push">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, illum, natus, id beatae voluptate perferendis vitae sequi consectetur incidunt quia dolorem eos exercitationem optio quibusdam veniam minus mollitia neque minima autem nulla adipisci suscipit sapiente. Laudantium, nostrum, amet excepturi ipsam molestiae illo commodi dolores et necessitatibus magni ut adipisci blanditiis?</p>
-                        </div>
-                        <div class="col-sm-6 col-md-6 contact-form">
-                            <form method="post" action="inc/sendmail.php">
-                                <label for="name" class="nameLabel">Name</label>
-                                  <input id="name" type="text" name="name" placeholder="Enter your name">
-                                <label for="email" class="emailLabel">Email</label>
-                                  <input id="email" type="text" name="email" placeholder="Enter your email">
-                                <label for="message" class="messageLabel">Message</label>
-                                  <textarea id="message" name="message" placeholder="Your message"></textarea>
-                                <button type="submit" class="btn">Submit</button>
-                            </form>
-                        </div>
-                    </div>
+          <div class="row">
+                <div class="hidden-xs col-sm-6 col-md-6">
+                    <img src="" alt="">
+                </div>
+                <div class="col-sm-6 col-md-6 contact-form">
+                    <form method="post" action="inc/sendmail.php">
+                        <label for="name" class="nameLabel">Name</label>
+                          <input id="name" type="text" name="name" placeholder="Enter your name">
+                        <label for="email" class="emailLabel">Email</label>
+                          <input id="email" type="text" name="email" placeholder="Enter your email">
+                        <label for="message" class="messageLabel">Message</label>
+                          <textarea id="message" name="message" placeholder="Your message"></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
     </div>
     
     <?php include('inc/footer.php'); ?>

@@ -1,8 +1,8 @@
 <?php
 
-$EmailFrom = "axa.liauw@wayne.edu";
+$EmailFrom = "libwebmaster@wayne.edu";
 $EmailTo = "axa.liauw@wayne.edu";
-$Subject = "Message for Copyright at Wayne State University";
+$Subject = "Message for Digital Collections at Wayne State University";
 $Name = Trim(stripslashes($_POST['Name'])); 
 $Tel = Trim(stripslashes($_POST['Tel'])); 
 $Email = Trim(stripslashes($_POST['Email'])); 
