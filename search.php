@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
         <link rel="stylesheet" href="css/glyphicons.css">
+        <link rel="stylesheet" href="css/entypo.css">
         
         <!-- Typography -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -85,19 +86,17 @@
                 <!-- facets template -->
             </div><!-- /facets -->
 
-            <div id="results_container" class="main-container">
-                
-                <div class="row-fluid filtered-by refined-by">
+            <div class="main-container">
+                <div class="row filtered-by refined-by">
                     <!-- fiters -->
                 </div><!-- /filtered-by -->
-                <ul class="row-fluid objects-container">
+                <ul class="row objects-container" id="results_container" >
                     <!-- results template -->
                 </ul>
-            </div><!-- /objects -->
-
-            <div class="pagination-centered">
+                <div class="pagination-centered">
                     <!-- pagination -->
-            </div><!-- /pagination -->
+                </div><!-- /pagination -->
+            </div><!-- /objects -->
               
         </div> <!-- /container -->
 

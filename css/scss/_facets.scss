@@ -17,12 +17,30 @@ ul.toc-2-col {
 }
 
 // Facets
+
+@media (max-width: 767px) {
+	#facets_container {
+		width: 100%;
+		margin-bottom: 2.5em;
+		padding: 0;
+
+		ul li ul {
+			display: none;
+		}
+
+		ul.filter {
+			margin-bottom: 0;
+			border: 0;
+			border-bottom: 1px solid #ddd;
+		}
+	}
+}
 .facets { 
 	width: 30%; 
 	float: left;
 	position: relative;
 	margin: 0;
-	margin-top: 22px;
+	// margin-top: 22px;
 	padding: 0 30px 0 0;
 
 	.filter {
@@ -39,7 +57,8 @@ ul.toc-2-col {
 
 		h3 {
 			margin: 0;
-			font-size: 1em;
+			font-size: 1.2em;
+			letter-spacing: 1px;
 			// border-top: 1px solid #ddd;
 			// border-bottom: 1px solid #ddd;
 			background: #f3f1e8;
@@ -65,22 +84,21 @@ ul.toc-2-col {
 }
 
 // Filtered by box
-.filtered-by {
-	//background: $gray-lighter;
-	padding: 0 10px;
 
 	.facet-item a {
 		display: inline-block;
-		margin: 0 5px 35px 5px;
+		margin: 0 5px 35px 0;
 		padding: 5px 10px;
-		background: white;
-		border: 1px dotted #ccc;
+		background: $wsu-brown-light;
+		color: black;
+		font-size: 13px;
+		font-family: "Roboto Condensed";
+		text-transform: uppercase;
 		text-decoration: none;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
+		cursor: pointer;
+		letter-spacing: 1px;
 	}
-}
+
 
 li span.facet-toggle, .tree-toggler span {
 background-color: transparent;
@@ -124,8 +142,7 @@ margin-right: 8px;
 .search-filter {
 	width: 100%;
 	height: 30px;
-	border: 1px solid #d5d5d5;
-	border-radius: 3px;
+	border: 1px solid $wsu-brown-light;
 	outline: none;
 	padding: 0 5px;
 	margin: 5px 0;

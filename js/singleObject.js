@@ -221,7 +221,12 @@ function addFav(){
       function callSuccess(response){
         console.log(response);
         if (response.solrAddDoc.responseHeader.status == 0){
-          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites').addClass('favorited');
+          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites')
+          bootbox.alert("Added to favorites");
+          window.setTimeout(function(){
+            bootbox.hideAll();
+          }, 3000);
+          // .addClass('favorited');
         }
         else {
           bootbox.alert("Error");

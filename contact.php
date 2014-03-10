@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Contact</title>
+    <meta charset="UTF-8">
+    <title>About</title>
 
-	<link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
         <link rel="stylesheet" href="css/glyphicons.css">
 
@@ -39,12 +39,11 @@
 </head>
 <body>
 
-	<?php include('inc/header.php'); ?>
+    <?php include('inc/header.php'); ?>
 
-	<div class="container">
-		<h2>Contact</h2>
-
-                    <div class="row">
+    <div class="container">
+        <h2>Contact</h2>
+                 <div class="row">
                         <div class="hidden-xs col-sm-6 col-md-6">
                            <p class="push">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, illum, natus, id beatae voluptate perferendis vitae sequi consectetur incidunt quia dolorem eos exercitationem optio quibusdam veniam minus mollitia neque minima autem nulla adipisci suscipit sapiente. Laudantium, nostrum, amet excepturi ipsam molestiae illo commodi dolores et necessitatibus magni ut adipisci blanditiis?</p>
                         </div>
@@ -60,9 +59,9 @@
                             </form>
                         </div>
                     </div>
-	</div>
-	
-	<?php include('inc/footer.php'); ?>
-	
+    </div>
+    
+    <?php include('inc/footer.php'); ?>
+    
 </body>
 </html>

@@ -7,7 +7,13 @@ img {
   float: left;
   position: relative;
   padding: 0 0 0 15px;
-  margin-top: 1em;
+  // margin-top: 1em;
+}
+
+@media (max-width: 767px) {
+	.main-container {
+		width: 100%;
+	}
 }
 
 .main-container-wide {
@@ -17,10 +23,47 @@ img {
     padding: 0 15px;
 }
 
+.favorites.main-container {
+	padding: 0;
+}
+
 .main-container ul, .main-container-wide ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+}
+
+.favorites .object-container-list {
+	height: 175px;
+	position:relative;
+
+	.remove {
+		position: absolute;
+		top: 70px;
+		margin: auto;
+		letter-spacing: 1px;
+		cursor: pointer;
+
+		.delete {
+			color: #ddd;
+			padding:10px;
+			font-size: 1.2em;
+		}
+
+		.delete:hover {
+			color: rgba(#c00000, 1);
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.favorites .object-container-list .remove {
+		right: 0;
+	}
+}
+
+.primary-object {
+	margin-bottom: 20px;
 }
 
 // List View
@@ -91,7 +134,7 @@ li:last-child.object-container-list {
 // Grid View
 
 .object-container-grid {
-	width: 33%;
+	width: 100%;
 	//float: left;
 	display: inline-block;
 	vertical-align: top;
@@ -136,6 +179,56 @@ li:last-child.object-container-list {
 	}
 }
 
+@media (min-width: 600px) {
+	.object-container-grid {
+		width: 50%;
+	}
+}
+
+@media (min-width: 768px) {
+	.object-container-grid {
+		width: 33%;
+	}
+}
+
+// share this
+
+
+
+.st_sharethis_custom{
+	background: url("../img/glyphicons_308_share_alt.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_facebook_custom{
+	background: url("../img/glyphicons_social_30_facebook.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_twitter_custom{
+	background: url("../img/glyphicons_social_31_twitter.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_email_custom{
+	background: url("../img/glyphicons_010_envelope.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.st_googleplus_custom{
+	background: url("../img/glyphicons_social_02_google_plus.png") no-repeat scroll center center transparent;
+	padding:16px;
+	display: inline-block;
+	cursor: pointer;
+}
 // Issues
 
 .issue-container-grid {
@@ -196,7 +289,7 @@ margin-top: 10px;
 	text-align: center;
 }
 
-.primary-object-container .subcomponents ul li {
+.primary-object-container .subcomponents > ul > li  {
 display: inline;
 margin: 0 4px;
 }
