@@ -103,7 +103,7 @@ $( document ).ready(function() {
     });
 
     $( "body" ).on( "click", ".more-info-clickr", function() {
-        $( ".display-more-info" ).fadeToggle(function() {
+        $( ".display-more-info" ).slideToggle(function() {
         $('.more-info').text($(this).is(':visible')? 'Less Info' : 'More Info');
       });
     });
@@ -111,7 +111,7 @@ $( document ).ready(function() {
 
    $('#responsive-menu-button').sidr({
       name: 'sidr-main',
-      source: '#navigation, .login'
+      source: '.header-primary, .navbar-right'
     });
 
    $("body").on("click", ".view-share-buttons", function() {

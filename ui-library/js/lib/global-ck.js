@@ -1,2 +1,0 @@
-// Adds class of js to the html tag if JS is enabled
-document.getElementsByTagName("html")[0].className+=" js";(function(){var t={svg:"http://www.w3.org/2000/svg"};document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure","1.1")&&(document.getElementsByTagName("html")[0].className+=" svg")})();(function(e,t){e.getElementById("pattern-submit").style.display="none";e.getElementById("pattern-select").onchange=function(){var e=this.value;e!==""&&(window.location=e)}})(document);

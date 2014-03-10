@@ -91,7 +91,7 @@
                 
             </div><!-- /row for sub-header -->            
 
-            <div id="results_container" class="main-container-wide">
+            <div id="results_container" class="main-container-wide favorites">
                 
                 <ul class="row-fluid objects-container">
                     <!-- results template -->

@@ -4,13 +4,13 @@
 // --------------------------------------------------
 
 .pagination-centered {
-  margin: 0 auto;
+  margin: 20px auto 50px;
   text-align: center;
 }
 .pagination {
   display: inline-block;
   // border-radius: $border-radius-base;
-  margin: 20px 3px 20px 0;
+  margin: 0 3px 0 0;
   padding: 4px 12px;
   text-decoration: none;
   line-height: 1.5em;
@@ -55,10 +55,10 @@
     &:hover,
     &:focus {
       z-index: 2;
-      color: white;
-      background-color: $wsu-green;
+      color: black;
+      background-color: #eef1f1;
       cursor: default;
-      font-weight: 700;
+      font-weight: 900;
       
     }
   }

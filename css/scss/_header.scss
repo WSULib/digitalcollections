@@ -37,41 +37,72 @@
     background: -ms-linear-gradient(top, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
     /* IE10+ */
     background: linear-gradient(to bottom, rgba(9, 63, 57, 1) 0%, rgba(12, 84, 73, 1) 100%);
-    height: 185px;
+    height: 50px;
     /* W3C */
     // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#093f39', endColorstr='#0c5449', GradientType=0 );
     /* IE6-9 */
 }
 
-// header {
-//     // background: #f9f8f3;
-//     // background: rgba($wsu-brown, 0.9);
-//     background: rgba($wsu-green-dark, 0.8);
-//     // border-bottom: 1px solid #eee;
-// }
-// header h1 {
-//     display: inline-block;
-//     // margin-top: 20px;
-//     // font-family: 'Marcellus SC', serif;
-//     margin-top: 11px;
-//     z-index: 1002;
-// }
-// header h1 a, header h1 a:visited  {
-//     font-family: 'Roboto', sans-serif;
-//     // font-weight: 900;
-//     color: white;
-//     text-transform: uppercase;
-//     text-decoration: none;
-//     // margin-bottom: 1.5em;
-// }
-// h1 a:hover, h1 a:active {
-//     text-decoration: none;
-// }
+@media (min-width: 768px) {
+  .header {
+    height: 151px; 
+    padding-top: 0;
+  }
+}
 
-.logo {
-  margin-left: 20px;
+@media (min-width: 992px) {
+  .header {
+    height: 161px;
+  }
+}
+
+@media (max-width: 440px) {
+  img.logo {
+    margin: 0;
+    padding-right:20px; 
+    float: right;
+  }
+}
+
+img.logo {
+  margin: 0 auto;
+  display: block;
+  margin-top: -57px;
+}
+
+@media (min-width: 768px) {
+  img.logo {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 20px;
+    width: 205px;
+  }
+}
+
+@media (min-width: 992px) {
+  img.logo {
+    width: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  img.logo {
+    width: 310px;
+  }
 }
 .logo-container {
+  width: 100%;
+  float: left;
+  margin-top: 8px;
+}
+.search-container {
+  width: 100%;
+  float: left;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .logo-container {
   width: 30%;
   float: left;
   margin-top: 8px;
@@ -79,7 +110,8 @@
 .search-container {
   width: 70%;
   float: left;
-  padding-left: 20px;
+  padding: 0 20px;
+}
 }
 header .search-box {
   position: relative;
@@ -90,7 +122,7 @@ header .search-box {
 }
 header .searchTerm {
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100%;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -98,31 +130,60 @@ header .searchTerm {
   box-sizing: border-box; 
   height: 40px;
   border: 1px solid #d5d5d5;
-  border-radius: 3px;
   outline: none;
   padding: 5px 45px 5px 10px;
 }
 
- header .searchButton {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  // font-family: 'FontAwesome';
-  // background: #062728;
-  background: url('../img/search-icon.png') no-repeat scroll center;
-  padding: 20px;
-  text-align: center;
-  color: transparent;
-  // border-radius: 3px;
-  // -webkit-font-smoothing: subpixel-antialiased;
-  // font-smooth: always;
+ .search-form fieldset button {
+  background: transparent;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: #aaa;
   cursor: pointer;
-  border: 0;
-  z-index: 1;
+  float: right;
+  height: 44px;
+  right: 0;
+  top:40px;
+  padding: 0;
+  position: absolute;
+  width: 44px;
+  z-index: 1002;
+}
+
+.search-form {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 105, scss/base/_forms.scss */
+.search-form fieldset input {
+  border: none;
+  float: left;
+  height: 44px;
+  padding: 0 54px 0 10px;
+  width: 100%;
+  z-index: 1000;
+  -webkit-box-shadow: 0px 1px 9px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    0px 1px 9px 0px rgba(50, 50, 50, 0.5);
+box-shadow:         0px 1px 9px 0px rgba(50, 50, 50, 0.5);
+}
+
+@media (min-width: 768px) {
+  header .searchTerm {
+  top: 0;
+}
+
+.search-form fieldset input {
+  width: 99.8%;
+  border-radius: 5px;
+  box-shadow: 0;
+}
+
+ .search-form fieldset button {
+  top: 0;
+  background: #fc3;
+  color: #000;
+}
 }
 
 header .searchIcon:before {
@@ -171,7 +232,10 @@ header .searchIcon:before {
 @media only screen and (max-width: 767px){
     #mobile-header {
         display: inline-block;
-        margin-right: 20px;
+        img {
+          margin: 3px 20px 0 10px;
+          width: 40px;
+        }
     }
     h1 {
       font-size: 2em;
@@ -227,6 +291,7 @@ position: relative;
   color: white;
   font-weight: 500;
   padding: 10px 15px;
+  letter-spacing: 1px;
 }
 /* line 50, scss/objects/_nav.scss */
 .navbar-nav > .open a, .navbar-nav a:hover {
@@ -241,13 +306,14 @@ position: relative;
 /* line 59, scss/objects/_nav.scss */
 .navbar-right a {
   background: transparent;
+  letter-spacing: 1px;
   color: white;
   font-weight: 500;
   padding: 10px 15px;
 }
 /* line 66, scss/objects/_nav.scss */
 .navbar-right a:hover {
-  color: #ffcc33;
+  color: #F9F8F3;
   background: transparent;
 }
 
@@ -261,11 +327,40 @@ position: relative;
   }
 }
 
-.glyphicons.search {
-  margin-top: -9px;
+@media (min-width: 768px) {
+  .nav.header-primary {
+    top: 90px;
+  }
+
+  .navbar-right.nav {
+    top: 123px;
+  }
 }
 
-.glyphicons.home, .glyphicons.log_out, .glyphicons.user, .glyphicons.delete {
+@media (min-width: 992px) {
+  .nav.header-primary {
+    top: 100px;
+  }
+
+  .navbar-right.nav {
+    top: 133px;
+  }
+}
+
+.glyphicons.search {
+  top: 13px;
+  right: 13px;
+  position:absolute;
+}
+
+.show_lines.glyphicons:before {
+  font-size: 32px;
+}
+.glyphicons.show_lines {
+  color: white;
+}
+
+.glyphicons.home, .glyphicons.log_out, .glyphicons.user, .glyphicons.delete, .glyphicons.show_lines {
   margin-top: -24px;
 }
 
@@ -297,6 +392,16 @@ nav.header-primary {
     font-size: 1em;
   }
 }
+}
+
+@media (min-width: 768px) {
+  nav.header-primary.navbar ul li a {
+    font-size: 0.8em;
+  }
+
+  .navbar-right.nav > li > a {
+    font-size: 0.8em;
+  }
 }
 
 nav.header-global {
@@ -337,21 +442,29 @@ width: 100%;
 
 }
 
+ul.slider li + li {
+  margin-left: 5px;
+}
 
 ul.slider li {
   display: inline-block;
   border: 5px solid white;
-  margin: 5px;
   width: 100px;
-  height: 70px;
-  margin-top: 25px;
+  // height: 70px;
+  margin-top: 28px;
+}
+
+@media (min-width: 768px) {
+  ul.slider li {
+    width: 95px;
+  }
 }
 
 .masthead {
 z-index: 1;
 }
 .masthead .slides-wrap {
-height: 360px;
+height: 250px;
 max-width: 1470px;
 width: 100%;
 position: relative;
@@ -360,18 +473,38 @@ margin: 0 auto;
 .masthead .slide {
 overflow: hidden;
 position: absolute;
-top: -200px;
+top: 20px;
+z-index: -1;
+opacity: 1;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 600px) {
   .masthead .slide {
-    top: -100px;
+    top: -20px;
+  }
+  .masthead .slides-wrap {
+    height: 320px;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 768px) {
+  .masthead .slide {
+    top: -70px;
+  }
   .masthead .slides-wrap {
-    height: 480px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead .slide {
+    top: -150px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .masthead .slides-wrap {
+    height: 420px;
   }
 }
 
@@ -392,8 +525,8 @@ header .container {
 
 .feature {
   background: rgba($wsu-brown-light, 0.9);
-  min-height: 140px;
-  padding: 10px 30px;
+  
+  padding: 10px;
 
   h3 {
     font-weight: 700;
@@ -403,47 +536,50 @@ header .container {
   }
 }
 
+
 .feature-bottom {
   background: white;
-  padding: 30px;
+  padding: 10px;
   font-size: 0.9em;
 }
 
-.search-form {
-  display: inline-block;
-  width: 100%;
+@media (max-width: 767px) {
+  .feature {
+    display: none;
+  }
 }
 
-/* line 105, scss/base/_forms.scss */
-.search-form fieldset input {
-  border: none;
-  float: left;
-  height: 44px;
-  padding: 0 54px 0 10px;
-  width: 99.8%;
-  z-index: 1000;
+@media (min-width:768px) {
+  .feature {
+    padding: 0 10px;
+    min-height: 120px;
+  }
+  .feature-bottom {
+    padding: 20px 10px;
+  }
 }
+
 
 .login_status {
   color: white;
 }
 
 /* line 115, scss/base/_forms.scss */
-.search-form fieldset button {
-  background: #fc3;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  color: #000;
-  cursor: pointer;
-  float: right;
-  height: 44px;
-  right: 0;
-  top:0;
-  padding: 0;
-  position: absolute;
-  width: 44px;
-  z-index: 1002;
-}
+// .search-form fieldset button {
+//   background: #fc3;
+//   border: none;
+//   border-radius: 0 5px 5px 0;
+//   color: #000;
+//   cursor: pointer;
+//   float: right;
+//   height: 44px;
+//   right: 0;
+//   top:0;
+//   padding: 0;
+//   position: absolute;
+//   width: 44px;
+//   z-index: 1002;
+// }
 
 .sidr-class-login_status {
   list-style: none;
@@ -460,4 +596,10 @@ header .container {
   display: block;
   text-decoration: none;
   color: white;
+}
+
+@media (max-width: 767px) {
+  h2 {
+    margin-top:0;
+  }
 }
