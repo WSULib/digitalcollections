@@ -39,8 +39,8 @@ function fireViewer(symlinks){
         prefixUrl: "inc/osd/images/",
         showNavigator:  true,
         debugMode:  debugStatus,
-    });
-    viewer.openDzi("http://silo.lib.wayne.edu/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.dzi_symlink);
+    });        
+    viewer.openDzi("http://"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.dzi_symlink);
     updatePage();
 }
 
