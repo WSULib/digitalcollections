@@ -372,7 +372,44 @@ function tpagesPaginate(results,rows){
 }
 
 
+// favObjs CRUD
 
+// remove object
+function favObjRemove(PID){    
+    if (typeof userData.username_WSUDOR != "undefined"){     
+
+      // send username, hash, and PID to delete
+      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=solrRemoveDoc"
+
+      $.ajax({          
+        url: APIaddURL,      
+        dataType: 'json',
+        data: {
+        	username: userData.username_WSUDOR,
+        	userhash: userData.clientHash,
+        	PID: PID
+        },
+        success: callSuccess,
+        error: callError
+      });
+
+      function callSuccess(response){
+        console.log(response);        
+        $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Removed from Favorites');
+          bootbox.alert("Removed from Favorites", function(){
+          	
+          });          
+          window.setTimeout(function(){
+            bootbox.hideAll();
+            location.reload();
+          }, 3000);                  
+      }
+      function callError(response){
+        console.log(response);
+        bootbox.alert("Could not remove favorite.");
+      }
+    }  
+}
 
 
 
