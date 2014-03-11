@@ -194,36 +194,3 @@ function populateResults(){
 }
 
 
-// favObjs CRUD
-
-// remove object
-function favObjRemove(PID){    
-    if (typeof userData.username_WSUDOR != "undefined"){
-      // stringify user / item / search object, send to solrAddDoc API function  
-      var addDoc = new Object();
-      addDoc.id = userData.username_WSUDOR+"_"+PID      
-      var jsonAddString = '{"delete":'+JSON.stringify(addDoc)+'}';
-      console.log(jsonAddString);
-
-      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=solrRemoveDoc&raw="+jsonAddString;
-      console.log("URL to remove:",APIaddURL);
-
-      $.ajax({          
-        url: APIaddURL,      
-        dataType: 'json',
-        success: callSuccess,
-        error: callError
-      });
-
-      function callSuccess(response){
-        console.log(response);
-        // alert("Favorte "+PID+" has been removed.");  
-        location.reload();
-      }
-      function callError(response){
-        console.log(response);
-        bootbox.alert("Could not remove favorite.");
-      }
-    }  
-}
-

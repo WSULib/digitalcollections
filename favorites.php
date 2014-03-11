@@ -28,6 +28,8 @@
         <script src="js/utilities.js"></script>        
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>
+
+        <script src="js/vendor/bootbox.min.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>

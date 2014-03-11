@@ -221,7 +221,7 @@ function addFav(){
       function callSuccess(response){
         console.log(response);
         if (response.solrAddDoc.responseHeader.status == 0){
-          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites')
+          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites');
           bootbox.alert("Added to favorites");
           window.setTimeout(function(){
             bootbox.hideAll();
