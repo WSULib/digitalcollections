@@ -22,14 +22,14 @@
   <title>WSU iipsrv imageviewer</title>
   <!-- digitalcollections files-->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
-  <script type="text/javascript" src="js/imageviewer.js"></script>
+  <script type="text/javascript" src="js/imageviewer_tiled.js"></script>
   <script src="js/utilities.js"></script>
 
   <!-- viewer specific -->
-  <script type="text/javascript" src="js/mootools-core-1.3.2-full-nocompat.js"></script>
-  <script type="text/javascript" src="js/mootools-more-1.3.2.1.js"></script>
-  <script type="text/javascript" src="js/protocols.js"></script>
-  <script type="text/javascript" src="js/iipmooviewer-2.0.js"></script>
+  <script type="text/javascript" src="inc/mooviewer/mootools-core-1.3.2-full-nocompat.js"></script>
+  <script type="text/javascript" src="inc/mooviewer/mootools-more-1.3.2.1.js"></script>
+  <script type="text/javascript" src="inc/mooviewer/protocols.js"></script>
+  <script type="text/javascript" src="inc/mooviewer/iipmooviewer-2.0.js"></script>
 
   <!--[if lt IE 7]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js">IE7_PNG_SUFFIX = ".png";</script>

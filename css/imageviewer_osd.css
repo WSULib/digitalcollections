@@ -1,0 +1,13 @@
+body{
+	background-color: black;
+	color: white; 
+}
+
+#openseadragon1{
+	width: 100%;
+	height: 100%;
+}
+
+#downloads{
+	height:20px; width:100%;
+}
