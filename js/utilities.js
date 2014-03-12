@@ -394,7 +394,7 @@ function favObjRemove(PID){
       });
 
       function callSuccess(response){
-        console.log(response);        
+        // console.log(response);        
         $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Removed from Favorites');
           bootbox.alert("Removed from Favorites", function(){
           	
@@ -405,7 +405,7 @@ function favObjRemove(PID){
           }, 3000);                  
       }
       function callError(response){
-        console.log(response);
+        // console.log(response);
         bootbox.alert("Could not remove favorite.");
       }
     }  

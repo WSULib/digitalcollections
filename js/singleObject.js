@@ -20,7 +20,7 @@ function APIcall(PID){
   });
 
   function callSuccess(response){
-  	console.log(response);  
+  	// console.log(response);  
     APIdata = response;
 
     //check object status
@@ -37,7 +37,7 @@ function APIcall(PID){
   }
 
   function callError(response){
-  	console.log("API Call unsuccessful.  Back to the drawing board.");
+  	// console.log("API Call unsuccessful.  Back to the drawing board.");
     loadError();                
   }
 }
@@ -206,10 +206,10 @@ function addFav(){
       addDoc.fav_user = userData.username_WSUDOR;
       addDoc.fav_item = APIdata.APIParams.PID;
       var jsonAddString = "["+JSON.stringify(addDoc)+"]";
-      console.log(jsonAddString);
+      // console.log(jsonAddString);
 
       var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
-      console.log(APIaddURL);
+      // console.log(APIaddURL);
 
       $.ajax({          
         url: APIaddURL,      
@@ -219,7 +219,7 @@ function addFav(){
       });
 
       function callSuccess(response){
-        console.log(response);
+        // console.log(response);
         if (response.solrAddDoc.responseHeader.status == 0){
           $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites');
           bootbox.alert("Added to favorites");
@@ -233,7 +233,7 @@ function addFav(){
         }
       }
       function callError(response){
-        console.log(response);
+        // console.log(response);
         bootbox.alert("Error.");
       }
     }

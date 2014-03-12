@@ -26,15 +26,15 @@ function loginForm(){
       dataType: 'json',
       data: postData,            
       success: function(response){
-        console.log('result of WSUDOR account check:');            
+        // console.log('result of WSUDOR account check:');            
         APIdata.loginWSUDORCheck = response;
-        console.log(APIdata.loginWSUDORCheck);
+        // console.log(APIdata.loginWSUDORCheck);
         
         // WSUDOR account not found 
         if (APIdata.loginWSUDORCheck.userSearch.extant == false){
-          console.log("No WSUDOR account. Yet...")
+          // console.log("No WSUDOR account. Yet...")
           // next step checking for LDAP 
-          console.log("checking LDAP for account, then credentials.");
+          // console.log("checking LDAP for account, then credentials.");
           var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=authUser";    
           $.ajax({    
             type: "POST",      
@@ -42,50 +42,50 @@ function loginForm(){
             dataType: 'json',
             data: postData,         
             success: function(response){        
-              console.log("LDAPCredCheck response:")
+              // console.log("LDAPCredCheck response:")
               APIdata.LDAPCredCheck = response;     
-              console.log(APIdata.LDAPCredCheck);
+              // console.log(APIdata.LDAPCredCheck);
 
               // this scenario fires for first time LDAP creation
               if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser.LDAP_result_set[0].length > 1){
-                console.log("LDAP credentials confirmed.  Creating WSU account on-the-fly.")
+                // console.log("LDAP credentials confirmed.  Creating WSU account on-the-fly.")
                 // in this case, create account on-the-fly, and set cookie
                 createAccountPrep('LDAPDefined');
               }
               else {
-                console.log("LDAP credentials don't jive.");  
+                // console.log("LDAP credentials don't jive.");  
                 denyAccess();
               }
             },
             error: function(response){
-              console.log(response);
+              // console.log(response);
             }
           });
         } 
         // WSUDOR account found       
         else {          
-          console.log("WSUDOR account found.");          
+          // console.log("WSUDOR account found.");          
           // WSU affiliated
           if (APIdata.loginWSUDORCheck.userSearch.user_WSU == true ){
-            console.log("WSU affilated. Check password against LDAP.");
+            // console.log("WSU affilated. Check password against LDAP.");
             checkLDAPPassword();
           }
           // Community / Public
           else {
-            console.log("Community / Public.  Check password against WSUDOR.");
+            // console.log("Community / Public.  Check password against WSUDOR.");
             checkWSUDORPassword();
           }
         }
       },
       error: function(response){
-        console.log("Error encountered.");
+        // console.log("Error encountered.");
       }
     });
 
   // check WSUDOR credentials (not LDAP account)
   function checkWSUDORPassword(){
-    console.log("checking WSUDOR password.");  
-    console.log(postData);
+    // console.log("checking WSUDOR password.");  
+    // console.log(postData);
 
     var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=WSUDORuserAuth";    
     $.ajax({    
@@ -94,28 +94,28 @@ function loginForm(){
       dataType: 'json',
       data: postData,         
       success: function(response){        
-        console.log("WSUDOR password check response:")
+        // console.log("WSUDOR password check response:")
         APIdata.passwordWSUDORcheck = response;
-        console.log(APIdata.passwordWSUDORcheck);
+        // console.log(APIdata.passwordWSUDORcheck);
         if (APIdata.passwordWSUDORcheck.WSUDORuserAuth.WSUDORcheck == true) {
-          console.log("WSUDOR credentials check out.")
+          // console.log("WSUDOR credentials check out.")
           grantAccess(postData.username,APIdata.passwordWSUDORcheck.WSUDORuserAuth.clientHash);
         }
         else {
-          console.log("WSUDOR credentials don't match.")
+          // console.log("WSUDOR credentials don't match.")
           denyAccess();
         }
 
       },
       error: function(response){
-        console.log(response);
+        // console.log(response);
       }
     });
   }
 
   // check LDAP credentials (trumps WSUDOR account)
   function checkLDAPPassword(){
-    console.log("checking LDAP password.");
+    // console.log("checking LDAP password.");
     var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=authUser";    
     $.ajax({    
       type: "POST",      
@@ -123,21 +123,21 @@ function loginForm(){
       dataType: 'json',
       data: postData,         
       success: function(response){        
-        console.log("LDAPCredCheck response:")
+        // console.log("LDAPCredCheck response:")
         APIdata.LDAPCredCheck = response;     
-        console.log(APIdata.LDAPCredCheck);
+        // console.log(APIdata.LDAPCredCheck);
 
         if (typeof (APIdata.LDAPCredCheck.authUser.desc) == 'undefined' && APIdata.LDAPCredCheck.authUser.LDAP_result_set[0].length > 1){
-          console.log("LDAP credentials confirmed.")
+          // console.log("LDAP credentials confirmed.")
           grantAccess(APIdata.LDAPCredCheck.authUser.LDAP_result_set[0][1].uid[0],APIdata.LDAPCredCheck.authUser.clientHash);
         }
         else {
-          console.log("LDAP credentials don't jive.");  
+          // console.log("LDAP credentials don't jive.");  
           denyAccess();
         }
       },
       error: function(response){
-        console.log(response);
+        // console.log(response);
       }
     });
   }
@@ -177,13 +177,13 @@ function createAccountPrep(type){
       data: postData,         
       success: function(response){
         APIdata.userSearch = response;
-        console.log(response);      
+        // console.log(response);      
         if (APIdata.userSearch.userSearch.extant == true){
-          console.log("Username not available in WSUDOR.");
+          // console.log("Username not available in WSUDOR.");
           createAccountFail();
         }
         else {
-          console.log("WSUDOR username available.");          
+          // console.log("WSUDOR username available.");          
           
           // check username in LDAP via anonymous call
           var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getUserInfo";
@@ -195,27 +195,27 @@ function createAccountPrep(type){
             dataType: 'json',
             data: postData,         
             success: function(response){
-              console.log("LDAP user check...");
+              // console.log("LDAP user check...");
               APIdata.LDAPcheck = response;
-              console.log(APIdata.LDAPcheck);
+              // console.log(APIdata.LDAPcheck);
               if (typeof APIdata.LDAPcheck.getUserInfo.desc != "undefined"){
-                console.log("Username not used in LDAP")
+                // console.log("Username not used in LDAP")
                 createAccount(params,"userDefined");
               }              
               else {
-                console.log("Username used in LDAP, cannot create account with this name.");
+                // console.log("Username used in LDAP, cannot create account with this name.");
                 createAccountFail("This appears to be a WSU login, try logging in with this information above!");
               }
             },
             error: function (response){
-              console.log("LDAP username check unsuccessful");;    
+              // console.log("LDAP username check unsuccessful");;    
             }
           });
           
         }
       },
       error: function (response){
-        console.log("WSUDOR username check unsuccessful.");    
+        // console.log("WSUDOR username check unsuccessful.");    
       }
     });    
   }
@@ -226,26 +226,26 @@ function createAccountPrep(type){
 
 // Create Account
 function createAccount(params,type){  
-  console.log("Account to be created with these params: ");
-  console.log(params);
+  // console.log("Account to be created with these params: ");
+  // console.log(params);
   
   // check for displayName
   if (params.user_displayName == ""){
-    console.log("No displayName provided.");
+    // console.log("No displayName provided.");
     createAccountFail();
     return;
   }
 
   // check for username
   if (params.user_username == ""){
-    console.log("No username provided.");
+    // console.log("No username provided.");
     createAccountFail();
     return;
   }
 
   // check for password
   if (params.user_password == "" && params.user_WSU == 0){
-    console.log("No password provided.");
+    // console.log("No password provided.");
     createAccountFail();
     return;
   }
@@ -254,7 +254,7 @@ function createAccount(params,type){
   var postData = params;
 
   var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=createUserAccount";
-  console.log(APIaddURL);
+  // console.log(APIaddURL);
 
   $.ajax({          
     url: APIaddURL,
@@ -262,7 +262,7 @@ function createAccount(params,type){
     data: postData,      
     dataType: 'json',
     success: function(response){
-      console.log("This is what you have to work with for creating account:",response);
+      // console.log("This is what you have to work with for creating account:",response);
 
       if (response.createUserAccount.createResponse.responseHeader.status == 0){      
         createAccountSuccess(params.user_username,response.createUserAccount.clientHash);
@@ -272,7 +272,7 @@ function createAccount(params,type){
       }
     },
     error: function(response){
-      console.log(response);
+      // console.log(response);
       bootbox.alert("Error.");
     }
   });  
@@ -307,7 +307,7 @@ function createAccountFail(message){
 
 /* Need to rework this such that you pass username AND clientHash from userSearch() call.*/
 function setWSUDORCookie(username,clientHash){
-  console.log("setting WSUDOR cookie for "+username);
+  // console.log("setting WSUDOR cookie for "+username);
   // hit WSUDOR for displayName
   // check WSUDOR status    
   var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=userSearch";  
@@ -319,14 +319,14 @@ function setWSUDORCookie(username,clientHash){
     dataType: 'json',
     data: postData,            
     success: function(response){
-      console.log(response);
+      // console.log(response);
       userData.displayName = response.userSearch.displayName;
       userData.loggedIn_WSUDOR = true;  
       userData.username_WSUDOR = username;
       // pull clientHash from authUser() *LDAP function, or WSUDORuserAuth();
       userData.clientHash = clientHash;
 
-      console.log("userData:",userData);
+      // console.log("userData:",userData);
 
       $.cookie("WSUDOR", JSON.stringify(userData),{
           path:"/"
@@ -336,7 +336,7 @@ function setWSUDORCookie(username,clientHash){
       navBack();
     },
     error:function(response){
-      console.log("Could not retrieve displayName for cookie purposes");
+      // console.log("Could not retrieve displayName for cookie purposes");
     }
   });  
 }
