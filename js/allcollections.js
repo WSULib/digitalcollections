@@ -107,8 +107,8 @@ function collectionsCount(){
 	}
 
 	function callError(response){
-		console.log("collectionsCount Error");
-		console.log(response);
+		// console.log("collectionsCount Error");
+		// console.log(response);
 	}
 }
 

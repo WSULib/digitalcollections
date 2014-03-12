@@ -11,7 +11,7 @@ function searchGo(type){
 	delete searchParams['fq'];
 
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();	
+	// debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
 	solrParamsString = JSON.stringify(mergedParams);	
@@ -19,7 +19,7 @@ function searchGo(type){
 	// WSUAPI v2.0
 	// Usuing new API function solrSearch()
 	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrSearch&solrParams="+solrParamsString;
-	console.log(APIcallURL);
+	// console.log(APIcallURL);
 	$.ajax({          
 		url: APIcallURL,      
 		dataType: 'json',	         
@@ -30,7 +30,7 @@ function searchGo(type){
 		function callSuccess(response){
 			mix(response, APIdata);
 			$(document).ready(function(){
-				console.log("RESULTS", response);
+				// console.log("RESULTS", response);
 				if (type == "collectionPage"){
 
 					updateCollectionTitle();
