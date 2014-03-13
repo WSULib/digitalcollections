@@ -40,7 +40,8 @@ function fireViewer(symlinks){
         showNavigator:  true,
         debugMode:  debugStatus,
     });        
-    viewer.openDzi("http://"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.dzi_symlink);
+    symlink_url = location.protocol+"//"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.dzi_symlink;    
+    viewer.openDzi(symlink_url);
     updatePage();
 }
 
