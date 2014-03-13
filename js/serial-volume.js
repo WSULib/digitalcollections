@@ -9,7 +9,7 @@ function launch(PID){
 	APIdata.searchParams = PID;
 	PID = PID['id'];
 	// returns serial object metadata	
-	var URL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
+	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
 	var json = "http://jsonviewer.stack.hu/#";
 	console.log(json+URL);
 	$.ajax({          
@@ -39,7 +39,7 @@ function launch(PID){
 }
 
 function serialWalk(PID){		
-	var URL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=serialWalk&functions[]=solrGetFedDoc&PID="+PID;
+	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=serialWalk&functions[]=solrGetFedDoc&PID="+PID;
 	var json = "http://jsonviewer.stack.hu/#";
 	console.log(json+URL);
 	$.ajax({          

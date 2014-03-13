@@ -46,7 +46,7 @@ function collectionsList(type){
 	
 	CollectionListParams = JSON.stringify(CollectionListParams);
 
-	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrSearch&solrParams="+CollectionListParams;
+	var APIcallURL = "/WSUAPI/?functions[]=solrSearch&solrParams="+CollectionListParams;
 
 	// Calls API functions
 	$.ajax({          
@@ -92,7 +92,7 @@ function collectionsCount(){
 	CollectionListParams = JSON.stringify(CollectionListParams);
 
 	// Calls API functions
-	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrFacetSearch&solrParams="+CollectionListParams;
+	var APIcallURL = "/WSUAPI/?functions[]=solrFacetSearch&solrParams="+CollectionListParams;
 
 	$.ajax({          
 	  url: APIcallURL,      

@@ -20,7 +20,7 @@ $(document).ready(function(){
 			var postData = new Object();
 			postData.username = userData.username_WSUDOR;
 			postData.clientHash = userData.clientHash;
-			var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=cookieAuth";
+			var APIaddURL = "/WSUAPI-dev?functions[]=cookieAuth";
 			// console.log(APIaddURL);
 			$.ajax({          
 				url: APIaddURL,
