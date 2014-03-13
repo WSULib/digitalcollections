@@ -17,8 +17,8 @@ function searchGo(type){
 	solrParamsString = JSON.stringify(mergedParams);	
 
 	// WSUAPI v2.0
-	// Usuing new API function solrSearch()
-	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI/?functions[]=solrSearch&solrParams="+solrParamsString;
+	// Usuing new API function solrSearch()	
+	var APIcallURL = "/WSUAPI/?functions[]=solrSearch&solrParams="+solrParamsString;
 	// console.log(APIcallURL);
 	$.ajax({          
 		url: APIcallURL,      

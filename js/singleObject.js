@@ -9,7 +9,7 @@ var APIdata = new Object();
 function APIcall(PID){	
 	
   // Calls API functions	
-  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
+  var APIcallURL = "/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
 
   $.ajax({          
     url: APIcallURL,      
@@ -208,7 +208,7 @@ function addFav(){
       var jsonAddString = "["+JSON.stringify(addDoc)+"]";
       // console.log(jsonAddString);
 
-      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
+      var APIaddURL = "/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
       // console.log(APIaddURL);
 
       $.ajax({          
@@ -246,9 +246,9 @@ function addFav(){
 // swap LargeImage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateLargeView(self,PID){      
-  $("#LargeView a img").attr('src','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+PID+'/datastreams/PREVIEW/content&aspectResize=(1024x768)');
-  // $("#LargeView a").attr('href','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+PID+'/datastreams/ACCESS/content');
-  $("#LargeView a").attr('href','http://silo.lib.wayne.edu/dev/graham/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
+  $("#LargeView a img").attr('src','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+PID+'/datastreams/PREVIEW/content&aspectResize=(1024x768)');
+  // $("#LargeView a").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+PID+'/datastreams/ACCESS/content');
+  $("#LargeView a").attr('href','/dev/graham/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

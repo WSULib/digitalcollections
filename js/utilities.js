@@ -379,7 +379,7 @@ function favObjRemove(PID){
     if (typeof userData.username_WSUDOR != "undefined"){     
 
       // send username, hash, and PID to delete
-      var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI-dev?functions[]=solrRemoveDoc"
+      var APIaddURL = "/WSUAPI-dev?functions[]=solrRemoveDoc"
 
       $.ajax({          
         url: APIaddURL,      

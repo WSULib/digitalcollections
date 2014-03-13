@@ -4,7 +4,7 @@
 function launch(imageParams){	
 
 	// retrieve / create symlink
-	var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=solrGetFedDoc&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
+	var APIcallURL = "/WSUAPI?functions[]=solrGetFedDoc&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  	    
@@ -47,8 +47,8 @@ function fireViewer(symlinks){
 
 function updatePage(){
 	// set downloads
-	$("#fullsize").attr('href','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+imageParams.PID+'/datastreams/ACCESS/content');
-	$("#mediumsize").attr('href','http://silo.lib.wayne.edu/imageServer?imgURL=http://silo.lib.wayne.edu/fedora/objects/'+imageParams.PID+'/datastreams/PREVIEW/content');
+	$("#fullsize").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+imageParams.PID+'/datastreams/ACCESS/content');
+	$("#mediumsize").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+imageParams.PID+'/datastreams/PREVIEW/content');
 
 	// update title
 	$("head title").html(APIdata.solrGetFedDoc.response.docs[0].dc_title);

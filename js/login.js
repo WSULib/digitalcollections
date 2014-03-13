@@ -19,7 +19,7 @@ function loginForm(){
   postData.password = $("#password").val();
 
   // check WSUDOR status    
-  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=userSearch";  
+  var APIcallURL = "/WSUAPI?functions[]=userSearch";  
   $.ajax({    
       type: "POST",      
       url: APIcallURL,      
@@ -35,7 +35,7 @@ function loginForm(){
           // console.log("No WSUDOR account. Yet...")
           // next step checking for LDAP 
           // console.log("checking LDAP for account, then credentials.");
-          var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=authUser";    
+          var APIcallURL = "/WSUAPI?functions[]=authUser";    
           $.ajax({    
             type: "POST",      
             url: APIcallURL,      
@@ -87,7 +87,7 @@ function loginForm(){
     // console.log("checking WSUDOR password.");  
     // console.log(postData);
 
-    var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=WSUDORuserAuth";    
+    var APIcallURL = "/WSUAPI?functions[]=WSUDORuserAuth";    
     $.ajax({    
       type: "POST",      
       url: APIcallURL,      
@@ -116,7 +116,7 @@ function loginForm(){
   // check LDAP credentials (trumps WSUDOR account)
   function checkLDAPPassword(){
     // console.log("checking LDAP password.");
-    var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=authUser";    
+    var APIcallURL = "/WSUAPI?functions[]=authUser";    
     $.ajax({    
       type: "POST",      
       url: APIcallURL,      
@@ -167,7 +167,7 @@ function createAccountPrep(type){
     params.user_WSU = 0;
 
     // check username availability in WSUDOR
-    var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=userSearch";
+    var APIcallURL = "/WSUAPI?functions[]=userSearch";
     var postData = new Object();
     postData.username = params.user_username;
     $.ajax({    
@@ -186,7 +186,7 @@ function createAccountPrep(type){
           // console.log("WSUDOR username available.");          
           
           // check username in LDAP via anonymous call
-          var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=getUserInfo";
+          var APIcallURL = "/WSUAPI?functions[]=getUserInfo";
           var postData = new Object();
           postData.username = params.user_username;
           $.ajax({    
@@ -253,7 +253,7 @@ function createAccount(params,type){
   params.id = params.user_username;
   var postData = params;
 
-  var APIaddURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=createUserAccount";
+  var APIaddURL = "/WSUAPI?functions[]=createUserAccount";
   // console.log(APIaddURL);
 
   $.ajax({          
@@ -310,7 +310,7 @@ function setWSUDORCookie(username,clientHash){
   // console.log("setting WSUDOR cookie for "+username);
   // hit WSUDOR for displayName
   // check WSUDOR status    
-  var APIcallURL = "http://silo.lib.wayne.edu/WSUAPI?functions[]=userSearch";  
+  var APIcallURL = "/WSUAPI?functions[]=userSearch";  
   var postData = new Object ();
   postData.username = username;  
   $.ajax({    
