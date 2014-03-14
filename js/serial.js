@@ -79,3 +79,48 @@ function loadError(){
 
 
 
+// Add Item to Favorites
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function addFav(){    
+    if (typeof userData.username_WSUDOR != "undefined"){
+      // stringify user / item / search object, send to solrAddDoc API function  
+      var addDoc = new Object();
+      addDoc.id = userData.username_WSUDOR+"_"+APIdata.APIParams.PID
+      addDoc.fav_user = userData.username_WSUDOR;
+      addDoc.fav_item = APIdata.APIParams.PID;
+      var jsonAddString = "["+JSON.stringify(addDoc)+"]";
+      // console.log(jsonAddString);
+
+      var APIaddURL = "/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
+      // console.log(APIaddURL);
+
+      $.ajax({          
+        url: APIaddURL,      
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+      });
+
+      function callSuccess(response){
+        // console.log(response);
+        if (response.solrAddDoc.responseHeader.status == 0){
+          $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites');
+          bootbox.alert("Added to favorites");
+          window.setTimeout(function(){
+            bootbox.hideAll();
+          }, 3000);
+          // .addClass('favorited');
+        }
+        else {
+          bootbox.alert("Error");
+        }
+      }
+      function callError(response){
+        // console.log(response);
+        bootbox.alert("Error.");
+      }
+    }
+  else {
+    bootbox.alert("User not found.  Please login or sign up to save favorites.");
+  }  
+}
