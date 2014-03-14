@@ -23,7 +23,7 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.entypo-text:before {
+.entypo-doc-text:before {
 	content: "\e600";
 }
 .entypo-plus:before {
