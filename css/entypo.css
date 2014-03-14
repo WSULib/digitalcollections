@@ -161,8 +161,8 @@
 .entypo.circled-minus:before{ content:'\2296'; }
 .entypo.circled-plus:before{ content:'\2295'; }
 .entypo.circled-cross:before{ content:'\2716'; }
-.entypo.minus:before{ content:'\2796'; }
-.entypo.plus:before{ content:'\2795'; }
+.entypo-minus:before{ content:'\2796'; }
+.entypo-plus:before{ content:'\2795'; }
 .entypo.erase:before{ content:'\232B'; }
 .entypo.block:before{ content:'\1F6AB'; }
 .entypo.info:before{ content:'\2139'; }
