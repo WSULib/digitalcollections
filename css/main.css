@@ -2705,7 +2705,8 @@ ul.toc-2-col {
       text-transform: uppercase;
       cursor: pointer; }
       .facets .filter h3 span {
-        float: right; }
+        float: right;
+        margin-top: 5px; }
     .facets .filter ul {
       list-style: none;
       padding: 5px 15px;
@@ -6488,4 +6489,4 @@ footer {
   width: 100%; }
 
 .toc-2-col li a {
-  font-weight: 300; }
+  font-size: 0.9em; }
