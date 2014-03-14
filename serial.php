@@ -12,6 +12,7 @@ $serialObjPID = $_GET['id'];
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
         <link rel="stylesheet" href="css/glyphicons.css">
+        <link rel="stylesheet" href="css/entypo.css">
         
         <!-- Typography -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -24,10 +25,10 @@ $serialObjPID = $_GET['id'];
         <script type="text/javascript" src="inc/mustache.js"></script>
         
         <!-- Local JS -->
-        <script src="js/favorites.js"></script>
-        <script src="js/userData.js"></script>   
         <script src="js/utilities.js"></script>        
         <script src="js/serial.js"></script>
+        <script src="js/userData.js"></script> 
+        <script src="js/favorites.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>

@@ -2713,6 +2713,9 @@ ul.toc-2-col {
       .facets .filter ul li {
         padding: 5px 0; }
 
+#serial-nav.facets .filter li h3 {
+  font-size: 1em; }
+
 .facet-item a {
   display: inline-block;
   margin: 0 5px 35px 0;
