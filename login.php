@@ -48,11 +48,13 @@ $objectPID = $_REQUEST['PID'];
     </head>
     <body>
 
+        <?php include('inc/header.php'); ?>
+
     <div class="container" id="templateCM">
-        <h1 class="brand-login">
+        <!-- <h1 class="brand-login">
             <img src="img/wsulsLogo.png" alt="" style="display:block;margin:0 auto;margin-bottom:20px;width:90px;height:auto;">
             <a href="search.php">Digital Collections</a>
-        </h1>
+        </h1> -->
         <div class="flat-form">
             <ul class="tabs">
                 <li>
@@ -99,6 +101,8 @@ $objectPID = $_REQUEST['PID'];
             <!--/#register.form-action-->
         </div>
     </div>  
+
+    <?php include('inc/footer.php'); ?>
         
     </body>
 
