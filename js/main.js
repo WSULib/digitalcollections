@@ -140,12 +140,12 @@ $(document).ready(function(){
         e.preventDefault();
 
         // Toggle the class and check if the class has been already added or not  
-            $(this).find('span').toggleClass('entypo minus');
+            $(this).find('span').toggleClass('entypo-minus');
   
-            if($(this).find('span').hasClass('entypo plus')){
-                $(this).find('span').removeClass('entypo plus').addClass('entypo minus');
+            if($(this).find('span').hasClass('entypo-plus')){
+                $(this).find('span').removeClass('entypo-plus').addClass('entypo-minus');
             }else{
-                $(this).find('span').removeClass('entypo minus').addClass('entypo plus');
+                $(this).find('span').removeClass('entypo-minus').addClass('entypo-plus');
             }
   
     });
