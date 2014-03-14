@@ -5,15 +5,16 @@
 	<script src="js/imageviewer_osd.js"></script>
 	<script src="inc/osd/openseadragon.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/imageviewer_osd.css" />
+	<link rel="stylesheet" href="css/glyphicons.css">
 
-	<title>placeholder</title>
+	<title>WSU Digital Collections Image Viewer</title>
 
 <head>
 
 <body>
 	
 	<div id="downloads">
-		<p>Download <a id="fullsize" href="#">fullsize</a> / <a id="mediumsize" href="#">medium</a></p>
+		<p><a href="#" onclick="window.history.back(); return false;"><span style="margin-right:5px;">&laquo;</span> Go Back</a> / Download <a id="fullsize" href="#">Fullsize image</a> or <a id="mediumsize" href="#">Medium image</a></p>
 	</div>
 	
 	<div id="openseadragon1"></div>

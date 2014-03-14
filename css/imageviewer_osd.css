@@ -1,6 +1,7 @@
 body{
 	background-color: black;
 	color: white; 
+	font-family: "Roboto", sans-serif;
 }
 
 #openseadragon1{
@@ -9,5 +10,14 @@ body{
 }
 
 #downloads{
-	height:20px; width:100%;
+	height:20px; width:100%; margin:10px;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a#fullsize, a#mediumsize {
+	border-bottom: 1px dotted #ccc;
 }
