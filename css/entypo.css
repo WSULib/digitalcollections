@@ -185,7 +185,7 @@
 .entypo.add-to-list:before{ content:'\E003'; }
 .entypo.layout:before{ content:'\268F'; }
 .entypo.list:before{ content:'\2630'; }
-.entypo.text-doc:before{ content:'\1F4C4'; }
+.entypo-doc-text:before{ content:'\1F4C4'; }
 .entypo.text-doc-inverted:before{ content:'\E731'; }
 .entypo.doc:before{ content:'\E730'; }
 .entypo.docs:before{ content:'\E736'; }
