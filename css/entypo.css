@@ -90,7 +90,7 @@
 .entypo.new:before{ content:'\1F4A5'; }
 .entypo.graduation-cap:before{ content:'\1F393'; }
 .entypo.book:before{ content:'\1F4D5'; }
-.entypo.newspaper:before{ content:'\1F4F0'; }
+.entypo-doc-text:before{ content:'\1F4F0'; }
 .entypo.bag:before{ content:'\1F45C'; }
 .entypo.airplane:before{ content:'\2708'; }
 .entypo.lifebuoy:before{ content:'\E788'; }
@@ -185,7 +185,7 @@
 .entypo.add-to-list:before{ content:'\E003'; }
 .entypo.layout:before{ content:'\268F'; }
 .entypo.list:before{ content:'\2630'; }
-.entypo-doc-text:before{ content:'\1F4C4'; }
+.entypo.text-doc:before{ content:'\1F4C4'; }
 .entypo.text-doc-inverted:before{ content:'\E731'; }
 .entypo.doc:before{ content:'\E730'; }
 .entypo.docs:before{ content:'\E736'; }
