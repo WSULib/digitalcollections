@@ -2716,6 +2716,8 @@ ul.toc-2-col {
 
 #serial-nav.facets .filter li h3 {
   font-size: 1em; }
+  #serial-nav.facets .filter li h3 a:hover {
+    text-decoration: none; }
 
 .facet-item a {
   display: inline-block;
