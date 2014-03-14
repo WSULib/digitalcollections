@@ -25,10 +25,10 @@ $serialObjPID = $_GET['id'];
         <script type="text/javascript" src="inc/mustache.js"></script>
         
         <!-- Local JS -->
+        <script src="js/favorites.js"></script>
+        <script src="js/userData.js"></script>   
         <script src="js/utilities.js"></script>        
         <script src="js/serial.js"></script>
-        <script src="js/userData.js"></script> 
-        <script src="js/favorites.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
