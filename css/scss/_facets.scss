@@ -68,6 +68,7 @@ ul.toc-2-col {
 
 			span {
 				float:right;
+				margin-top:5px;
 			}
 		}
 
@@ -80,6 +81,14 @@ ul.toc-2-col {
 				padding: 5px 0;
 			}
 		}
+	}
+}
+
+#serial-nav.facets .filter li h3 {
+	font-size:1em;
+
+	a:hover {
+		text-decoration: none;
 	}
 }
 

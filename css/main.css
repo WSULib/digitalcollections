@@ -2555,7 +2555,6 @@ header .container {
 footer .container {
   font-size: 0.7em;
   color: #999;
-  background: #eef1f1;
   padding: 20px; }
 
 footer a > i,
@@ -2706,13 +2705,19 @@ ul.toc-2-col {
       text-transform: uppercase;
       cursor: pointer; }
       .facets .filter h3 span {
-        float: right; }
+        float: right;
+        margin-top: 5px; }
     .facets .filter ul {
       list-style: none;
       padding: 5px 15px;
       font-size: 0.9em; }
       .facets .filter ul li {
         padding: 5px 0; }
+
+#serial-nav.facets .filter li h3 {
+  font-size: 1em; }
+  #serial-nav.facets .filter li h3 a:hover {
+    text-decoration: none; }
 
 .facet-item a {
   display: inline-block;
@@ -6484,3 +6489,6 @@ footer {
   bottom: 0;
   height: 55px;
   width: 100%; }
+
+.toc-2-col li a {
+  font-size: 0.9em; }
