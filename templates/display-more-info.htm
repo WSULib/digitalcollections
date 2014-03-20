@@ -50,7 +50,8 @@
 	    <td>Resource Type:</td>
 	    <td>
 	        {{#solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
-	            <a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br>	            
+	            <!-- <a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br> -->
+	            {{.}}<br>
 	        {{/solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
 	    <!-- </td> -->	
 
