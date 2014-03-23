@@ -62,7 +62,7 @@ $objectPID = $_REQUEST['id'];
         <?php include('inc/header.php'); ?>
 
 
-        <div id="templateCM" class="container">
+        <div id="templateCM" class="container" itemscope itemtype="http://schema.org/CreativeWork">
             <div class="breadcrumb col-md-3">
                
                 <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
