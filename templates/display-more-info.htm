@@ -8,7 +8,7 @@
     <!--Date-->
 	<tr>
 	    <td>Date:</td>
-	    <td>
+	    <td itemprop="dateCreated">
 	    	{{#solrGetFedDoc.response.docs.0.facet_mods_year}}
 	    		<a href='search.php?q=*&start=0&fq[]=dc_date:"{{solrGetFedDoc.response.docs.0.dc_date.0}}"&start=0'>{{.}}</a>
 	    	{{/solrGetFedDoc.response.docs.0.facet_mods_year}}
@@ -48,7 +48,7 @@
 	<!--MODS Resource Type-->
 	<tr>
 	    <td>Resource Type:</td>
-	    <td>
+	    <td itemprop="genre">
 	        {{#solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
 	            <!-- <a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br> -->
 	            {{.}}<br>
@@ -99,7 +99,7 @@
 	<!--Transcripts-->
 	<tr>
 	    <td>Transcription:</td>
-	    <td>
+	    <td itemprop="text">
 	    	{{{solrGetFedDoc.response.docs.0.mods_abstract_transcription_ms.0}}}
 	    </td>
 	</tr>
