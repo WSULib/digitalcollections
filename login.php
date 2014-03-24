@@ -17,7 +17,7 @@ $objectPID = $_REQUEST['PID'];
 
         
         <!-- Typography -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
@@ -103,7 +103,7 @@ $objectPID = $_REQUEST['PID'];
        
     </body>
 
-    <script class="cssdeck">(function( $ ) {
+    <script>(function( $ ) {
   // constants
   var SHOW_CLASS = 'show',
       HIDE_CLASS = 'hide',
