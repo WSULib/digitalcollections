@@ -43,11 +43,7 @@ function APIcall(PID){
 }
 
 function loadError(){
-  $("#container").empty();  
-  var template = '<h3 style="text-align:center;">Could not find Object in WSUDOR.</h3>';
-  var html = Mustache.to_html(template, APIdata);
-  $("#container").html(html);
-  $("#container").show();  
+	load404(window.location.href);	
 }
 
 function makeTranslations(){

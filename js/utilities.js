@@ -412,7 +412,9 @@ function favObjRemove(PID){
 }
 
 
-
+function load404(refURL){	
+	window.location.replace("404.php");
+}
 
 
 
