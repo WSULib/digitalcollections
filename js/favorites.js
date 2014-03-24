@@ -44,11 +44,11 @@ function getFavs(){
 
 	// zip it up
 	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
-	console.log("Merged FAVs Params:",mergedParams);	
+	// console.log("Merged FAVs Params:",mergedParams);	
 	solrParamsString = JSON.stringify(mergedParams);	
 	
 	var APIcallURL = "/WSUAPI?functions[]=getUserFavorites&solrParams="+solrParamsString;		
-	console.log(APIcallURL);	
+	// console.log(APIcallURL);	
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -59,12 +59,12 @@ function getFavs(){
 
 	function callSuccess(response){
 		APIdata.favs = response;	    
-	    console.log(userData.username_WSUDOR+" favorites:");
-	    console.log(response)	    
+	    // console.log(userData.username_WSUDOR+" favorites:");
+	    // console.log(response)	    
 	    searchGo();
 	}
 	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+		// console.log("API Call unsuccessful.  Back to the drawing board.");	  
 	}
 }
 
@@ -123,7 +123,7 @@ function searchGo(){
 	// Set Search Parameters		
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();	
+	// debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
@@ -143,8 +143,8 @@ function searchGo(){
 	function callSuccess(response){
 
 	    mix(response,APIdata);
-	    console.log("APIdata");
-	    console.log(APIdata);
+	    // console.log("APIdata");
+	    // console.log(APIdata);
 	    $(document).ready(function(){
 	    	updatePage();	    	
 	    	populateResults();	    		
@@ -152,7 +152,7 @@ function searchGo(){
 	    
 	}
 	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+		// console.log("API Call unsuccessful.  Back to the drawing board.");	  
 	}
 }
 
