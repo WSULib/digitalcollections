@@ -38,7 +38,7 @@ function fireViewer(symlinks){
         id: "openseadragon1",
         prefixUrl: "inc/osd/images/",
         showNavigator:  true,
-        debugMode:  debugStatus,
+        debugMode:  debugStatus
     });        
     symlink_url = location.protocol+"//"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.dzi_symlink;    
     viewer.openDzi(symlink_url);
