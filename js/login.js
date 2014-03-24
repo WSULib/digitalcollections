@@ -343,10 +343,15 @@ function setWSUDORCookie(username,clientHash){
 
 function navBack(){
   if (document.referrer == ""){
-    bootbox.alert("You are logged into WSU digitalcollections.");
+    bootbox.alert("You are now logged into WSU digitalcollections.", function(){
+      window.history.back();
+    });
   }
   else{
-    window.location = document.referrer;
+    bootbox.alert("You are now logged into WSU digitalcollections.", function(){
+      window.location = document.referrer;
+    });
+    
   }
 }
 
