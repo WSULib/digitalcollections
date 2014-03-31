@@ -52,9 +52,7 @@ function updatePage(type){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){
 
-	console.log(searchParams);
-
-	
+	// console.log(searchParams);	
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -68,7 +66,7 @@ function searchGo(){
 	// Set Search Parameters		
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	debugSearchParams();	
+	// debugSearchParams();	
 	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
@@ -85,8 +83,8 @@ function searchGo(){
 	function callSuccess(response){
 
 		mix(response,APIdata);
-		console.log("APIdata");
-		console.log(APIdata);
+		// console.log("APIdata");
+		// console.log(APIdata);
 		$(document).ready(function(){
 			updatePage();
 			populateFacets();
