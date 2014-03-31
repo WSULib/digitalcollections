@@ -3,7 +3,12 @@
 </h3>
 
 <p class="description" itemprop="description">
-    {{{solrGetFedDoc.response.docs.0.dc_description.0}}}
+    <!-- {{{solrGetFedDoc.response.docs.0.dc_description.0}}} -->
+    {{#solrGetFedDoc.response.docs.0.dc_description}}
+    {{{.}}}</br></br>
+    {{/solrGetFedDoc.response.docs.0.dc_description}}
+
+    
 </p>
 
 <ul class="buttons">
