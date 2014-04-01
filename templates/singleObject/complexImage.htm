@@ -4,8 +4,8 @@
 	<!-- <a href="/imageServer?imgURL=http://127.0.0.1/fedora/objects/wayne:{{solrGetFedDoc.response.docs.0.mods_identifier_local_ms.0}}-Main_Image/datastreams/ACCESS/content"> -->
 	<!-- link to imageviewer.php -->
 	<a href="imageviewer_osd.php?PID=wayne:{{solrGetFedDoc.response.docs.0.mods_identifier_local_ms.0}}-Main_Image&DS=JP2">
-		<img src="/imageServer?imgURL=http://127.0.0.1/fedora/objects/{{APIParams.PID}}/datastreams/PREVIEW/content&aspectResize=(1024x768)" class="primary-image" itemprop="image">
-		<meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/THUMBNAIL/content" />	
+		<img src="/imageServer?imgURL=http://127.0.0.1/fedora/objects/{{APIParams.PID}}/datastreams/PREVIEW/content&aspectResize=(1024x768)" class="primary-image">
+		<meta content="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/THUMBNAIL/content" />	
 	</a>
 </div>
 

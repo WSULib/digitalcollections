@@ -6,7 +6,7 @@ $objectPID = $_REQUEST['id'];
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Digital Collections - Wayne State University Libraries</title>
+        <title><?php echo $response['response']['docs'][0]['mods_title_ms'][0];?> - WSU Digital Collections</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -54,15 +54,30 @@ $objectPID = $_REQUEST['id'];
         .social ul li {
             display: inline;
         }
-        </style>
+        </style>        
 
     </head>
 
     <body>
+
+    	<!--Invisible Strucutred Data Div-->
+    	<div style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
+    		<span itemprop="name"><?php echo $response['response']['docs'][0]['mods_title_ms'][0]; ?></span>
+    		<span itemprop="description"><?php echo $response['response']['docs'][0]['mods_abstract_ms'][0]; ?></span>
+    		
+    		<span itemprop="text"><?php echo $response['response']['docs'][0]['mods_abstract_transcription_ms'][0]; ?></span>
+    		<span itemprop="genre"><?php echo $response['response']['docs'][0]['mods_resource_type_ms'][0]; ?></span>
+    		<span itemprop="dateCreated"><?php echo $response['response']['docs'][0]['facet_mods_year'][0]; ?></span>
+
+    		<img src="/imageServer?imgURL=http://127.0.0.1/fedora/objects/<?php echo $objectPID; ?>/datastreams/PREVIEW/content&amp;aspectResize=(1024x768)" class="primary-image" itemprop="image">
+    		<meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content">		
+		</div>
+    	<!-- *************************** -->
+
         <?php include('inc/header.php'); ?>
 
 
-        <div id="templateCM" class="container" itemscope itemtype="http://schema.org/CreativeWork">
+        <div id="templateCM" class="container">
             <div class="breadcrumb col-md-3">
                
                 <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>

@@ -1,6 +1,5 @@
 <?php
 // router for views pertaining to a single PID
-// helpful doc: http://www.php.net/manual/en/solr.examples.php
 
 //pull params
 $PID = $_REQUEST['id'];
@@ -27,7 +26,8 @@ elseif( isset($_REQUEST["id"]) ){
 	$query->setQuery("id:$PID");
 	$query->setStart(0);
 	$query->setRows(50);
-	$query->addField('id')->addField('rels_isRenderedBy');
+	$query->addField('id')->addField('rels_isRenderedBy')->addField('mods_abstract_ms')->addField('mods_title_ms')->addField('mods_abstract_transcription_ms')->addField('mods_resource_type_ms')->addField('facet_mods_year');	
+	
 	$query_response = $client->query($query);
 	$response = $query_response->getResponse();	
 
@@ -36,24 +36,24 @@ elseif( isset($_REQUEST["id"]) ){
 		$isRenderedBy_temp = explode("info:fedora/",$isRenderedBy_string);
 		$isRenderedBy = $isRenderedBy_temp[1];
 		$fileTemplate = $isRenderedBy.".php";
-		renderTemplate($fileTemplate);				
+		renderTemplate($fileTemplate,$response);				
 	}
 
 	else {		
 		$fileTemplate = "singleObject.php";
-		renderTemplate($fileTemplate);
+		renderTemplate($fileTemplate,$response);
 	}	
 }
 
 // else, PID not provided, load 404 page
 else{	
 	$fileTemplate = "404.php"; 
-	renderTemplate($fileTemplate); 	
+	renderTemplate($fileTemplate,$response); 	
 }
 
 
 // render selected template
-function renderTemplate($fileTemplate){
+function renderTemplate($fileTemplate,$response){
 	include $fileTemplate;	
 	return;	
 }

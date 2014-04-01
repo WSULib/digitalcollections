@@ -64,7 +64,7 @@ function makeTranslations(){
 function renderPage(){  
 
 	// update title
-	$("head title").html("WSU digital collections - "+APIdata.solrGetFedDoc.response.docs[0].dc_title_sorting);
+	// $("head title").html("WSU digital collections - "+APIdata.solrGetFedDoc.response.docs[0].dc_title_sorting);
   
   //Render Internal Templates
   $(document).ready(function(){
