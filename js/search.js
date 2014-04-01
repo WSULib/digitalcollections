@@ -87,7 +87,7 @@ function searchGo(){
 		// console.log(APIdata);
 		$(document).ready(function(){
 			updatePage();
-			populateFacets();
+			populateFacets(); // defined in utilities.js
 			populateResults('templates/searchResultObj.htm',"#results_container");	    		
 		});
 		

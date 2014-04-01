@@ -193,6 +193,17 @@ function paginationUpdate(){
 // populate facets
 function populateFacets(){  
 
+  // order in which facets should appear - hardcoded here
+  facet_order = [
+  	"rels_isMemberOfCollection",
+  	"rels_hasContentModel",
+  	"facet_mods_year",
+  	"dc_subject",
+  	"dc_creator",
+  	"dc_coverage",
+  	"dc_language"  	
+  ];
+
   // get current URL
   var cURL = document.URL;
 
@@ -206,27 +217,25 @@ function populateFacets(){
 
 
   // set defaults
-  var facet_limit = 18;
-  // for each facet field
-  for (var facet in APIdata.solrSearch.facet_counts.facet_fields) {
+  var facet_limit = 18;    
+
+  for (var each=0; each < facet_order.length; each++) {   		
+  	var facet = facet_order[each];  
+
     $("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='entypo-minus'></span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
-
-
-    var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];    
+    var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];        
     for (var i = 0; i < facet_array.length; i = i + 2){     
       // run through rosetta translation
       var facet_value = rosetta(facet_array[i]);      
-      if (facet_array[i] != ""){                
-        
+      if (facet_array[i] != ""){        
         // find and replace start value with 0
-        fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""/*+"&start=0"*/; 
+        fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""; 
         if (fURL.contains("start=")){
           fURL = fURL.replace(/start=([0-9]+)/g,"start=0");
         }
         else {
           fURL+="&start=0";
-        }
-        
+        }        
         // for long facet lists, initially hide facets over facet_limit
         if (i > facet_limit) { 
           var facet_hidden = "class='hidden_facet'";
@@ -236,14 +245,10 @@ function populateFacets(){
         }     
         $("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
       }
-
-
     }
     // hide empty facets
         $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
-        $('#search_facet').show();
-
-        
+        $('#search_facet').show();        
     // add "more" button if longer than facet_limit   
     if (facet_array.length > facet_limit){            
       $("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
