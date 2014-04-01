@@ -2,6 +2,20 @@
 
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Global API response data
+APIdata = new Object();
+var type = '';
+
+APIdata.ordered_facets = [
+  	"rels_hasContentModel",
+  	"rels_isMemberOfCollection",  	
+  	"facet_mods_year",
+  	"dc_subject",
+  	"dc_creator",
+  	"dc_coverage",
+  	"dc_language"  	  	
+  ];
+
 // Default Search Parameters
 var searchDefs = {};
 var mergedParams = {};
@@ -12,15 +26,12 @@ searchDefs.fl = "id dc_title";
 searchDefs.sort = "id asc";
 searchDefs.facet = 'true';
 searchDefs['facets[]'] = [];
-searchDefs['facets[]'].push("facet_mods_year","dc_subject","dc_creator","dc_language","rels_hasContentModel", "dc_coverage");
+for (var i=0; i<APIdata.ordered_facets.length; i++){ searchDefs['facets[]'].push(APIdata.ordered_facets[i]) }
 searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 
 
-// Global API response data
-APIdata = new Object();
-var type = '';
 
 
 // INITIAL FUNCTIONS -- in collection-shared.js
