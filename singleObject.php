@@ -60,7 +60,7 @@ $objectPID = $_REQUEST['id'];
 
     <body>
 
-    	<!--Invisible Strucutred Data Div-->
+    	<!--hidden schema.org stuctured data-->
     	<div style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
     		<span itemprop="name"><?php echo $response['response']['docs'][0]['mods_title_ms'][0]; ?></span>
     		<span itemprop="description"><?php echo $response['response']['docs'][0]['mods_abstract_ms'][0]; ?></span>
