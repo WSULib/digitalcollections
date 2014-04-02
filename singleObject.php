@@ -60,22 +60,8 @@ $objectPID = $_REQUEST['id'];
 
     <body>
 
-    	<!--hidden schema.org stuctured data-->
-    	<div style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
-    		<span itemprop="name"><?php echo $response['response']['docs'][0]['mods_title_ms'][0]; ?></span>
-    		<span itemprop="description"><?php echo $response['response']['docs'][0]['mods_abstract_ms'][0]; ?></span>
-    		
-    		<span itemprop="text"><?php echo $response['response']['docs'][0]['mods_abstract_transcription_ms'][0]; ?></span>
-    		<span itemprop="genre"><?php echo $response['response']['docs'][0]['mods_resource_type_ms'][0]; ?></span>
-    		<span itemprop="dateCreated"><?php echo $response['response']['docs'][0]['facet_mods_year'][0]; ?></span>
-
-    		<img src="/imageServer?imgURL=http://127.0.0.1/fedora/objects/<?php echo $objectPID; ?>/datastreams/PREVIEW/content&amp;aspectResize=(1024x768)" class="primary-image" itemprop="image">
-    		<meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content">		
-		</div>
-    	<!-- *************************** -->
-
+    	<?php include('inc/struct_data.php'); ?>
         <?php include('inc/header.php'); ?>
-
 
         <div id="templateCM" class="container">
             <div class="breadcrumb col-md-3">

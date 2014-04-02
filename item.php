@@ -7,30 +7,14 @@ $rendered = $_REQUEST['rendered'];
 
 // checks for "rendered" override as parameter
 if( isset($_REQUEST["rendered"]) ){
+	$response = solrMetadataCall($PID);
 	$fileTemplate = $_REQUEST['rendered'].".php";
-	renderTemplate($fileTemplate);
+	renderTemplate($fileTemplate,$response);
 }
-
 
 // elseif, grabs PID and checks for rels_isRenderedBy relationship in Solr
 elseif( isset($_REQUEST["id"]) ){
-	$PID = str_replace(":","\:",$PID);   	
-	$options = array
-	(
-	    'hostname' => 'localhost',    
-	    'port'     => 8080,
-	    'path'     => 'solr4/fedobjs'
-	);
-	$client = new SolrClient($options);
-	$query = new SolrQuery();
-	$query->setQuery("id:$PID");
-	$query->setStart(0);
-	$query->setRows(50);
-	$query->addField('id')->addField('rels_isRenderedBy')->addField('mods_abstract_ms')->addField('mods_title_ms')->addField('mods_abstract_transcription_ms')->addField('mods_resource_type_ms')->addField('facet_mods_year');	
-	
-	$query_response = $client->query($query);
-	$response = $query_response->getResponse();	
-
+	$response = solrMetadataCall($PID);
 	if ( isset($response['response']['docs'][0]['rels_isRenderedBy']) ){		
 		$isRenderedBy_string = $response['response']['docs'][0]['rels_isRenderedBy'][0];
 		$isRenderedBy_temp = explode("info:fedora/",$isRenderedBy_string);
@@ -38,7 +22,6 @@ elseif( isset($_REQUEST["id"]) ){
 		$fileTemplate = $isRenderedBy.".php";
 		renderTemplate($fileTemplate,$response);				
 	}
-
 	else {		
 		$fileTemplate = "singleObject.php";
 		renderTemplate($fileTemplate,$response);
@@ -51,12 +34,29 @@ else{
 	renderTemplate($fileTemplate,$response); 	
 }
 
-
 // render selected template
 function renderTemplate($fileTemplate,$response){
 	include $fileTemplate;	
 	return;	
 }
 
+function solrMetadataCall($PID){
+	$PID = str_replace(":","\:",$PID);   	
+	$options = array
+	(
+	    'hostname' => 'localhost',    
+	    'port'     => 8080,
+	    'path'     => 'solr4/fedobjs'
+	);
+	$client = new SolrClient($options);
+	$query = new SolrQuery();
+	$query->setQuery("id:$PID");
+	$query->setStart(0);
+	$query->setRows(50);	
+	$query->addField("*");	
+	$query_response = $client->query($query);
+	$response = $query_response->getResponse();
+	return $response;
+}
 
 ?>

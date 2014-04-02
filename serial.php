@@ -54,6 +54,7 @@ $serialObjPID = $_GET['id'];
 </head>
 <body>
 
+	<?php include('inc/struct_data.php'); ?>
 	<?php include('inc/header.php'); ?>
 
 	<div class="container">
