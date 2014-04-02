@@ -49,7 +49,7 @@
     <div class="container feature">
         <div class="col-sm-6 col-md-7">
             <h3>Changing Face of the Auto Industry collection</h3>
-           button to view collection
+           <!-- button to view collection -->
         </div>
         <div class="col-sm-6 col-md-5">
             <ul class="slider pull-right">
@@ -63,15 +63,17 @@
     <div class="container feature-bottom">
         <div class="col-md-4">
             <h5>Welcome to the WSU Digital Collections</h5>
-            <p>about digital collections Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, incidunt, doloribus, repellat, distinctio voluptas ullam odit tempore necessitatibus placeat ad sunt doloremque molestiae quam eum animi sit hic veritatis neque dignissimos voluptate sequi consectetur molestias. Ipsam, placeat minus fuga earum quibusdam doloremque reprehenderit error! Sed, iure dolorem consectetur necessitatibus ipsam?</p>
+            <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p>
         </div>
         <div class="col-md-4">
             <h5>News / Blog posts</h5>
-            <p>news and blogs and other announcements Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, ipsum, sapiente, suscipit nisi totam illo repellendus voluptatum ex quos quaerat voluptates reprehenderit ipsam magnam sit similique debitis nihil odit alias consequuntur molestias distinctio cum laboriosam tempora modi numquam harum provident sequi doloribus neque recusandae quia vel autem ea. Voluptatum, est.</p>
+            <p>Coming soon!</p>
+            <!-- <p>news and blogs and other announcements Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, ipsum, sapiente, suscipit nisi totam illo repellendus voluptatum ex quos quaerat voluptates reprehenderit ipsam magnam sit similique debitis nihil odit alias consequuntur molestias distinctio cum laboriosam tempora modi numquam harum provident sequi doloribus neque recusandae quia vel autem ea. Voluptatum, est.</p> -->
         </div>
         <div class="col-md-4">
             <h5>Exhibition / More news / posts</h5>
-            <p>More of the same Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, nostrum, aut nam velit numquam et explicabo amet quis voluptatibus expedita accusantium voluptatum ipsum ullam nemo distinctio reiciendis tempora voluptates harum maxime cum! Deserunt, recusandae id commodi laudantium pariatur sit doloremque natus facilis doloribus eum sapiente assumenda a ipsam sint esse?</p>
+            <p>Coming soon!</p>
+            <!-- <p>More of the same Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, nostrum, aut nam velit numquam et explicabo amet quis voluptatibus expedita accusantium voluptatum ipsum ullam nemo distinctio reiciendis tempora voluptates harum maxime cum! Deserunt, recusandae id commodi laudantium pariatur sit doloremque natus facilis doloribus eum sapiente assumenda a ipsam sint esse?</p> -->
         </div>
     </div>
 	
