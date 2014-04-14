@@ -1,6 +1,6 @@
 <!DOCTYPE php>
 <?php
-$serialObjPID = $_GET['id'];
+$objectPID = $_GET['id'];
 ?>
 <html>
     <head>
@@ -68,7 +68,7 @@ $serialObjPID = $_GET['id'];
 
 	<?php include('inc/footer.php'); ?>	   
     <script type="text/javascript">
-        launch("<?php echo $serialObjPID; ?>");
+        launch("<?php echo $objectPID; ?>");
     </script
 
 

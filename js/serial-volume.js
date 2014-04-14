@@ -6,12 +6,13 @@ APIdata = new Object();
 
 
 function launch(PID){
-	APIdata.searchParams = PID;
-	PID = PID['id'];
+	// APIdata.searchParams = PID;
+	// PID = PID['id'];
+	APIdata.searchParams = {};
+	APIdata.searchParams.id = PID;	
 	// returns serial object metadata	
 	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
-	var json = "http://jsonviewer.stack.hu/#";
-	console.log(json+URL);
+	var json = "http://jsonviewer.stack.hu/#";	
 	$.ajax({          
 		url: URL,      
 		dataType: 'json',
@@ -19,8 +20,7 @@ function launch(PID){
 		error: callError
 	});
 
-	function callSuccess(response){
-		console.log("Volume metadata response:",response);  
+	function callSuccess(response){		
 		APIdata.volumeMeta = response;
 		
 		// determine what collection(s) / publication it's from
@@ -40,8 +40,7 @@ function launch(PID){
 
 function serialWalk(PID){		
 	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=serialWalk&functions[]=solrGetFedDoc&PID="+PID;
-	var json = "http://jsonviewer.stack.hu/#";
-	console.log(json+URL);
+	var json = "http://jsonviewer.stack.hu/#";	
 	$.ajax({          
 		url: URL,      
 		dataType: 'json',
@@ -49,8 +48,7 @@ function serialWalk(PID){
 		error: callError
 	});
 
-	function callSuccess(response){
-		console.log("Serial metadata response:",response);  
+	function callSuccess(response){		
 		APIdata.serialMeta = response;		
 
 		//check object status

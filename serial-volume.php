@@ -1,6 +1,6 @@
 <!DOCTYPE php>
 <?php
-$serialObjPID = $_REQUEST['id'];
+	$objectPID = $_REQUEST['id'];
 ?>
 <html>
     <head>
@@ -65,22 +65,14 @@ $serialObjPID = $_REQUEST['id'];
 
     <?php include('inc/footer.php'); ?>
 
-            <!-- loading serials -->
+        <!-- loading serials -->
         <script type="text/javascript"> 
-            var searchParams = <?php echo json_encode($_GET); ?>;
-            console.log(searchParams);
-            launch(searchParams);
-            // if (jQuery.isEmptyObject(searchParams.vol)){
-            //     // window.location = "serial.php?id="+searchParams.id;
-            //     // Redirect to 404 page
-            // }
-            // else{    
-	           //  $(document).ready(function(){
-	           //      launch(searchParams);
-	           //  });
-            // }    
-        </script>
-        <!-- ********************************************* -->
+            // var searchParams = <?php echo json_encode($_GET); ?>;
+            // console.log(searchParams);
+            // launch(searchParams);   
+
+            launch("<?php echo $objectPID; ?>");              
+        </script>        
 	
 </body>
 </html>

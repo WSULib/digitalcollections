@@ -26,14 +26,14 @@ function concatRepeaters($field){
 ?>
 
 <!-- hidden schema.org stuctured data -->
-<?php print_r($reponse); ?>
+<!--<?php $objectPID = $_REQUEST['id']; ?>-->
 <div  id="struct_data" style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
 <span itemprop="name"><?php echo concatRepeaters($response['response']['docs'][0]['dc_title']); ?></span>
 <span itemprop="description"><?php echo concatRepeaters($response['response']['docs'][0]['dc_description']); ?></span>		
 <span itemprop="text"><?php echo concatRepeaters($response['response']['docs'][0]['mods_abstract_transcription_ms']); ?></span>
 <span itemprop="genre"><?php echo concatRepeaters($response['response']['docs'][0]['mods_resource_type_ms']); ?></span>
 <span itemprop="dateCreated"><?php echo concatRepeaters($response['response']['docs'][0]['facet_mods_year']); ?></span>
-<img src="/imageServer?imgURL=http://127.0.0.1/fedora/objects/<?php echo $objectPID; ?>/datastreams/PREVIEW/content&amp;aspectResize=(1024x768)" class="primary-image" itemprop="image">
+<img src="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/PREVIEW/content" class="primary-image" itemprop="image">
 <meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content">
 </div>
 <!-- ******************************** -->
