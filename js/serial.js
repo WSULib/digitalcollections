@@ -7,7 +7,7 @@ APIdata = new Object();
 function launch(PID){
 	
 	// returns serial object metadata	
-	var URL = "/WSUAPI-dev?functions[]=getObjectXML&functions[]=serialWalk&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;	
+	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=serialWalk&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;	
 
 	$.ajax({          
 		url: URL,      
