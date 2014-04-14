@@ -209,13 +209,6 @@ function addFav(){
       var APIaddURL = "/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
       // console.log(APIaddURL);
 
-      $.ajax({          
-        url: APIaddURL,      
-        dataType: 'json',
-        success: callSuccess,
-        error: callError
-      });
-
       function callSuccess(response){
         // console.log(response);
         if (response.solrAddDoc.responseHeader.status == 0){
@@ -234,6 +227,14 @@ function addFav(){
         // console.log(response);
         bootbox.alert("Error.");
       }
+
+      $.ajax({          
+        url: APIaddURL,      
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+      });
+      
     }
   else {
     bootbox.alert("User not found.  Please login or sign up to save favorites.");
