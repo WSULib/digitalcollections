@@ -134,8 +134,12 @@ function refineByKeyWord(context){
   }  
 
   // check rows to update and add to fq[]
-  var nURL = cURL+"&fq[]=text:"+filter_input+"&start=0";   
-
+  if (filter_input !== ""){
+    var nURL = cURL+"&fq[]=text:"+filter_input+"&start=0";   
+  }
+  else{
+    var nURL = cURL+"&start=0";     
+  }
   nURL = URLcleaner(nURL);  
 
   // refresh page 

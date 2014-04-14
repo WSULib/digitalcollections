@@ -51,7 +51,7 @@ $objectPID = $_REQUEST['PID'];
     <div class="container" id="templateCM">
         <h1 class="brand-login">
             <img src="img/wsulsLogo.png" alt="" style="display:block;margin:0 auto;margin-bottom:20px;width:90px;height:auto;">
-            <a href="search.php">Digital Collections</a>
+            <a href="index.php">Digital Collections</a>
         </h1>
         <div class="flat-form">
             <ul class="tabs">
