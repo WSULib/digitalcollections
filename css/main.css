@@ -6546,10 +6546,13 @@ footer {
 
 .feature-bottom h4 {
   margin-bottom: 1em;
+  clear: both;
 }
 
 .featured-item div a img {
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .wp-caption-text {
