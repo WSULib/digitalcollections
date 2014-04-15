@@ -39,7 +39,6 @@
 </head>
 <body class="index-bg">
 	<?php include('inc/header.php'); ?>
-    <div class="feedback">This is a beta site. Take it for a ride. <a href="https://www.surveymonkey.com/s/QHWX3V7">Please give us feedback</a></div>
 	<div class="masthead cf masthead-overflowing">
         <div class="slides-wrap">
             <div class="slide photo" id="mh-slide-24956"><img data-pm-sized="yes" src="img/masthead1.jpeg"></div>
