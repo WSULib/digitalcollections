@@ -87,6 +87,10 @@ $( document ).ready(function() {
         $('.slide.photo img').empty();
         $('.slide.photo img').attr('src',$(this).attr('src'));
     });
+
+ //featured item feed
+
+    $('.featured-item div').removeAttr("style");
  
  //collections
 

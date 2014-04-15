@@ -6543,3 +6543,23 @@ footer {
     display: none;
   }
 }
+
+.feature-bottom h4 {
+  margin-bottom: 1em;
+}
+
+.featured-item div a img {
+  height: auto;
+}
+
+.wp-caption-text {
+  display: none;
+}
+
+.feature-bottom .date {
+  float: left;
+}
+
+.feature-bottom .more {
+  float: right;
+}

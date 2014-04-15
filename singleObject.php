@@ -50,6 +50,9 @@ $objectPID = $_REQUEST['id'];
         <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>        
         <script type="text/javascript">stLight.options({publisher: "5131cbe9-49f8-4ed4-80d3-75fa951eadad", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
+        <link rel="stylesheet" type="text/css" media="screen" href="inc/share.2.6/share/share.css" />
+        <script src="inc/share.2.6/share/share.js" type="text/javascript"></script>
+
         <style>
         .social ul li {
             display: inline;
