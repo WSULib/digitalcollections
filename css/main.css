@@ -2682,6 +2682,7 @@ ul.toc-2-col {
       margin-bottom: 0;
       border: 0;
       border-bottom: 1px solid #ddd; } }
+
 .facets {
   width: 30%;
   float: left;
@@ -2783,7 +2784,30 @@ img {
   position: relative;
   padding: 0 0 0 15px; }
 
+#serial-nav {
+  width: 30%;
+}
+
 @media (max-width: 767px) {
+  #serial-nav {
+    width: 100%;
+  }
+    #serial-nav .toc {
+      display: none;
+    }
+      #serial-nav > a img {
+        margin: 0 auto;
+        display: block;
+      }
+
+      ul.toc-2-col {
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 20px; }
+
   .main-container {
     width: 100%; } }
 .main-container-wide {
@@ -2815,6 +2839,8 @@ img {
       font-size: 1.2em; }
     .favorites .object-container-list .remove .delete:hover {
       color: #c00000; }
+
+
 
 @media (min-width: 768px) {
   .favorites .object-container-list .remove {
@@ -2934,7 +2960,7 @@ li:last-child.object-container-list {
   cursor: pointer; }
 
 .issue-container-grid {
-  width: 24.5%;
+  width: 100%;
   display: inline-block;
   vertical-align: top;
   padding: 22px 15px 11px 15px;
@@ -2950,12 +2976,22 @@ li:last-child.object-container-list {
     display: block; }
   .issue-container-grid h3 {
     font-size: 1em;
-    margin: 10px 0 5px 0; }
+    margin: 10px 0 5px 0; 
+    text-align: center;}
   .issue-container-grid h4 {
     font-size: 0.8em;
     margin: 0; }
   .issue-container-grid p {
     display: none; }
+  @media (min-width: 600px) {
+  .issue-container-grid {
+    width: 49%; } }
+  @media (min-width: 767px) {
+  .issue-container-grid {
+    width: 32%; } }
+  @media (min-width: 1100px) {
+  .issue-container-grid {
+    width: 24.5%; } }
 
 .primary-object-container {
   margin-top: 33px; }
@@ -5196,7 +5232,7 @@ button.close {
   margin: 36px 0; }
 
 .facets.volume-view {
-  margin-top: 44px; }
+  margin-top: 1.75em; }
 
 .issue-container-grid h3 {
   font-size: 13px; }
