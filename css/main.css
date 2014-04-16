@@ -2563,7 +2563,8 @@ header .container {
 footer .container {
   font-size: 0.7em;
   color: #999;
-  padding: 20px; }
+  padding: 20px; 
+  margin-top: 50px;}
 
 footer a > i,
 footer a > span {
@@ -6532,7 +6533,8 @@ footer {
   left: 0;
   bottom: 0;
   height: 55px;
-  width: 100%; }
+  width: 100%; 
+  margin-top: 50px; }
 
 .toc-2-col li a {
   font-size: 0.9em; }
