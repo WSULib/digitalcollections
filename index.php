@@ -47,7 +47,8 @@
 
     <div class="container feature">
         <div class="col-sm-6 col-md-7">
-            <h3>Changing Face of the Auto Industry collection</h3>
+            <span class="featured-collection">Featured Collection</span>
+            <h3><a href="/digitalcollections/item?start=0&id=wayne:collectionCFAI">Changing Face of the Auto Industry</a></h3>
            <!-- button to view collection -->
         </div>
         <div class="col-sm-6 col-md-5">
@@ -60,11 +61,39 @@
     </div>
 
     <div class="container feature-bottom">
-        <div class="col-md-4">
+        <div class="col-md-6 featured-item">
+            <div class="featured-image">
+              <?php
+                $rss = new DOMDocument();
+                $rss->load('http://blogs.wayne.edu/digitalcollections/category/featured-item/feed/');
+                $feed = array();
+                foreach ($rss->getElementsByTagName('item') as $node) {
+                  $item = array ( 
+                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                    'content' => $node->getElementsByTagName('encoded')->item(0)->nodeValue,
+                    'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                    'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                    );
+                  array_push($feed, $item);
+                }
+                $limit = 1;
+                for($x=0;$x<$limit;$x++) {
+                  $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
+                  $link = $feed[$x]['link'];
+                  $content = $feed[$x]['content'];
+                  $description = $feed[$x]['desc'];
+                  $date = date('M d, Y', strtotime($feed[$x]['date']));
+
+
+                  echo   '<h5><a href="'.$link.'" title="'.$title.'" target="_blank">Featured Item: '.$title.'</a></h5>'.$content.'';
+                }
+              ?>
+            </div>
+        </div>
+        <div class="col-md-6">
             <h4>Welcome to the WSU Digital Collections</h4>
             <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p>
-        </div>
-        <div class="col-md-4">
             <h4>Most Recent News</h4>
             <?php
                 $rss = new DOMDocument();
@@ -90,35 +119,6 @@
                   echo   '<h5><a href="'.$link.'" title="'.$title.'" target="_blank">'.$title.'</a></h5>';
                   echo   '<p>'.$description.'
                           <p class="date">Posted on '.$date.'</p><p class="more"><a href="'.$link.'" title="'.$title.'" target="_blank">Read more &raquo;</a></p>';
-                }
-              ?>
-        </div>
-        <div class="col-md-4 featured-item">
-            <h4>Featured Item</h4>
-              <?php
-                $rss = new DOMDocument();
-                $rss->load('http://blogs.wayne.edu/digitalcollections/category/featured-item/feed/');
-                $feed = array();
-                foreach ($rss->getElementsByTagName('item') as $node) {
-                  $item = array ( 
-                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                    'content' => $node->getElementsByTagName('encoded')->item(0)->nodeValue,
-                    'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                    'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                    'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
-                    );
-                  array_push($feed, $item);
-                }
-                $limit = 1;
-                for($x=0;$x<$limit;$x++) {
-                  $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
-                  $link = $feed[$x]['link'];
-                  $content = $feed[$x]['content'];
-                  $description = $feed[$x]['desc'];
-                  $date = date('M d, Y', strtotime($feed[$x]['date']));
-
-
-                  echo   ''.$content.'<h5><a href="'.$link.'" title="'.$title.'" target="_blank">'.$title.'</a></h5>';
                 }
               ?>
         </div>

@@ -44,8 +44,9 @@
     <div class="container">
         <h2>Contact</h2>
           <div class="row">
-                <div class="hidden-xs col-sm-6 col-md-6">
-                    <img src="" alt="">
+                <div class="hidden-xs col-sm-6 col-md-6 contact">
+                    <img src="img/vmc-contact.jpg" alt="Telephones : First Phone Book In Detroit : Operators from the WSU Virtual Motor City Collection">
+                    <p class="caption">Telephones : First Phone Book In Detroit : Operators from the Virtual Motor City Collection, Wayne State Univerity Library System's Digital Collections</p>
                 </div>
                 <div class="col-sm-6 col-md-6 contact-form">
                     <form method="post" action="inc/sendmail.php">

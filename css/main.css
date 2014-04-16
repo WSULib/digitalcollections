@@ -2456,6 +2456,10 @@ nav.header-global {
     font-size: 0.8em;
     padding-right: 20px; }
 
+ul.slider li img {
+  cursor: pointer;
+}
+
 ul.slider li + li {
   margin-left: 5px; }
 
@@ -6544,19 +6548,46 @@ footer {
   }
 }
 
+.featured-collection {
+  background: #000;
+  padding: 2px 5px;
+  margin-top: 20px;
+  /*text-transform: uppercase;*/
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  color: #f2f2f2;
+}
+.feature h3 {
+  font-size: 2em;
+  margin-top: 0.5em;
+}
+
 .feature-bottom h4 {
   margin-bottom: 1em;
   clear: both;
 }
 
 .featured-item div a img {
+  /*position: absolute;*/
   height: auto;
   display: block;
   margin: 0 auto;
+  background: #f2f2f2;
+  padding: 10px;
+}
+
+.wp-caption {
+  background: #f2f2f2;
 }
 
 .wp-caption-text {
-  display: none;
+  position: relative;
+  bottom: 0;
+  padding: 0 15px 15px 15px;
+  background: #f2f2f2;
+  display: block;
+  border-bottom: 1px solid #eee;
 }
 
 .feature-bottom .date {
@@ -6565,4 +6596,44 @@ footer {
 
 .feature-bottom .more {
   float: right;
+}
+
+.featured-image {
+width: 100%; /* assumes you have this in a container with a set width */
+/*height: 400px;*/
+margin: 20px 0;
+position: relative; /* So we can position the banner within the box */
+}
+
+.featured-image h5 {
+position: relative;
+width: 100%;
+margin: 0 auto;
+top: 0;
+left: 0;
+font-size: 1.2em; /* font-size and line-height must be equal so we can account for the height of the banner */
+line-height: 1.2em;
+display: none;
+}
+
+.featured-image h5 a {
+display:block;
+padding:10px 10px 0 10px;
+position:relative; /* allows us to position our pseudo-elements properly */
+background: #f2f2f2;
+overflow:visible;
+/*height:58px;*/
+text-align: center;
+color:#000;
+text-decoration:none;
+}
+
+.contact img {
+  margin-top: 2em;
+  width: 98%;
+}
+
+p.caption {
+  margin-top: 15px;
+  font-size: 0.875em;
 }

@@ -91,6 +91,7 @@ $( document ).ready(function() {
  //featured item feed
 
     $('.featured-item div').removeAttr("style");
+    $('p:empty').hide();
  
  //collections
 
