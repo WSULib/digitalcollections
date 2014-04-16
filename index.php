@@ -86,7 +86,7 @@
                   $date = date('M d, Y', strtotime($feed[$x]['date']));
 
 
-                  echo   '<h5><a href="'.$link.'" title="'.$title.'" target="_blank">Featured Item: '.$title.'</a></h5>'.$content.'';
+                  echo   ''.$content.'';
                 }
               ?>
             </div>
