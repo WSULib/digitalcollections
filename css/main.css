@@ -2247,6 +2247,7 @@ header .searchTerm {
 /* line 105, scss/base/_forms.scss */
 .search-form fieldset input {
   border: none;
+  font-family: 'Roboto Condensed', sans-serif;
   float: left;
   height: 44px;
   padding: 0 54px 0 10px;
@@ -2376,7 +2377,8 @@ header .nav-wrap {
   top: 143px;
   right: 0; }
   .navbar-right.nav > li > a {
-    display: inline; }
+    display: inline;
+    font-family: 'Roboto Condensed', sans-serif; }
 
 @media (min-width: 768px) {
   .nav.header-primary {
