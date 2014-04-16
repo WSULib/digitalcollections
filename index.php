@@ -77,7 +77,7 @@
                     );
                   array_push($feed, $item);
                 }
-                $limit = 1;
+                $limit = 1; 
                 for($x=0;$x<$limit;$x++) {
                   $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
                   $link = $feed[$x]['link'];
@@ -108,7 +108,7 @@
                     );
                   array_push($feed, $item);
                 }
-                $limit = 1;
+                $limit = 1; // number of posts to show
                 for($x=0;$x<$limit;$x++) {
                   $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
                   $link = $feed[$x]['link'];

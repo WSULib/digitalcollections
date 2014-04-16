@@ -717,8 +717,9 @@ pre {
   width: 100%; }
 
 @media (min-width: 768px) {
+
   .container {
-    max-width: 750px; }
+    max-width: 95%; }
 
   .col-sm-1,
   .col-sm-2,
@@ -2344,6 +2345,7 @@ header .nav-wrap {
   background: rgba(6, 39, 34, 0.5);
   color: white;
   font-weight: 500;
+  font-family: 'Roboto Condensed', sans-serif;
   padding: 10px 15px;
   letter-spacing: 1px; }
 
@@ -6563,6 +6565,11 @@ footer {
   margin-top: 0.5em;
 }
 
+@media (max-width: 992px) {
+  .feature h3 {
+    font-size: 1.5em;
+  }
+}
 .feature-bottom h4 {
   margin-bottom: 1em;
   clear: both;
