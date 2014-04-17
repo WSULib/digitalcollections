@@ -41,7 +41,8 @@
 	<?php include('inc/header.php'); ?>
 	<div class="masthead cf masthead-overflowing">
         <div class="slides-wrap">
-            <div class="slide photo" id="mh-slide-24956"><img data-pm-sized="yes" src="img/masthead1.jpeg"></div>
+            <div class="slide photo" id="mh-slide-24956">
+              <img data-pm-sized="yes" src="img/masthead1.jpeg" alt="Changing Face of the Auto Industry"></div>
         </div>
     </div>
 

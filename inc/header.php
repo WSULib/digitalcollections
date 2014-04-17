@@ -1,16 +1,5 @@
 <header class="header">
     <div class="container">
-        
-       <!--  <nav class="header-global">
-            <ul class="top-level">
-                <li><a href="#">Wayne State University</a></li>
-                <li><a href="#">Libraries</a></li>
-            </ul>
-
-            <ul class="login">
-                <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
-            </ul>
-        </nav> -->
         <div id="mobile-header">
             <a href="#sidr-main" id="responsive-menu-button"><img src="img/menu.svg" alt="Menu"></a>
         </div>
