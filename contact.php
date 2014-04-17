@@ -26,7 +26,8 @@
         
         <script src="js/utilities.js"></script>
         <script src="js/collection.js"></script>
-        
+        <script src="js/contact_random.js"></script>
+
         <!--WSUDOR Translation Dictionary-->
         <script type="text/javascript" src="js/rosettaHash.js"></script>
         
@@ -45,8 +46,8 @@
         <h2>Contact</h2>
           <div class="row">
                 <div class="hidden-xs col-sm-6 col-md-6 contact">
-                    <img src="img/vmc-contact.jpg" alt="Telephones : First Phone Book In Detroit : Operators from the WSU Virtual Motor City Collection">
-                    <p class="caption">Lodge, John C. from the Virtual Motor City Collection, Wayne State Univerity Library System's Digital Collections</p>
+                    <img id="imagery" src="" alt="">
+                    <p class="caption"></p>
                 </div>
                 <div class="col-sm-6 col-md-6 contact-form">
                     <form method="post" action="inc/sendmail.php">
@@ -63,6 +64,8 @@
     </div>
     
     <?php include('inc/footer.php'); ?>
-    
+<script type="text/javascript"> 
+    getImage(array);              
+</script>    
 </body>
 </html>
