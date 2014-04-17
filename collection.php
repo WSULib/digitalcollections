@@ -23,7 +23,6 @@
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>             
-        
         <script src="js/utilities.js"></script>
         <script src="js/collection-shared.js"></script>  
         <script src="js/collection.js"></script>
@@ -60,7 +59,9 @@
                         <li>
                             <h3 class="tree-toggler">Filter by Keyword</h3>
                             <ul class="tree facet_list" id="search_facet_box">                                
-                                <form onsubmit="refineByKeyWord('collection'); return false;"><input id="filter_input" placeholder="Filter by keyword" class="search-filter"></form>
+                                <form onsubmit="refineByKeyWord('collection'); return false;">
+                                    <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
+                                </form>
                             </ul>
                         </li>
                     </ul>

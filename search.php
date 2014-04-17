@@ -23,7 +23,6 @@
         
         <!-- Local JS -->
         <script src="js/main.js" type="text/javascript"></script>
-        
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>                        
         <script src="js/utilities.js"></script>
@@ -44,11 +43,10 @@
 
     </head>
     <body>
-
         <?php include('inc/header.php'); ?>
 
         <div class="container">
-            <div class="row-fluid sub-header">
+            <div class="sub-header">
                <h2>
                     Search Results
                 </h2>
@@ -57,20 +55,6 @@
                     <li>&quot;<span id='q_string'></span>&quot;</li>
                     <!-- <li><a href="#">Save this Search</a></li> -->
                 </ul>
-                <div class="row-fluid">
-                    <!-- <select class="form-control pull-right" id='rows' onchange="updateSearch();">
-                        <option value="12">12</option>
-                        <option value="36">36</option>
-                        <option value="48">48</option>
-                        <option value="90">90</option>
-                    </select> -->
-                    <div class="switch-views">
-                   <!--      <div id="list" class="list list-active"></div>
-                        <div id="grid" class="grid"></div>
-                        <div class="filter-on filter-active"></div>
-                        <div class="filter-off"></div>
-                    --> </div>
-                </div><!-- /switch-views -->
                 
             </div><!-- /row for sub-header -->
             
@@ -79,7 +63,9 @@
                     <li>
                         <h3 class="tree-toggler">Filter by Keyword</h3>
                         <ul class="tree facet_list" id="search_facet_box">
-                            <form onsubmit="refineByKeyWord('search'); return false;"><input id="filter_input" placeholder="Filter by keyword" class="search-filter"></form>
+                            <form onsubmit="refineByKeyWord('search'); return false;">
+                                <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
+                            </form>
                         </ul>
                     </li>
                 </ul>
@@ -87,10 +73,10 @@
             </div><!-- /facets -->
 
             <div class="main-container">
-                <div class="row filtered-by refined-by">
+                <div class="row-fluid filtered-by refined-by">
                     <!-- fiters -->
                 </div><!-- /filtered-by -->
-                <ul class="row objects-container" id="results_container" >
+                <ul class="row-fluid objects-container" id="results_container" >
                     <!-- results template -->
                 </ul>
                 <div class="pagination-centered">
