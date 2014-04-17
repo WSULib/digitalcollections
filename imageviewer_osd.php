@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/imageviewer_osd.css" />
 	<link rel="stylesheet" href="css/glyphicons.css">
 
-	<title>WSU Digital Collections Image Viewer</title>
+	<title>Image Viewer | Digital Collections | WSULS</title>
 
 <head>
 

@@ -19,7 +19,7 @@
   <link rel="shortcut icon" href="images/iip-favicon.png" />
   <link rel="apple-touch-icon" href="images/iip.png" />
 
-  <title>WSU iipsrv imageviewer</title>
+  <title>Image Viewer | Digital Collections | WSULS</title>
   <!-- digitalcollections files-->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="js/imageviewer_tiled.js"></script>

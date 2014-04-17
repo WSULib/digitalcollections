@@ -7,7 +7,7 @@ $objectPID = $_REQUEST['PID'];
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Digital Collections - Wayne State University Libraries</title>
+        <title>Login | Digital Collections | WSULS</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
