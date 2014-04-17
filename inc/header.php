@@ -24,7 +24,7 @@
                 <form action="search.php" class="inline-form search-form" >
                     <fieldset>
                         <legend class="hide">Search</legend>
-                        <label for="search-field" class="hide">Search</label>
+                        <label for="q" class="hide">Search</label>
                         <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" lang="en" x-webkit-speech />
                         <button type="submit" class="search-submit">
                             <span class="glyphicons search" aria-hidden="true"></span>
