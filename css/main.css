@@ -6548,7 +6548,7 @@ footer {
 .feedback a {
   text-decoration: underline;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .feedback {
     display: none;
   }
