@@ -44,18 +44,19 @@
     <body>
         <?php include('inc/header.php'); ?>
 
-            <div class="container main-content">
-                <h2>
-                    Collections
-                </h2>
-                <div class="row">
+            <div class="container">
+                <div class="sub-header">
+                    <h2>
+                        Collections
+                    </h2>
+                </div><!--  / sub-header -->
+                
+                <div class="row-fluid">
                     <div class="collection_contents">
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="pagination clearfix">
-                    </div>
+                <div class="pagination clearfix">
                 </div>
             </div>
 
