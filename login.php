@@ -9,6 +9,7 @@ $objectPID = $_REQUEST['PID'];
         <meta charset="utf-8">
         <title>Login | Digital Collections | WSULS</title>
         <meta name="description" content="">
+        <meta name="viewport" content="initial-scale=1">
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">

@@ -6,7 +6,7 @@
   <meta name="keywords" content="IIPImage HTML5 Ajax IIP Zooming Streaming High Resolution Mootools"/>
   <meta name="description" content="IIPImage: High Resolution Remote Image Streaming Viewer"/>
   <meta name="copyright" content="&copy; 2003-2011 Ruven Pillay"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="viewport" content="initial-scale=1">  
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
