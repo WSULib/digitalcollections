@@ -3,7 +3,7 @@
 $objectPID = $_REQUEST['PID'];
 ?>
 
-<!DOCTYPE php>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">

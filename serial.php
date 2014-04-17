@@ -1,4 +1,4 @@
-<!DOCTYPE php>
+<!DOCTYPE html>
 <?php
 $objectPID = $_GET['id'];
 ?>

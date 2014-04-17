@@ -2,7 +2,7 @@
 $objectPID = $_REQUEST['id'];
 ?>
 
-<!DOCTYPE php>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
