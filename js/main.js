@@ -185,10 +185,15 @@ jQuery(document).ready(function() {
                 if(json.messageMessage !== '') {
                     $('.contact-form form .messageLabel').append(' - <span class="validation"> ' + json.messageMessage + '</span>');
                 }
-                if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '') {
-                    $('.contact-form form').fadeOut('fast', function() {
-                        $('.contact-form').append('<p class="thanks"><strong>Thanks for contacting us!</strong><br/>We will get back to you very soon.</p>');
-                    });
+                if(json.recaptchaMessage !== '') {
+                    $('.contact-form form .recaptchaLabel').append(' - <span class="validation"> ' + json.recaptchaMessage + '</span>');
+                }
+                else {
+                    if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '' && json.recaptchaMessage === '') {
+                        $('.contact-form form').fadeOut('fast', function() {
+                            $('.contact-form').append('<p class="thanks"><strong>Thanks for contacting us!</strong><br/>We will get back to you very soon.</p>');
+                        });
+                    }
                 }
             }
         });

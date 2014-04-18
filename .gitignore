@@ -5,3 +5,4 @@ backups/*
 sitemaps
 sitemaps/*
 google*.html
+inc/recaptcha-php-1.11/privatekey.php
