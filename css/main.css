@@ -1592,15 +1592,14 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   display: block;
   margin-top: 22px;
   font-weight: 300;
-  font-size: 24px; }
+  font-size: 1em; }
 .contact-form input {
   height: 3.5em; }
 .contact-form textarea {
-  height: 160px;
-  margin-bottom: 20px; }
+  height: 160px; }
 .contact-form input, .contact-form textarea {
   padding: 15px;
-  width: 90%;
+  width: 100%;
   border: 3px solid #eee;
   border-radius: 4px;
   -moz-box-shadow: none;
@@ -1616,6 +1615,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   -webkit-appearance: none;
   -moz-appearance: none;
   /* mobile firefox too! */ }
+  .contact-form button {
+    margin-top: 20px;
+  }
 
 .thanks {
   font-size: 1.75em;
@@ -1626,7 +1628,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     text-transform: uppercase; }
 
 .validation {
-  font-size: 24px;
+  font-size: 1em;
   color: #ef493b; }
 
 .form-control:-moz-placeholder {
@@ -1866,7 +1868,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   list-style: none;
   margin: 0;
   padding: 0; }
-  .buttons > li {
+  .buttons > li, .btn.mail {
     margin: 11px 0 0;
     width: 100%;
     padding: 11px 16px;
@@ -3959,6 +3961,7 @@ li:last-child.object-container-list {
   .input-group .form-control {
     width: 100%;
     margin-bottom: 0; }
+    
 
 .input-group-addon,
 .input-group-btn,
@@ -3982,7 +3985,7 @@ li:last-child.object-container-list {
   line-height: 1;
   text-align: center;
   background-color: #eeeeee;
-  border: 1px solid #cccccc;
+  /*border: 1px solid #cccccc;*/
   border-radius: 4px; }
   .input-group-addon.input-sm,
   .input-group-sm > .input-group-addon,
@@ -4989,13 +4992,14 @@ a.list-group-item {
 .panel {
   margin-bottom: 22px;
   background-color: white;
-  border: 1px solid transparent;
+  /*border: 1px solid transparent;*/
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
-
+  /*width: 90%;*/
+  /*-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);*/
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); */
+}
 .panel-body {
-  padding: 15px; }
+  padding: 0; }
   .panel-body:before, .panel-body:after {
     content: " ";
     /* 1 */

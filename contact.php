@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
         <link rel="stylesheet" href="css/glyphicons.css">
+        <link rel="stylesheet" href="ico/style.css">
 <style>
 .input-recaptcha{
  /*width:172px;   */
@@ -77,7 +78,7 @@
 
                             <label class="recaptchaLabel" alt="reCaptcha">reCAPTCHA</label>
                             <div class="controls">
-                                <a id="recaptcha_image" href="#" class="thumbnail"></a>
+                                <a id="recaptcha_image" href="#"></a>
                             </div>
 
                             <label class="recaptcha_only_if_image control-label">Enter the words above:</label>
@@ -86,9 +87,9 @@
                             <div class="controls">
                                 <div class="input-append">
                                     <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-recaptcha" />
-                                    <a class="btn" href="javascript:Recaptcha.reload()"><i class="icon-refresh"></i></a>
-                                    <a class="btn image" href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="icon-headphones"></i></a>
-                                    <a class="btn audio" href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="icon-picture"></i></a>
+                                    <a class="btn" href="javascript:Recaptcha.reload()"><i class="icon-loop"></i></a>
+                                    <a class="btn image" href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="icon-volume-medium"></i></a>
+                                    <a class="btn audio" href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="icon-image"></i></a>
                                     <a class="btn" href="javascript:Recaptcha.showhelp()"><i class="icon-question-sign"></i></a>
                                 </div>
                             </div>
