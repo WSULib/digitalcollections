@@ -2752,7 +2752,7 @@ ul.toc-2-col {
   background: #f1efe5;
   color: black;
   font-size: 13px;
-  font-family: "Roboto Condensed";
+  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
