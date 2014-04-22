@@ -2163,6 +2163,7 @@ input[type="button"].btn-block {
 @media (min-width: 992px) {
   .header {
     height: 161px; } }
+
 @media (max-width: 440px) {
   img.logo {
     margin: 0;
@@ -2331,6 +2332,19 @@ header .searchIcon:before {
 
   .brand-search {
     margin-top: 0; } }
+@media (max-width: 321px) {
+  #mobile-header {
+    margin-top: 5px;
+  }
+  img.logo {
+    margin: 0;
+    padding-right: 10px;
+    width: 83%;
+    margin-top: -53px;
+    float: right; } 
+    #mobile-header img {
+      width: 35px;
+      }}
 header .nav-wrap {
   position: relative; }
 
@@ -6534,6 +6548,7 @@ body {
 
 footer {
   position: absolute;
+  z-index: -10;
   left: 0;
   bottom: 0;
   height: 55px;
