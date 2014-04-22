@@ -1,0 +1,9 @@
+# robots.txt for http://digital.library.wayne.edu
+
+User-agent: *
+Disallow: robots.txt
+Disallow: */dev/* # Intended for testing and development
+Disallow: */fedoraManager/* # Secured, but desinged for internal use
+Disallow: */eTextReader/* # Application
+Disallow: */textAnalysis/* # Application
+Disallow: */fedora/*
