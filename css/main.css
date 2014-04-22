@@ -2835,23 +2835,28 @@ img {
 
   .main-container {
     width: 100%; } }
+    @media (max-width: 321px) {
+  .main-container {
+    padding: 0;
+  }}
 .main-container-wide {
   width: 100%;
   float: left;
   position: relative;
   padding: 0 15px; }
 
-.favorites.main-container {
-  padding: 0; }
+
+/*.favorites.main-container {
+  padding: 0; }*/
 
 .main-container ul, .main-container-wide ul {
   list-style: none;
   padding: 0;
   margin: 0; }
 
-.favorites .object-container-list {
+/*.favorites .object-container-list {
   height: 175px;
-  position: relative; }
+  position: relative; }*/
   .favorites .object-container-list .remove {
     position: absolute;
     top: 70px;
@@ -2870,6 +2875,22 @@ img {
 @media (min-width: 768px) {
   .favorites .object-container-list .remove {
     right: 0; } }
+    @media (max-width: 321px) {
+  .favorites .object-container-list .remove {
+    top: -10px;
+    left: 0;
+    background: white;
+    padding: 7px;
+    border-radius: 50%;
+    border: 3px solid #eee;
+  }
+  .favorites .object-container-list .remove .delete {
+    top: 10px;
+    left: 2px;
+    font-size: 1.5em;
+    color: #c00000;
+  }
+}
 .primary-object {
   margin-bottom: 20px; }
 
@@ -2922,6 +2943,22 @@ li:last-child.object-container-list {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis; }
+  @media (max-width: 321px) {
+  .object-container-list .crop {
+    float: none;
+    clear: both;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 1em;
+  }
+  .object-container-list h3, .object-container-list h4 {
+    text-align: center;
+  }
+  .object-container-list p {
+    max-width: 100%;
+  }
+}
 
 .object-container-grid {
   width: 100%;
@@ -5286,6 +5323,14 @@ body {
   position: relative;
   font-family: 'Roboto';
   border: 1px solid #eee; }
+@media (max-width: 321px) {
+  .flat-form {
+    width: 290px;
+  }
+  h1.brand-login {
+    display: none;
+  }
+}
 
 .tabs {
   background: #e8e4d1;

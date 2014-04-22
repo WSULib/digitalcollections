@@ -39,43 +39,6 @@
         
         <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>    
         <script src="inc/sidr/jquery.sidr.min.js"></script>      
-            
-
-            <!-- Temporary CSS -->
-            <style type="text/css">
-                #facet_refine_list{
-                    list-style-type:none;
-                }
-                #facet_refine_list li{                    
-                    /*background-color:#FFFFA9;*/ /*Just to set it off for the moment, see where they are*/
-                }
-                .main-container {
-                    width: 100%;
-                }
-                .facet_less {
-                    display:none;
-                }
-                .hidden_facet {
-                    display:none;
-                }
-                #resultsControls div{
-                    display:inline;
-                }
-                ul.bootpag li{
-                    display:inline;                    
-                }
-                ul.bootpag li.disabled a{
-                    color:rgb(230,230,230);
-                }
-                .favObjCRUD{
-                    list-style:none;
-                    font-size:9px;
-                    padding-top:20px;   
-                    text-transform: uppercase;                 
-                }
-            </style>
-
-        <!-- Additions ###################################################################################### -->
 
     </head>
     <body>
