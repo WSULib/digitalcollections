@@ -7,13 +7,7 @@
 
     <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
-        <link rel="stylesheet" href="css/glyphicons.css">
         <link rel="stylesheet" href="ico/style.css">
-<style>
-.input-recaptcha{
- /*width:172px;   */
-}
-</style>
         
         <!-- Typography -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -87,10 +81,10 @@
                             <div class="controls">
                                 <div class="input-append">
                                     <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-recaptcha" />
-                                    <a class="btn" href="javascript:Recaptcha.reload()"><i class="icon-loop"></i></a>
-                                    <a class="btn image" href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="icon-volume-medium"></i></a>
+                                    <a class="btn" href="javascript:Recaptcha.reload()"><i class="icon-refresh"></i></a>
+                                    <a class="btn image" href="javascript:Recaptcha.switch_type('audio')"><i title="Get an audio CAPTCHA" class="icon-audio"></i></a>
                                     <a class="btn audio" href="javascript:Recaptcha.switch_type('image')"><i title="Get an image CAPTCHA" class="icon-image"></i></a>
-                                    <a class="btn" href="javascript:Recaptcha.showhelp()"><i class="icon-question-sign"></i></a>
+                                    <a class="btn" href="javascript:Recaptcha.showhelp()"><i class="icon-question"></i></a>
                                 </div>
                             </div>
      

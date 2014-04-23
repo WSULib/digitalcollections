@@ -2172,7 +2172,7 @@ input[type="button"].btn-block {
 img.logo {
   margin: 0 auto;
   display: block;
-  margin-top: -57px; }
+  margin-top: -64px; }
 
 @media (min-width: 768px) {
   img.logo {
@@ -2340,14 +2340,14 @@ header .searchIcon:before {
     margin: 0;
     padding-right: 10px;
     width: 83%;
-    margin-top: -56px;
+    margin-top: -66px;
     float: right; } 
     #mobile-header img {
       width: 35px;
       }}
       @media (max-width: 321px) {
         img.logo {
-          margin-top: -53px;
+          margin-top: -62px;
         }
       }
 header .nav-wrap {
@@ -2430,12 +2430,12 @@ header .nav-wrap {
 .glyphicons.user {
   margin-right: 5px; }
 
-.glyphicons.delete {
+.icon-delete {
   color: #555555;
   margin-right: 3px; }
 
 a.logout {
-  color: #062722; }
+  color: #bbb; }
 
 nav.header-primary {
   position: absolute;
@@ -2767,8 +2767,7 @@ li span.facet-toggle, .tree-toggler span {
   background-color: transparent;
   display: inline-block;
   float: left;
-  font-size: 11px;
-  margin-right: 8px; }
+  font-size: 11px;}
 
 .toc .button {
   text-transform: uppercase;
@@ -2868,11 +2867,11 @@ img {
     margin: auto;
     letter-spacing: 1px;
     cursor: pointer; }
-    .favorites .object-container-list .remove .delete {
+    .favorites .object-container-list .remove .icon-delete {
       color: #ddd;
       padding: 10px;
       font-size: 1.2em; }
-    .favorites .object-container-list .remove .delete:hover {
+    .favorites .object-container-list .remove .icon-delete:hover {
       color: #c00000; }
 
 
@@ -2885,11 +2884,11 @@ img {
     top: -10px;
     left: 0;
     background: white;
-    padding: 7px;
+    padding: 11px 0 8px;
     border-radius: 50%;
     border: 3px solid #eee;
   }
-  .favorites .object-container-list .remove .delete {
+  .favorites .object-container-list .remove .icon-delete {
     top: 10px;
     left: 2px;
     font-size: 1.5em;
@@ -2957,6 +2956,10 @@ li:last-child.object-container-list {
     height: auto;
     margin: 0 auto 1em;
   }
+  .object-container-list img {
+    width: 100%;
+    height: auto;
+  }
   .object-container-list h3, .object-container-list h4 {
     text-align: center;
   }
@@ -2997,32 +3000,32 @@ li:last-child.object-container-list {
   .object-container-grid {
     width: 33%; } }
 .st_sharethis_custom {
-  background: url("../img/glyphicons_308_share_alt.png") no-repeat scroll center center transparent;
-  padding: 16px;
+  background: url("") no-repeat scroll center center transparent;
+  /*padding: 16px;*/
   display: inline-block;
   cursor: pointer; }
 
 .st_facebook_custom {
-  background: url("../img/glyphicons_social_30_facebook.png") no-repeat scroll center center transparent;
-  padding: 16px;
+  background: url("") no-repeat scroll center center transparent;
+  /*padding: 16px;*/
   display: inline-block;
   cursor: pointer; }
 
 .st_twitter_custom {
-  background: url("../img/glyphicons_social_31_twitter.png") no-repeat scroll center center transparent;
-  padding: 16px;
+  background: url("") no-repeat scroll center center transparent;
+  /*padding: 16px;*/
   display: inline-block;
   cursor: pointer; }
 
 .st_email_custom {
-  background: url("../img/glyphicons_010_envelope.png") no-repeat scroll center center transparent;
-  padding: 16px;
+  background: url("") no-repeat scroll center center transparent;
+  /*padding: 16px;*/
   display: inline-block;
   cursor: pointer; }
 
 .st_googleplus_custom {
-  background: url("../img/glyphicons_social_02_google_plus.png") no-repeat scroll center center transparent;
-  padding: 16px;
+  background: url("") no-repeat scroll center center transparent;
+  /*padding: 16px;*/
   display: inline-block;
   cursor: pointer; }
 
@@ -6716,4 +6719,28 @@ text-decoration:none;
 p.caption {
   margin-top: 15px;
   font-size: 0.875em;
+}
+
+.icon-star, .icon-serial {
+  margin-right: 0.5em;
+}
+.icon-info {
+  margin-left: 0.2em;
+  margin-right: 0.75em;
+}
+
+.icon-share, .icon-facebook, .icon-twitter {
+  font-size: 2em;
+  margin: 0 5px;
+}
+
+.icon-email {
+  font-size: 2.5em;
+  margin: 0 5px;
+}
+
+.icon-menu {
+  font-size: 2em;
+  color: white;
+  margin-left: 0.2em;
 }

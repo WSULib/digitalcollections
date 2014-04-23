@@ -343,14 +343,19 @@ function setWSUDORCookie(username,clientHash){
 
 function navBack(){
   if (document.referrer == ""){
-    bootbox.alert("You are now logged into WSU digitalcollections.", function(){
-      window.history.back();
-    });
+    bootbox.alert("You are now logged into WSU digitalcollections.");
+    window.setTimeout(function(){
+            bootbox.hideAll();
+            window.history.back();
+          }, 2000);
+    
   }
   else{
-    bootbox.alert("You are now logged into WSU digitalcollections.", function(){
-      window.location = document.referrer;
-    });
+    bootbox.alert("You are now logged into WSU digitalcollections.");
+    window.setTimeout(function(){
+            bootbox.hideAll();
+            window.location = document.referrer;
+          }, 2000);
     
   }
 }

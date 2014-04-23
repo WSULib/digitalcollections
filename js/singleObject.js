@@ -216,7 +216,7 @@ function addFav(){
           bootbox.alert("Added to favorites");
           window.setTimeout(function(){
             bootbox.hideAll();
-          }, 3000);
+          }, 2000);
           // .addClass('favorited');
         }
         else {
