@@ -1,5 +1,6 @@
 // Javascript for search view
 
+
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Global API response data
@@ -28,6 +29,8 @@ searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
+
+
 
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +62,9 @@ function updatePage(type){
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){		
+function searchGo(){
+
+	// console.log(searchParams);	
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -70,26 +75,28 @@ function searchGo(){
 		searchParams['q'] = "*";
 	};
 
-	// add API functions to mergedParams
-	searchParams['functions[]'] = "solrSearch";
-	// Set Search Parameters - Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);		
+	// Set Search Parameters		
+	// Merge default and URL search parameters
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+	// debugSearchParams();	
+	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);
-	// Calls API functions		
-	var APIcallURL = "/WSUAPI";	
+	solrParamsString = JSON.stringify(mergedParams);	
+	// Calls API functions	
+	var APIcallURL = "/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',
-	  data: mergedParams,	  	    
+	  dataType: 'json',	  	    
 	  success: callSuccess,
 	  error: callError
 	});
 
 	function callSuccess(response){
 
-		mix(response,APIdata);		
+		mix(response,APIdata);
+		// console.log("APIdata");
+		// console.log(APIdata);
 		$(document).ready(function(){
 			updatePage();
 			populateFacets(); // defined in utilities.js
@@ -145,6 +152,3 @@ function populateResults(templateLocation,destination,templateData){
 	});
   } 
 }
-
-
-

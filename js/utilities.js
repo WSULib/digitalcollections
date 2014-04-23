@@ -414,11 +414,6 @@ function load404(refURL){
 }
 
 
-
-
-
-
-
 // PROTOTYPES
 
 // strip info:fedora/ prefix
