@@ -1,6 +1,5 @@
 // Javascript for search view
 
-
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Global API response data
@@ -29,8 +28,6 @@ searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
-
-
 
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,9 +59,7 @@ function updatePage(type){
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){
-
-	// console.log(searchParams);	
+function searchGo(){		
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -75,28 +70,26 @@ function searchGo(){
 		searchParams['q'] = "*";
 	};
 
-	// Set Search Parameters		
-	// Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// debugSearchParams();	
-	
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";
+	// Set Search Parameters - Merge default and URL search parameters
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);		
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);	
-	// Calls API functions	
-	var APIcallURL = "/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
+	solrParamsString = JSON.stringify(mergedParams);
+	// Calls API functions		
+	var APIcallURL = "/WSUAPI";	
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',	  	    
+	  dataType: 'json',
+	  data: mergedParams,	  	    
 	  success: callSuccess,
 	  error: callError
 	});
 
 	function callSuccess(response){
 
-		mix(response,APIdata);
-		// console.log("APIdata");
-		// console.log(APIdata);
+		mix(response,APIdata);		
 		$(document).ready(function(){
 			updatePage();
 			populateFacets(); // defined in utilities.js

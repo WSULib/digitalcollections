@@ -212,7 +212,6 @@ function populateFacets(){
   // set defaults
   var facet_limit = 18;    
 
-  console.log(APIdata.solrSearch.facet_counts.facet_fields);
   for (var each=0; each < APIdata.ordered_facets.length; each++) {   		
   	var facet = APIdata.ordered_facets[each];  	
     $("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='entypo-minus'></span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
