@@ -8,7 +8,7 @@
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
-        <link rel="stylesheet" href="css/glyphicons.css">
+        <link rel="stylesheet" href="ico/style.css">
 
         
         <!-- Typography -->

@@ -4,11 +4,11 @@
 <ul class="buttons">
     <li class="share">                                    
         <ul>
-          <li><span class='st_sharethis_custom' displayText='ShareThis'></span></li>
-          <li><span class='st_facebook_custom' displayText='Facebook'></span></li>
-          <li><span class='st_twitter_custom' displayText='Tweet'></span></li>
-          <li><span class='st_googleplus_custom' displayText='GooglePlus'></span></li>
-          <li><span class='st_email_custom' displayText='Email'></span></li>
+          <li><span class='st_sharethis_custom icon-share' displayText='ShareThis'></span></li>
+          <li><span class='st_facebook_custom icon-facebook' displayText='Facebook'></span></li>
+          <li><span class='st_twitter_custom icon-twitter' displayText='Tweet'></span></li>
+<!--           <li><span class='st_googleplus_custom icon-googleplus' displayText='GooglePlus'></span></li>
+ -->      <li><span class='st_email_custom icon-email' displayText='Email'></span></li>
         </ul>
     </li>
 </ul>
@@ -19,7 +19,7 @@
 
     <ul class="facet_container filter">
         <li>
-            <h3 class="tree-toggler"><span class="entypo-plus"></span><a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></h3>
+            <h3 class="tree-toggler"><span class="icon-plus-thin"></span><a href="serial-volume.php?id={{serialMeta.APIParams.PID.0}}&vol={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></h3>
             <ul>
                 {{#issuesArray}}
                 <li><a href="item?id={{issuePID}}">{{issueTitle}}</a></li>            

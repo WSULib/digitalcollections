@@ -12,6 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
 
   <link rel="stylesheet" type="text/css" media="all" href="css/iip.css" />
+  <link rel="stylesheet" href="ico/style.css">
   <!--[if lt IE 9]>
     <link rel="stylesheet" type="text/css" media="all" href="css/ie.css" />
   <![endif]-->

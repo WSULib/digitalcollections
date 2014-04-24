@@ -4,7 +4,8 @@
 	<script src="js/utilities.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/imageviewer_osd.css" />
-	<link rel="stylesheet" href="css/glyphicons.css">
+	<link rel="stylesheet" href="ico/style.css">
+
 	<meta name="viewport" content="initial-scale=1">
 	<script src="config/config.js" type="text/javascript"></script>
 

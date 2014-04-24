@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container">
         <div id="mobile-header">
-            <a href="#sidr-main" id="responsive-menu-button"><img src="img/menu.svg" alt="Menu"></a>
+            <a href="#sidr-main" id="responsive-menu-button"><i class="icon-menu"></i></a>
         </div>
         <div class="logo-container">
             <h1>
@@ -14,9 +14,9 @@
                     <fieldset>
                         <legend class="hide">Search</legend>
                         <label for="q" class="hide">Search</label>
-                        <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" lang="en" x-webkit-speech />
+                        <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" lang="en" />
                         <button type="submit" class="search-submit">
-                            <span class="glyphicons search" aria-hidden="true"></span>
+                            <span class="icon-search" aria-hidden="true"></span>
                             <span class="hide">Search</span>
                         </button>
                     </fieldset>
@@ -36,7 +36,7 @@
 
             <nav>
                 <ul class="nav navbar-right">
-                    <li class="login_status"><a href="login.php">Log In / Sign Up</a></li>
+                    <li class="login_status"><a href="login.php"><i class="icon-user"></i> Log In / Sign Up</a></li>
                 </ul>
             </nav>
         </div>

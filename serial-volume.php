@@ -11,7 +11,7 @@
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
-        <link rel="stylesheet" href="css/glyphicons.css">
+        <link rel="stylesheet" href="ico/style.css">
         
         <!-- Typography -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -46,6 +46,9 @@
                 margin: 0;
             }
         </style>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="inc/share.2.6/share/share.css" />
+        <script src="inc/share.2.6/share/share.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 
