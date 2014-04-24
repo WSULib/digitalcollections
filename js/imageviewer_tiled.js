@@ -58,8 +58,8 @@ function fireViewer(symlink){
 
 function uploadPage(){
 	// set downloads
-	$("#fullsize").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+imageParams.PID+'/datastreams/ACCESS/content');
-	$("#mediumsize").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+imageParams.PID+'/datastreams/PREVIEW/content');
+	$("#fullsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds=ACCESS');
+	$("#mediumsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds=PREVIEW');
 
 	// update title
 	$("head title").html(APIdata.solrGetFedDoc.response.docs[0].dc_title);

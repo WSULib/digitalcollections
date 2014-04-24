@@ -244,9 +244,8 @@ function addFav(){
 
 // swap LargeImage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateLargeView(self,PID){      
-  $("#LargeView a img").attr('src','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+PID+'/datastreams/PREVIEW/content&aspectResize=(1024x768)');
-  // $("#LargeView a").attr('href','/imageServer?imgURL=http://127.0.0.1/fedora/objects/'+PID+'/datastreams/ACCESS/content');
+function updateLargeView(self,PID){        
+  $("#LargeView a img").attr('src','/imageServer?obj='+PID+'&ds=PREVIEW&aspectResize=(1024x768)');
   $("#LargeView a").attr('href','/dev/graham/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
 }
 
