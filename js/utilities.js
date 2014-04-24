@@ -1,8 +1,53 @@
 // UTILITIES
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * http://stackoverflow.com/a/10997390/11236
- */
+
+// On utilities.js file load, generate translation hash from Solr
+var solrTranslationHash = {}
+var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
+	$.ajax({          
+	  url: APIcallURL,      
+	  dataType: 'json',	  	    
+	  success: callSuccess,
+	  error: callError
+	});
+	function callSuccess(response){
+		solrTranslationHash = response.solrTranslationHash;			
+	}
+	function callError(response){
+		console.log("Could not retrieve solrTranslationHash");	  
+	}
+
+// Digital Collections Front-End Translation Dictionary
+function rosetta(input){	
+	
+	// hardcoded facet translations
+	var facetHash = {
+		"dc_date":"Date",
+		"facet_mods_year":"Date",
+		"dc_subject":"Subject",
+		"dc_creator":"Creator",
+		"dc_language":"Language",
+		"dc_coverage":"Coverage",
+		"rels_hasContentModel":"Content Type",
+		"rels_isMemberOfCollection":"Collection"
+	};
+
+	// create APIdata.solrTranslationHash from retrieved and hard-coded
+	APIdata.solrTranslationHash = jQuery.extend(solrTranslationHash,facetHash);		
+
+	// strip quotes
+	var s_input = input.replace(/"|'/g,'')
+	if (typeof(APIdata.solrTranslationHash[s_input]) == 'undefined') {
+		var output = s_input;
+		return output;
+	}	
+	else{
+		var output = APIdata.solrTranslationHash[s_input];
+		return output;
+	}
+}
+
+
 function updateURLParameter(url, param, paramVal){
     var newAdditionalURL = "";
     var tempArray = url.split("?");
@@ -370,7 +415,6 @@ function tpagesPaginate(results,rows){
 
 
 // favObjs CRUD
-
 // remove object
 function favObjRemove(PID){    
     if (typeof userData.username_WSUDOR != "undefined"){     

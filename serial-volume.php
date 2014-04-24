@@ -31,7 +31,7 @@
         <script src="js/serial-volume.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
-        <script type="text/javascript" src="js/rosettaHash.js"></script>
+
         
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 

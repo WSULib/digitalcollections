@@ -77,9 +77,7 @@ function searchGo(){
 
 	// Set Search Parameters		
 	// Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// debugSearchParams();	
-	
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	

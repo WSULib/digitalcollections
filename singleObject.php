@@ -34,7 +34,7 @@ $objectPID = $_REQUEST['id'];
         <script src="js/favorites.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
-        <script type="text/javascript" src="js/rosettaHash.js"></script>
+
         
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 

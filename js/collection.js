@@ -44,8 +44,8 @@ searchDefs['facet.mincount'] = 1;
 function updateCollectionTitle(){	
 
 	var collectionTitle = "info:fedora/"+searchParams['id'];
-	if (APIdata.solrTranslationHash[collectionTitle] !== 'undefined'){
-		$("h2#collection_title").html(APIdata.solrTranslationHash[collectionTitle]);
+	if (solrTranslationHash[collectionTitle] !== 'undefined'){
+		$("h2#collection_title").html(solrTranslationHash[collectionTitle]);
 	}
 
 	else {

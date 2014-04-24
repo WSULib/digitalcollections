@@ -31,7 +31,7 @@ $objectPID = $_GET['id'];
         <script src="js/serial.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
-        <script type="text/javascript" src="js/rosettaHash.js"></script>
+
         
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 

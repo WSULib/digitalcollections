@@ -38,7 +38,7 @@ $objectPID = $_REQUEST['PID'];
         <script src="js/userData.js"></script>
         
         <!--WSUDOR Translation Dictionary-->
-        <script type="text/javascript" src="js/rosettaHash.js"></script>
+
         
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
