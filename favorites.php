@@ -24,6 +24,7 @@
         <script src="inc/jquery.cookie.js" type="text/javascript"></script>           
         
         <!-- Local JS -->
+        <script src="config/config.js" type="text/javascript"></script>
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/utilities.js"></script>        
         <script src="js/favorites.js"></script>

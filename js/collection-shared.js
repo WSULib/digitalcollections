@@ -18,7 +18,7 @@ function searchGo(type){
 
 	// WSUAPI v2.0
 	// Usuing new API function solrSearch()	
-	var APIcallURL = "/WSUAPI/?functions[]=solrSearch&solrParams="+solrParamsString;
+	var APIcallURL = "/"+config.API_url+"/?functions[]=solrSearch&solrParams="+solrParamsString;
 	// console.log(APIcallURL);
 	$.ajax({          
 		url: APIcallURL,      

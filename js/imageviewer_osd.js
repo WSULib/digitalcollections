@@ -4,7 +4,7 @@
 function launch(imageParams){	
 
 	// retrieve / create symlink
-	var APIcallURL = "/WSUAPI?functions[]=solrGetFedDoc&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
+	var APIcallURL = "/"+config.API_url+"?functions[]=solrGetFedDoc&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  	    

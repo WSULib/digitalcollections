@@ -9,7 +9,7 @@ var APIdata = new Object();
 function APIcall(PID){	
 	
   // Calls API functions	
-  var APIcallURL = "/WSUAPI?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
+  var APIcallURL = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
 
   $.ajax({          
     url: APIcallURL,      
@@ -206,7 +206,7 @@ function addFav(){
       var jsonAddString = "["+JSON.stringify(addDoc)+"]";
       // console.log(jsonAddString);
 
-      var APIaddURL = "/WSUAPI?functions[]=solrAddDoc&raw="+jsonAddString;
+      var APIaddURL = "/"+config.API_url+"?functions[]=solrAddDoc&raw="+jsonAddString;
       // console.log(APIaddURL);
 
       function callSuccess(response){

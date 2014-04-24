@@ -11,7 +11,7 @@ function launch(PID){
 	APIdata.searchParams = {};
 	APIdata.searchParams.id = PID;	
 	// returns serial object metadata	
-	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
+	var URL = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;
 	var json = "http://jsonviewer.stack.hu/#";	
 	$.ajax({          
 		url: URL,      
@@ -39,7 +39,7 @@ function launch(PID){
 }
 
 function serialWalk(PID){		
-	var URL = "/WSUAPI?functions[]=getObjectXML&functions[]=serialWalk&functions[]=solrGetFedDoc&PID="+PID;
+	var URL = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=serialWalk&functions[]=solrGetFedDoc&PID="+PID;
 	var json = "http://jsonviewer.stack.hu/#";	
 	$.ajax({          
 		url: URL,      

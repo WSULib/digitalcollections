@@ -21,6 +21,7 @@
 
   <title>Image Viewer | Digital Collections | WSULS</title>
   <!-- digitalcollections files-->
+  <script src="config/config.js" type="text/javascript"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="js/imageviewer_tiled.js"></script>
   <script src="js/utilities.js"></script>

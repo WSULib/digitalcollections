@@ -47,7 +47,7 @@ function getFavs(){
 	// console.log("Merged FAVs Params:",mergedParams);	
 	solrParamsString = JSON.stringify(mergedParams);	
 	
-	var APIcallURL = "/WSUAPI?functions[]=getUserFavorites&solrParams="+solrParamsString;		
+	var APIcallURL = "/"+config.API_url+"?functions[]=getUserFavorites&solrParams="+solrParamsString;		
 	// console.log(APIcallURL);	
 
 	$.ajax({          
@@ -128,7 +128,7 @@ function searchGo(){
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	
-	var APIcallURL = "/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
+	var APIcallURL = "/"+config.API_url+"?functions[]=solrSearch&solrParams="+solrParamsString;			
 	
 	// return to juggled value
 	searchParams.start = juggledValue;

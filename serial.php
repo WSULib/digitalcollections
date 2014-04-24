@@ -25,6 +25,7 @@ $objectPID = $_GET['id'];
         <script type="text/javascript" src="inc/mustache.js"></script>
         
         <!-- Local JS -->
+        <script src="config/config.js" type="text/javascript"></script>
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>   
         <script src="js/utilities.js"></script>        

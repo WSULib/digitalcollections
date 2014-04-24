@@ -28,6 +28,7 @@ $objectPID = $_REQUEST['id'];
         <script src="js/vendor/bootbox.min.js"></script>
         
         <!-- Local JS -->
+        <script src="config/config.js" type="text/javascript"></script>
         <script src="js/utilities.js"></script>        
         <script src="js/singleObject.js"></script>
         <script src="js/userData.js"></script>

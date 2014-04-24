@@ -83,7 +83,7 @@ function searchGo(){
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
 	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	
-	var APIcallURL = "/WSUAPI?functions[]=solrSearch&solrParams="+solrParamsString;			
+	var APIcallURL = "/"+config.API_url+"?functions[]=solrSearch&solrParams="+solrParamsString;			
 
 	$.ajax({          
 	  url: APIcallURL,      
