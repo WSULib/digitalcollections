@@ -10,7 +10,7 @@
             </ul>
           </div>
           <div class="col-xs-6 copyright">
-            &copy; 2009 - 2014 Wayne State University Board of Governors
+            &copy; 2009 - <?php echo(date('Y')); ?> Wayne State University Board of Governors
           </div>
         </div>
     </div>
