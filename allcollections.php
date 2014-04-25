@@ -66,7 +66,7 @@
         <!-- loading collections -->
         <script type="text/javascript"> 
             var searchParams = {};
-            searchGo("allCollections");                
+            searchGo("allCollections");                                            
         </script>
     </body>
 </html>

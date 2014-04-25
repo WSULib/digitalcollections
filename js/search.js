@@ -1,6 +1,5 @@
 // Javascript for search view
 
-
 // Variables
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Global API response data
@@ -30,8 +29,6 @@ searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
 
-
-
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,26 +42,22 @@ function updatePage(type){
 		if (cURL.contains("q=*")){
 			$("#q").val("");	
 		}
-		else { $("#q").val(mergedParams.q); }
-		
+		else { $("#q").val(mergedParams.q); }		
 	}
 
 	// update number of results
 	updateNumbers();	
-
 	// show "refined by" facets
 	showFacets();	
-
-	// // pagination
+	// pagination
 	paginationUpdate();
 
 }
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){
-
-	// console.log(searchParams);	
+function searchGo(){		
+	console.log(searchParams);
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -75,26 +68,27 @@ function searchGo(){
 		searchParams['q'] = "*";
 	};
 
-	// Set Search Parameters		
-	// Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";
+	// Set Search Parameters - Merge default and URL search parameters
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);		
+	console.log(mergedParams);
 	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);	
-	// Calls API functions	
-	var APIcallURL = "/"+config.API_url+"?functions[]=solrSearch&solrParams="+solrParamsString;			
+	solrParamsString = JSON.stringify(mergedParams);
+	// Calls API functions		
+	var APIcallURL = "/"+config.API_url;
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',	  	    
+	  dataType: 'json',
+	  data: mergedParams,	  	    
 	  success: callSuccess,
 	  error: callError
 	});
 
 	function callSuccess(response){
 
-		mix(response,APIdata);
-		// console.log("APIdata");
-		// console.log(APIdata);
+		mix(response,APIdata);		
 		$(document).ready(function(){
 			updatePage();
 			populateFacets(); // defined in utilities.js
@@ -150,3 +144,5 @@ function populateResults(templateLocation,destination,templateData){
 	});
   } 
 }
+
+

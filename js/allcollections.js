@@ -22,13 +22,6 @@ searchDefs['facet.mincount'] = 1;
 APIdata = new Object();
 var type = '';
 
-
-// INITIAL LOAD -- in collection-shared.js
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 1. searchGo()
-
-
-
 // BUILD LIST
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,32 +34,26 @@ function collectionsList(type){
 		"wt":"json",
 		"sort":"id asc",
 		"q":"rels_hasContentModel:info:fedora/CM:Collection",
-		"raw":"escapeterms"
-	}
-	
-	CollectionListParams = JSON.stringify(CollectionListParams);
+		"raw":"escapeterms",
+		"functions[]":"solrSearch" //added for solrSearch v2
+	}	
 
-	var APIcallURL = "/"+config.API_url+"/?functions[]=solrSearch&solrParams="+CollectionListParams;
+	var APIcallURL = "/"+config.API_url;
 
 	// Calls API functions
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',	  
+	  dataType: 'json',
+	  data:CollectionListParams,	  
 	  success: callSuccess,
 	  error: callError
 	});
 
 	function callSuccess(response){
-
 	    APIdata.collectionsList = response;
-	    $(document).ready(function(){
-
-  	  		if (type == "allCollections") {
-	    		collectionsCount();
-	    	}
-		
-	    });
-	    
+		if (type == "allCollections") {			
+			collectionsCount();
+		}	    
 	}
 
 	function callError(response){

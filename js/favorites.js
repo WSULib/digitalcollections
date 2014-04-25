@@ -43,12 +43,10 @@ function getFavs(){
 	favParams['raw'] = "noescape";
 
 	// zip it up
-	mergedParams = jQuery.extend(true,{},searchDefs,favParams);
-	// console.log("Merged FAVs Params:",mergedParams);	
+	mergedParams = jQuery.extend(true,{},searchDefs,favParams);	
 	solrParamsString = JSON.stringify(mergedParams);	
 	
-	var APIcallURL = "/"+config.API_url+"?functions[]=getUserFavorites&solrParams="+solrParamsString;		
-	// console.log(APIcallURL);	
+	var APIcallURL = "/"+config.API_url+"?functions[]=getUserFavorites&solrParams="+solrParamsString;			
 
 	$.ajax({          
 	  url: APIcallURL,      
@@ -58,9 +56,7 @@ function getFavs(){
 	});
 
 	function callSuccess(response){
-		APIdata.favs = response;	    
-	    // console.log(userData.username_WSUDOR+" favorites:");
-	    // console.log(response)	    
+		APIdata.favs = response;	    	    	    
 	    searchGo();
 	}
 	function callError(response){
@@ -105,8 +101,7 @@ function updatePage(){
 function searchGo(){	
 
 	// create q based on ALL favorites of user	
-	searchParams.q = "";
-	// for (var i in APIdata.favs.getUserFavorites.response.docs){
+	searchParams.q = "";	
 	for (var i=0; i<APIdata.favs.getUserFavorites.response.docs.length; i++){		
 		var fav_item = APIdata.favs.getUserFavorites.response.docs[i].fav_item;
 		searchParams.q += fav_item+" ";		
@@ -120,32 +115,31 @@ function searchGo(){
 	searchParams['fq[]'] = searchParams['fq'];
 	delete searchParams['fq'];
 
-	// Set Search Parameters		
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";
 	// Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// debugSearchParams();	
 	
-	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);	
 	// Calls API functions	
-	var APIcallURL = "/"+config.API_url+"?functions[]=solrSearch&solrParams="+solrParamsString;			
+	var APIcallURL = "/"+config.API_url;			
 	
 	// return to juggled value
 	searchParams.start = juggledValue;
-	mergedParams.start = juggledValue;	
+		
 
 	$.ajax({          
 	  url: APIcallURL,      
-	  dataType: 'json',	  	    
+	  dataType: 'json',
+	  data:mergedParams,	  	    
 	  success: callSuccess,
 	  error: callError
 	});
 	function callSuccess(response){
 
-	    mix(response,APIdata);
-	    // console.log("APIdata");
-	    // console.log(APIdata);
+	    mix(response,APIdata);	    
 	    $(document).ready(function(){
+	    	// drop the juggled value back in
+	    	mergedParams.start = juggledValue;
 	    	updatePage();	    	
 	    	populateResults();	    		
 	    });

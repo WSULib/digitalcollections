@@ -1,52 +1,40 @@
 //INITIAL LOAD --COLLECTION.JS AND ALLCOLLECTIONS.JS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(type){
+function searchGo(type){	
 
-	// Set Search Parameters	
-	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['id'];
+	// Set Search Parameters
+	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['id'];	
 	searchParams['raw'] = "escapeterms";
 
-	// fix facets / fq
+	// fix facets / fq	
 	searchParams['fq[]'] = searchParams['fq'];
 	delete searchParams['fq'];
 
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// debugSearchParams();	
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";		
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);				
 	
-	//pass solr parameters os stringify-ed JSON, accepted by Python API as dictionary
-	solrParamsString = JSON.stringify(mergedParams);	
-
-	// WSUAPI v2.0
-	// Usuing new API function solrSearch()	
-	var APIcallURL = "/"+config.API_url+"/?functions[]=solrSearch&solrParams="+solrParamsString;
-	// console.log(APIcallURL);
+	var APIcallURL = "/"+config.API_url;	
 	$.ajax({          
 		url: APIcallURL,      
-		dataType: 'json',	         
+		dataType: 'json',
+		data:mergedParams,	         
 		success: callSuccess,
-		// error: callError
+		error: callError
 		});
 
 		function callSuccess(response){
-			mix(response, APIdata);
-			$(document).ready(function(){
-				// console.log("RESULTS", response);
-				if (type == "collectionPage"){
-
-					updateCollectionTitle();
-
-					updatePage();
-
-					populateFacets();
-
-					populateResults('templates/singleCollectionObj.htm','.collection_contents');
-				}
-				
-				else if (type == "allCollections"){
-					collectionsList("allCollections");
-				}    		
-			});
-
+			mix(response, APIdata);						
+			if (type == "collectionPage"){
+				updateCollectionTitle();
+				updatePage();
+				populateFacets();
+				populateResults('templates/singleCollectionObj.htm','.collection_contents');
+			}
+			
+			else if (type == "allCollections"){
+				collectionsList("allCollections");
+			} 
 		}
 
 	function callError(response){

@@ -355,7 +355,8 @@ function renderSerialNavBlock(){
     APIdata.serialMeta.keyVols = vols;
 
     // alphanumeric sort sort by volume name
-    sortingArray.alphanumSort();
+    // sortingArray.alphanumSort();    
+    sortingArray.sort(sortAlphaNum);
     APIdata.sortingArray = sortingArray;    
     
     // pluck to array
@@ -457,6 +458,20 @@ function load404(refURL){
 	window.location.replace("404.php");
 }
 
+// use: Array.sort(sortAlphaNum);
+function sortAlphaNum(a,b) {
+    var reA = /[^a-zA-Z]/g;
+    var reN = /[^0-9]/g;
+    var aA = a.replace(reA, "");
+    var bA = b.replace(reA, "");
+    if(aA === bA) {
+        var aN = parseInt(a.replace(reN, ""), 10);
+        var bN = parseInt(b.replace(reN, ""), 10);
+        return aN === bN ? 0 : aN > bN ? 1 : -1;
+    } else {
+        return aA > bA ? 1 : -1;
+    }
+}
 
 // PROTOTYPES
 
@@ -465,40 +480,8 @@ String.prototype.stripFedRDFPrefix = function() {
     return this.substring(12);
 };
 
-//natural language sorter
-Array.prototype.alphanumSort = function(caseInsensitive) {
-  for (var z = 0, t; t = this[z]; z++) {
-    this[z] = []; var x = 0, y = -1, n = 0, i, j;
 
-    while (i = (j = t.charAt(x++)).charCodeAt(0)) {
-      var m = (i == 46 || (i >=48 && i <= 57));
-      if (m !== n) {
-        this[z][++y] = "";
-        n = m;
-      }
-      this[z][y] += j;
-    }
-  }
 
-  this.sort(function(a, b) {
-    for (var x = 0, aa, bb; (aa = a[x]) && (bb = b[x]); x++) {
-      if (caseInsensitive) {
-        aa = aa.toLowerCase();
-        bb = bb.toLowerCase();
-      }
-      if (aa !== bb) {
-        var c = Number(aa), d = Number(bb);
-        if (c == aa && d == bb) {
-          return c - d;
-        } else return (aa > bb) ? 1 : -1;
-      }
-    }
-    return a.length - b.length;
-  });
-
-  for (var z = 0; z < this.length; z++)
-    this[z] = this[z].join("");
-}
 
 
 
