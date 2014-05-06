@@ -27,6 +27,35 @@ function concatRepeaters($field){
 
 <!-- hidden schema.org stuctured data -->
 <!--<?php $objectPID = $_REQUEST['id']; ?>-->
+<!--piwik code here-->
+<script type="text/javascript">
+ 	var _paq = _paq || [];
+	// Collection analyzer
+	<?php 
+	$i = 1;
+	foreach($response['response']['docs'][0]['rels_isMemberOfCollection'] as $collection){
+		$pattern = '/info\:fedora\/wayne\:/i';
+		$replacement = "";
+		$string = $collection;
+		$collection = preg_replace($pattern, $replacement, $string);
+		echo "_paq.push(['setCustomVariable', '$i', 'collection', '$collection', 'visit'])\n";
+		$i++;
+	}
+	?>
+// Collection analyzer
+
+ _paq.push(["trackPageView"]);
+ _paq.push(["enableLinkTracking"]);
+
+ (function() {
+   var u=(("https:" == document.location.protocol) ? "https" : "http") + "://cgi.lib.wayne.edu/stats/piwik/";
+   _paq.push(["setTrackerUrl", u+"piwik.php"]);
+   _paq.push(["setSiteId", "28"]);
+   var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+   g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+ })();
+</script>
+
 <div  id="struct_data" style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
 <span itemprop="name"><?php echo concatRepeaters($response['response']['docs'][0]['dc_title']); ?></span>
 <span itemprop="description"><?php echo concatRepeaters($response['response']['docs'][0]['dc_description']); ?></span>		

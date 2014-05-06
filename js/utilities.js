@@ -1,6 +1,8 @@
 // UTILITIES
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ALWAYS LOADS
+
 // On utilities.js file load, generate translation hash from Solr
 var solrTranslationHash = {}
 var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
@@ -16,6 +18,23 @@ var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
 	function callError(response){
 		console.log("Could not retrieve solrTranslationHash");	  
 	}
+
+// Piwik
+ // var _paq = _paq || [];
+
+ // _paq.push(["trackPageView"]);
+ // _paq.push(["enableLinkTracking"]);
+
+ // (function() {
+ //   var u=(("https:" == document.location.protocol) ? "https" : "http") + "://cgi.lib.wayne.edu/stats/piwik/";
+ //   _paq.push(["setTrackerUrl", u+"piwik.php"]);
+ //   _paq.push(["setSiteId", "28"]);
+ //   var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+ //   g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+ // })();
+// End Piwik Code
+
+// End ALWAYS LOADS
 
 // Digital Collections Front-End Translation Dictionary
 function rosetta(input){	
