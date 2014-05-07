@@ -20,21 +20,21 @@ var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
 	}
 
 // Piwik
- // var _paq = _paq || [];
+// Note: defers to /inc/struct_data.php when detects page is /item
+var locale = window.location.pathname.split(/[\/]+/).pop()
+if (locale != "item"){  
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://cgi.lib.wayne.edu/stats/piwik/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "28"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();  
+}
 
- // _paq.push(["trackPageView"]);
- // _paq.push(["enableLinkTracking"]);
-
- // (function() {
- //   var u=(("https:" == document.location.protocol) ? "https" : "http") + "://cgi.lib.wayne.edu/stats/piwik/";
- //   _paq.push(["setTrackerUrl", u+"piwik.php"]);
- //   _paq.push(["setSiteId", "28"]);
- //   var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
- //   g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
- // })();
-// End Piwik Code
-
-// End ALWAYS LOADS
 
 // Digital Collections Front-End Translation Dictionary
 function rosetta(input){	
