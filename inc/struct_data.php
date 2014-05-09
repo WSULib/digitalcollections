@@ -33,6 +33,7 @@ function concatRepeaters($field){
 <!--piwik code here-->
 <script type="text/javascript">	
  	var _paq = _paq || [];	
+	// isMemberOfCollection
 	<?php 
 	$i = 1;
 	foreach($response['response']['docs'][0]['rels_isMemberOfCollection'] as $collection){
@@ -42,8 +43,17 @@ function concatRepeaters($field){
 		$collection = preg_replace($pattern, $replacement, $string);		
 		echo "_paq.push(['setCustomVariable', '$i', 'collection', '$collection', 'visit'])\n";		
 		$i++;
+	}	
+	// content type - hasContentModel	
+	foreach($response['response']['docs'][0]['rels_hasContentModel'] as $content_model){
+		$pattern = '/info\:fedora\/CM\:/i';
+		$replacement = "";
+		$string = $content_model;
+		$content_model = preg_replace($pattern, $replacement, $string);		
+		echo "_paq.push(['setCustomVariable', '$i', 'content_model', '$content_model', 'visit'])\n";		
+		$i++;
 	}
-	?>	
+	?>
 	_paq.push(["trackPageView"]);
 	_paq.push(["enableLinkTracking"]);	
 	(function() {
