@@ -56,8 +56,7 @@ function updatePage(type){
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){		
-	console.log(searchParams);
+function searchGo(){
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -71,10 +70,8 @@ function searchGo(){
 	// add API functions to mergedParams
 	searchParams['functions[]'] = "solrSearch";
 	// Set Search Parameters - Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);		
-	console.log(mergedParams);
-	//pass solr parameters os stringify-ed JSON, accepted by Python API as dicitonary
-	solrParamsString = JSON.stringify(mergedParams);
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+
 	// Calls API functions		
 	var APIcallURL = "/"+config.API_url;
 
@@ -92,9 +89,15 @@ function searchGo(){
 		$(document).ready(function(){
 			updatePage();
 			populateFacets(); // defined in utilities.js
-			populateResults('templates/searchResultObj.htm',"#results_container");	    		
-		});
-		
+			// if no results
+			if (APIdata.solrSearch.response.docs.length == 0){
+				var html = '<li class="obj-cnt object-container-list" style="text-align:center;"><h2>No results found.</h2></li>';
+				$("#results_container").append(html); 				
+			}	
+			else {
+				populateResults('templates/searchResultObj.htm',"#results_container");	    		
+			}
+		});		
 	}
 
 	function callError(response){
@@ -104,45 +107,17 @@ function searchGo(){
 
 
 function updateSearch(){
-
 	// get current URL	
 	var nURL = window.location.href;
-
 	// check rows to update
 	searchParams.rows = $("#rows").val();
 	var nURL = updateURLParameter(nURL, 'rows', searchParams.rows);	
-
 	// adjust start pointer
 	if (searchParams.rows > searchParams.start){		
 		var nURL = updateURLParameter(nURL, 'start', "0");
 	}	
-
 	// refresh page	
 	window.location = nURL;
-}
-
-// populate results
-function populateResults(templateLocation,destination,templateData){
-  
-  //push results to results_container
-  for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {	
-
-	$.ajax({                
-		url: templateLocation,      
-		dataType: 'html',            
-		async:false,
-		success: function(response){        
-			var template = response;
-			if (typeof(templateData) == 'undefined') {          
-			  var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
-			}
-			else {
-			  var html = Mustache.to_html(template, templateData);           
-			}        
-			$(destination).append(html);
-		}     
-	});
-  } 
 }
 
 
