@@ -31,6 +31,53 @@ searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 
+
+//INITIAL LOAD --COLLECTION.JS AND ALLCOLLECTIONS.JS
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function searchGo(){	
+
+	// escape colon in id
+	searchParams['id'] = searchParams['id'].replace(":","\\:");
+
+	// Set Search Parameters
+	searchParams['q'] = "rels_isMemberOfCollection:info\\:fedora/"+searchParams['id'];	
+	searchParams['raw'] = "noescape";
+
+	// fix facets / fq	
+	searchParams['fq[]'] = searchParams['fq'];
+	delete searchParams['fq'];
+
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";		
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);				
+	
+	var APIcallURL = "/"+config.API_url;	
+	$.ajax({          
+		url: APIcallURL,      
+		dataType: 'json',
+		data:mergedParams,	         
+		success: callSuccess,
+		error: callError
+		});
+
+		function callSuccess(response){
+			mix(response, APIdata);						
+			updateCollectionTitle();
+			updatePage();
+			populateFacets();
+			populateResults('templates/singleCollectionObj.htm','.collection_contents');
+			
+			
+			
+		}
+
+	function callError(response){
+
+		console.log("API Call unsuccessful.  Back to the drawing board.");
+	}
+}
+
+
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateCollectionTitle(){	
@@ -50,25 +97,18 @@ function updatePage(){
 
 	// make collection equal q, so everything is passed on correctly through the API
 	mergedParams.q = mergedParams.collection;
-
 	// get current URL
 	var cURL = document.URL;
-
 	// update number of results
-	updateNumbers();	
-
+	updateNumbers();
 	// show "refined by" facets
-	showFacets();	
-
+	showFacets();
 	// // pagination
 	paginationUpdate();
-
 	// update link to the Collection's single object page	
 	$("#learn_more").html("<a href='item?rendered=singleObject&id="+searchParams['id']+"'>Learn more about this collection</a>");
-
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
-
 }
 
 // DISPLAY RESULTS

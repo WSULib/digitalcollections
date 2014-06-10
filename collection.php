@@ -24,8 +24,7 @@
         <script src="js/main.js" type="text/javascript"></script>        
         <script src="js/userData.js"></script>             
         <script src="js/utilities.js"></script>
-        <script src="js/collection.js"></script>
-        <script src="js/collection-shared.js"></script>          
+        <script src="js/collection.js"></script>        
 
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
@@ -88,7 +87,7 @@
         <!-- loading collections -->
         <script type="text/javascript"> 
             var searchParams = <?php echo json_encode($_GET); ?>;                        
-            searchGo("collectionPage");            
+            searchGo();            
         </script>
         <!-- ********************************************* -->
     </body>

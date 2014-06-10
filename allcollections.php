@@ -26,7 +26,7 @@
         <script src="js/main.js" type="text/javascript"></script>
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>
-        <script src="js/collection-shared.js"></script>             
+        <!--<script src="js/collection-shared.js"></script>-->            
         <script src="js/allcollections.js"></script>
         <script src="js/utilities.js"></script>
 
@@ -66,7 +66,7 @@
         <!-- loading collections -->
         <script type="text/javascript"> 
             var searchParams = {};
-            searchGo("allCollections");                                            
+            searchGo();                                            
         </script>
     </body>
 </html>

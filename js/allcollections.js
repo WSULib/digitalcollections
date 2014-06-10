@@ -22,109 +22,54 @@ searchDefs['facet.mincount'] = 1;
 APIdata = new Object();
 var type = '';
 
-// BUILD LIST
+
+//INITIAL LOAD 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function searchGo(){		
 
-function collectionsList(type){
+	// Set Search Parameters
+	searchParams['q'] = "rels_hasContentModel:info\\:fedora/CM\\:Collection";
+	searchParams['raw'] = "noescape";	
 
-	// WSUAPI v2.0 / Stringify MO
-	var CollectionListParams = {
-		"rows":100,
-		"start":0,
-		"wt":"json",
-		"sort":"id asc",
-		"q":"rels_hasContentModel:info:fedora/CM:Collection",
-		"raw":"escapeterms",
-		"functions[]":"solrSearch" //added for solrSearch v2
-	}	
+	// fix facets / fq	
+	searchParams['fq[]'] = searchParams['fq'];
+	delete searchParams['fq'];
 
-	var APIcallURL = "/"+config.API_url;
-
-	// Calls API functions
-	$.ajax({          
-	  url: APIcallURL,      
-	  dataType: 'json',
-	  data:CollectionListParams,	  
-	  success: callSuccess,
-	  error: callError
-	});
-
-	function callSuccess(response){
-	    APIdata.collectionsList = response;
-		if (type == "allCollections") {			
-			collectionsCount();
-		}	    
-	}
-
-	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");
-	}
-}
-
-
-
-//COUNT RESULTS
-//////////////////////////////////////////////////////////////////
-function collectionsCount(){	
-	var str = searchParams.q;
-
-	var CollectionListParams = {
-		"rows":0,
-		"start":0,
-		"q":"*",
-		"facet":"true",
-		"facet.field":"rels_isMemberOfCollection"
-	}
+	// add API functions to mergedParams
+	searchParams['functions[]'] = "solrSearch";		
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);				
 	
-	CollectionListParams = JSON.stringify(CollectionListParams);
-
-	// Calls API functions
-	var APIcallURL = "/"+config.API_url+"/?functions[]=solrFacetSearch&solrParams="+CollectionListParams;
-
+	var APIcallURL = "/"+config.API_url;	
 	$.ajax({          
-	  url: APIcallURL,      
-	  dataType: 'json',	  
-	  success: callSuccess,
-	  error: callError
-	});
-
-	function callSuccess(response){
-		APIdata.collectionsCount = response;
-		populateCollectionsView();
-	}
-
-	function callError(response){
-		// console.log("collectionsCount Error");
-		// console.log(response);
-	}
+		url: APIcallURL,      
+		dataType: 'json',
+		data:mergedParams,	         
+		success: callSuccess,
+		error: callError
+		});
+		function callSuccess(response){
+			console.log(response);
+			mix(response, APIdata);			
+			populateCollectionsView();
+		}
+		function callError(response){
+			console.log("API Call unsuccessful.  Back to the drawing board.");
+		}
 }
 
 
 //DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////
-
 function populateCollectionsView(){
-	for (var i = 0; i < APIdata.collectionsList.solrSearch.response.docs.length; i++) {
-
-		var collectionObject = APIdata.collectionsList.solrSearch.response.docs[i].id;
-		collectionObject = "info:fedora/"+collectionObject;
-
-		if ($(APIdata.collectionsCount.solrFacetSearch[collectionObject]).length) {
-			APIdata.collectionsList.solrSearch.response.docs[i]['count'] = APIdata.collectionsCount.solrFacetSearch[collectionObject];
-		}
-		else {
-			// console.log("nothing");
-		}	  	
-
+	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
   		$.ajax({          
 		  url: 'templates/multipleCollectionsObj.htm',      
 		  dataType: 'html',            
 		  async:false,
 		  success: function(response){		  	
 		  	var template = response;		  	
-		  	var html = Mustache.to_html(template, APIdata.collectionsList.solrSearch.response.docs[i]);		  	
+		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
 		  	$(".collection_contents").append(html);
-
 		  }		  
 		});
 	}

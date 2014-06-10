@@ -2,6 +2,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(type){	
 
+	console.log(searchParams);
+
 	// Set Search Parameters
 	searchParams['q'] = "rels_isMemberOfCollection:info:fedora/"+searchParams['id'];	
 	searchParams['raw'] = "escapeterms";
