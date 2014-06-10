@@ -37,10 +37,10 @@ searchDefs['facet.mincount'] = 1;
 function searchGo(){	
 
 	// escape colon in id
-	searchParams['id'] = searchParams['id'].replace(":","\\:");
+	escaped_id = searchParams['id'].replace(":","\\:");
 
 	// Set Search Parameters
-	searchParams['q'] = "rels_isMemberOfCollection:info\\:fedora/"+searchParams['id'];	
+	searchParams['q'] = "rels_isMemberOfCollection:info\\:fedora/"+escaped_id;	
 	searchParams['raw'] = "noescape";
 
 	// fix facets / fq	
