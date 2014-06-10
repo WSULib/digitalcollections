@@ -115,6 +115,9 @@ function searchGo(){
 	searchParams['fq[]'] = searchParams['fq'];
 	delete searchParams['fq'];
 
+	// hardcode OR
+	searchParams['q.op'] = "OR";
+
 	// add API functions to mergedParams
 	searchParams['functions[]'] = "solrSearch";
 	// Merge default and URL search parameters
