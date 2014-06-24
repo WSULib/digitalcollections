@@ -237,7 +237,7 @@ function addFav(){
       
     }
   else {
-    bootbox.alert("User not found.  Please login or sign up to save favorites.");
+    bootbox.alert("User not found.  Please <a style='color:green;' href='https://digital.library.wayne.edu/digitalcollections/login.php'><strong>login or sign up</strong></a> to save favorites.");    
   }  
 }
 
