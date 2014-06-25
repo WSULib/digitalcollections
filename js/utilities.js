@@ -315,12 +315,18 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(templateLocation,destination,templateData){
+function populateResults(templateType,destination,templateData){
+
+  // prescribe template locations
+  templateHash = {
+    'grid' : 'templates/gridObj.htm',
+    'list' : 'templates/listObj.htm'
+  }
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
       $.ajax({                
-      url: templateLocation,      
+      url: templateHash[templateType],      
       dataType: 'html',            
       async:false,
       success: function(response){        
@@ -472,7 +478,7 @@ function favObjRemove(PID){
     }  
 }
 
-
+// 404
 function load404(refURL){	
 	window.location.replace("404.php");
 }
@@ -492,13 +498,54 @@ function sortAlphaNum(a,b) {
     }
 }
 
-// PROTOTYPES
+//check for storage support
+function localStorageTest() {
+    var mod = 'test';
+    try {
+        localStorage.setItem(mod, mod);
+        localStorage.removeItem(mod);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
 
+
+//toggle grid and list views
+function toggleResultsView(context){  
+  var cView = localStorage.getItem(context+"_resultsView");
+  if (cView == "grid"){
+    localStorage.setItem(context+"_resultsView",'list');
+  }
+  if (cView == "list"){
+    localStorage.setItem(context+"_resultsView",'grid');
+  }
+  // refresh
+  location.reload();
+}
+
+// update results per page
+$(document).ready(function(){
+  $(".resPerPage").change(function() {    
+    var nURL = window.location.href;    
+    searchParams.rows = $(this).val();
+    var nURL = updateURLParameter(nURL, 'rows', searchParams.rows); 
+    // adjust start pointer
+    if (searchParams.rows > searchParams.start){    
+      var nURL = updateURLParameter(nURL, 'start', "0");
+    } 
+    // refresh page 
+    window.location = nURL;
+  });  
+});
+
+
+
+// PROTOTYPES
 // strip info:fedora/ prefix
 String.prototype.stripFedRDFPrefix = function() {    
     return this.substring(12);
 };
-
 
 
 

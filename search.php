@@ -27,9 +27,6 @@
         <script src="js/userData.js"></script>                        
         <script src="js/utilities.js"></script>
         <script src="js/search.js"></script>
-
-        <!--WSUDOR Translation Dictionary-->
-
         
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
@@ -37,9 +34,6 @@
         <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script>       
         <script src="inc/sidr/jquery.sidr.min.js"></script>
-    
-
-
 
     </head>
     <body>
@@ -50,12 +44,23 @@
                <h2>
                     Search Results
                 </h2>
-                <ul>
+                <ul style="width:50%; float:left;">                	
                     <li><span id='num_results'></span> Objects</li>
-                    <li>&quot;<span id='q_string'></span>&quot;</li>
-                    <!-- <li><a href="#">Save this Search</a></li> -->
-                </ul>
-                
+                    <li>&quot;<span id='q_string'></span>&quot;</li>                     
+                </ul>                
+                <ul style="width:50%; float:right; text-align:right;">                	                    
+                    <li>
+                    	<span>Items per page:</span>
+                    	<select class="resPerPage">                    		
+                    		<option value=10>10</option>
+                    		<option value=20>20</option>
+                    		<option value=50>50</option>
+                    		<option value=100>100</option>
+                		</select>
+            		</li>
+            		<li id="toggleView">
+                    	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span></li>
+            	</ul>
             </div><!-- /row for sub-header -->
             
             <div id="facets_container" class="facets">

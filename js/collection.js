@@ -32,6 +32,16 @@ searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 
 
+// Set Default Views
+if (localStorageTest() == true){	
+	if (localStorage.getItem("collection_resultsView") === null ) {                          
+		localStorage.setItem("collection_resultsView",'grid');
+	}	
+}
+else {
+	$("#toggleView").remove();
+}
+
 //INITIAL LOAD --COLLECTION.JS AND ALLCOLLECTIONS.JS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function searchGo(){	
@@ -64,11 +74,8 @@ function searchGo(){
 			mix(response, APIdata);						
 			updateCollectionTitle();
 			updatePage();
-			populateFacets();
-			populateResults('templates/singleCollectionObj.htm','.collection_contents');
-			
-			
-			
+			populateFacets();						
+			populateResults(localStorage.collection_resultsView,'.collection_contents');					
 		}
 
 	function callError(response){
@@ -99,6 +106,8 @@ function updatePage(){
 	mergedParams.q = mergedParams.collection;
 	// get current URL
 	var cURL = document.URL;
+	// update rows
+	$(".resPerPage option[value='"+mergedParams.rows+"']").attr('selected','selected');	
 	// update number of results
 	updateNumbers();
 	// show "refined by" facets
@@ -110,29 +119,6 @@ function updatePage(){
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 }
-
-// DISPLAY RESULTS
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// populate results - display uniqueness is found in templates
-function populateResults(templateLocation,destination){
-  
-  //push results to results_container
-  for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
-
-    	$.ajax({                
-    	url: templateLocation,      
-    	dataType: 'html',            
-    	async:false,
-    	success: function(response){        
-        var template = response;
-        var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);  
-        $(destination).append(html);
-      }     
-    });
-  } 
-}
-
 
 
 

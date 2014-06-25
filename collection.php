@@ -42,12 +42,23 @@
                    <h2 id="collection_title">
                         <!-- title of collectionTitle of Collection -->
                     </h2>
-                    <ul>
+                    <ul style="width:50%; float:left;">
                         <li><span id="num_results"></span> Objects</li>
-                        <li><span id="learn_more">Learn more about this collection</span></li>
+                        <li><span id="learn_more">Learn more about this collection</span></li>                        
                     </ul>
-                   
-                    
+                    <ul style="width:50%; float:right; text-align:right;">                	                    
+	                    <li>
+	                    	<span>Items per page:</span>
+	                    	<select class="resPerPage">                    		
+	                    		<option value=10>10</option>
+	                    		<option value=20>20</option>
+	                    		<option value=50>50</option>
+	                    		<option value=100>100</option>
+	                		</select>
+	            		</li>
+	            		<li id="toggleView">
+	                    	<span style="cursor:pointer;" onclick="toggleResultsView('collection'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span></li>
+	            	</ul>                   
                 </div><!-- / sub-header -->
 
                 <div id="facets_container" class="facets">

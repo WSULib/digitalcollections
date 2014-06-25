@@ -2624,9 +2624,10 @@ footer ul > li > a:hover, footer ul > li > a:active {
 
 .sub-header {
   margin: 0 0 1.75em 0; }
-  .sub-header ul {
+  .sub-header ul {  	  	
     list-style: none;
-    padding: 0; }
+    padding: 0;
+    margin-bottom: 1.75em; }
     .sub-header ul li {
       display: inline;
       padding-right: 15px;
@@ -3114,8 +3115,8 @@ li:last-child.object-container-list {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("../fonts/glyphicons-halflings-regular.eot");
-  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg"); }
+  src: url"fonts/glyphicons-halflings-regular.eot");
+  src: url"fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url"fonts/glyphicons-halflings-regular.woff") format("woff"), url"fonts/glyphicons-halflings-regular.ttf") format("truetype"), url"fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg"); }
 
 .glyphicon {
   position: relative;

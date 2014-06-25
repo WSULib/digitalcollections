@@ -29,6 +29,16 @@ searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
 
+// Set Default Views
+if (localStorageTest() == true){	
+	if (localStorage.getItem("search_resultsView") === null ) {                          
+		localStorage.setItem("search_resultsView",'list');
+	}	
+}
+else {
+	$("#toggleView").remove();
+}
+
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -45,6 +55,9 @@ function updatePage(type){
 		else { $("#q").val(mergedParams.q); }		
 	}
 
+	// update rows
+	$(".resPerPage option[value='"+mergedParams.rows+"']").attr('selected','selected');	
+	
 	// update number of results
 	updateNumbers();	
 	// show "refined by" facets
@@ -95,7 +108,8 @@ function searchGo(){
 				$("#results_container").append(html); 				
 			}	
 			else {
-				populateResults('templates/searchResultObj.htm',"#results_container");	    		
+				populateResults(localStorage.search_resultsView,"#results_container");	    		
+				// populateResults('templates/searchResultObj.htm',"#results_container");	    		
 			}
 		});		
 	}
