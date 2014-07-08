@@ -198,7 +198,7 @@ function finishRendering(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function addFav(){    
     if (typeof userData.username_WSUDOR != "undefined"){
-      // stringify user / item / search object, send to solrAddDoc API function  
+      // stringify user / item / search object, send to addFavorite API function  
       var addDoc = new Object();
       addDoc.id = userData.username_WSUDOR+"_"+APIdata.APIParams.PID
       addDoc.fav_user = userData.username_WSUDOR;
@@ -206,12 +206,12 @@ function addFav(){
       var jsonAddString = "["+JSON.stringify(addDoc)+"]";
       // console.log(jsonAddString);
 
-      var APIaddURL = "/"+config.API_url+"?functions[]=solrAddDoc&raw="+jsonAddString;
+      var APIaddURL = "/"+config.API_url+"?functions[]=addFavorite&raw="+jsonAddString;
       // console.log(APIaddURL);
 
       function callSuccess(response){
         // console.log(response);
-        if (response.solrAddDoc.responseHeader.status == 0){
+        if (response.addFavorite.responseHeader.status == 0){
           $('li.add-to-favorites').html('<img src="img/star.png" alt=""> Added to Favorites');
           bootbox.alert("Added to favorites");
           window.setTimeout(function(){

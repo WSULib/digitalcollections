@@ -446,7 +446,7 @@ function favObjRemove(PID){
     if (typeof userData.username_WSUDOR != "undefined"){     
 
       // send username, hash, and PID to delete
-      var APIaddURL = "/"+config.API_url+"?functions[]=solrRemoveDoc"
+      var APIaddURL = "/"+config.API_url+"?functions[]=removeFavorite"
 
       $.ajax({          
         url: APIaddURL,      
