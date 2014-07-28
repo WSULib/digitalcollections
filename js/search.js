@@ -101,15 +101,19 @@ function searchGo(){
 		mix(response,APIdata);		
 		$(document).ready(function(){
 			updatePage();
-			populateFacets(); // defined in utilities.js
+			populateFacets();
 			// if no results
 			if (APIdata.solrSearch.response.docs.length == 0){
 				var html = '<li class="obj-cnt object-container-list" style="text-align:center;"><h2>No results found.</h2></li>';				
 				$("#results_container").append(html); 				
 			}	
 			else {
-				populateResults(localStorage.search_resultsView,"#results_container");	    		
-				// populateResults('templates/searchResultObj.htm',"#results_container");	    		
+				if (lsTest() === true){
+					populateResults(localStorage.search_resultsView,"#results_container");	
+				}
+				else {
+					populateResults("list","#results_container");
+				}
 			}
 		});		
 	}

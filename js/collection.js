@@ -72,10 +72,17 @@ function searchGo(){
 
 		function callSuccess(response){
 			mix(response, APIdata);						
-			updateCollectionTitle();
-			updatePage();
-			populateFacets();						
-			populateResults(localStorage.collection_resultsView,'.collection_contents');					
+			$(document).ready(function(){				
+				updateCollectionTitle();
+				updatePage();
+				populateFacets();
+				if (lsTest() === true){						
+					populateResults(localStorage.collection_resultsView,'#results_container');
+				}
+				else{					
+					populateResults("grid",'#results_container');	
+				}
+			});					
 		}
 
 	function callError(response){
@@ -115,7 +122,7 @@ function updatePage(){
 	// // pagination
 	paginationUpdate();
 	// update link to the Collection's single object page	
-	$("#learn_more").html("<a href='item?rendered=singleObject&id="+searchParams['id']+"'>Learn more about this collection</a>");
+	$("#learn_more").attr("href","item?rendered=singleObject&id="+searchParams['id']);
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
 }

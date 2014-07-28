@@ -35,6 +35,14 @@ if (locale != "item"){
   })();  
 }
 
+// hide things that need localStorage
+$(document).ready(function(){
+  if (lsTest() === false){  
+    // toggle views
+    $("#toggleView").remove();
+  }  
+});
+
 
 // Digital Collections Front-End Translation Dictionary
 function rosetta(input){	
@@ -315,31 +323,35 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(templateType,destination,templateData){
-
+function populateResults(templateType,destination,templateData){  
   // prescribe template locations
   templateHash = {
     'grid' : 'templates/gridObj.htm',
     'list' : 'templates/listObj.htm'
   }
+
+  // alert(templateHash[templateType]);
+  if (templateHash[templateType] == undefined){    
+    templateHash[templateType] = "templates/listObj.htm";
+  }
   
   //push results to results_container
   for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
       $.ajax({                
-      url: templateHash[templateType],      
-      dataType: 'html',            
-      async:false,
-      success: function(response){        
-        var template = response;
-        if (typeof(templateData) == 'undefined') {          
-          var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
-        }
-        else {
-          var html = Mustache.to_html(template, templateData);           
-        }        
-        $(destination).append(html);
-      }     
-    });
+        url: templateHash[templateType],      
+        dataType: 'html',            
+        async:false,
+        success: function(response){        
+          var template = response;
+          if (typeof(templateData) == 'undefined') {          
+            var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
+          }
+          else {
+            var html = Mustache.to_html(template, templateData);           
+          }        
+          $(destination).append(html);
+        }     
+      });
   } 
 }
 
@@ -513,7 +525,7 @@ function localStorageTest() {
 
 //toggle grid and list views
 function toggleResultsView(context){  
-  var cView = localStorage.getItem(context+"_resultsView");
+  var cView = localStorage.getItem(context+"_resultsView");  
   if (cView == "grid"){
     localStorage.setItem(context+"_resultsView",'list');
   }
@@ -538,6 +550,19 @@ $(document).ready(function(){
     window.location = nURL;
   });  
 });
+
+
+// check for localStorage
+function lsTest(){
+    var test = 'test';
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
 
 
 
