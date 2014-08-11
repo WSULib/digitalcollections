@@ -84,12 +84,13 @@ function searchGo(){
 	searchParams['functions[]'] = "solrSearch";
 	// Set Search Parameters - Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
+	// console.log(mergedParams);
 
 	// Calls API functions		
 	var APIcallURL = "/"+config.API_url;
 
 	$.ajax({          
-	  url: APIcallURL,      
+	  url: APIcallURL,	        
 	  dataType: 'json',
 	  data: mergedParams,	  	    
 	  success: callSuccess,
@@ -119,7 +120,7 @@ function searchGo(){
 	}
 
 	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+		// console.log("API Call unsuccessful.  Back to the drawing board.");	  
 	}
 }
 

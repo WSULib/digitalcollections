@@ -34,26 +34,33 @@ function concatRepeaters($field){
 <script type="text/javascript">	
  	var _paq = _paq || [];	
 	// isMemberOfCollection
+	
 	<?php 
 	$i = 1;
-	foreach($response['response']['docs'][0]['rels_isMemberOfCollection'] as $collection){
-		$pattern = '/info\:fedora\/wayne\:/i';
-		$replacement = "";
-		$string = $collection;
-		$collection = preg_replace($pattern, $replacement, $string);		
-		echo "_paq.push(['setCustomVariable', '$i', 'collection', '$collection', 'visit'])\n";		
-		$i++;
-	}	
+	if ( array_key_exists("rels_isMemberOfCollection",$response['response']['docs'][0]) ){
+		foreach($response['response']['docs'][0]['rels_isMemberOfCollection'] as $collection){
+			$pattern = '/info\:fedora\/wayne\:/i';
+			$replacement = "";
+			$string = $collection;
+			$collection = preg_replace($pattern, $replacement, $string);		
+			echo "_paq.push(['setCustomVariable', '$i', 'collection', '$collection', 'visit'])\n";		
+			$i++;
+		}
+	}
+	
 	// content type - hasContentModel	
-	foreach($response['response']['docs'][0]['rels_hasContentModel'] as $content_model){
-		$pattern = '/info\:fedora\/CM\:/i';
-		$replacement = "";
-		$string = $content_model;
-		$content_model = preg_replace($pattern, $replacement, $string);		
-		echo "_paq.push(['setCustomVariable', '$i', 'content_model', '$content_model', 'visit'])\n";		
-		$i++;
+	if ( array_key_exists("rels_hasContentModel",$response['response']['docs'][0]) ){
+		foreach($response['response']['docs'][0]['rels_hasContentModel'] as $content_model){
+			$pattern = '/info\:fedora\/CM\:/i';
+			$replacement = "";
+			$string = $content_model;
+			$content_model = preg_replace($pattern, $replacement, $string);		
+			echo "_paq.push(['setCustomVariable', '$i', 'content_model', '$content_model', 'visit'])\n";		
+			$i++;
+		}
 	}
 	?>
+
 	_paq.push(["trackPageView"]);
 	_paq.push(["enableLinkTracking"]);	
 	(function() {

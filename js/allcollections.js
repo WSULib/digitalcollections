@@ -48,12 +48,12 @@ function searchGo(){
 		error: callError
 		});
 		function callSuccess(response){
-			console.log(response);
+			// console.log(response);
 			mix(response, APIdata);			
 			populateCollectionsView();
 		}
 		function callError(response){
-			console.log("API Call unsuccessful.  Back to the drawing board.");
+			// console.log("API Call unsuccessful.  Back to the drawing board.");
 		}
 }
 

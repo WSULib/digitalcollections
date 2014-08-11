@@ -33,9 +33,6 @@ $objectPID = $_REQUEST['id'];
         <script src="js/userData.js"></script>
         <script src="js/favorites.js"></script>
         
-        <!--WSUDOR Translation Dictionary-->
-
-        
         <!--Pagination-->
         <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
         
