@@ -246,7 +246,7 @@ function addFav(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateLargeView(self,PID){        
   $("#LargeView a img").attr('src','/imageServer?obj='+PID+'&ds=PREVIEW&aspectResize=(1024x768)');
-  $("#LargeView a").attr('href','/dev/graham/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
+  $("#LargeView a").attr('href','/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
