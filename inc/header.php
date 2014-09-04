@@ -43,4 +43,4 @@
 
     </div>
 </header>
-<div class="feedback">This is a beta site. Take it for a ride. <a href="https://www.surveymonkey.com/s/QHWX3V7">Please give us feedback</a></div>
+<div class="feedback">This is a beta site. <a href="http://dlxs.lib.wayne.edu">Check out our original Digital Collections.</a> <a href="https://www.surveymonkey.com/s/QHWX3V7">Please give us feedback</a></div>
