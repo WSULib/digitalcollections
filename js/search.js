@@ -12,7 +12,8 @@ APIdata.ordered_facets = [
   	"dc_subject",
   	"dc_creator",
   	"dc_coverage",
-  	"dc_language"  	  	
+  	"dc_language",
+  	"dc_publisher" 	  	
   ];
 
 // Default Search Parameters (pre form submission)

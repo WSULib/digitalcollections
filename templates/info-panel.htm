@@ -2,13 +2,14 @@
     {{solrGetFedDoc.response.docs.0.dc_title.0}}
 </h3>
 
-<p class="description">
-    <!-- {{{solrGetFedDoc.response.docs.0.dc_description.0}}} -->
+<h4>
+    {{solrGetFedDoc.response.docs.0.dc_date.0}}
+</h4>
+
+<p class="description">    
     {{#solrGetFedDoc.response.docs.0.dc_description}}
     {{{.}}}</br></br>
-    {{/solrGetFedDoc.response.docs.0.dc_description}}
-
-    
+    {{/solrGetFedDoc.response.docs.0.dc_description}}    
 </p>
 
 <ul class="buttons">

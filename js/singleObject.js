@@ -46,15 +46,29 @@ function loadError(){
 }
 
 function makeTranslations(){
-
-  // content model fix  
   APIdata.translated = new Object();
-  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
-    APIdata.translated.contentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
-  }
-  else {
-    APIdata.translated.contentModelPretty = "Unknown";
-  }
+  
+  // content models   
+    // pretty preferred content model    
+    if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
+      APIdata.translated.preferredContentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
+    }
+    else {
+      APIdata.translated.preferredContentModelPretty = "Unknown";
+    }
+    // all content models
+    if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != null){
+      APIdata.translated.contentModels = [];
+      for (var i=0; i < APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel.length; i++){        
+        APIdata.translated.contentModels.push({          
+          'key':APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i],
+          'value':rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i])
+        });
+      }
+    }
+    else {
+      APIdata.translated.contentModels = "Unknown";
+    }
 }
 
 
@@ -62,10 +76,6 @@ function makeTranslations(){
 // Render Page with API call data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function renderPage(){  
-
-	// update title
-	// $("head title").html("WSU digital collections - "+APIdata.solrGetFedDoc.response.docs[0].dc_title_sorting);
-  
   //Render Internal Templates
   $(document).ready(function(){
     $.Mustache.addFromDom() //read all template from DOM    
@@ -119,78 +129,67 @@ function finishRendering(){
         }); 
   }
 
-  // Content Type Handling
-  if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){        
-    ctype = APIdata.translated.contentModelPretty;    
-    switch (ctype) {
-      //Images
-      case "Image":
-        $.get('templates/singleObject/image.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;
-      // Complex Images
-      case "ComplexImage":
-        $.get('templates/singleObject/complexImage.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;
-      //eBooks
-      case "WSUebook":
-        $.get('templates/singleObject/WSUebook.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;
-      //Collections
-      case "Collection":
-        $.get('templates/singleObject/collection.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        });      
-        break;      
-      //Audio
-      case "Audio":
-        $.get('templates/singleObject/audio.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;       
-      //Document
-      case "Document":
-        unknownType();        
-        $.get('templates/singleObject/document.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;  
-      //Video
-      case "Video":
-        // unknownType();        
-        $.get('templates/singleObject/video.htm',function(template){
-          var html = Mustache.to_html(template, APIdata);
-          $(".primary-object-container").html(html);
-        }); 
-        break;
-      //Archive
-      case "Archive":
-        unknownType();        
-        // $.get('templates/singleObject/archive.htm',function(template){
-        //   var html = Mustache.to_html(template, APIdata);
-        //   $(".primary-object-container").html(html);
-        // }); 
-        break;        
-      default:
-        unknownType();
-    }
+  // Content Type Handling  
+  ctype = APIdata.translated.preferredContentModelPretty;    
+  switch (ctype) {
+    //Images
+    case "Image":
+      $.get('templates/singleObject/image.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;
+    // Complex Images
+    case "ComplexImage":
+      $.get('templates/singleObject/complexImage.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;
+    //eBooks
+    case "WSUebook":
+      $.get('templates/singleObject/WSUebook.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;
+    //Collections
+    case "Collection":
+      $.get('templates/singleObject/collection.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      });      
+      break;      
+    //Audio
+    case "Audio":
+      $.get('templates/singleObject/audio.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;       
+    //Document
+    case "Document":
+      unknownType();        
+      $.get('templates/singleObject/document.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;  
+    //Video
+    case "Video":
+      // unknownType();        
+      $.get('templates/singleObject/video.htm',function(template){
+        var html = Mustache.to_html(template, APIdata);
+        $(".primary-object-container").html(html);
+      }); 
+      break;
+    //Archive
+    case "Archive":
+      unknownType();                
+      break;        
+    default:
+      unknownType();
   }
-  else{
-    // fire unknown type handler
-    unknownType();
-  }
-
 }
 
 
