@@ -3064,6 +3064,13 @@ li:last-child.object-container-list {
   .issue-container-grid {
     width: 24.5%; } }
 
+/* Single Object */
+.info-panel h4 {
+    /*font-size: 0.9em;*/
+    font-style: italic;
+    margin: 10px 0 20px 0;
+    color: #999999; }
+
 .primary-object-container {
   margin-top: 33px; }
 
@@ -3093,6 +3100,8 @@ li:last-child.object-container-list {
 .display-more-info {
   margin: 3em 0;
   display: none; }
+
+
 
 .fade {
   opacity: 0;
