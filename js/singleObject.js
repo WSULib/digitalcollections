@@ -94,8 +94,7 @@ function renderPage(PID){
       var html = Mustache.to_html(template, APIdata);
       $(".display-more-info table").html(html);
       cleanEmptyMetaRows();
-    });  
-     
+    });       
 
     // Content Model Specific
     // WSUebooks (create iterable list of key / values, extensible past only HTML and PDF when need be)
