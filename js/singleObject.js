@@ -30,7 +30,7 @@ function APIcall(PID){
       // make translations as necessary
       makeTranslations();       
       // render results on page
-      renderPage();                    
+      renderPage(PID);                    
     }
   	
   }
@@ -68,14 +68,14 @@ function makeTranslations(){
     }
     else {
       APIdata.translated.contentModels = "Unknown";
-    }
+    }    
 }
 
 
 
 // Render Page with API call data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function renderPage(){  
+function renderPage(PID){  
   //Render Internal Templates
   $(document).ready(function(){
     $.Mustache.addFromDom() //read all template from DOM    
@@ -94,22 +94,26 @@ function renderPage(){
       var html = Mustache.to_html(template, APIdata);
       $(".display-more-info table").html(html);
       cleanEmptyMetaRows();
-    });
-    
-    // Children
-    if (APIdata.hasMemberOf.results.length > 0){
-      $('#children').mustache('children_t', APIdata);   
+    });  
+     
+
+    // Content Model Specific
+    // WSUebooks (create iterable list of key / values, extensible past only HTML and PDF when need be)
+    if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
+    	PID_suffix = PID.split(":")[1]
+    	console.log("PID suffix:",PID_suffix);
+		APIdata.fullText = [
+			{
+				"key" : "HTML",
+				"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/HTML_FULL/content"},
+			{
+				"key" : "PDF",
+				"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/PDF_FULL/content"
+			},
+		];            
     }
-    else {
-      $('#children').append("<p>This object has no sub-components.</p>");   
-    }
-    // Parents
-    if (APIdata.isMemberOfCollection.results.length > 0){      
-      $('#parents').mustache('parents_t', APIdata);   
-    }
-    else {
-      $('#parents').append("<p>This object is not part of any collections.</p>");   
-    }    
+
+
   });
   
   finishRendering();
