@@ -71,7 +71,7 @@ function searchGo(){
 		error: callError
 		});
 
-		function callSuccess(response){
+		function callSuccess(response){			
 			mix(response, APIdata);						
 			$(document).ready(function(){				
 				updateCollectionTitle();
@@ -83,13 +83,12 @@ function searchGo(){
 				else{					
 					populateResults("grid",'#results_container');	
 				}
-			});					
+			});								
 		}
 
-	function callError(response){
-
-		console.log("API Call unsuccessful.  Back to the drawing board.");
-	}
+		function callError(response){
+			load503(APIcallURL);
+		}
 }
 
 

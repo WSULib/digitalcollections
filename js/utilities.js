@@ -491,9 +491,14 @@ function favObjRemove(PID){
 		}  
 }
 
-// 404
+// 404 - Item Not Found
 function load404(refURL){	
 	window.location.replace("404.php");
+}
+
+// 503 - Error Page
+function load503(refURL){	
+	window.location.replace("error.php");
 }
 
 // use: Array.sort(sortAlphaNum);

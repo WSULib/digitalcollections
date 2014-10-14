@@ -97,10 +97,12 @@ function renderPage(PID){
     });       
 
     // Content Model Specific
-    // WSUebooks (create iterable list of key / values, extensible past only HTML and PDF when need be)
+
+    // WSUebooks
     if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
-    	PID_suffix = PID.split(":")[1]
-    	console.log("PID suffix:",PID_suffix);
+    	PID_suffix = PID.split(":")[1]    	
+		
+    	// generate fullText URLs
 		APIdata.fullText = [
 			{
 				"key" : "HTML",
@@ -109,7 +111,17 @@ function renderPage(PID){
 				"key" : "PDF",
 				"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/PDF_FULL/content"
 			},
-		];            
+		];
+
+		// check for OCLC num, generate citation link
+		if ("mods_identifier_oclc_ms" in APIdata.solrGetFedDoc.response.docs[0]) {
+			APIdata.citationLink = "http://library.wayne.edu/inc/OCLC_citation.php?oclcnum="+APIdata.solrGetFedDoc.response.docs[0].mods_identifier_oclc_ms[0];
+		}
+
+		// check for Bib num, generate persistent link
+		if ("mods_bibNo_ms" in APIdata.solrGetFedDoc.response.docs[0]) {
+			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.solrGetFedDoc.response.docs[0].mods_bibNo_ms[0];
+		}
     }
 
 

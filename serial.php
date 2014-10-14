@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$objectPID = $_GET['id'];
+	$objectPID = $_REQUEST['id'];
 ?>
 <html>
     <head>

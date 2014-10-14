@@ -25,15 +25,8 @@
         <script src="js/favorites.js"></script>
         <script src="js/userData.js"></script>             
         
-        <script src="js/utilities.js"></script>
-        <script src="js/collection.js"></script>
+        <script src="js/utilities.js"></script>        
         <script src="js/contact_random.js"></script>
-
-        <!--WSUDOR Translation Dictionary-->
-
-        
-        <!--Pagination-->
-        <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
         
         <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script> 

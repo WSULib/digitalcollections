@@ -120,8 +120,8 @@ function searchGo(){
 		});		
 	}
 
-	function callError(response){
-		// console.log("API Call unsuccessful.  Back to the drawing board.");	  
+	function callError(response){		
+		load503(APIcallURL);
 	}
 }
 
