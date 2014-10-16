@@ -46,7 +46,7 @@ function solrMetadataCall($PID){
 	(
 	    'hostname' => 'localhost',    
 	    'port'     => 8080,
-	    'path'     => 'solr4/fedobjs'
+	    'path'     => 'solr4/search'
 	);
 	$client = new SolrClient($options);
 	$query = new SolrQuery();

@@ -57,7 +57,9 @@ function rosetta(input){
 		"dc_coverage":"Coverage",  
 		"dc_publisher":"Publisher",  
 		"rels_hasContentModel":"Content Type",
-		"rels_isMemberOfCollection":"Collection"
+		"rels_isMemberOfCollection":"Collection",
+		"int_fullText":"Full-Text",
+		"text":"Keyword"
 	};
 
 	// create APIdata.solrTranslationHash from retrieved and hard-coded
@@ -190,6 +192,7 @@ function URLcleaner(URL){
 
 // refine by keyword function, triggered by keyword search form
 function refineByKeyWord(context){   
+	// if full-text box checked, search only that field
 
 	var cURL = window.location.href;  
 
@@ -204,11 +207,19 @@ function refineByKeyWord(context){
 		if (cURL.endsWith("?q=") == true ){
 			cURL+="*";
 		}  
+	}
+
+	// search only full-text field if checkbox checked
+	if ( $("#fulltext_refine").is(':checked') ) {
+		var solr_field = "int_fullText"
 	}  
+	else {
+		var solr_field = "text"
+	}
 
 	// check rows to update and add to fq[]
 	if (filter_input !== ""){
-		var nURL = cURL+"&fq[]=text:"+filter_input+"&start=0";   
+		var nURL = cURL+"&fq[]="+solr_field+":"+filter_input+"&start=0";   
 	}
 	else{
 		var nURL = cURL+"&start=0";     
@@ -231,11 +242,9 @@ function showFacets(){
 		var facet_string = mergedParams['fq[]'][i];       
 		var facet_type = facet_string.split(":")[0];
 		var facet_value = facet_string.split(":").slice(1).join(":");
-	
-
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
-		nURL = URLcleaner(nURL);     
-		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'><i class='icon-delete'></i> "+rosetta(facet_value)+"</a></span>");
+		nURL = URLcleaner(nURL);
+		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'><i class='icon-delete'></i> <span class='facet_name'>"+rosetta(facet_type)+"</span>: "+rosetta(facet_value)+"</a></span>");
 	}
 }
 

@@ -66,10 +66,11 @@
             <div id="facets_container" class="facets">
                 <ul class="facet_container filter" id="search_facet">
                     <li>
-                        <h3 class="tree-toggler">Filter by Keyword</h3>
+                        <h3 class="tree-toggler">Filter by Term</h3>
                         <ul class="tree facet_list" id="search_facet_box">
                             <form onsubmit="refineByKeyWord('search'); return false;">
                                 <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
+                                <span style="margin-right:10px;">Search Full-Text <strong>only</strong> from eBooks and Journals</span><input type="checkbox" id="fulltext_refine" name="fulltext_refine">
                             </form>
                         </ul>
                     </li>

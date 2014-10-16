@@ -6754,3 +6754,49 @@ p.caption {
   color: white;
   margin-left: 0.2em;
 }
+
+.advanced-search label {
+  display: block;
+  margin-top: 22px;
+  font-weight: 300;
+  font-size: 1em; }
+.advanced-search input {
+  height: 3.5em; }
+.advanced-search textarea {
+  height: 160px; }
+.advanced-search input, .advanced-search textarea {
+  padding: 15px;
+  width: 100%;
+  border: 3px solid #eee;
+  border-radius: 4px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  color: #333;
+  font-size: 13px; }
+.advanced-search input:focus, .advanced-search textarea:focus {
+  border: 3px solid #ffcc33;
+  outline: none; }
+.advanced-search input[type="text"], .advanced-search input[type="email"], .advanced-search textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* mobile firefox too! */ }
+  .advanced-search button {
+    margin-top: 20px;
+  }
+
+  .facet_name {
+  	color:rgb(158,158,158);  	
+  }
+
+
+
+
+
+
+
+
+
+
+
