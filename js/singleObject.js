@@ -97,7 +97,6 @@ function renderPage(PID){
     });       
 
     // Content Model Specific
-
     // WSUebooks
     if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
     	PID_suffix = PID.split(":")[1]    	

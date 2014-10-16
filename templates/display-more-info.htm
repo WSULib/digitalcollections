@@ -14,9 +14,9 @@
 	<tr>
 		<td>Date:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.facet_mods_year}}
+			{{#solrGetFedDoc.response.docs.0.mods_key_date_year}}
 				<a href='search.php?q=*&start=0&fq[]=facet_mods_year:"{{.}}"&start=0'>{{.}}</a>
-			{{/solrGetFedDoc.response.docs.0.facet_mods_year}}
+			{{/solrGetFedDoc.response.docs.0.mods_key_date_year}}
 		</td>
 	</tr>
 
