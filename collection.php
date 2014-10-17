@@ -69,9 +69,17 @@
                     <li>
                         <h3 class="tree-toggler">Filter by Term</h3>
                         <ul class="tree facet_list" id="search_facet_box">
-                            <form onsubmit="refineByKeyWord('collection'); return false;">
-                                <input id="filter_input" placeholder="Filter by keyword" class="search-filter">
-                                <span style="margin-right:10px;">Search Full-Text <strong>only</strong> from eBooks and Journals</span><input type="checkbox" id="fulltext_refine" name="fulltext_refine">
+                            <form onsubmit="refineByKeyWord('collection'); return false;" role="form">
+                                <input id="refine_input" placeholder='Type in word or phrase' class="search-filter">                                                                
+								<label class="radio-inline">
+									<input type="radio" id="metadata" name="refine_type" value="metadata"> Item Record Only
+								</label>
+								<label class="radio-inline">
+									<input type="radio" id="fulltext" name="refine_type" value="fulltext"> Full-Text Only
+								</label>
+								<label class="radio-inline">
+									<input checked type="radio" id="both" name="refine_type" value="both"> Both
+								</label>
                             </form>
                         </ul>
                     </li>

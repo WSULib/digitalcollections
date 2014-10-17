@@ -59,7 +59,8 @@ function rosetta(input){
 		"rels_hasContentModel":"Content Type",
 		"rels_isMemberOfCollection":"Collection",
 		"int_fullText":"Full-Text",
-		"text":"Keyword"
+		"text":"Keyword",
+		"metadata":"Item Record"
 	};
 
 	// create APIdata.solrTranslationHash from retrieved and hard-coded
@@ -191,13 +192,13 @@ function URLcleaner(URL){
 }
 
 // refine by keyword function, triggered by keyword search form
-function refineByKeyWord(context){   
-	// if full-text box checked, search only that field
+// radio buttons for metadata, fulltext, both
+function refineByKeyWord(context){	
 
 	var cURL = window.location.href;  
 
 	//get word from box
-	var filter_input = $('#filter_input').val();  
+	var refine_input = $('#refine_input').val();  
 
 	if (context == "search"){
 		// tack on "*" to empty search  
@@ -209,26 +210,29 @@ function refineByKeyWord(context){
 		}  
 	}
 
-	// search only full-text field if checkbox checked
-	if ( $("#fulltext_refine").is(':checked') ) {
-		var solr_field = "int_fullText"
+	// get refine type
+	var refine_type = $("input:radio[name ='refine_type']:checked").val();	
+	if ( refine_type == "fulltext" ) {
+		var solr_field = "int_fullText";
 	}  
+	else if ( refine_type == "metadata"){
+		var solr_field = "metadata";
+	}
 	else {
-		var solr_field = "text"
+		var solr_field = "text";
 	}
 
-	// check rows to update and add to fq[]
-	if (filter_input !== ""){
-		var nURL = cURL+"&fq[]="+solr_field+":"+filter_input+"&start=0";   
+	// write new URL with correct solr fq
+	if (refine_input !== ""){
+		var nURL = cURL+"&fq[]="+solr_field+":"+refine_input+"&start=0";   
 	}
 	else{
 		var nURL = cURL+"&start=0";     
-	}
-	nURL = URLcleaner(nURL);  
+	}	
 
 	// refresh page 
+	nURL = URLcleaner(nURL);
 	window.location = nURL;
-
 }
 
 // update page functions
@@ -588,7 +592,11 @@ String.prototype.stripFedRDFPrefix = function() {
 };
 
 
-
+function toggleFacets(){
+	$("#facets_container").toggle();
+	$(".main-container").width("100%");
+	$(".object-container-grid .crop").css("height","375px");
+}
 
 
 
