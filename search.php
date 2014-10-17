@@ -44,23 +44,32 @@
                <h2>
                     Search Results
                 </h2>
-                <ul style="width:50%; float:left;">                	
-                    <li><span id='num_results'></span> Objects</li>
-                    <li>&quot;<span id='q_string'></span>&quot;</li>                     
-                </ul>                
-                <ul style="width:50%; float:right; text-align:right;">                	                    
-                    <li>
-                    	<span>Items per page:</span>
-                    	<select class="resPerPage">                    		
-                    		<option value=10>10</option>
-                    		<option value=20>20</option>
-                    		<option value=50>50</option>
-                    		<option value=100>100</option>
-                		</select>
-            		</li>
-            		<li id="toggleView">
-                    	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span></li>
-            	</ul>
+                
+                <div class="row">
+	                <div class="col-md-6 pull-left">
+		                <!-- <ul style="width:50%; float:left;"> -->
+		                <ul>
+		                    <li><span id='num_results'></span> Objects</li>
+		                    <li>&quot;<span id='q_string'></span>&quot;</li>                     
+		                </ul>                
+	                </div>
+	                <div class="col-md-6 pull-right" style="text-align:right;">                
+			            <!-- <ul style="width:50%; float:right; text-align:right;"> -->
+			            <ul >                	                    		        	
+			                <li>
+			                	<span>Items per page:</span>
+			                	<select class="resPerPage">                    		
+			                		<option value=10>10</option>
+			                		<option value=20>20</option>
+			                		<option value=50>50</option>
+			                		<option value=100>100</option>
+			            		</select>
+			        		</li>
+			        		<li id="toggleView">
+			                	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span></li>
+			        	</ul>
+		        	</div>
+	        	</div>
             </div><!-- /row for sub-header -->
             
             <div id="facets_container" class="facets">
