@@ -12,11 +12,10 @@ function APIcall(singleObjectParams){
   
 	
   // Calls API functions	  
-  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID    
+  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+config.objectLoci_windowSize    
   
   // determine if unique search (particularly from collection view)
-  mergedParams = JSON.parse(localStorage.getItem('mergedParams'));
-  console.log(mergedParams);
+  mergedParams = JSON.parse(localStorage.getItem('mergedParams'));  
   
   if (mergedParams['q'] != "*" && mergedParams['fq[]'].length > 0) {
   	serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));  
