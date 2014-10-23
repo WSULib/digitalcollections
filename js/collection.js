@@ -31,6 +31,7 @@ for (var i=0; i<APIdata.ordered_facets.length; i++){ searchDefs['facets[]'].push
 searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
+searchDefs['sort'] = 'id asc';
 
 
 // Set Default Views

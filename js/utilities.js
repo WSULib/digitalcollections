@@ -367,6 +367,12 @@ function populateResults(templateType,destination,templateData){
 				}     
 			});
 	} 
+
+	// retroactively give them index numbers
+	var items = $(".crop a");
+	for (var i = 0; i < items.length; i++) { 
+		items[i].href = items[i].href + "&search_index=" + i; 
+	}
 }
 
 // render serials navigation block
@@ -581,6 +587,32 @@ function lsTest(){
 		} catch(e) {
 				return false;
 		}
+}
+
+// check for get parameter
+function checkGetParam(val) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+// serialize JS object into get parameter string
+function object2GetParamsString(obj, prefix) {
+  var str = [];
+  for(var p in obj) {
+    if (obj.hasOwnProperty(p)) {
+      var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+      str.push(typeof v == "object" ?
+        object2GetParamsString(v, k) :
+        encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+  }
+  return str.join("&");
 }
 
 

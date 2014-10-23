@@ -1,4 +1,5 @@
 <?php
+session_start();
 $objectPID = $_REQUEST['id'];
 ?>
 
@@ -58,8 +59,7 @@ $objectPID = $_REQUEST['id'];
         <?php include('inc/header.php'); ?>
 
         <div id="templateCM" class="container">
-            <div class="breadcrumb col-md-3">
-               
+            <div class="breadcrumb col-md-3">               
                 <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
             </div>
 
@@ -90,9 +90,9 @@ $objectPID = $_REQUEST['id'];
 
     <!--API call-->
     <script type="text/javascript">
-        $(document).ready(function(){
-            var PID = "<?php echo $objectPID; ?>";          
-            APIcall(PID);   
+        $(document).ready(function(){            
+            var singleObjectParams = <?php echo json_encode($_GET); ?>;               
+            APIcall(singleObjectParams);   
         })      
     </script>
     

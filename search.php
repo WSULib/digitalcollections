@@ -59,7 +59,7 @@
 			                <li>
 			                	<span>Items per page:</span>
 			                	<select class="resPerPage">                    		
-			                		<option value=10>10</option>
+			                		<option value=12>12</option>
 			                		<option value=20>20</option>
 			                		<option value=50>50</option>
 			                		<option value=100>100</option>
@@ -73,7 +73,7 @@
             </div><!-- /row for sub-header -->
             
             <div id="facets_container" class="facets">
-                <ul class="facet_container filter" id="search_facet">
+                <ul class="facet_container filter" id="search_facet">                	
                     <li>
                         <h3 class="tree-toggler">Refine Results</h3>
                         <ul class="tree facet_list" id="search_facet_box">

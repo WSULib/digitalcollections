@@ -51,9 +51,8 @@
                 <ul style="width:50%; float:right; text-align:right;">                	                    
                     <li>
                     	<span>Items per page:</span>
-                    	<select class="resPerPage">                    		
-                    		<option value=10>10</option>
-                    		<option value=20>20</option>
+                    	<select class="resPerPage">                    		                    		
+                    		<option value=24>24</option>
                     		<option value=50>50</option>
                     		<option value=100>100</option>
                 		</select>

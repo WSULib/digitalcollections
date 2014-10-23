@@ -6,10 +6,18 @@ var APIdata = new Object();
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function APIcall(PID){	
+function APIcall(singleObjectParams){	    
+  APIdata['singleObjectParams'] = singleObjectParams;
+  PID = singleObjectParams['id']
+  serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));
 	
-  // Calls API functions	
-  var APIcallURL = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID;  
+  // Calls API functions	  
+  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID    
+  if (checkGetParam('search_index') != null) {
+  	search_index = singleObjectParams['search_index'];  	
+  	API_url = API_url + "&loci_context=search&search_params="+serialized_search_params+"&search_index="+search_index+"&API_url="+config.API_url  	  	
+  }  
+  var APIcallURL = API_url;  
 
   $.ajax({          
     url: APIcallURL,      

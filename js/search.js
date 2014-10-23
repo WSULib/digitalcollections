@@ -29,6 +29,7 @@ searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
+searchDefs['sort'] = 'id asc';
 
 // Set Default Views
 if (localStorageTest() == true){	
@@ -84,11 +85,14 @@ function searchGo(){
 	// add API functions to mergedParams
 	searchParams['functions[]'] = "solrSearch";
 	// Set Search Parameters - Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
-	// console.log(mergedParams);
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
+
+	// save params to localStorage
+	// localStorage.setItem("mergedParams",object2GetParamsString(mergedParams));
+	localStorage.setItem("mergedParams",JSON.stringify(mergedParams));
 
 	// Calls API functions		
-	var APIcallURL = "/"+config.API_url;
+	var APIcallURL = "/"+config.API_url;		
 
 	$.ajax({          
 	  url: APIcallURL,	        
