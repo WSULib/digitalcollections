@@ -87,8 +87,7 @@ function searchGo(){
 	// Set Search Parameters - Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
 
-	// save params to localStorage
-	// localStorage.setItem("mergedParams",object2GetParamsString(mergedParams));
+	// save params to localStorage	
 	localStorage.setItem("mergedParams",JSON.stringify(mergedParams));
 
 	// Calls API functions		

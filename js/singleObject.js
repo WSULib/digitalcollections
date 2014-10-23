@@ -9,14 +9,22 @@ var APIdata = new Object();
 function APIcall(singleObjectParams){	    
   APIdata['singleObjectParams'] = singleObjectParams;
   PID = singleObjectParams['id']
-  serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));
+  
 	
   // Calls API functions	  
   var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID    
-  if (checkGetParam('search_index') != null) {
+  
+  // determine if unique search (particularly from collection view)
+  mergedParams = JSON.parse(localStorage.getItem('mergedParams'));
+  console.log(mergedParams);
+  
+  if (mergedParams['q'] != "*" && mergedParams['fq[]'].length > 0) {
+  	serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));  
   	search_index = singleObjectParams['search_index'];  	
   	API_url = API_url + "&loci_context=search&search_params="+serialized_search_params+"&search_index="+search_index+"&API_url="+config.API_url  	  	
   }  
+
+
   var APIcallURL = API_url;  
 
   $.ajax({          
