@@ -631,6 +631,26 @@ function toggleFacets(){
 }
 
 
+// //Related Items
+function genRelatedItems(){
+	APIdata.objectLoci.collection_list = [];
+    for (var key in APIdata.objectLoci.collection_loci) {      
+      var temp_obj = {
+      	"name":key,
+      	"previous_objects": APIdata.objectLoci.collection_loci[key]['previous_objects'],
+      	"next_objects": APIdata.objectLoci.collection_loci[key]['next_objects']
+      }
+      APIdata.objectLoci.collection_list.push(temp_obj)
+    }
+
+    // functional 
+    $.get('templates/related-objects.htm',function(template){
+      var html = Mustache.to_html(template, APIdata);
+      $(".related-objects").html(html);
+      cleanEmptyMetaRows();
+    });	
+}
+
 
 
 

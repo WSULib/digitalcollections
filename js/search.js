@@ -30,6 +30,7 @@ searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
 searchDefs['sort'] = 'id asc';
+searchDefs['solrSearchContext'] = "search";
 
 // Set Default Views
 if (localStorageTest() == true){	

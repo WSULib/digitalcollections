@@ -59,27 +59,36 @@ $objectPID = $_REQUEST['id'];
         <?php include('inc/header.php'); ?>
 
         <div id="templateCM" class="container">
-            <div class="breadcrumb col-md-3">               
-                <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
+        	<div class="row">
+	            <div class="breadcrumb col-md-3">               
+	                <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
+	            </div>
             </div>
 
-            <div class="col-md-6 primary-object">
-                <div class="primary-object-container">
-                </div>
+            <div class="row">
 
-                <div class="display-more-info" id="more-info">
-                    <table class="table table-hover">
-                    </table>
-                </div>
+            	<div class="col-md-3 related-objects">            		            		           		
+        		</div>
 
-            </div>
+	            <div class="col-md-6 primary-object">
+	                <div class="primary-object-container">
+	                </div>
 
-            <!-- metadata new -->
-            <div class="info-panel col-md-3">
-            </div>
+	                <div class=" metadata display-more-info" id="more-info">	                	
+	                </div>
 
 
-            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">
+
+	            </div>
+
+	            <!-- metadata new -->
+	            <div class="info-panel col-md-3">
+	            </div>
+
+
+	            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">
+	            </div>
+
             </div>
 
         </div> <!-- closes templateCM -->

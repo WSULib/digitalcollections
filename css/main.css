@@ -1355,7 +1355,7 @@ table {
 th {
   text-align: left; }
 
-.table tbody tr td:nth-child(1), .metadata .table tbody tr td:nth-child(1) {
+.metadata .table tbody tr td:nth-child(1) {
   border-right: 1px dotted #dddddd;
   width: 110px;
   text-align: right; }
