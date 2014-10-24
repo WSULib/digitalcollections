@@ -5,8 +5,16 @@
 
 			<!-- Search (if present) -->
 			{{#objectLoci.search_loci}}		
-			<tr>						
-				{{#next_objects}}
+			<tr>
+				{{#previous_objects}}				
+				<td>
+					<a href="http://digital.library.wayne.edu/dev/graham/digitalcollections/item?id={{.}}">
+						<img src="http://digital.library.wayne.edu/imageServer?obj={{.}}&ds=THUMBNAIL&aspectResize=(90x90)"/>
+					</a>
+				</td>
+				{{/previous_objects}}	
+				<td>Search</td>		
+				{{#next_objects}}				
 				<td>
 					<a href="http://digital.library.wayne.edu/dev/graham/digitalcollections/item?id={{.}}">
 						<img src="http://digital.library.wayne.edu/imageServer?obj={{.}}&ds=THUMBNAIL&aspectResize=(90x90)"/>
@@ -19,11 +27,14 @@
 			<!-- Collections -->
 			{{#objectLoci.collection_list}}	
 			<tr>
-				<!-- {{#previous_objects}}
+				{{#previous_objects}}
 				<td>
-					<img src="http://digital.library.wayne.edu/imageServer?obj={{.}}&ds=THUMBNAIL&aspectResize=(90x90)"/>
+					<a href="http://digital.library.wayne.edu/dev/graham/digitalcollections/item?id={{.}}">
+						<img src="http://digital.library.wayne.edu/imageServer?obj={{.}}&ds=THUMBNAIL&aspectResize=(90x90)"/>
+					</a>
 				</td>
-				{{/previous_objects}} -->		
+				{{/previous_objects}}
+				<td>Collection</td>
 				{{#next_objects}}
 				<td>
 					<a href="http://digital.library.wayne.edu/dev/graham/digitalcollections/item?id={{.}}">

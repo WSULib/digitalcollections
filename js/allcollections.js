@@ -51,6 +51,10 @@ function searchGo(){
 			// console.log(response);
 			mix(response, APIdata);			
 			populateCollectionsView();
+
+			// load hardcoded collection tiles
+			// VMC
+			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/imageServer?obj=wayne:collectionVMC&ds=PREVIEW&aspectResize=(480x368)","Virtual Motor City");
 		}
 		function callError(response){			
 			load503(APIcallURL);
@@ -74,3 +78,17 @@ function populateCollectionsView(){
 		});
 	}
 }
+
+function loadHardcodedCollections(url,image_url,collection_name){
+	$(".collection_contents").append('<li class="collection object-container-grid"><div><a href="'+url+'"><img src="'+image_url+'"></a></div><h3><a href="'+url+'">'+collection_name+'</a></h3></li>');
+}
+
+
+
+
+
+
+
+
+
+

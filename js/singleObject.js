@@ -12,7 +12,7 @@ function APIcall(singleObjectParams){
 
   // config
   //number of results for related objects
-  related_windowSize = 4
+  related_windowSize = 1
 	
   // Calls API functions	  
   var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
@@ -145,7 +145,7 @@ function renderPage(PID){
 		}
     }
 
-    
+    // generate related objects (in DEV)
     // genRelatedItems();
 
   });

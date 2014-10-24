@@ -54,7 +54,7 @@
                 
                 <div class="row-fluid">
                     <div class="collection_contents">
-                    </div>
+                    </div>                    
                 </div>
 
                 <div class="pagination clearfix">
