@@ -15,21 +15,22 @@ function APIcall(singleObjectParams){
   related_windowSize = 1
 	
   // Calls API functions	  
-  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
-  
+  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID  
+
+  // Related Objects development
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
+
   // determine if unique search (particularly from collection view)
-  mergedParams = JSON.parse(localStorage.getItem('mergedParams'));  
-  console.log(mergedParams);
+  // mergedParams = JSON.parse(localStorage.getItem('mergedParams'));  
 
   // determine if coming from unique search / browse results - if so, trigger "search" for objectLoci()
-  // LOGIC HERE NEEDS WORK
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  if (mergedParams['fq[]'].length > 0 || mergedParams['solrSearchContext'] == "search") {  	  	
-  	serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));  
-  	search_index = singleObjectParams['search_index'];  	
-  	API_url = API_url + "&loci_context=search&search_params="+serialized_search_params+"&search_index="+search_index+"&API_url="+config.API_url 
-  }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // if (mergedParams['fq[]'].length > 0 || mergedParams['solrSearchContext'] == "search") {  	  	
+  // 	serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));  
+  // 	search_index = singleObjectParams['search_index'];  	
+  // 	API_url = API_url + "&loci_context=search&search_params="+serialized_search_params+"&search_index="+search_index+"&API_url="+config.API_url 
+  // }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   var APIcallURL = API_url;  
 

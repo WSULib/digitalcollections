@@ -631,7 +631,7 @@ function toggleFacets(){
 }
 
 
-// //Related Items
+//Related Items
 function genRelatedItems(){
 	APIdata.objectLoci.collection_list = [];
     for (var key in APIdata.objectLoci.collection_loci) {      
