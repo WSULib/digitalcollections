@@ -74,19 +74,16 @@ $objectPID = $_REQUEST['id'];
 	                <div class="primary-object-container">
 	                </div>
 
-	                <div class=" metadata display-more-info" id="more-info">	                	
+	                <div class=" metadata display-more-info" id="more-info">	
+                        <table class="table table-hover"></table>                	
 	                </div>
-
-
-
 	            </div>
 
 	            <!-- metadata new -->
 	            <div class="info-panel col-md-3">
 	            </div>
 
-
-	            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">
+	            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">                    
 	            </div>
 
             </div>
