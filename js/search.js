@@ -72,7 +72,7 @@ function updatePage(type){
 
 // QUERYING
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function searchGo(){
+function searchGo(){	
 
 	// fix facets / fq
 	searchParams['fq[]'] = searchParams['fq'];
@@ -85,14 +85,17 @@ function searchGo(){
 
 	// add API functions to mergedParams
 	searchParams['functions[]'] = "solrSearch";
+	
 	// Set Search Parameters - Merge default and URL search parameters
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
 
-	// save params to localStorage	
-	localStorage.setItem("mergedParams",JSON.stringify(mergedParams));
+	// save params to localStorage, if lsTest is true
+	if (lsTest() == true){
+		localStorage.setItem("mergedParams",JSON.stringify(mergedParams));	
+	}	
 
 	// Calls API functions		
-	var APIcallURL = "/"+config.API_url;		
+	var APIcallURL = "/"+config.API_url;	
 
 	$.ajax({          
 	  url: APIcallURL,	        

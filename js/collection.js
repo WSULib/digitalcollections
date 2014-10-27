@@ -64,8 +64,10 @@ function searchGo(){
 	searchParams['functions[]'] = "solrSearch";		
 	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 
-	// save params and context to localStorage	
-	localStorage.setItem("mergedParams",JSON.stringify(mergedParams));					
+	// save params to localStorage, if lsTest is true
+	if (lsTest() == true){
+		localStorage.setItem("mergedParams",JSON.stringify(mergedParams));	
+	}				
 	
 	var APIcallURL = "/"+config.API_url;	
 	$.ajax({          

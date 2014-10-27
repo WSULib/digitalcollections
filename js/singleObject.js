@@ -19,6 +19,7 @@ function APIcall(singleObjectParams){
 
   // Related Objects development
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Use of localStorage will have to be browser dependent, maybe not a great route?
   // var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
 
   // determine if unique search (particularly from collection view)

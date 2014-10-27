@@ -113,10 +113,10 @@
 
         <!-- init search -->
         <script type="text/javascript">
-        var searchParams = <?php echo json_encode($_GET); ?>;
-        $(document).ready(function(){        
-            searchGo();    
-        });    
+	        var searchParams = <?php echo json_encode($_GET); ?>;	        
+	        $(document).ready(function(){
+	        	searchGo();	        
+        	});
         </script>
         
     </body>
