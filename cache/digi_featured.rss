@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Digital Collections at Wayne State University Libraries &#187; Featured Item</title>
+	<atom:link href="http://blogs.wayne.edu/digitalcollections/category/featured-item/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blogs.wayne.edu/digitalcollections</link>
+	<description>News and features from the WSULS Digital Collections</description>
+	<lastBuildDate>Thu, 24 Apr 2014 14:39:19 +0000</lastBuildDate>
+	<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.9.1</generator>
+	<item>
+		<title>Ed Wynn in the rumble seat of his 1932 Packard Coupe Roadster</title>
+		<link>http://blogs.wayne.edu/digitalcollections/2014/04/15/ed-wynn-in-the-rumble-seat-of-his-1932-packard-coupe-roadster/</link>
+		<comments>http://blogs.wayne.edu/digitalcollections/2014/04/15/ed-wynn-in-the-rumble-seat-of-his-1932-packard-coupe-roadster/#comments</comments>
+		<pubDate>Tue, 15 Apr 2014 18:57:21 +0000</pubDate>
+		<dc:creator><![CDATA[Joshua Neds-Fox]]></dc:creator>
+				<category><![CDATA[Featured Item]]></category>
+		<category><![CDATA[General]]></category>
+
+		<guid isPermaLink="false">http://blogs.wayne.edu/digitalcollections/?p=8</guid>
+		<description><![CDATA[<p></p>
+]]></description>
+				<content:encoded><![CDATA[<div style="width: 635px" class="wp-caption aligncenter"><a href="http://digital.library.wayne.edu/digitalcollections/item?id=wayne:CFAIEB01e710"><img class=" " alt="" src="http://digital.library.wayne.edu/imageServer?obj=wayne:CFAIEB01e710&amp;ds=PREVIEW" width="625" height="478" /></a><p class="wp-caption-text">&#8220;owner Ed Wynn in rumble seat with mock fire chief hat.&#8221; from the Changing Face of the Auto Industry, in Wayne State Library System&#8217;s Digital Collections.</p></div>
+<p></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blogs.wayne.edu/digitalcollections/2014/04/15/ed-wynn-in-the-rumble-seat-of-his-1932-packard-coupe-roadster/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+<!-- Dynamic page generated in 0.426 seconds. -->
+<!-- File not cached! Super Cache Couldn't write to: wp-content/cache/wp-cache-digitalcollectionscb49835855d64462fbfb7b0796ea71cf.html -->
