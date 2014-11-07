@@ -615,6 +615,15 @@ function object2GetParamsString(obj, prefix) {
   return str.join("&");
 }
 
+function splitObjectLiteral(obj_lit_string){
+	temp_obj = obj_lit_string.split("/");
+	return_obj = {
+		"pid":temp_obj[1],
+		"ds_id":temp_obj[2],
+	}
+	return return_obj;
+}
+
 
 
 // PROTOTYPES

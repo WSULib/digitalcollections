@@ -17,6 +17,9 @@ function APIcall(singleObjectParams){
   // Calls API functions	  
   var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID  
 
+  // next gen
+  API_url += "&functions[]=singleObjectPackage&";
+
   // Related Objects development
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Use of localStorage will have to be browser dependent, maybe not a great route?
@@ -70,29 +73,32 @@ function loadError(){
 }
 
 function makeTranslations(){
-  APIdata.translated = new Object();
-  
-  // content models   
-    // pretty preferred content model    
-    if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
-      APIdata.translated.preferredContentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
-    }
-    else {
-      APIdata.translated.preferredContentModelPretty = "Unknown";
-    }
-    // all content models
-    if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != null){
-      APIdata.translated.contentModels = [];
-      for (var i=0; i < APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel.length; i++){        
-        APIdata.translated.contentModels.push({          
-          'key':APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i],
-          'value':rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i])
-        });
-      }
-    }
-    else {
-      APIdata.translated.contentModels = "Unknown";
-    }    
+	APIdata.translated = new Object();
+
+	// content models   
+	// pretty preferred content model    
+	if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
+	  APIdata.translated.preferredContentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
+	}
+	else {
+	  APIdata.translated.preferredContentModelPretty = "Unknown";
+	}
+	// all content models
+	if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != null){
+	  APIdata.translated.contentModels = [];
+	  for (var i=0; i < APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel.length; i++){        
+	    APIdata.translated.contentModels.push({          
+	      'key':APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i],
+	      'value':rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i])
+	    });
+	  }
+	}
+	else {
+	  APIdata.translated.contentModels = "Unknown";
+	}
+
+	// derive thumbnail info
+	// APIdata.image_datastreams = splitObjectLiteral(APIdata.solrGetFedDoc.response.docs[0].rels_hasThumbnail[0]);
 }
 
 
@@ -170,22 +176,31 @@ function finishRendering(){
   }
 
   // Content Type Handling  
-  ctype = APIdata.translated.preferredContentModelPretty;    
+  ctype = APIdata.translated.preferredContentModelPretty;      
   switch (ctype) {
-    //Images
-    case "Image":
-      $.get('templates/singleObject/image.htm',function(template){
+    //////////////////////////////////////////////////////////////////////
+    // //Images
+    // case "Image":
+    //   $.get('templates/singleObject/image.htm',function(template){
+    //     var html = Mustache.to_html(template, APIdata);
+    //     $(".primary-object-container").html(html);
+    //   }); 
+    //   break;
+    // // Complex Images
+    // case "ComplexImage":
+    //   $.get('templates/singleObject/complexImage.htm',function(template){
+    //     var html = Mustache.to_html(template, APIdata);
+    //     $(".primary-object-container").html(html);
+    //   }); 
+    //   break;
+    //////////////////////////////////////////////////////////////////////
+  	// All Image (v2)
+    case "AllImage":
+      $.get('templates/singleObject/allimage.htm',function(template){
         var html = Mustache.to_html(template, APIdata);
         $(".primary-object-container").html(html);
       }); 
-      break;
-    // Complex Images
-    case "ComplexImage":
-      $.get('templates/singleObject/complexImage.htm',function(template){
-        var html = Mustache.to_html(template, APIdata);
-        $(".primary-object-container").html(html);
-      }); 
-      break;
+      break;    
     //eBooks
     case "WSUebook":
       $.get('templates/singleObject/WSUebook.htm',function(template){
@@ -283,9 +298,9 @@ function addFav(){
 
 // swap LargeImage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateLargeView(self,PID){        
-  $("#LargeView a img").attr('src','/imageServer?obj='+PID+'&ds=PREVIEW&aspectResize=(1024x768)');
-  $("#LargeView a").attr('href','/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS=JP2');
+function updateLargeView(self,ds_id){        
+  $("#LargeView a img").attr('src','/imageServer?obj='+PID+'&ds='+APIdata.singleObjectPackage.parts_imageDict[ds_id].preview+'&aspectResize=(1024x768)');
+  $("#LargeView a").attr('href','/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS='+APIdata.singleObjectPackage.parts_imageDict[ds_id].jp2);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -293,4 +308,24 @@ function updateLargeView(self,PID){
 $(document).ready(function(){
   $("#container").show();    
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
