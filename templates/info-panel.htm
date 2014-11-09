@@ -1,15 +1,15 @@
 <h3 class="title">
-    {{solrGetFedDoc.response.docs.0.dc_title.0}}
+    {{singleObjectPackage.objectSolrDoc.dc_title.0}}
 </h3>
 
 <h4>
-    {{solrGetFedDoc.response.docs.0.mods_key_date_year.0}}
+    {{singleObjectPackage.objectSolrDoc.mods_key_date_year.0}}
 </h4>
 
 <p class="description">    
-    {{#solrGetFedDoc.response.docs.0.dc_description}}
+    {{#singleObjectPackage.objectSolrDoc.dc_description}}
     {{{.}}}</br></br>
-    {{/solrGetFedDoc.response.docs.0.dc_description}}    
+    {{/singleObjectPackage.objectSolrDoc.dc_description}}    
 </p>
 
 <ul class="buttons">

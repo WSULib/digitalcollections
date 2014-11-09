@@ -15,10 +15,7 @@ function APIcall(singleObjectParams){
   related_windowSize = 1
 	
   // Calls API functions	  
-  var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&PID="+PID  
-
-  // next gen
-  API_url += "&functions[]=singleObjectPackage&";
+  var API_url = "/"+config.API_url+"?functions[]=singleObjectPackage&PID="+PID  
 
   // Related Objects development
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,11 +43,10 @@ function APIcall(singleObjectParams){
   });
 
   function callSuccess(response){
-  	// console.log(response);  
     APIdata = response;
 
     //check object status
-    if (APIdata.getObjectXML.object_status == "Inactive" || APIdata.getObjectXML.object_status == "Absent"){
+    if (APIdata.singleObjectPackage.isActive.object_status == "Inactive" || APIdata.singleObjectPackage.isActive.object_status == "Absent"){
       loadError();
     }
     else{
@@ -75,32 +71,27 @@ function loadError(){
 function makeTranslations(){
 	APIdata.translated = new Object();
 
-	// content models   
 	// pretty preferred content model    
-	if (APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel != null){
-	  APIdata.translated.preferredContentModelPretty = rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_preferredContentModel[0]);
+	if (APIdata.singleObjectPackage.objectSolrDoc.rels_preferredContentModel != null){
+	  APIdata.translated.preferredContentModelPretty = rosetta(APIdata.singleObjectPackage.objectSolrDoc.rels_preferredContentModel[0]);
 	}
 	else {
 	  APIdata.translated.preferredContentModelPretty = "Unknown";
 	}
 	// all content models
-	if (APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel != null){
+	if (APIdata.singleObjectPackage.objectSolrDoc.rels_hasContentModel != null){
 	  APIdata.translated.contentModels = [];
-	  for (var i=0; i < APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel.length; i++){        
+	  for (var i=0; i < APIdata.singleObjectPackage.objectSolrDoc.rels_hasContentModel.length; i++){        
 	    APIdata.translated.contentModels.push({          
-	      'key':APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i],
-	      'value':rosetta(APIdata.solrGetFedDoc.response.docs[0].rels_hasContentModel[i])
+	      'key':APIdata.singleObjectPackage.objectSolrDoc.rels_hasContentModel[i],
+	      'value':rosetta(APIdata.singleObjectPackage.objectSolrDoc.rels_hasContentModel[i])
 	    });
 	  }
 	}
 	else {
 	  APIdata.translated.contentModels = "Unknown";
 	}
-
-	// derive thumbnail info
-	// APIdata.image_datastreams = splitObjectLiteral(APIdata.solrGetFedDoc.response.docs[0].rels_hasThumbnail[0]);
 }
-
 
 
 // Render Page with API call data
@@ -109,10 +100,8 @@ function renderPage(PID){
   //Render Internal Templates
   $(document).ready(function(){
     $.Mustache.addFromDom() //read all template from DOM    
-    // Head
-    $('head').mustache('head_t', APIdata);
-    
-    // Metadata
+    // head
+    $('head').mustache('head_t', APIdata);    
     // info-panel    
     $.get('templates/info-panel.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
@@ -131,7 +120,7 @@ function renderPage(PID){
     if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
     	PID_suffix = PID.split(":")[1]    	
 		
-    	// generate fullText URLs
+    // generate fullText URLs (ADDRESS IN V2)
 		APIdata.fullText = [
 			{
 				"key" : "HTML",
@@ -142,18 +131,18 @@ function renderPage(PID){
 			},
 		];
 
-		// check for OCLC num, generate citation link
-		if ("mods_identifier_oclc_ms" in APIdata.solrGetFedDoc.response.docs[0]) {
-			APIdata.citationLink = "http://library.wayne.edu/inc/OCLC_citation.php?oclcnum="+APIdata.solrGetFedDoc.response.docs[0].mods_identifier_oclc_ms[0];
+		// check for OCLC num, generate citation link (ADDRESS IN V2)
+		if ("mods_identifier_oclc_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
+			APIdata.citationLink = "http://library.wayne.edu/inc/OCLC_citation.php?oclcnum="+APIdata.singleObjectPackage.objectSolrDoc.mods_identifier_oclc_ms[0];
 		}
 
-		// check for Bib num, generate persistent link
-		if ("mods_bibNo_ms" in APIdata.solrGetFedDoc.response.docs[0]) {
-			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.solrGetFedDoc.response.docs[0].mods_bibNo_ms[0];
+		// check for Bib num, generate persistent link (ADDRESS IN V2)
+		if ("mods_bibNo_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
+			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.singleObjectPackage.objectSolrDoc.mods_bibNo_ms[0];
 		}
     }
 
-    // generate related objects (in DEV)
+    // generate related objects (ADDRESS IN V2)
     // genRelatedItems();
 
   });
@@ -178,25 +167,9 @@ function finishRendering(){
   // Content Type Handling  
   ctype = APIdata.translated.preferredContentModelPretty;      
   switch (ctype) {
-    //////////////////////////////////////////////////////////////////////
-    // //Images
-    // case "Image":
-    //   $.get('templates/singleObject/image.htm',function(template){
-    //     var html = Mustache.to_html(template, APIdata);
-    //     $(".primary-object-container").html(html);
-    //   }); 
-    //   break;
-    // // Complex Images
-    // case "ComplexImage":
-    //   $.get('templates/singleObject/complexImage.htm',function(template){
-    //     var html = Mustache.to_html(template, APIdata);
-    //     $(".primary-object-container").html(html);
-    //   }); 
-    //   break;
-    //////////////////////////////////////////////////////////////////////
-  	// All Image (v2)
+  	// All Images
     case "AllImage":
-      $.get('templates/singleObject/allimage.htm',function(template){
+      $.get('templates/singleObject/image.htm',function(template){
         var html = Mustache.to_html(template, APIdata);
         $(".primary-object-container").html(html);
       }); 

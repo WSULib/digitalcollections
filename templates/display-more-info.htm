@@ -14,9 +14,9 @@
 	<tr>
 		<td>Date:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.mods_key_date_year}}
+			{{#singleObjectPackage.objectSolrDoc.mods_key_date_year}}
 				<a href='search.php?q=*&start=0&fq[]=facet_mods_year:"{{.}}"&start=0'>{{.}}</a>
-			{{/solrGetFedDoc.response.docs.0.mods_key_date_year}}
+			{{/singleObjectPackage.objectSolrDoc.mods_key_date_year}}
 		</td>
 	</tr>
 
@@ -24,9 +24,9 @@
 	<tr>
 		<td>Collection:</td>
 		<td>
-			{{#isMemberOfCollection.results}}                                                
+			{{#singleObjectPackage.isMemberOfCollection.results}}                                                
 				<a href="item?id={{subject}}">{{collectionTitle}}</a><br>
-			{{/isMemberOfCollection.results}}
+			{{/singleObjectPackage.isMemberOfCollection.results}}
 		</td>
 	</tr>
 
@@ -34,9 +34,9 @@
 	<tr>
 		<td>Subject:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.dc_subject}}
+			{{#singleObjectPackage.objectSolrDoc.dc_subject}}
 				<a href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a><br>                                            
-			{{/solrGetFedDoc.response.docs.0.dc_subject}}
+			{{/singleObjectPackage.objectSolrDoc.dc_subject}}
 		</td>
 	</tr>
 
@@ -44,9 +44,9 @@
 	<tr>
 		<td>Coverage:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.dc_coverage}}
+			{{#singleObjectPackage.objectSolrDoc.dc_coverage}}
 				<a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br>                                            
-			{{/solrGetFedDoc.response.docs.0.dc_coverage}}
+			{{/singleObjectPackage.objectSolrDoc.dc_coverage}}
 		</td>
 	</tr>
 
@@ -54,18 +54,18 @@
 	<tr>
 		<td>Resource Type:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.mods_resource_type_ms}}	            
+			{{#singleObjectPackage.objectSolrDoc.mods_resource_type_ms}}	            
 				{{.}}<br>
-			{{/solrGetFedDoc.response.docs.0.mods_resource_type_ms}}
+			{{/singleObjectPackage.objectSolrDoc.mods_resource_type_ms}}
 		</td>	
 
 	<!--Publisher-->
 	<tr>
 		<td>Publisher:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.dc_publisher}}
+			{{#singleObjectPackage.objectSolrDoc.dc_publisher}}
 				<a href='search.php?q=*&start=0&fq[]=dc_publisher:"{{.}}"&start=0'>{{.}}</a><br>                                            
-			{{/solrGetFedDoc.response.docs.0.dc_publisher}}
+			{{/singleObjectPackage.objectSolrDoc.dc_publisher}}
 		</td>
 	</tr>
 
@@ -73,9 +73,9 @@
 	<tr>
 		<td>Source:</td>
 		<td>
-			{{#solrGetFedDoc.response.docs.0.dc_source}}				
+			{{#singleObjectPackage.objectSolrDoc.dc_source}}				
 				{{.}}<br>
-			{{/solrGetFedDoc.response.docs.0.dc_source}}
+			{{/singleObjectPackage.objectSolrDoc.dc_source}}
 		</td>
 	</tr>
 
@@ -83,9 +83,9 @@
 	<tr>
 		<td>Rights:</td>
 		<td>
-		{{#solrGetFedDoc.response.docs.0.dc_rights}}
+		{{#singleObjectPackage.objectSolrDoc.dc_rights}}
 			{{{.}}}</br></br>
-		{{/solrGetFedDoc.response.docs.0.dc_rights}}
+		{{/singleObjectPackage.objectSolrDoc.dc_rights}}
 		</td>
 	</tr>
 
@@ -93,9 +93,9 @@
 	<tr>
 		<td>Components:</td>
 		<td>
-		{{#hasMemberOf.results}}        
+		{{#singleObjectPackage.hasMemberOf.results}}        
 			{{memberTitle}}<br>
-		{{/hasMemberOf.results}}
+		{{/singleObjectPackage.hasMemberOf.results}}
 		</td>
 	</tr>
 
@@ -113,7 +113,7 @@
 	<tr>
 		<td>Transcription:</td>
 		<td>
-			{{{solrGetFedDoc.response.docs.0.mods_abstract_transcription_ms.0}}}
+			{{{singleObjectPackage.objectSolrDoc.mods_abstract_transcription_ms.0}}}
 		</td>
 	</tr>
 
