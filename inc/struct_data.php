@@ -79,7 +79,7 @@ function concatRepeaters($field){
 <span itemprop="text"><?php echo concatRepeaters($response['response']['docs'][0]['mods_abstract_transcription_ms']); ?></span>
 <span itemprop="genre"><?php echo concatRepeaters($response['response']['docs'][0]['mods_resource_type_ms']); ?></span>
 <span itemprop="dateCreated"><?php echo concatRepeaters($response['response']['docs'][0]['facet_mods_year']); ?></span>
-<img src="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/<?php $pieces = explode("/",$response['response']['docs'][0]['rels_hasPreview'][0]); echo $pieces[2] ?>/content" class="primary-image" itemprop="image">
-<meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/<?php $pieces = explode($response['response']['docs'][0]['rels_hasThumbnail'][0]); echo $pieces[2] ?>/content">
+<img src="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/<?php echo $response['response']['docs'][0]['rels_isRepresentedBy'][0]; ?>_PREVIEW/content" class="primary-image" itemprop="image">
+<meta itemprop="thumbnailUrl" content="http://digital.library.wayne.edu/fedora/objects/<?php echo $objectPID; ?>/datastreams/<?php echo $response['response']['docs'][0]['rels_isRepresentedBy'][0]; ?>_THUMBNAIL/content">
 </div>
 <!-- ******************************** -->

@@ -44,8 +44,7 @@ function APIcall(singleObjectParams){
 
   function callSuccess(response){
     APIdata = response;
-
-    //check object status
+    //check object status    
     if (APIdata.singleObjectPackage.isActive.object_status == "Inactive" || APIdata.singleObjectPackage.isActive.object_status == "Absent"){
       loadError();
     }
@@ -168,7 +167,7 @@ function finishRendering(){
   ctype = APIdata.translated.preferredContentModelPretty;      
   switch (ctype) {
   	// All Images
-    case "AllImage":
+    case "Image":
       $.get('templates/singleObject/image.htm',function(template){
         var html = Mustache.to_html(template, APIdata);
         $(".primary-object-container").html(html);
