@@ -65,13 +65,15 @@ error_reporting(0);
 			  <?php              	
 
 				// experiment with caching
-				$cache_file = "cache/digi_featured.rss";  
-				if (file_exists($cache_file) && (filemtime($cache_file) > (time() - 60 * 10 ))) {                              
-					$file = file_get_contents($cache_file);               
-				} 
-				else {             
+				$cache_file = "cache/digi_featured.rss";  				
+				if (!file_exists($cache_file) ||  time() - filemtime($cache_file) > 60 * 10  ) {
 					$file = file_get_contents("http://blogs.wayne.edu/digitalcollections/category/featured-item/feed/");           
-					file_put_contents($cache_file, $file, LOCK_EX);                                     
+					if ($file !== false) {
+						file_put_contents($cache_file, $file, LOCK_EX);
+					}           
+					else {
+						$file = file_get_contents($cache_file);
+					}
 				}
 				$rss = new DOMDocument();                    
 				$rss_load_result = $rss->load($cache_file);
@@ -114,14 +116,16 @@ error_reporting(0);
 			<h4>Most Recent News</h4>
 			<?php
 
-				 // experiment with caching
+				// caching
 				$cache_file = "cache/digi_news.rss";  
-				if (file_exists($cache_file) && (filemtime($cache_file) > (time() - 60 * 10 ))) {                              
-					$file = file_get_contents($cache_file);               
-				} 
-				else {             
+				if (!file_exists($cache_file) ||  time() - filemtime($cache_file) > 60 * 10  ) {
 					$file = file_get_contents("http://blogs.wayne.edu/digitalcollections/category/news/feed/");           
-					file_put_contents($cache_file, $file, LOCK_EX);                                     
+					if ($file !== false) {
+						file_put_contents($cache_file, $file, LOCK_EX);
+					}           
+					else {
+						$file = file_get_contents($cache_file);
+					}
 				}
 				$rss = new DOMDocument();                    
 				$rss_load_result = $rss->load($cache_file);
