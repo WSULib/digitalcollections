@@ -59,9 +59,9 @@ function APIcall(singleObjectParams){
 
   function callError(response){
   	// console.log("API Call unsuccessful.  Back to the drawing board.");
-    loadError();                
-  }
-}
+	    loadError();                
+	  }
+	}
 
 function loadError(){
 	load404(window.location.href);	
@@ -171,7 +171,13 @@ function finishRendering(){
       $.get('templates/singleObject/image.htm',function(template){
         var html = Mustache.to_html(template, APIdata);
         $(".primary-object-container").html(html);
-      }); 
+      });
+      if (APIdata.singleObjectPackage.hasPartOf.results.length > 1){
+      	$.get('templates/singleObject/imageParts.htm',function(template){
+	        var html = Mustache.to_html(template, APIdata);
+	        $(".subcomponents").html(html);
+	      });	
+      }      
       break;    
     //eBooks
     case "WSUebook":

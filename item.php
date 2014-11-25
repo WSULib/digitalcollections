@@ -19,7 +19,7 @@ elseif( isset($_REQUEST["id"]) ){
 		$isRenderedBy_string = $response['response']['docs'][0]['rels_isRenderedBy'][0];
 		$isRenderedBy_temp = explode("info:fedora/",$isRenderedBy_string);
 		$isRenderedBy = $isRenderedBy_temp[1];
-		$fileTemplate = $isRenderedBy.".php";
+		$fileTemplate = $isRenderedBy.".php";		
 		renderTemplate($fileTemplate,$response);				
 	}
 	else {		

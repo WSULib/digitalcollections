@@ -1,19 +1,11 @@
 <!-- all_image type template -->
 <div id="LargeView">		
 	<!-- link to imageviewer.php -->	
-	<a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">
-		<img src="/imageServer?obj={{APIParams.PID}}&ds={{singleObjectPackage.main_imageDict.preview}}&aspectResize=(1024x768)" class="primary-image">
+	<a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">		
+		<img src="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.preview}}/content" class="primary-image">
 		<meta content="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.thumbnail}}/content" />	
 	</a>
 </div>
 
-<div class="subcomponents">
-    <!-- Populate with Constituent Objects, if available -->    
-    <ul>
-    	<!-- inadvertent hack here: iterating through a list of values, these can be used as keys in same object -->
-    	{{#singleObjectPackage.hasPartOf.results}}
-	        <li><a href="#" onclick="updateLargeView($(this),'{{ds_id}}'); return false;"><img src="/imageServer?obj={{pid}}&ds={{ds_id}}&aspectResize=(100x100)"/></a></li>
-        {{/singleObjectPackage.hasPartOf.results}}
-    </ul>
-</div> 
+<div class="subcomponents"></div> 
 
