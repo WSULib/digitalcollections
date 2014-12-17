@@ -51,6 +51,8 @@ $objectPID = $_REQUEST['id'];
         <link rel="stylesheet" type="text/css" media="screen" href="inc/share.2.6/share/share.css" />
         <script src="inc/share.2.6/share/share.js" type="text/javascript"></script>
 
+        <script src="inc/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+
     </head>
 
     <body>

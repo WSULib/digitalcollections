@@ -168,15 +168,22 @@ function finishRendering(){
   switch (ctype) {
 	// All Images
 	case "Image":
+	  // load main image template
 	  $.get('templates/singleObject/image.htm',function(template){
 		var html = Mustache.to_html(template, APIdata);
 		$(".primary-object-container").html(html);
 	  }).done(function(){
+	  	// if object has 1+ components, load their template
 		if (APIdata.singleObjectPackage.hasPartOf.results.length > 1){
 			$.get('templates/singleObject/imageParts.htm',function(template){
 				var html = Mustache.to_html(template, APIdata);
 				$(".subcomponents").html(html);
-			  });	
+			  }).done(function(){
+				  // finally, paint when images finish
+				  $(".subcomponents").imagesLoaded().done(function(){
+				  	$(".subcomponents").css('visibility','visible');	
+				  })
+			  });
 		  }
 	  });
 	  break;    
@@ -224,6 +231,9 @@ function finishRendering(){
 	default:
 	  unknownType();
   }
+
+
+  
 }
 
 

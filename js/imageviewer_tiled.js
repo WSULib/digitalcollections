@@ -49,7 +49,8 @@ function fireViewer(symlink){
 		showNavButtons: true,
 		winResize: true,
 		protocol: 'iip',
-		render:'random'
+		render:'spiral',
+		viewport:{resolution:1, x:1, y:1, rotation:90}
     });
 
     uploadPage();

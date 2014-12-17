@@ -3076,7 +3076,9 @@ li:last-child.object-container-list {
 
 .primary-object-container .subcomponents {
   max-height: 80px;
-  margin-top: 10px; }
+  margin-top: 10px; 
+  visibility:hidden;
+}
 
 .primary-object-container .subcomponents ul {
   text-align: center; }
