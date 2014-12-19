@@ -33,8 +33,6 @@ function concatRepeaters($field){
 <!--piwik code here-->
 <script type="text/javascript">	
  	var _paq = _paq || [];	
-	// isMemberOfCollection
-	
 	<?php 
 	$i = 1;
 	if ( array_key_exists("rels_isMemberOfCollection",$response['response']['docs'][0]) ){
