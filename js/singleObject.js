@@ -19,13 +19,14 @@ function APIcall(singleObjectParams){
 
   // Related Objects development
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Use of localStorage will have to be browser dependent, maybe not a great route?
-  // var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
+  // // Use of localStorage will have to be browser dependent, maybe not a great route?
+  // // var API_url = "/"+config.API_url+"?functions[]=getObjectXML&functions[]=hasMemberOf&functions[]=isMemberOfCollection&functions[]=solrGetFedDoc&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
+  // var API_url = "/"+config.API_url+"?functions[]=singleObjectPackage&functions[]=objectLoci&PID="+PID+"&windowSize="+related_windowSize
 
-  // determine if unique search (particularly from collection view)
+  // // determine if unique search (particularly from collection view)
   // mergedParams = JSON.parse(localStorage.getItem('mergedParams'));  
 
-  // determine if coming from unique search / browse results - if so, trigger "search" for objectLoci()
+  // // determine if coming from unique search / browse results - if so, trigger "search" for objectLoci()
   // if (mergedParams['fq[]'].length > 0 || mergedParams['solrSearchContext'] == "search") {  	  	
   // 	serialized_search_params = encodeURIComponent(localStorage.getItem('mergedParams'));  
   // 	search_index = singleObjectParams['search_index'];  	
@@ -137,7 +138,7 @@ function renderPage(PID){
 
 		// check for Bib num, generate persistent link (ADDRESS IN V2)
 		if ("mods_bibNo_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
-			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.singleObjectPackage.objectSolrDoc.mods_bibNo_ms[0];
+			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.singleObjectPackage.objectSolrDoc.mods_bibNo_ms[0].slice(0,-1);
 		}
 	}
 

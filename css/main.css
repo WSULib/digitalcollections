@@ -6740,6 +6740,9 @@ p.caption {
   margin-left: 0.2em;
   margin-right: 0.75em;
 }
+.icon-pencil2 {
+  margin-right: 0.5em;
+}
 
 .icon-share, .icon-facebook, .icon-twitter {
   font-size: 2em;
