@@ -52,7 +52,9 @@ function searchGo(){
 			mix(response, APIdata);			
 			populateCollectionsView();
 
+			//////////////////////////////////
 			// load hardcoded collection tiles
+			//////////////////////////////////			
 			// VMC
 			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/imageServer?obj=wayne:collectionVMC&ds=PREVIEW&aspectResize=(480x368)","Virtual Motor City");
 		}
@@ -73,22 +75,20 @@ function populateCollectionsView(){
 		  success: function(response){		  	
 		  	var template = response;		  	
 		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
-		  	$(".collection_contents").append(html);
-		  }		  
+		  	$(".collection_contents").append(html);		  	
+		  }			    
 		});
 	}
+	// finally, paint when images finish
+  	$(".collection_contents").imagesLoaded().done(function(){
+  		$(".collection_contents").css('visibility','visible');	
+	});
+
 }
 
 function loadHardcodedCollections(url,image_url,collection_name){
 	$(".collection_contents").append('<li class="collection object-container-grid"><div><a href="'+url+'"><img src="'+image_url+'"></a></div><h3><a href="'+url+'">'+collection_name+'</a></h3></li>');
 }
-
-
-
-
-
-
-
 
 
 
