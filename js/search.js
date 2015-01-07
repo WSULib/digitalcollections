@@ -29,7 +29,6 @@ searchDefs['f.facet_mods_year.facet.sort'] = "index";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
-searchDefs['sort'] = 'id asc';
 searchDefs['solrSearchContext'] = "search";
 
 // Set Default Views
@@ -81,6 +80,7 @@ function searchGo(){
 	if (searchParams['q'] == undefined || searchParams['q'] == "" ) {
 		var type = "empty_search"
 		searchParams['q'] = "*";
+		searchDefs['sort'] = 'id asc';
 	};
 
 	// add API functions to mergedParams
