@@ -69,8 +69,8 @@ $objectPID = $_REQUEST['id'];
 
             <div class="row">
 
-            	<div class="col-md-3 related-objects">  
-                    <!-- empty pending API work -->          		            		           		
+            	<!-- empty pending work -->
+            	<div class="col-md-3 related-objects">                    	              
         		</div>
 
 	            <div class="col-md-6 primary-object">
@@ -86,8 +86,8 @@ $objectPID = $_REQUEST['id'];
 	            <div class="info-panel col-md-3">
 	            </div>
 
-	            <div class="col-md-6 col-md-offset-3 display-more" id="display-more">                    
-	            </div>
+	            <!-- <div class="col-md-6 col-md-offset-3 display-more" id="display-more">                    
+	            </div> -->
 
             </div>
 
