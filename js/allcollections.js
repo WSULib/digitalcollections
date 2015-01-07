@@ -66,7 +66,7 @@ function searchGo(){
 
 //DISPLAY RESULTS
 //////////////////////////////////////////////////////////////////
-function populateCollectionsView(){
+function populateCollectionsView(){	
 	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {		
   		$.ajax({          
 		  url: 'templates/multipleCollectionsObj.htm',      
@@ -81,7 +81,8 @@ function populateCollectionsView(){
 	}
 	// finally, paint when images finish
   	$(".collection_contents").imagesLoaded().done(function(){
-  		$(".collection_contents").css('visibility','visible');	
+  		$(".loader").remove();
+  		$(".collection_contents").show();
 	});
 
 }

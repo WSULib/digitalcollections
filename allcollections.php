@@ -51,7 +51,10 @@
                 </div><!--  / sub-header -->
                 
                 <div class="row-fluid">
-                    <div class="collection_contents" style="visibility:hidden;">
+                	<div class="loader">
+                    		<p>Loading Collections...</p>
+                		</div>
+                    <div class="collection_contents" style="display:none;">
                     </div>                    
                 </div>
 
