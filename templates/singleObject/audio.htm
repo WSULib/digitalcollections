@@ -1,14 +1,10 @@
-<!-- <audio controls height="100" width="100">
-	<source src="/fedora/objects/{{APIParams.PID}}/datastreams/rainforest_MP3/content" type="audio/mpeg">
-</audio>
- -->
 <link href="inc/video-js/video-js.css" rel="stylesheet">
 <script src="inc/video-js/video.js"></script>
 
 
 <!-- Can add thumbnail from thumbnail -->
 
-{{#singleObjectPackage.audio_playlist}}
+{{#singleObjectPackage.playlist}}
 <h3>{{label}} - {{mimetype}}</h3>
 <audio id="audio_example" class="video-js vjs-default-skin"
   controls preload="auto" width="640" height="264"  
