@@ -46,10 +46,10 @@ function fireViewer(symlinks){
 }
 
 function updatePage(){
+	var DS_root = imageParams.DS.split("_")[0];
 	// set downloads
-	$("#fullsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds=ACCESS');
-	$("#mediumsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds=PREVIEW');
-
+	$("#fullsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds='+DS_root+'_ACCESS');
+	$("#mediumsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds='+DS_root+'_PREVIEW');
 	// update title
 	$("head title").html(APIdata.solrGetFedDoc.response.docs[0].dc_title);
 }

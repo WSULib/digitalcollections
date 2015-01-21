@@ -1028,7 +1028,9 @@ pre {
 
   .col-md-offset-11 {
     margin-left: 91.66667%; } }
-@media (min-width: 1200px) {
+
+@media (min-width: 1200px) { 
+
   .container {
     max-width: 1170px; }
 
@@ -1190,7 +1192,9 @@ pre {
     margin-left: 91.66667%; } }
 @media (min-width: 1600px) {
   .container {
-    max-width: 1470px; }
+    max-width: 1470px;
+    /*max-width: 1920px; */
+  }
 
   .col-xlg-1,
   .col-xlg-2,
@@ -2502,10 +2506,16 @@ ul.slider li {
 
 .masthead .slides-wrap {
   height: 250px;
-  max-width: 1470px;
+  max-width: 1470px;  
   width: 100%;
   position: relative;
   margin: 0 auto; }
+
+/*@media (min-width: 1600px) {
+  .masthead .slides-wrap{
+  	max-width: 1920px;
+  }
+}*/
 
 .masthead .slide {
   overflow: hidden;
@@ -4994,7 +5004,7 @@ a.thumbnail:focus {
 .media .media {
   margin-top: 15px; }
 
-.media:first-child {
+.media:first-child {+
   margin-top: 0; }
 
 .media-object {
