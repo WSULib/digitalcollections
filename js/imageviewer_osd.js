@@ -4,7 +4,7 @@
 function launch(imageParams){	
 
 	// retrieve / create symlink
-	var APIcallURL = "/"+config.API_url+"?functions[]=solrGetFedDoc&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
+	var APIcallURL = "/"+config.API_url+"?functions[]=singleObjectPackage&functions[]=fedDataSpy&PID="+imageParams.PID+"&DS="+imageParams.DS	
 	$.ajax({          
 	  url: APIcallURL,      
 	  dataType: 'json',	  	    
@@ -19,7 +19,7 @@ function launch(imageParams){
 	}
 
 	function callError(response){
-		console.log("API Call unsuccessful.  Back to the drawing board.");	  
+		console.log("API Call unsuccessful.");	  
 	}
 
 }
@@ -46,12 +46,12 @@ function fireViewer(symlinks){
 }
 
 function updatePage(){
-	var DS_root = imageParams.DS.split("_")[0];
+	var DS_root = imageParams.DS.split("_JP2")[0];
 	// set downloads
 	$("#fullsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds='+DS_root+'_ACCESS');
 	$("#mediumsize").attr('href','/imageServer?obj='+imageParams.PID+'&ds='+DS_root+'_PREVIEW');
 	// update title
-	$("head title").html(APIdata.solrGetFedDoc.response.docs[0].dc_title);
+	$("head title").html(APIdata.singleObjectPackage.objectSolrDoc.dc_title);
 }
 		
 
