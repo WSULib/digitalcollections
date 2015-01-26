@@ -1,18 +1,37 @@
 <link href="inc/video-js/video-js.css" rel="stylesheet">
 <script src="inc/video-js/video.js"></script>
+<script>
+$(document).ready(function() {
+	$(".playlist tr").click(function() {
+		var ds_id = $(this).attr("name");
 
+		// Set below to audio or video depending upon what you're dealing with
+		var playerID = $("audio").parents().attr("id");
+		videojs(playerID).ready(function(){
+			var player = this;
+			switchItem(player, ds_id);
+		});
+	});
+});
+</script>
 
-<!-- Can add thumbnail from thumbnail -->
-
-{{#singleObjectPackage.playlist}}
-<h3>{{label}} - {{mimetype}}</h3>
-<audio id="audio_example" class="video-js vjs-default-skin"
+<h3>{{singleObjectPackage.playlist.0.label}} - {{singleObjectPackage.playlist.0.mimetype}}</h3>
+<audio id="audio_player" class="video-js vjs-default-skin"
   controls preload="auto" width="640" height="264"  
-  poster = "{{preview}}"
+  poster = "{{singleObjectPackage.playlist.0.preview}}"
   data-setup='{"example_option":true}'>
- <source src="{{mp3}}" type='audio/mpeg' /> 
+ <source src="{{singleObjectPackage.playlist.0.mp3}}" type='audio/mpeg' /> 
 </audio>
 <br>
-<br>
-{{/singleObjectPackage.playlist}}
-
+<div class="table-responsive playlist" style="max-width:640px; height:100px; overflow: -moz-scrollbars-vertical; overflow-y:scroll;">
+<table class="table table-hover">
+	<tbody>
+		{{#singleObjectPackage.playlist}}
+			<tr name = {{ds_id}}>
+				<td><img src={{thumbnail}}></td>
+				<td>{{ds_id}}</td>
+			</tr>
+		{{/singleObjectPackage.playlist}}
+	</tbody>
+</table>
+</div>
