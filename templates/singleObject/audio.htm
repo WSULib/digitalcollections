@@ -20,7 +20,7 @@ $(document).ready(function() {
   controls preload="auto" width="640" height="264"  
   poster = "{{singleObjectPackage.playlist.0.preview}}"
   data-setup='{"example_option":true}'>
- <source src="{{singleObjectPackage.playlist.0.mp3}}" type='audio/mpeg' /> 
+ <source src="{{singleObjectPackage.playlist.0.mp3}}" type='{{singleObjectPackage.playlist.0.mimetype}}' /> 
 </audio>
 <br>
 <div class="table-responsive playlist" style="max-width:640px; height:100px; overflow: -moz-scrollbars-vertical; overflow-y:scroll;">
