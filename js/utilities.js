@@ -19,6 +19,7 @@ var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
 		console.log("Could not retrieve solrTranslationHash");	  
 	}
 
+
 // Piwik
 // Note: defers to /inc/struct_data.php when detects page is /item
 var locale = window.location.pathname.split(/[\/]+/).pop()
@@ -34,6 +35,16 @@ if (locale != "item"){
 		g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
 	})();  
 }
+
+
+// Google Analytics (digital.library.wayne.edu)
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-63434748-1', 'auto');
+ga('send', 'pageview');
+
 
 // hide things that need localStorage
 $(document).ready(function(){
@@ -639,26 +650,26 @@ function toggleFacets(){
 	$(".object-container-grid .crop").css("height","375px");
 }
 
+// // function for related items (V2, deprecated)
+// function genRelatedItems(){
+// 	APIdata.objectLoci.collection_list = [];
+//     for (var key in APIdata.objectLoci.collection_loci) {      
+//       var temp_obj = {
+//       	"name":key,
+//       	"previous_objects": APIdata.objectLoci.collection_loci[key]['previous_objects'],
+//       	"next_objects": APIdata.objectLoci.collection_loci[key]['next_objects']
+//       }
+//       APIdata.objectLoci.collection_list.push(temp_obj)
+//     }
 
-//Related Items
-function genRelatedItems(){
-	APIdata.objectLoci.collection_list = [];
-    for (var key in APIdata.objectLoci.collection_loci) {      
-      var temp_obj = {
-      	"name":key,
-      	"previous_objects": APIdata.objectLoci.collection_loci[key]['previous_objects'],
-      	"next_objects": APIdata.objectLoci.collection_loci[key]['next_objects']
-      }
-      APIdata.objectLoci.collection_list.push(temp_obj)
-    }
+//     // functional 
+//     $.get('templates/related-objects.htm',function(template){
+//       var html = Mustache.to_html(template, APIdata);
+//       $(".related-objects").html(html);
+//       cleanEmptyMetaRows();
+//     });	
+// }
 
-    // functional 
-    $.get('templates/related-objects.htm',function(template){
-      var html = Mustache.to_html(template, APIdata);
-      $(".related-objects").html(html);
-      cleanEmptyMetaRows();
-    });	
-}
 
 
 
