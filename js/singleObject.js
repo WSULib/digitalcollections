@@ -142,8 +142,7 @@ function renderPage(PID){
 		}
 	}
 
-	// generate related objects (ADDRESS IN V2)
-	// genRelatedItems();
+	
 
   });
   
@@ -226,8 +225,27 @@ function finishRendering(){
 	  }); 
 	  break;
 	//Archive
-	case "Archive":
-	  unknownType();                
+	case "Archival Files":
+
+	  // render file
+	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "file") {
+	  	$.get('templates/singleObject/hierarchicalfile.htm',function(template){
+			var html = Mustache.to_html(template, APIdata);
+			$(".primary-object-container").html(html);
+		  });
+	    // generate related objects (ADDRESS IN V2)
+		genHierarchicalTree();
+	  }
+	  
+	  // render container
+	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "container") {
+	  	$.get('templates/singleObject/hierarchicalcontainer.htm',function(template){
+			var html = Mustache.to_html(template, APIdata);
+			$(".primary-object-container").html(html);
+		  });	
+	  	// generate related objects (ADDRESS IN V2)
+		genHierarchicalTree();
+	  }             
 	  break;        
 	default:
 	  unknownType();
@@ -314,8 +332,22 @@ function switchItem(playerName, ds_id){
 }
 
 
+// Family Tree
+function genHierarchicalTree(){
 
+	// set counts for use by templates
+	APIdata.singleObjectPackage.hierarchicalTree.parent_siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length
+	APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.siblings.results.length
+	APIdata.singleObjectPackage.hierarchicalTree.children['count'] = APIdata.singleObjectPackage.hierarchicalTree.children.results.length
 
+    // functional 
+    $.get('templates/hierarchicaltree.htm',function(template){
+      var html = Mustache.to_html(template, APIdata);
+      $(".related-objects").html(html);
+      cleanEmptyMetaRows();
+    });	
+
+}
 
 
 

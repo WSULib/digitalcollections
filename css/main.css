@@ -2908,6 +2908,9 @@ img {
 }
 .primary-object {
   margin-bottom: 20px; }
+.related-objects {
+  margin-bottom: 20px; 
+}
 
 li.object-container-list {
   border-bottom: 1px dotted #ddd;
@@ -3111,7 +3114,8 @@ li:last-child.object-container-list {
 
 .display-more-info {
   margin: 3em 0;
-  display: none; }
+  /*display: none;*/
+}
 
 
 
@@ -6806,12 +6810,9 @@ p.caption {
   }
 
 
-
-
-
-
-
-
-
+/* experimental */
+.related_tree_ul {
+  display:none;
+}
 
 
