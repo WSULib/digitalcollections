@@ -1,13 +1,14 @@
 <html>
 <head>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
-	<script src="js/utilities.js"></script>
+	<script src="config/config.js" type="text/javascript"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/imageviewer_osd.css" />
 	<link rel="stylesheet" href="ico/style.css">
 
 	<meta name="viewport" content="initial-scale=1">
-	<script src="config/config.js" type="text/javascript"></script>
+	<script src="js/utilities.js"></script>
+	
 
 	<title>Image Viewer | Digital Collections | WSULS</title>
 

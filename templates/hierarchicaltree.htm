@@ -7,7 +7,7 @@
 
 			<!-- parent container -->
 			<ul class="facet_container filter" style="display: block;">
-				<h3 >Parent</h3>		
+				<h3 >Container</h3>		
 				<ul class="tree facet_list" style="display: block;">
 					<li><a href="item?id={{singleObjectPackage.hierarchicalTree.parent.results.0.parent}}">{{singleObjectPackage.hierarchicalTree.parent.results.0.parentTitle}}</a></li>
 				</ul>
@@ -15,7 +15,7 @@
 
 			<!-- parent container siblings -->
 			<ul class="facet_container filter" style="display: block;">
-				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Parent Siblings ({{singleObjectPackage.hierarchicalTree.parent_siblings.count}})</h3>
+				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Container Siblings ({{singleObjectPackage.hierarchicalTree.parent_siblings.count}})</h3>
 				<ul class="tree facet_list" style="display: none;">
 					{{#singleObjectPackage.hierarchicalTree.parent_siblings.results}}
 						<li><a href="item?id={{parentSibling}}">{{parentSiblingTitle}}</a></li>
@@ -24,12 +24,12 @@
 			</ul>
 
 			<!-- current item -->
-			<ul class="facet_container filter" style="display: block;">
+			<!-- <ul class="facet_container filter" style="display: block;">
 				<h3 >Current Item</h3>		
 				<ul class="tree facet_list" style="display: block;">
 					<li>{{singleObjectPackage.objectSolrDoc.dc_title}}</li>
 				</ul>
-			</ul>
+			</ul> -->
 
 			<!-- current item siblings -->
 			<ul class="facet_container filter" style="display: block;">

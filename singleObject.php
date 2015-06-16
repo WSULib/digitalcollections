@@ -63,7 +63,7 @@ $objectPID = $_REQUEST['id'];
         <div id="templateCM" class="container">
         	<div class="row">
 	            <div class="breadcrumb col-md-3">               
-	                <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back to Search Results</a>
+	                <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back</a>
 	            </div>
             </div>
 

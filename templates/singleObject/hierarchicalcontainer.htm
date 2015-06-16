@@ -1,5 +1,12 @@
 <div class="col-md-12">
 
-	<img src="http://digital.library.wayne.edu/fedora/objects/wayne:WSUDORThumbnails/datastreams/hollinger_box/content"/>
+	
+		{{#singleObjectPackage.hierarchicalTree.children.results}}
+			<div class="col-md-6" style="text-align:center;">
+	        	<a href="item?id={{child}}"><img width=200 src="/imageServer?obj={{child}}&ds=THUMBNAIL"/></a>
+	        	<p>{{childTitle}}</p>
+        	</div>
+	    {{/singleObjectPackage.hierarchicalTree.children.results}}
+    
 
 </div>

@@ -131,7 +131,9 @@
 	<tr>
 		<td>Container:</td>
 		<td>
-			<a href="item?id={{singleObjectPackage.hierarchicalTree.parent.results.0.parent}}">{{{singleObjectPackage.hierarchicalTree.parent.results.0.parentTitle}}}</a>
+			{{#singleObjectPackage.hierarchicalTree.parent.results.0}}
+				<a href="item?id={{parent}}">{{{parentTitle}}}</a>
+			{{/singleObjectPackage.hierarchicalTree.parent.results.0}}
 		</td>
 	</tr>	
 
