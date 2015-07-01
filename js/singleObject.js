@@ -173,6 +173,7 @@ function finishRendering(){
 		var html = Mustache.to_html(template, APIdata);
 		$(".primary-object-container").html(html);
 	  }).done(function(){
+
 	  	// if object has 1+ components, load their template
 		if (APIdata.singleObjectPackage.hasPartOf.results.length > 1){
 			$.get('templates/singleObject/imageParts.htm',function(template){
@@ -185,6 +186,7 @@ function finishRendering(){
 				  })
 			  });
 		  }
+		  
 	  });
 	  break;    
 	//eBooks
