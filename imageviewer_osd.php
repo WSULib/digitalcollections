@@ -7,8 +7,7 @@
 	<link rel="stylesheet" href="ico/style.css">
 
 	<meta name="viewport" content="initial-scale=1">
-	<script src="js/utilities.js"></script>
-	
+	<script src="js/utilities.js"></script>	
 
 	<title>Image Viewer | Digital Collections | WSULS</title>
 
@@ -16,9 +15,18 @@
 
 <body>
 	
-	<div id="downloads">
-		<p><a href="#" onclick="window.history.back(); return false;"><span style="margin-right:5px;">&laquo;</span> Go Back</a> / Download <a id="fullsize" href="#">Fullsize image</a> or <a id="mediumsize" href="#">Medium image</a></p>
-	</div>
+		<div class="row">
+			<div id="toolbarDiv" class="col-sm-6"></div>
+			<div id="downloads" class="col-sm-6">
+				<p>
+					<a id="item_record_link" href="#"><span style="margin-right:5px;">&laquo;</span> Item Record</a> / Download
+					<a id="fullsize" href="#">Fullsize </a> or 
+					<a id="mediumsize" href="#">Medium</a>
+				</p>
+		</div>
+		</div>
+
+		
 	
 	<div id="openseadragon1"></div>
 		
