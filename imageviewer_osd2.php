@@ -25,29 +25,6 @@
 
 	<div id="openseadragon_container" class="container">
 
-		
-	
-		<div id="toolbar_row" class="row">
-			
-			<div id="toolbar" class="col-sm-2">
-				<!--general-->
-				<i id="homeButton" class="icon-home4"></i>
-				<i id="fullPageButton" class="icon-expand2"></i>
-				<!--rotate-->
-				<i id="rotateLeftButton" class="icon-undo"></i>
-				<i id="rotateRightButton" class="icon-redo"></i>
-				<!--zoom-->
-				<i id="zoomInButton" class="icon-zoom-in"></i>
-				<i id="zoomOutButton" class="icon-zoom-out"></i>
-				<span id="mult_toolbar">
-					<!--navigation-->
-					<i id="previousButton" class="icon-arrow-left2"></i>
-					<i id="nextButton" class="icon-arrow-right2"></i>
-				</span>
-			</div>
-
-		</div>
-
 		<div id="loading_row" class="row">
 			<div class="col-md-12">	
 				<div id="loading">
@@ -58,7 +35,37 @@
 
 		<div id="osd_row" class="row">
 			<div class="col-md-12">	
-				<div id="openseadragon"><div>
+				<div id="openseadragon">
+
+					<div id="toolbar_row" class="row">
+			
+						<div id="toolbar" class="col-sm-12">
+							<a id="item_record_link" href="#"><i class="icon-exit2"></i></a>
+							<span class="spacer"></span>
+							<!--general-->
+							<i id="homeButton" class="icon-home4"></i>
+							<i id="fullPageButton" class="icon-expand2"></i>
+							<!-- <span class="spacer"></span> -->
+							<!--rotate-->
+							<i id="rotateLeftButton" class="icon-undo"></i>
+							<i id="rotateRightButton" class="icon-redo"></i>
+							<!-- <span class="spacer"></span> -->
+							<!--zoom-->
+							<i id="zoomOutButton" class="icon-zoom-out"></i>
+							<i id="zoomInButton" class="icon-zoom-in"></i>
+							
+							<span id="mult_toolbar">
+								<span class="spacer"></span>
+								<!--navigation-->
+								<!-- <span>Image:<span id="currentpage"></span></span> -->
+								<i id="previousButton" class="icon-arrow-left2"></i>
+								<i id="nextButton" class="icon-arrow-right2"></i>
+							</span>
+						</div>
+
+					</div>
+
+				<div>
 			</div>
 		</div>
 

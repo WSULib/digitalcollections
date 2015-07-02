@@ -160,10 +160,16 @@ function fireViewer(symlinks){
 
 			});
 
+
+			
+
 			// unhide toolbars meant for multiple images
 			$("#mult_toolbar").show();
 
-
+			// show image number (needs improvement)
+			// viewer.addHandler("page", function (data) {
+			//     document.getElementById("currentpage").innerHTML = ( data.page + 1 ) + " / " + APIdata.singleObjectPackage.parts_imageDict.sorted.length;
+			// });
 
 		})
 
@@ -178,8 +184,9 @@ function fireViewer(symlinks){
 
 function updatePage(){
 
-	// remove loading
+	// remove loading and show toolbars
 	$("#loading_row").remove();
+	$("#toolbar_row").show();
 
 	var DS_root = imageParams.DS.split("_JP2")[0];
 

@@ -9,10 +9,21 @@ a {
 	text-decoration: none;
 }
 
+a:hover{
+	text-decoration: none;
+}
+
+a:visited{
+	color: white;
+	text-decoration: none;	
+}
+
 #toolbar_row{
 	height: 35px;
 	width:100%;
 	clear:both;
+	display:none;
+	margin-left:5px;
 }
 
 #toolbar {
@@ -24,6 +35,13 @@ a {
 	cursor:pointer;
 	margin-right:5px;
 }
+
+i:hover {
+	color:rgba(255, 204, 51, 1);
+	cursor:pointer;
+	/*border-bottom: 1px dotted #ccc;*/
+}
+
 
 #mult_toolbar {
 	display:none;
@@ -42,4 +60,8 @@ a {
 
 #loading_row {
 	position:relative;
+}
+
+.spacer {
+	margin-right:20px;
 }
