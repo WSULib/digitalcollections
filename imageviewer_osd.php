@@ -41,7 +41,7 @@
 			
 						<div id="toolbar" class="col-sm-12">
 							<a id="item_record_link" href="#"><i class="icon-exit2"></i></a>
-							<span class="spacer"></span>
+							<!--<span class="spacer"></span>-->
 							<!--general-->
 							<i id="homeButton" class="icon-home4"></i>
 							<i id="fullPageButton" class="icon-expand2"></i>

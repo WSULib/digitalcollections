@@ -23,7 +23,7 @@ a:visited{
 	width:100%;
 	clear:both;
 	display:none;
-	margin-left:5px;
+	/* margin-left:5px; */
 }
 
 #toolbar {
