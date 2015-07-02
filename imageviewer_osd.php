@@ -34,8 +34,13 @@
 </body>
 
 <!-- le scripts -->
-<script src="js/imageviewer_osd.js"></script>
-<script src="inc/osd/openseadragon.min.js"></script>	
+<!-- <script src="js/imageviewer_osd.js"></script>
+<script src="inc/osd/openseadragon.min.js"></script>	 -->
+
+<!-- osd v2 -->
+<script src="js/imageviewer_osd_v2.js"></script>
+<script src="inc/osd2/openseadragon.min.js"></script>
+
 <script type="text/javascript">
 	var imageParams = <?php echo json_encode($_GET); ?>;
 	$(document).ready(function(){        
