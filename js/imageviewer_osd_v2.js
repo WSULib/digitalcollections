@@ -1,25 +1,6 @@
 // javascript for openseadragon viewer
 // most dependencies are in inc/osd
 
-// Example from Trove
-// viewer = new OpenSeadragon({
-//     id:                     "nla-seadragon",
-//     prefixUrl:              "http://nladom-test.nla.gov.au:80/tarkine/js/openseadragon/images/",
-//     tileSources:            sources,
-//     showNavigator:          true,
-//     navigatorPosition:      "BOTTOM_RIGHT",
-//     toolbar:                "toolbarDiv",
-//     zoomInButton:           "zoom-in",
-//     zoomOutButton:          "zoom-out",
-//     rotateRightButton:      "rotate-right",
-//     homeButton:             "home",
-//     fullPageButton:         "full-page",
-//     nextButton:             "next",
-//     previousButton:         "previous",
-//     showRotationControl:    true    
-// });
-
-
 
 function launch(imageParams){	
 
@@ -128,6 +109,14 @@ function fireViewer(symlinks){
 				symlinks_array.push(location.protocol+"//"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlink+".dzi")
 			}
 
+			// check for reference strip request
+			if (imageParams.thumbnails != undefined && imageParams.thumbnails == "true"){
+				var showReferenceStrip = true;
+			}
+			else{
+				var showReferenceStrip = false;
+			}
+
 			var viewer = OpenSeadragon({
 
 				id: "openseadragon",
@@ -143,7 +132,7 @@ function fireViewer(symlinks){
 				// Input
 				tileSources: symlinks_array,
 				sequenceMode: true,
-				showReferenceStrip: false,
+				showReferenceStrip: showReferenceStrip,
 				referenceStripScroll: 'vertical',
 				preserveViewport: false, 
 				springStiffness: 12,
