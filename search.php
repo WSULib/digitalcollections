@@ -47,10 +47,9 @@
                 
                 <div class="row">
 	                <div class="col-md-6 pull-left">
-		                <!-- <ul style="width:50%; float:left;"> -->
-		                <ul>
+		                <ul id="search_results_ul">
 		                    <li><span id='num_results'></span> Objects</li>
-		                    <li>&quot;<span id='q_string'></span>&quot;</li>                     
+		                    <!-- <li>&quot;<span id='q_string'></span>&quot;</li>-->
 		                </ul>                
 	                </div>
 	                <div class="col-md-6 pull-right" style="text-align:right;">                

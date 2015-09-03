@@ -265,7 +265,9 @@ function showFacets(){
 
 function updateNumbers(){
 	// update number of results
-	$("#q_string").html(mergedParams.q);  
+	if (mergedParams.q != "*"){
+		$("#search_results_ul").append("<li>&quot;" + mergedParams.q + "&quot;</li>")
+	}	
 	$("#num_results").html(APIdata.solrSearch.response.numFound);
 	// update rows selecctor
 	$("#rows").val(mergedParams.rows).prop('selected',true);
