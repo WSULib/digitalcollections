@@ -61,7 +61,8 @@ $objectPID = $_REQUEST['id'];
         <?php include('inc/header.php'); ?>
 
         <div id="templateCM" class="container">
-        	<div class="row">
+        	
+            <div class="row">
 	            <div class="breadcrumb col-md-3">               
 	                <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">&laquo;</span> Back</a>
 	            </div>
@@ -108,10 +109,11 @@ $objectPID = $_REQUEST['id'];
 <script type="text/javascript">
     enquire.register("screen and (max-width:991px)", {
         match : function() { 
-                $('.display-more-info').prependTo('.display-more');
+            // move to top
+            $('.info-panel').prependTo('.primary-object');      
         },
         unmatch : function() {
-                $('.display-more-info').insertAfter('.primary-object-container');
+            $('.info-panel').insertAfter('.primary-object');
         }
     });
 </script>

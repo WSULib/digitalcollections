@@ -7,16 +7,22 @@
 </h4>
 
 <p class="description">    
-    {{#singleObjectPackage.objectSolrDoc.dc_description}}
+    <!-- {{#singleObjectPackage.objectSolrDoc.dc_description}}
     {{{.}}}</br></br>
-    {{/singleObjectPackage.objectSolrDoc.dc_description}}    
+    {{/singleObjectPackage.objectSolrDoc.dc_description}} -->
+    {{#singleObjectPackage.objectSolrDoc.mods_abstract_ms}}
+    {{{.}}}</br></br>
+    {{/singleObjectPackage.objectSolrDoc.mods_abstract_ms}}    
+
+    <!-- if transcription, add message -->
+    {{#singleObjectPackage.objectSolrDoc.mods_note_transcription_ms}}
+        <span><strong>See Transcription Below</strong></span>
+    {{/singleObjectPackage.objectSolrDoc.mods_note_transcription_ms}}
 </p>
 
-<ul class="buttons">
-    <!-- More info -->
-    <li class="more-info-clickr">
-        <i class="icon-info"></i> <span class="more-info">Less Info</span>
-    </li>
+
+
+<ul class="buttons">    
     <!-- Add citation button if WSUebook -->
     {{#citationLink}}
     <li class="cite-this-clickr">

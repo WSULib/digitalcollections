@@ -119,13 +119,18 @@
 		</td>
 	</tr>
 
-	<!--Transcripts-->
+	<!--Transcripts -->
 	<tr>
 		<td>Transcription:</td>
 		<td>
-			{{{singleObjectPackage.objectSolrDoc.mods_abstract_transcription_ms.0}}}
+			{{#singleObjectPackage.objectSolrDoc.mods_note_transcription_ms}}
+				<p>{{{.}}}</p>
+			{{/singleObjectPackage.objectSolrDoc.mods_note_transcription_ms}}
+			{{#singleObjectPackage.objectSolrDoc.mods_note_about_transcription_ms}}
+				<p style="font-weight:bold;">{{{.}}}</p>
+			{{/singleObjectPackage.objectSolrDoc.mods_note_about_transcription_ms}}
 		</td>
-	</tr>	
+	</tr>
 
 	<!--Hierarchical Container-->
 	<tr>

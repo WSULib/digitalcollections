@@ -6671,6 +6671,11 @@ footer {
   .feature h3 {
     font-size: 1.5em;
   }
+  .breadcrumb {
+   padding-left: 20px; 
+   margin-top: 5px; 
+   margin-bottom: 5px; 
+  }
 }
 .feature-bottom h4 {
   margin-bottom: 1em;
