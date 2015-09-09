@@ -100,14 +100,20 @@ function renderPage(PID){
   //Render Internal Templates
   $(document).ready(function(){
 	$.Mustache.addFromDom() //read all template from DOM    
+	
 	// head
 	$('head').mustache('head_t', APIdata);    
+	
 	// info-panel    
 	$.get('templates/info-panel.htm',function(template){
 	  var html = Mustache.to_html(template, APIdata);
 	  $(".info-panel").html(html);
 	  cleanEmptyMetaRows();
-	});    
+	}).done(function(){
+		// fire contentType Specific cleanup / changes
+		ctypeSpecific();
+	})    
+	
 	// display-more-info
 	$.get('templates/display-more-info.htm',function(template){
 	  var html = Mustache.to_html(template, APIdata);
@@ -116,37 +122,43 @@ function renderPage(PID){
 	});       
 
 	// Content Model Specific
-	// WSUebooks
-	if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
-		PID_suffix = PID.split(":")[1]    	
-		
-	// generate fullText URLs (ADDRESS IN V2)
-		APIdata.fullText = [
-			{
-				"key" : "HTML",
-				"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/HTML_FULL/content"},
-			{
-				"key" : "PDF",
-				"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/PDF_FULL/content"
-			},
-		];
+	function ctypeSpecific(){
+		// WSUebooks
+		if (APIdata.translated.preferredContentModelPretty == "WSUebook" ){
+			PID_suffix = PID.split(":")[1]    	
+			
+		// generate fullText URLs (ADDRESS IN V2)
+			APIdata.fullText = [
+				{
+					"key" : "HTML",
+					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/HTML_FULL/content"},
+				{
+					"key" : "PDF",
+					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/PDF_FULL/content"
+				},
+			];
 
-		// check for OCLC num, generate citation link (ADDRESS IN V2)
-		if ("mods_identifier_oclc_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
-			APIdata.citationLink = "http://library.wayne.edu/inc/OCLC_citation.php?oclcnum="+APIdata.singleObjectPackage.objectSolrDoc.mods_identifier_oclc_ms[0];
+			// check for OCLC num, generate citation link (ADDRESS IN V2)
+			if ("mods_identifier_oclc_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
+				APIdata.citationLink = "http://library.wayne.edu/inc/OCLC_citation.php?oclcnum="+APIdata.singleObjectPackage.objectSolrDoc.mods_identifier_oclc_ms[0];
+			}
+
+			// check for Bib num, generate persistent link (ADDRESS IN V2)
+			if ("mods_bibNo_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
+				APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.singleObjectPackage.objectSolrDoc.mods_bibNo_ms[0].slice(0,-1);
+			}
 		}
 
-		// check for Bib num, generate persistent link (ADDRESS IN V2)
-		if ("mods_bibNo_ms" in APIdata.singleObjectPackage.objectSolrDoc) {
-			APIdata.persistLink = "http://elibrary.wayne.edu/record="+APIdata.singleObjectPackage.objectSolrDoc.mods_bibNo_ms[0].slice(0,-1);
+		// Collection objects
+		if (APIdata.translated.preferredContentModelPretty == "Collection" ){
+			noMoreMeta();
 		}
 	}
 
-	
+	// finish rendering page and templates (case switching based on content type)
+  	finishRendering();
 
   });
-  
-  finishRendering();
 
 }
 
@@ -200,7 +212,7 @@ function finishRendering(){
 	case "Collection":
 	  $.get('templates/singleObject/collection.htm',function(template){
 		var html = Mustache.to_html(template, APIdata);
-		$(".primary-object-container").html(html);
+		$(".primary-object-container").html(html);				
 	  });      
 	  break;      
 	//Audio

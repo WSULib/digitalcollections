@@ -8,7 +8,7 @@ var type = '';
 
 APIdata.ordered_facets = [
   	"rels_hasContentModel",
-  	// "rels_isMemberOfCollection",  	
+  	"rels_isMemberOfCollection",  	
   	"facet_mods_year",
   	"dc_subject",
   	"dc_creator",

@@ -6815,9 +6815,13 @@ p.caption {
   }
 
 
-/* experimental */
+/* experimental and overrides */
 .related_tree_ul {
   display:none;
+}
+
+.more-info-clickr {
+  display: none;
 }
 
 

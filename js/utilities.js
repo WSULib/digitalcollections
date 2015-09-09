@@ -638,6 +638,14 @@ function splitObjectLiteral(obj_lit_string){
 }
 
 
+// hide more info dropdown, but reveal button
+function noMoreMeta(){
+	$(".display-more-info").hide();
+	$(".more-info").html("More Info");
+	$(".more-info-clickr").show();	
+}
+
+
 
 // PROTOTYPES
 // strip info:fedora/ prefix

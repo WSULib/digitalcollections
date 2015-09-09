@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- page rendered as Collection -->
         <meta charset="UTF-8">
         <title>Collection | Digital Collections | WSULS</title>
         <meta name="description" content="">

@@ -44,7 +44,7 @@ function solrMetadataCall($PID){
 	$PID = str_replace(":","\:",$PID);   	
 	$options = array
 	(
-	    'hostname' => 'silo.lib.wayne.edu',    
+	    'hostname' => 'localhost',    
 	    'port'     => 8080,
 	    'path'     => 'solr4/search'
 	);

@@ -4,6 +4,7 @@
 ?>
 <html>
     <head>
+        <!-- page rendered as Serial -->
         <meta charset="utf-8">
         <title>Serials | Digital Collections | WSULS</title>
         <meta name="description" content="">

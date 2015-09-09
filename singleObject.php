@@ -6,6 +6,7 @@ $objectPID = $_REQUEST['id'];
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- page rendered as Single Object -->
         <meta charset="utf-8">
         <title><?php echo $response['response']['docs'][0]['mods_title_ms'][0];?> | Digital Collections | WSULS</title>
         <meta name="description" content="">
