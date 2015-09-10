@@ -10,71 +10,38 @@
         <meta name="description" content="">
         <meta name="viewport" content="initial-scale=1">
 
-        <link rel="stylesheet" href="css/main.css" type="text/css">
-        <link rel="stylesheet" href="inc/sidr/stylesheets/jquery.sidr.dark.css">
-        <link rel="stylesheet" href="ico/style.css">
-        
-        <!-- Typography -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
-
-        <!--Mustache-->
-        <script src="inc/jquery-Mustache/jquery.mustache.js"></script>
-        <script type="text/javascript" src="inc/mustache.js"></script>
-        
-        <!-- Local JS -->
-        <script src="config/config.js" type="text/javascript"></script>
-        <script src="js/favorites.js"></script>
-        <script src="js/userData.js"></script>   
-        <script src="js/utilities.js"></script>        
+        <!-- load site-wide dependencies -->
+        <?php include('inc/site_wide_depends.php'); ?>
+          
+        <!-- page specific dependencies -->
         <script src="js/serial.js"></script>
         
-        <!--WSUDOR Translation Dictionary-->
-
-        
-        <!--Pagination-->
-        <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
-        
-        <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
-        <script src="js/jquery.cookie.js" type="text/javascript"></script>   
-        <script src="inc/sidr/jquery.sidr.min.js"></script> 
-
         <style>
             .toc > li {
                 margin: 0;
             }
         </style>
 
-        <link rel="stylesheet" type="text/css" media="screen" href="inc/share.2.6/share/share.css" />
-        <script src="inc/share.2.6/share/share.js" type="text/javascript"></script>
+    </head>
+    <body>
 
-        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    	<?php include('inc/struct_data.php'); ?>
+    	<?php include('inc/header.php'); ?>
 
-        <script type="text/javascript" src="js/script.js"></script>
+    	<div class="container">
 
-</head>
-<body>
+    		<div id="serial-nav" class="facets volume-view"></div>
 
-	<?php include('inc/struct_data.php'); ?>
-	<?php include('inc/header.php'); ?>
+    		<div class="main-container">
+                <div id="serial-root-content"></div>
+    		</div>
+    	</div>
 
-	<div class="container">
-
-		<div id="serial-nav" class="facets volume-view"></div>
-
-		<div class="main-container">
-            <div id="serial-root-content"></div>
-		</div>
-	</div>
-
-	<?php include('inc/footer.php'); ?>	   
-    <script type="text/javascript">
-        launch("<?php echo $objectPID; ?>");
-    </script>
+    	<?php include('inc/footer.php'); ?>	   
+        <script type="text/javascript">
+            launch("<?php echo $objectPID; ?>");
+        </script>
 
 
-</body>
+    </body>
 </html>
