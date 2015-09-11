@@ -32,8 +32,4 @@
 <!--Pagination-->
 <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
 
-<!-- Share this -->
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "5131cbe9-49f8-4ed4-80d3-75fa951eadad", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-
 <!-- END general site-wide JS / CSS dependencies -->
