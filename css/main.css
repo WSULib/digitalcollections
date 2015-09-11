@@ -6763,15 +6763,15 @@ p.caption {
   margin-right: 0.5em;
 }
 
-.icon-share, .icon-facebook, .icon-twitter {
+.icon-share, .icon-facebook, .icon-twitter, .icon-tumblr, .icon-twitter4, .icon-email{
   font-size: 2em;
   margin: 0 5px;
 }
 
-.icon-email {
+/*.icon-email {
   font-size: 2.5em;
   margin: 0 5px;
-}
+}*/
 
 .icon-menu {
   font-size: 2em;
