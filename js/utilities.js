@@ -384,7 +384,12 @@ function populateResults(templateType,destination,templateData){
 	// retroactively give them index numbers
 	var items = $(".crop a");
 	for (var i = 0; i < items.length; i++) { 
-		items[i].href = items[i].href + "&search_index=" + i; 
+
+		// for related results work
+		// items[i].href = items[i].href + "&search_index=" + i;
+		// normal
+		items[i].href = items[i].href; 
+
 	}
 }
 
