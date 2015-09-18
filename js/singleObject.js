@@ -242,7 +242,7 @@ function finishRendering(){
 	case "Archival Files":
 
 	  // render file
-	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "file") {
+	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "document") {
 	  	$.get('templates/singleObject/hierarchicalfile.htm',function(template){
 			var html = Mustache.to_html(template, APIdata);
 			$(".primary-object-container").html(html);

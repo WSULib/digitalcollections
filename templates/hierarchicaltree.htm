@@ -1,27 +1,30 @@
 <div class="row">
 	<div class="col-md-12">
-		<h4>Related Materials</h4>	
+		<h4>Navigation</h4>	
 
 		<div id="related_container" class="facets" style="width:100%;">
 		
 
 			<!-- parent container -->
 			<ul class="facet_container filter" style="display: block;">
-				<h3 >Container</h3>		
+				<h3 >Part of</h3>		
 				<ul class="tree facet_list" style="display: block;">
 					<li><a href="item?id={{singleObjectPackage.hierarchicalTree.parent.results.0.parent}}">{{singleObjectPackage.hierarchicalTree.parent.results.0.parentTitle}}</a></li>
 				</ul>
 			</ul>
 
 			<!-- parent container siblings -->
-			<ul class="facet_container filter" style="display: block;">
-				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Container Siblings ({{singleObjectPackage.hierarchicalTree.parent_siblings.count}})</h3>
+			<!-- **********
+				this is really neat, but perhaps too meta and complicated for this view 
+			**********-->
+			<!-- <ul class="facet_container filter" style="display: block;">
+				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Next to ({{singleObjectPackage.hierarchicalTree.parent_siblings.count}})</h3>
 				<ul class="tree facet_list" style="display: none;">
 					{{#singleObjectPackage.hierarchicalTree.parent_siblings.results}}
 						<li><a href="item?id={{parentSibling}}">{{parentSiblingTitle}}</a></li>
 					{{/singleObjectPackage.hierarchicalTree.parent_siblings.results}}
 				</ul>
-			</ul>
+			</ul> -->
 
 			<!-- current item -->
 			<!-- <ul class="facet_container filter" style="display: block;">
@@ -41,7 +44,10 @@
 				</ul>
 			</ul>
 
-			<!-- current item siblings -->
+			<!-- current item children -->
+			<!-- ********** 
+				perhaps you don't need this?  The contents are already on the right in the single item area... 
+			********** -->
 			<ul class="facet_container filter" style="display: block;">
 				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Contents ({{singleObjectPackage.hierarchicalTree.children.count}})</h3>
 				<ul class="tree facet_list" style="display: none;">

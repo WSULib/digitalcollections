@@ -40,6 +40,7 @@ function fireViewer(symlinks){
 	if (APIdata.singleObjectPackage.parts_imageDict.sorted.length == 1){
 		// single image array
 		symlink_single = location.protocol+"//"+window.location.host+"/fcgi-bin/iipsrv.fcgi?DeepZoom="+symlinks.symlink+".dzi";
+		console.log(symlink_single);
 
 		var viewer = OpenSeadragon({
 				
