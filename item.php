@@ -1,25 +1,28 @@
 <?php
 // router for views pertaining to a single PID
 
+include('config/config_php.php');
+
+
 //pull params
 $PID = $_REQUEST['id'];
 $rendered = $_REQUEST['rendered'];
 
 // checks for "rendered" override as parameter
 if( isset($_REQUEST["rendered"]) ){
-	$response = solrMetadataCall($PID);
+	$response = solrMetadataCall($PID,$solr_core);
 	$fileTemplate = $_REQUEST['rendered'].".php";
 	renderTemplate($fileTemplate,$response);
 }
 
 // elseif, grabs PID and checks for rels_isRenderedBy relationship in Solr
 elseif( isset($_REQUEST["id"]) ){
-	$response = solrMetadataCall($PID);
+	$response = solrMetadataCall($PID,$solr_core);
 	if ( isset($response['response']['docs'][0]['rels_isRenderedBy']) ){		
 		$isRenderedBy_string = $response['response']['docs'][0]['rels_isRenderedBy'][0];
 		$isRenderedBy_temp = explode("info:fedora/",$isRenderedBy_string);
 		$isRenderedBy = $isRenderedBy_temp[1];
-		$fileTemplate = $isRenderedBy.".php";		
+		$fileTemplate = $isRenderedBy.".php";
 		renderTemplate($fileTemplate,$response);				
 	}
 	else {		
@@ -41,12 +44,13 @@ function renderTemplate($fileTemplate,$response){
 }
 
 function solrMetadataCall($PID){
-	$PID = str_replace(":","\:",$PID);   	
+	global $solr_core;
+	$PID = str_replace(":","\:",$PID);
 	$options = array
 	(
 	    'hostname' => 'localhost',    
 	    'port'     => 8080,
-	    'path'     => 'solr4/search'
+	    'path'     => 'solr4/'.$solr_core
 	);
 	$client = new SolrClient($options);
 	$query = new SolrQuery();
