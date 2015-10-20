@@ -239,7 +239,7 @@ function finishRendering(){
 	  }); 
 	  break;
 	//Archive
-	case "Archival Files":
+	case "HierarchicalFiles":
 
 	  // render file
 	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "document") {
