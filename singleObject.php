@@ -7,7 +7,10 @@ $objectPID = $_REQUEST['id'];
 <html>
     <head>
         <!-- page rendered as Single Object -->
-        <link rel="stylesheet" type="text/css" href="../mirador/build/mirador/css/mirador-combined.css">
+
+        <!-- mirador -->
+        <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">
+        <link rel="stylesheet" type="text/css" href="css/mirador_local.css">
 
         <meta charset="utf-8">
         <title><?php echo $response['response']['docs'][0]['mods_title_ms'][0];?> | Digital Collections | WSULS</title>
