@@ -55,7 +55,8 @@
 											"slotAbove": false,
 											"slotBelow": false
 										},
-								"annotationLayer": false
+								"annotationLayer": false,
+								"availableViews" : ['ImageView','ThumbnailsView','ScrollView']
 								}			                     
 							]
 						});
