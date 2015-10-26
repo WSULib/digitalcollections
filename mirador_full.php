@@ -40,12 +40,12 @@
 							},
 							"data": [
 								{
-									"manifestUri": "http://digital.library.wayne.edu/iiif_manifest-dev/<?php echo $_REQUEST['id']; ?>",
+									"manifestUri": "http://digital.library.wayne.edu/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
 									"location": "Wayne State University Library Digital Collections"}              
 								],
 							"windowObjects": [                 
 								{
-									"loadedManifest" : "http://digital.library.wayne.edu/iiif_manifest-dev/<?php echo $_REQUEST['id']; ?>", 
+									"loadedManifest" : "http://digital.library.wayne.edu/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
 									"viewType" : "<?php echo $_REQUEST['type']; ?>",
 									"layoutOptions": 
 										{
