@@ -146,5 +146,31 @@
 	<tr>
 		<td>Full record:</td>
 		<td><a href="/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">MODS</a></td>
-	</tr>                                
+	</tr>
+
+	<!--IIIF Manifest-->
+	<tr>
+		<!-- <td><img src="img/iiif_logo.png" height=25 /></td> -->
+		<td>IIIF</td>
+		<td><a href="http://digital.library.wayne.edu/iiif_manifest-dev/{{APIParams.PID}}">Manifest</a></td>
+	</tr>  
+
+	<!--Downloads-->
+	<tr>
+		<td>Downloads</td>
+		<td>
+			{{#singleObjectPackage.parts_imageDict.sorted}}
+				<a href="http://digital.library.wayne.edu/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="http://digital.library.wayne.edu/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
+			{{/singleObjectPackage.parts_imageDict.sorted}}
+		</td>
+	</tr>                                  
+
 </tbody>
+
+
+
+
+
+
+
+

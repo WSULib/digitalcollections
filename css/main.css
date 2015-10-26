@@ -6646,6 +6646,19 @@ footer {
 .feedback a {
   text-decoration: underline;
 }
+
+.beta_cap {
+  background:rgba(56, 220, 45, 0.25);
+  padding:5px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+.beta_cap a {
+  text-decoration: underline;
+}
+
 @media (max-width: 767px) {
   .feedback {
     display: none;

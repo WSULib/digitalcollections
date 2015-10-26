@@ -1,12 +1,51 @@
 <!-- all_image type template -->
-<div id="LargeView">		
-	<!-- link to imageviewer.php -->	
-	<a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">		
-		<img src="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.preview}}/content" class="primary-image">
-		<meta content="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.thumbnail}}/content" />	
-	</a>
-	<h3 style="width:100%; text-align:center;"><a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">[Click Large Image to Zoom]</a></h3>
+<div id="LargeView" style="height:580px; width:580;">	
+
+	<!-- Mirador -->
+	<div id="viewer"></div>
+
+    <script src="inc/mirador/mirador.js"></script>
+    <script type="text/javascript">
+
+     $(function() {
+         var anno_token;
+         Mirador({
+            "id": "viewer",
+            "saveSession": false,
+            "layout":"1x1",            
+            "mainMenuSettings" : {
+              'show' : false,
+              'buttons' : {
+                'bookmark' : false,
+                'layout' : false,
+                'options' : false
+              }              
+            },
+            "data": [              
+              {
+                "manifestUri": "http://digital.library.wayne.edu/iiif_manifest/{{APIParams.PID}}",
+                "location": "Wayne State University Library Digital Collections"                
+              }              
+            ],
+            "windowObjects": [                 
+                {
+                   "loadedManifest" : "http://digital.library.wayne.edu/iiif_manifest/{{APIParams.PID}}", 
+                   "viewType" : "ImageView",
+                   "layoutOptions": {
+                      "close": false,
+                      "slotRight": false,
+                      "slotLeft": false,
+                      "slotAbove": false,
+                      "slotBelow": false
+                   },                   
+                   "annotationLayer": false,
+                   "availableViews" : ['ImageView','ThumbnailsView','ScrollView']
+                 }
+              ],
+
+          });
+     });
+    </script>
+
 </div>
-
-<div class="subcomponents"></div> 
-
+<h3 style="width:100%; text-align:center;"><a href="mirador_full.php?id={{APIParams.PID}}&type=ImageView">Open in Standalone Viewer</a></h3>
