@@ -1,7 +1,18 @@
 <!-- all_image type template -->
-<div id="LargeView" style="height:580px; width:580;">	
+<div id="LargeView">    
+  <!-- link to imageviewer.php -->  
+  <a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">    
+    <img src="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.preview}}/content" class="primary-image">
+    <meta content="http://digital.library.wayne.edu/fedora/objects/{{APIParams.PID}}/datastreams/{{singleObjectPackage.main_imageDict.thumbnail}}/content" /> 
+  </a>
+  <h3 style="width:100%; text-align:center;"><a href="imageviewer_osd.php?PID={{APIParams.PID}}&DS={{singleObjectPackage.main_imageDict.jp2}}">[Click Large Image to Zoom]</a></h3>
+</div>
 
-	<!-- Mirador -->
+<div class="subcomponents"></div> 
+
+<!-- all_image type template -->
+<!-- <div id="LargeView" style="height:580px; width:580;">	
+
 	<div id="viewer"></div>
 
     <script src="inc/mirador/mirador.js"></script>
@@ -48,4 +59,4 @@
     </script>
 
 </div>
-<h3 style="width:100%; text-align:center;"><a href="mirador_full.php?id={{APIParams.PID}}&type=ImageView">Open in Standalone Viewer</a></h3>
+<h3 style="width:100%; text-align:center;"><a href="mirador_full.php?id={{APIParams.PID}}&type=ImageView">Open in Standalone Viewer</a></h3> -->
