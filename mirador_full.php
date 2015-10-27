@@ -56,7 +56,7 @@
 											"slotBelow": false
 										},
 								"annotationLayer": false,
-								"availableViews" : ['ImageView','ThumbnailsView','ScrollView']
+								"availableViews" : ['ImageView','ThumbnailsView','ScrollView','<?php echo $_REQUEST['type']; ?>'] // a bit hacky, potentially includes ImageView twice, but works
 								}			                     
 							]
 						});
