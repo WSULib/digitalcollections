@@ -133,10 +133,10 @@ function renderPage(PID){
 			APIdata.fullText = [
 				{
 					"key" : "HTML",
-					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/HTML_FULL/content"},
+					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID+"/datastreams/HTML_FULL/content"},
 				{
 					"key" : "PDF",
-					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID_suffix+":fullbook/datastreams/PDF_FULL/content"
+					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID+"/datastreams/PDF_FULL/content"
 				},
 			];
 

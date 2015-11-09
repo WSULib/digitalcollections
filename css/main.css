@@ -1911,6 +1911,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   padding-left: 4px; }
 
 .btn {
+  background-color:#eef1f1;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
