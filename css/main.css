@@ -6647,6 +6647,16 @@ footer {
   text-decoration: underline;
 }
 
+.alert {
+  background:rgba(255, 145, 51, 0.7);
+  padding:5px;
+  text-align: center;
+  font-weight: bold;
+}
+.alert a {
+  text-decoration: underline;
+}
+
 .beta_cap {
   background:rgba(56, 220, 45, 0.25);
   padding:5px;
