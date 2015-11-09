@@ -651,6 +651,18 @@ function noMoreMeta(){
 }
 
 
+//keyboard shortcut to show hidden elements
+$(document).ready(function(){
+	Mousetrap.bind('up up down down left right left right b a enter', function(e) {
+	    $(".ks_reveal").fadeToggle();
+	    return false;
+	});
+	Mousetrap.bind('s h o w m e', function(e) {
+	    $(".ks_reveal").fadeToggle();
+	    return false;
+	});
+});
+
 
 // PROTOTYPES
 // strip info:fedora/ prefix
@@ -684,6 +696,8 @@ function toggleFacets(){
 //       cleanEmptyMetaRows();
 //     });	
 // }
+
+
 
 
 

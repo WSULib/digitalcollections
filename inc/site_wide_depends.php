@@ -32,4 +32,7 @@
 <!--Pagination-->
 <script type="text/javascript" src="inc/jquery.bootpag.min.js"></script> 
 
+<!-- Mousetrap (key binding) -->
+<script src="js/mousetrap.min.js"></script>
+
 <!-- END general site-wide JS / CSS dependencies -->
