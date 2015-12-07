@@ -12,6 +12,9 @@
 	<link rel="stylesheet" type="text/css" href="css/imageviewer_osd.css" />
 	<link rel="stylesheet" href="ico/style.css">
 
+	<!-- Mousetrap (key binding) -->
+	<script src="js/mousetrap.min.js"></script>
+
 	<meta name="viewport" content="initial-scale=1">
 	<script src="js/utilities.js"></script>	
 

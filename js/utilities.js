@@ -181,10 +181,6 @@ function URLcleaner(URL){
 	// remove mult ampersands
 	URL = URL.replace(/[&]+/g, "&");    
 	
-	// while ( URL.endsWith("start=0") ){
-	//   URL = URL.substring(0, URL.length - 8);
-	// }
-
 	while ( URL.endsWith("?q=") ){
 		URL = URL.substring(0, URL.length - 3);
 	}  
@@ -211,15 +207,20 @@ function refineByKeyWord(context){
 	//get word from box
 	var refine_input = $('#refine_input').val();  
 
-	if (context == "search"){
-		// tack on "*" to empty search  
-		if (cURL.indexOf("?q=") == -1 ){
-			cURL+="?q=*";
-		}
-		if (cURL.endsWith("?q=") == true ){
-			cURL+="*";
-		}  
-	}
+	// if (context == "search"){
+	// 	// tack on "*" to empty search  
+	// 	if (cURL.indexOf("?q=") == -1 ){
+	// 		cURL+="?q=*";
+	// 	}
+	// 	if (cURL.endsWith("?q=") == true ){
+	// 		cURL+="*";
+	// 	}
+	// }
+
+	// add parameters
+	if (cURL.indexOf("?") == -1 ){
+		cURL+="?";
+	}		
 
 	// get refine type
 	var refine_type = $("input:radio[name ='refine_type']:checked").val();	

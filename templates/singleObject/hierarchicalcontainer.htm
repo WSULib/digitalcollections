@@ -1,12 +1,10 @@
-<div class="row">
-	<div class="col-md-12">
-		<!-- <h4>Contents ({{singleObjectPackage.hierarchicalTree.children.count}})</h4> -->
-	
-		{{#singleObjectPackage.hierarchicalTree.children.results}}
-			<div class="col-md-4" style="text-align:center;">
-	        	<a href="item?id={{child}}"><img width=75 src="/imageServer?obj={{child}}&ds=THUMBNAIL"/></a>
-	        	<p>{{childTitle}}</p>
-        	</div>
-	    {{/singleObjectPackage.hierarchicalTree.children.results}}
-	</div>
-</div>
+<ul class="row-fluid objects-container" id="results_container">
+	{{#singleObjectPackage.hierarchicalTree.children.results}}
+		<li class="obj-cnt object-container-grid">
+	    	<div class="crop">
+	    		<a href="item?id={{child}}"><img src="/imageServer?obj={{child}}&ds=THUMBNAIL"/></a>	        	
+	    	</div>
+	    	<h3>{{childTitle}}</h3>
+		</li>
+	{{/singleObjectPackage.hierarchicalTree.children.results}}
+</ul>
