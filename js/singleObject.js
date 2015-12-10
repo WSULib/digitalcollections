@@ -363,9 +363,20 @@ function genHierarchicalTree(){
     // functional 
     $.get('templates/hierarchicaltree.htm',function(template){
       var html = Mustache.to_html(template, APIdata);
-      $(".related-objects").html(html);
-      cleanEmptyMetaRows();
+      $(".related-objects").html(html);      
+      // remove empties
+        if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length == 0) {
+	    	$(".parent").css('display','none');
+	    }
+	    if (APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] == 0) {
+	    	$(".siblings").css('display','none');
+	    }
+	    if (APIdata.singleObjectPackage.hierarchicalTree.children['count'] == 0) {
+	    	$(".children").css('display','none');
+	    }
     });	
+
+
 
 }
 
