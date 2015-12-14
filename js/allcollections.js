@@ -56,7 +56,7 @@ function searchGo(){
 			// load hardcoded collection tiles
 			//////////////////////////////////			
 			// VMC
-			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/imageServer?obj=wayne:collectionVMC&ds=PREVIEW&aspectResize=(480x368)","Virtual Motor City");
+			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/imageServer?obj=wayne:collectionVMC&ds=PREVIEW&aspectResize=(480x368)","Virtual Motor City (<strong>IE incompatible</strong>)");
 		}
 		function callError(response){			
 			load503(APIcallURL);
