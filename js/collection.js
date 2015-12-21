@@ -19,7 +19,7 @@ APIdata.ordered_facets = [
 // Default Search Parameters
 var searchDefs = {};
 var mergedParams = {};
-searchDefs.rows = 24;
+searchDefs.rows = 20;
 searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.fl = "id dc_title";

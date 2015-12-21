@@ -19,7 +19,7 @@ APIdata.ordered_facets = [
 // Default Search Parameters (pre form submission)
 var searchDefs = {};
 var mergedParams = {};
-searchDefs.rows = 12;
+searchDefs.rows = 20;
 searchDefs.start = 0;
 searchDefs.wt = "json";
 searchDefs.facet = 'true';
