@@ -355,10 +355,10 @@ function populateResults(templateType,destination,templateData){
 	// prescribe template locations
 	templateHash = {
 		'grid' : 'templates/gridObj.htm',
-		'list' : 'templates/listObj.htm'
+		'list' : 'templates/listObj.htm',
 	}
 
-	// alert(templateHash[templateType]);
+	// catch undefined type
 	if (templateHash[templateType] == undefined){    
 		templateHash[templateType] = "templates/listObj.htm";
 	}
@@ -569,6 +569,7 @@ function localStorageTest() {
 
 //toggle grid and list views
 function toggleResultsView(context){  
+
 	var cView = localStorage.getItem(context+"_resultsView");  
 	if (cView == "grid"){
 		localStorage.setItem(context+"_resultsView",'list');
@@ -663,6 +664,30 @@ $(document).ready(function(){
 	    return false;
 	});
 });
+
+// fire freewall js for grid view
+function gridInit(){
+	
+	// unhide
+	$("#results_container").show();
+
+	var wall = new freewall("#results_container");
+	wall.reset({
+		selector: '.tile',
+		animate: true,
+		cellW: 150,
+		cellH: 'auto',
+		onResize: function() {
+			wall.fitWidth();
+		}
+	});
+
+	var images = wall.container.find('.tile');
+	images.find('img').load(function() {
+		wall.fitWidth();
+	});
+
+}
 
 
 // PROTOTYPES

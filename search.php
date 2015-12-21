@@ -10,13 +10,15 @@
         <?php include('inc/site_wide_depends.php'); ?>
           
         <!-- page specific dependencies -->
-        <script src="js/search.js?v=<?php echo date('n-j-Y'); ?>"></script>
+        <script src="js/search.js?v=<?php echo date('n-j-Y'); ?>"></script>        
+        <script type="text/javascript" src="inc/freewall/freewall.js"></script>
+        
 
     </head>
     <body>
         <?php include('inc/header.php'); ?>
 
-        <div class="container">
+        <div class="container cached">
             <div class="sub-header">
                <h2>
                     Search Results
@@ -37,12 +39,13 @@
 			                	<select class="resPerPage">                    		
 			                		<option value=12>12</option>
 			                		<option value=20>20</option>
-			                		<option value=50>50</option>
-			                		<option value=100>100</option>
+			                		<option value=50>50</option>			                		
 			            		</select>
 			        		</li>
-			        		<li id="toggleView">
-			                	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span></li>
+			        		<!-- old selector -->
+                            <li id="toggleView">
+			                	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span>
+                            </li>                            
 			        	</ul>
 		        	</div>
 	        	</div>
@@ -75,7 +78,7 @@
                 <div class="row-fluid filtered-by refined-by">
                     <!-- fiters -->
                 </div><!-- /filtered-by -->
-                <ul class="row-fluid objects-container" id="results_container" >
+                <ul class="row-fluid objects-container" id="results_container">
                     <!-- results template -->
                 </ul>
                 <div class="pagination-centered">
@@ -90,8 +93,8 @@
         <!-- init search -->
         <script type="text/javascript">
 	        var searchParams = <?php echo json_encode($_GET); ?>;	        
-	        $(document).ready(function(){
-	        	searchGo();	        
+	        $(document).ready(function(){                
+                searchGo();
         	});
         </script>
         

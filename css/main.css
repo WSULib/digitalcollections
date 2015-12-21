@@ -2135,6 +2135,10 @@ input[type="button"].btn-block {
 #resultsControls div {
   display: inline; }
 
+#results_container {
+  display:none;
+}
+
 .fave-top {
   padding-right: 15px;
   border-right: 1px solid #aaa;
@@ -3007,6 +3011,9 @@ li:last-child.object-container-list {
     display: none; }
   .object-container-grid p {
     display: none; }
+
+
+
 
 @media (min-width: 600px) {
   .object-container-grid {
@@ -6852,8 +6859,25 @@ p.caption {
   display:none;
 }
 
+.tile {
+  width:200px;  
+  background-color:rgba(249,248,243,1);
+  border-style:solid;
+  border-width:1.5px;
+  border-color:rgba(222,222,222,1);
 
+}
 
+.tile .info {  
+  margin: 15px 10px 15px 10px;
+}
+
+.tile .info p {
+  margin-bottom:0px; 
+  max-height:400px; /* set sanity upper limit */ 
+  overflow:hidden;   
+  text-overflow:ellipsis;
+}
 
 
 

@@ -34,12 +34,13 @@ searchDefs['solrSearchContext'] = "search";
 // Set Default Views
 if (localStorageTest() == true){	
 	if (localStorage.getItem("search_resultsView") === null ) {                          
-		localStorage.setItem("search_resultsView",'list');
+		localStorage.setItem("search_resultsView",'list');		
 	}	
 }
 else {
 	$("#toggleView").remove();
 }
+
 
 // PAGE UPDATE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +96,7 @@ function searchGo(){
 	}	
 
 	// Calls API functions		
-	var APIcallURL = "/"+config.API_url;	
+	var APIcallURL = "/"+config.API_url;
 
 	$.ajax({          
 	  url: APIcallURL,	        
@@ -123,8 +124,11 @@ function searchGo(){
 				else {
 					populateResults("list","#results_container");
 				}
+				// init grid freewall code
+				gridInit();
 			}
-		});		
+		});
+
 	}
 
 	function callError(response){		

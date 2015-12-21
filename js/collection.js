@@ -77,7 +77,8 @@ function searchGo(){
 		error: callError
 		});
 
-		function callSuccess(response){			
+		function callSuccess(response){
+
 			mix(response, APIdata);						
 			$(document).ready(function(){				
 				updateCollectionTitle();
@@ -89,7 +90,10 @@ function searchGo(){
 				else{					
 					populateResults("grid",'#results_container');	
 				}
-			});								
+				// init grid freewall	
+				gridInit();
+			});	
+			
 		}
 
 		function callError(response){

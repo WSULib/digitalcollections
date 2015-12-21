@@ -12,6 +12,7 @@
       
         <!-- page specific dependencies -->        
         <script src="js/collection.js?v=<?php echo date('n-j-Y'); ?>"></script>
+        <script type="text/javascript" src="inc/freewall/freewall.js"></script>
 
     </head>
     <body>
@@ -30,9 +31,9 @@
                     <li>
                     	<span>Items per page:</span>
                     	<select class="resPerPage">                    		                    		
-                    		<option value=24>24</option>
-                    		<option value=50>50</option>
-                    		<option value=100>100</option>
+                    		<option value=12>12</option>
+                    		<option value=20>20</option>
+                            <option value=50>50</option>                    		
                 		</select>
             		</li>
             		<li id="toggleView">
