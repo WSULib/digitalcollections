@@ -133,10 +133,10 @@ function renderPage(PID){
 			APIdata.fullText = [
 				{
 					"key" : "HTML",
-					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID+"/datastreams/HTML_FULL/content"},
+					"value" : "http://"+config.APP_HOST+"/fedora/objects/"+PID+"/datastreams/HTML_FULL/content"},
 				{
 					"key" : "PDF",
-					"value" : "http://digital.library.wayne.edu/fedora/objects/"+PID+"/datastreams/PDF_FULL/content"
+					"value" : "http://"+config.APP_HOST+"/fedora/objects/"+PID+"/datastreams/PDF_FULL/content"
 				},
 			];
 
@@ -189,23 +189,7 @@ function finishRendering(){
 	  $.get('templates/singleObject/image.htm',function(template){
 		var html = Mustache.to_html(template, APIdata);
 		$(".primary-object-container").html(html);
-	  }).done(function(){
-
-	  	// REMOVE FOR NEW VIEWERS
-	 //  	// if object has 1+ components, load their template
-		// if (APIdata.singleObjectPackage.hasPartOf.results.length > 1){
-		// 	$.get('templates/singleObject/imageParts.htm',function(template){
-		// 		var html = Mustache.to_html(template, APIdata);
-		// 		$(".subcomponents").html(html);
-		// 	  }).done(function(){
-		// 		  // finally, paint when images finish
-		// 		  $(".subcomponents").imagesLoaded().done(function(){
-		// 		  	$(".subcomponents").css('visibility','visible');	
-		// 		  })
-		// 	  });
-		//   }
-		  
-	  });
+	  })
 	  break;    
 	//eBooks
 	case "WSUebook":
@@ -319,7 +303,7 @@ function addFav(){
 	  
 	}
   else {
-	bootbox.alert("User not found.  Please <a style='color:green;' href='https://digital.library.wayne.edu/digitalcollections/login.php'><strong>login or sign up</strong></a> to save favorites.");    
+	bootbox.alert("User not found.  Please <a style='color:green;' href='https://"+config.APP_HOST+"/digitalcollections/login.php'><strong>login or sign up</strong></a> to save favorites.");    
   }  
 }
 

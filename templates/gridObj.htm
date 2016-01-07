@@ -1,9 +1,9 @@
 <!-- freewall object -->
 <div class='tile'>
-	<a href="item?id={{id}}">		
-		<img src='http://digital.library.wayne.edu/loris/fedora:{{id}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{dc_title}}">
+	<a href="item?id={{solr_data.id}}">		
+		<img src='http://{{config.APP_HOST}}/loris/fedora:{{solr_data.id}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{solr_data.dc_title}}">
 		<div class="info">
-			<p>{{dc_title}}</hp>
+			<p>{{solr_data.dc_title}}</hp>
 		</div>
 	</a>
 </div>

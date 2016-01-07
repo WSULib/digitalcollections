@@ -1,18 +1,18 @@
 <li class="obj-cnt object-container-list">
     <div class="crop">
-        <a href="item?id={{id}}">
-            <img src='http://digital.library.wayne.edu/loris/fedora:{{id}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{dc_title}}">            
+        <a href="item?id={{solr_data.id}}">
+            <img src='http://{{config.APP_HOST}}/loris/fedora:{{solr_data.id}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{solr_data.dc_title}}">            
         </a>
     </div>
     <h3>
-        <a href="item?id={{id}}">{{dc_title}}</a>
+        <a href="item?id={{solr_data.id}}">{{solr_data.dc_title}}</a>
     </h3>
     <h4>
         {{dc_date}}
     </h4>
     <p class="truncate">        	
-    	{{#mods_abstract_ms}}
+    	{{#solr_data.mods_abstract_ms}}
 		{{{.}}}</br></br>
-		{{/mods_abstract_ms}}
+		{{/solr_data.mods_abstract_ms}}
     </p>    
 </li>

@@ -364,6 +364,7 @@ function populateResults(templateType,destination,templateData){
 	}
 	
 	//push results to results_container
+	console.log(config);
 	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
 			$.ajax({                
 				url: templateHash[templateType],      
@@ -371,10 +372,18 @@ function populateResults(templateType,destination,templateData){
 				async:false,
 				success: function(response){        
 					var template = response;
-					if (typeof(templateData) == 'undefined') {          
-						var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);         
+					if (typeof(templateData) == 'undefined') {
+						template_package = {
+							"config":config,
+							"solr_data":APIdata.solrSearch.response.docs[i]
+						}
+						var html = Mustache.to_html(template, template_package);         
 					}
 					else {
+						template_package = {
+							"config":config,
+							"solr_data":templateData
+						}
 						var html = Mustache.to_html(template, templateData);           
 					}        
 					$(destination).append(html);
@@ -458,6 +467,7 @@ function renderSerialNavBlock(){
 		async:true,
 		success: function(response){        
 			var template = response;
+			APIdata['config'] = config;
 			var html = Mustache.to_html(template, APIdata);       
 			$("#serial-nav").append(html);      
 			renderMain();

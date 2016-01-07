@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 ini_set('default_socket_timeout', 4);
+require("config/config_php.php");
 ?>
 
 <!doctype html>
@@ -84,7 +85,7 @@ ini_set('default_socket_timeout', 4);
 					}
 				}
 				else {
-					echo "<div class='wp-caption aligncenter'><a href='http://digital.library.wayne.edu/digitalcollections/item?id=wayne:CFAIEB01e710'><img class=' ' alt='' src='http://digital.library.wayne.edu/imageServer?obj=wayne:CFAIEB01e710&amp;ds=PREVIEW' width='625' height='478'></a><p class='wp-caption-text'>“owner Ed Wynn in rumble seat with mock fire chief hat.” from the Changing Face of the Auto Industry, in Wayne State Library System’s Digital Collections.</p></div>";
+					echo "<div class='wp-caption aligncenter'><a href='http://<?php echo $APP_HOST; ?>/digitalcollections/item?id=wayne:CFAIEB01e710'><img class=' ' alt='' src='http://<?php echo $APP_HOST; ?>/imageServer?obj=wayne:CFAIEB01e710&amp;ds=PREVIEW' width='625' height='478'></a><p class='wp-caption-text'>“owner Ed Wynn in rumble seat with mock fire chief hat.” from the Changing Face of the Auto Industry, in Wayne State Library System’s Digital Collections.</p></div>";
 				}
 				
 			  ?>

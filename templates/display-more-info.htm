@@ -158,7 +158,7 @@
 	<tr>
 		<!-- <td><img src="img/iiif_logo.png" height=25 /></td> -->
 		<td>IIIF</td>
-		<td><a href="http://digital.library.wayne.edu/iiif_manifest/{{APIParams.PID}}">Manifest</a></td>
+		<td><a href="http://{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">Manifest</a></td>
 	</tr>  
 
 	<!--Downloads-->
@@ -166,7 +166,7 @@
 		<td>Downloads</td>
 		<td>
 			{{#singleObjectPackage.parts_imageDict.sorted}}
-				<a href="http://digital.library.wayne.edu/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="http://digital.library.wayne.edu/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
+				<a href="http://{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="http://{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
 			{{/singleObjectPackage.parts_imageDict.sorted}}
 		</td>
 	</tr>                                  
