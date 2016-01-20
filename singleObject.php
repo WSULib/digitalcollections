@@ -22,7 +22,8 @@ $objectPID = $_REQUEST['id'];
           
         <!-- page specific dependencies -->
         <script src="js/singleObject.js?v=<?php echo date('n-j-Y'); ?>"></script>        
-        <script type="text/javascript">var switchTo5x=true;</script>        
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="inc/freewall/freewall.js"></script>
 
     </head>
 
