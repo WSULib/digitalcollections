@@ -1,19 +1,11 @@
-<ul class="row-fluid objects-container" id="results_container">
-	{{#singleObjectPackage.hierarchicalTree.children.results}}
-		<!-- <li class="obj-cnt object-container-grid">
-	    	<div class="crop">
-	    		<a href="item?id={{child}}"><img src="/imageServer?obj={{child}}&ds=THUMBNAIL"/></a>	        	
-	    	</div>
-	    	<h3>{{childTitle}}</h3>
-		</li> -->
-		<!-- freewall object -->
-		<div class='tile'>
-			<a href="item?id={{solr_data.id}}">		
-				<img src='http://{{config.APP_HOST}}/loris/fedora:{{child}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{solr_data.dc_title}}">
-				<div class="info">
-					<p>{{childTitle}}</hp>
-				</div>
-			</a>
-		</div>
-	{{/singleObjectPackage.hierarchicalTree.children.results}}
+<!-- default -->
+<ul class="row-fluid objects-container" id="results_container" style="display:block;">
+    {{#singleObjectPackage.hierarchicalTree.children.results}}
+            <li class="obj-cnt object-container-grid">
+            <div class="crop">
+                    <a href="item?id={{child}}"><img src="/imageServer?obj={{child}}&ds=THUMBNAIL"/></a>
+            </div>
+            <h3>{{childTitle}}</h3>
+            </li>
+    {{/singleObjectPackage.hierarchicalTree.children.results}}
 </ul>

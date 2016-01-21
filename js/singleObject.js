@@ -248,7 +248,7 @@ function finishRendering(){
 			$(".primary-object-container").html(html);
 		  });	
 	  	// generate related objects (ADDRESS IN V2)
-		genHierarchicalTree();
+		genHierarchicalTree();		
 	  }             
 	  break;        
 	default:

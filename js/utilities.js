@@ -675,8 +675,10 @@ $(document).ready(function(){
 	});
 });
 
+
 // fire freewall js for grid view
 function gridInit(){
+	console.log('firing!');
 	
 	// unhide
 	$("#results_container").show();
@@ -684,7 +686,32 @@ function gridInit(){
 	var wall = new freewall("#results_container");
 	wall.reset({
 		selector: '.tile',
-		animate: true,
+		animate: false,
+		cellW: 200,
+		cellH: 'auto',
+		onResize: function() {
+			wall.fitWidth();
+		}
+	});
+
+	var images = wall.container.find('.tile');
+	images.find('img').load(function() {
+		wall.fitWidth();
+	});
+
+}
+
+// fire freewall js for grid view
+function hierarchical_gridInit(){
+	console.log('hierarchical firing!');
+	
+	// unhide
+	$("#results_container").show();
+
+	var wall = new freewall("#results_container");
+	wall.reset({
+		selector: '.tile',
+		animate: false,
 		cellW: 150,
 		cellH: 'auto',
 		onResize: function() {

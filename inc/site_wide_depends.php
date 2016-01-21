@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="ico/style.css">
 
 <!-- Typography -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,100,100italic,300,300italic,400italic,500,500italic,700,700italic|Marcellus+SC' rel='stylesheet' type='text/css'>
+<link href='css/fonts.css' rel='stylesheet' type='text/css'>
 
 <!-- jQuery -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
 
 <!-- WSUDOR -->
 <script src="config/config.js?v=<?php echo date('n-j-Y'); ?>" type="text/javascript"></script>
