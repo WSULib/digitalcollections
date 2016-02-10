@@ -477,6 +477,80 @@ function renderSerialNavBlock(){
 }
 
 
+// render serials navigation block
+function test_renderSerialNavBlock(){  
+
+	function prepareSerialWalk(results){
+
+		var vols = {};
+		var volsArray = []; 
+		var sortingArray = [];
+		var volNames = {};
+
+		for (var i=0; i<results.length; i++){
+			var node = results[i];
+			// push to sorting array
+			if (sortingArray.indexOf(node.volume) == -1){
+				sortingArray.push(node.volume);
+				volNames[node.volume] = node.volumeTitle;        
+			}     
+			// push to volumes object
+			if (vols.hasOwnProperty(node.volume) == false ){
+				vols[node.volume] = [];                   
+				var temp = {};
+				temp.issuePID = node.issue;
+				temp.issueTitle = node.issueTitle;        
+				vols[node.volume].push(temp);     
+			}
+			else{        
+				var temp = {};
+				temp.issuePID = node.issue;
+				temp.issueTitle = node.issueTitle;        
+				vols[node.volume].push(temp);
+			}
+		} 
+
+		// push key-value pair
+		APIdata.serialMeta.keyVols = vols;
+
+		// alphanumeric sort sort by volume name
+		// sortingArray.alphanumSort();    
+		sortingArray.sort(sortAlphaNum);
+		APIdata.sortingArray = sortingArray;    
+		
+		// pluck to array
+		for (var i=0; i<APIdata.sortingArray.length; i++){
+			var wholeVolObj = {};
+			wholeVolObj.volPID = APIdata.sortingArray[i];
+			wholeVolObj.volTitle = volNames[APIdata.sortingArray[i]]
+			wholeVolObj.issuesArray = vols[APIdata.sortingArray[i]]
+			volsArray.push(wholeVolObj)
+		}
+
+		// push volNames to global
+		APIdata.serialMeta.volNames = volNames;
+
+		APIdata.serialMeta.cleanVols = volsArray;
+	}
+
+	prepareSerialWalk(APIdata.serialMeta.serialWalk.results);
+
+	$.ajax({                
+		url: "templates/serial-nav-full.htm",      
+		dataType: 'html',            
+		async:true,
+		success: function(response){        
+			var template = response;
+			APIdata['config'] = config;
+			var html = Mustache.to_html(template, APIdata);
+			$(".related-objects").append("<div id='serial-nav'></div>");
+			$("#serial-nav").append(html);      
+			renderMain();
+		}     
+	});  
+
+}
+
 
 // cleans empty rows from "more-info" pane
 function cleanEmptyMetaRows(){  	

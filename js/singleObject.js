@@ -190,7 +190,7 @@ function finishRendering(){
 		var html = Mustache.to_html(template, APIdata);
 		$(".primary-object-container").html(html);
 	  })
-	  break;    
+	  break;
 	//eBooks
 	case "WSUebook":
 	  $.get('templates/singleObject/WSUebook.htm',function(template){
@@ -228,29 +228,30 @@ function finishRendering(){
 		$(".primary-object-container").html(html);
 	  }); 
 	  break;
+
+	/* ---------------------------------------------------------------------------------------------- */
 	//Archive
 	case "HierarchicalFiles":
-
 	  // render file
 	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "document") {
 	  	$.get('templates/singleObject/hierarchicalfile.htm',function(template){
 			var html = Mustache.to_html(template, APIdata);
 			$(".primary-object-container").html(html);
 		  });
-	    // generate related objects (ADDRESS IN V2)
 		genHierarchicalTree();
 	  }
-	  
 	  // render container
 	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "container") {
 	  	$.get('templates/singleObject/hierarchicalcontainer.htm',function(template){
 			var html = Mustache.to_html(template, APIdata);
 			$(".primary-object-container").html(html);
 		  });	
-	  	// generate related objects (ADDRESS IN V2)
 		genHierarchicalTree();		
 	  }             
-	  break;        
+	  break;
+	  /* ---------------------------------------------------------------------------------------------- */   
+
+	// If none known, default to unkwown type    
 	default:
 	  unknownType();
   }

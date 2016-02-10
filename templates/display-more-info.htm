@@ -146,19 +146,17 @@
 	<tr>
 		<td>Physical Description:</td>
 		<td>{{singleObjectPackage.objectSolrDoc.mods_otherFormat_physLocale_ms.0}}</td>
-	</tr>
-
-	<!--MODS, full record-->
-	<tr>
-		<td>Full record:</td>
-		<td><a href="/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">MODS</a></td>
-	</tr>
+	</tr>	
 
 	<!--IIIF Manifest-->
 	<tr>
 		<!-- <td><img src="img/iiif_logo.png" height=25 /></td> -->
-		<td>IIIF</td>
-		<td><a href="http://{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">Manifest</a></td>
+		<td>Structured Data</td>
+		<td>
+			<a href="/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">MODS</a><br>
+			<a href="http://{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a><br>
+			<a href="http://digital.library.wayne.edu/WSUAPI-dev?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
+		</td>		
 	</tr>  
 
 	<!--Downloads-->

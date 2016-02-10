@@ -5,7 +5,7 @@
         </a>
     </div>
     <h3>
-        <a href="item?id={{solr_data.id}}">{{solr_data.dc_title}}</a>
+        <a href="item?id={{solr_data.id}}">{{solr_data.dc_title}}<br>{{#solr_data.mods_volume_ms.0}}Vol. {{solr_data.mods_volume_ms.0}}, {{/solr_data.mods_volume_ms.0}} {{#solr_data.mods_issue_ms.0}}Iss. {{solr_data.mods_issue_ms.0}}{{/solr_data.mods_issue_ms.0}}</a>
     </h3>
     <h4>
         {{dc_date}}
