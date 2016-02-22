@@ -56,7 +56,7 @@ function searchGo(){
 			// load hardcoded collection tiles
 			//////////////////////////////////			
 			// VMC
-			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","http://digital.library.wayne.edu/loris/fedora:wayne:collectionVMC%7CPREVIEW/full/460,/0/default.jpg","Virtual Motor City (<strong>IE incompatible</strong>)");
+			loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/loris/fedora:wayne:collectionVMC%7CPREVIEW/full/460,/0/default.jpg","Virtual Motor City (<strong>IE incompatible</strong>)");
 		}
 		function callError(response){			
 			load503(APIcallURL);
