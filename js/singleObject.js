@@ -309,14 +309,7 @@ function addFav(){
 }
 
 
-// swap LargeImage
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateLargeView(self,ds_id){        
-  $("#LargeView a img").attr('src','/imageServer?obj='+PID+'&ds='+APIdata.singleObjectPackage.parts_imageDict[ds_id].preview+'&aspectResize=(1024x768)');
-  $("#LargeView a").attr('href','/digitalcollections/imageviewer_osd.php?PID='+PID+'&DS='+APIdata.singleObjectPackage.parts_imageDict[ds_id].jp2);
-}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // show #container when things load and templates rendered
 $(document).ready(function(){
   $("#container").show();    
