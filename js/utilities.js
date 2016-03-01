@@ -208,15 +208,9 @@ function refineByKeyWord(context, open_type){
 	// non-search view (e.g. serial)
 	if (context == 'serial'){
 
-		// construct path that points to search
-		var path_parts = window.location.pathname.split('/');
-		path_parts[path_parts.length - 1] = 'search';
-		path_whole = path_parts.join('/');
-		var cURL = window.location.origin + path_whole;
-
-		// limit to collection
-		cURL = cURL+'?fq[]=rels_isMemberOfCollection:"info:fedora/'+APIdata.serialMeta.APIParams.PID[0]+'"';
-		console.log(cURL);
+		// construct path that points to collection page
+		var cURL = window.location.pathname;		
+		cURL = cURL+'?id='+APIdata.serialMeta.APIParams.PID[0]+'&rendered=collection';		
 
 		// set solr field
 		var solr_field = 'int_fullText';
@@ -384,7 +378,7 @@ function populateResults(templateType,destination,templateData){
 	}
 	
 	//push results to results_container
-	console.log(config);
+	// console.log(config);
 	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
 			$.ajax({                
 				url: templateHash[templateType],      
@@ -772,7 +766,6 @@ $(document).ready(function(){
 
 // fire freewall js for grid view
 function gridInit(){
-	console.log('firing!');
 	
 	// unhide
 	$("#results_container").show();

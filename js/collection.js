@@ -108,7 +108,7 @@ function updateCollectionTitle(){
 
 	var collectionTitle = "info:fedora/"+searchParams['id'];
 	if (solrTranslationHash[collectionTitle] !== 'undefined'){
-		$("h2#collection_title").html(solrTranslationHash[collectionTitle]);
+		$("h2#collection_title").html("<a href='item?id="+searchParams['id']+"'>"+solrTranslationHash[collectionTitle]+"</a>");
 	}
 
 	else {
