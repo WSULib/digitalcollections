@@ -1,5 +1,5 @@
             <h3 class="title">
-                    <a href="item?id={{serialMeta.solrGetFedDoc.response.docs.0.id}}">{{serialMeta.solrGetFedDoc.response.docs.0.dc_title.0}}</a> &raquo; {{serialMeta.currentTitle}}
+                    <a style="text-decoration:underline;" href="item?id={{serialMeta.solrGetFedDoc.response.docs.0.id}}">{{serialMeta.solrGetFedDoc.response.docs.0.dc_title.0}}</a> &raquo; {{serialMeta.currentTitle}}
                 </h3>
 
                 <ul class="row-fluid issues-container">
@@ -7,7 +7,7 @@
                     <li class="issue-container-grid">
                         <div class="crop">
                             <a href="item?id={{issuePID}}">
-                                <img src="/imageServer?obj={{issuePID}}&ds=THUMBNAIL" alt="{{issueTitle}}">
+                                <img src="http://digital.library.wayne.edu/loris/fedora:{{issuePID}}|THUMBNAIL/full/full/0/default.jpg" alt="{{issueTitle}}">
                             </a>
                         </div>
 

@@ -200,39 +200,50 @@ function URLcleaner(URL){
 
 // refine by keyword function, triggered by keyword search form
 // radio buttons for metadata, fulltext, both
-function refineByKeyWord(context){	
+function refineByKeyWord(context, open_type){	
 
-	var cURL = window.location.href;  
+	//get search terms
+	var refine_input = $('#refine_input').val();
 
-	//get word from box
-	var refine_input = $('#refine_input').val();  
+	// non-search view (e.g. serial)
+	if (context == 'serial'){
 
-	// if (context == "search"){
-	// 	// tack on "*" to empty search  
-	// 	if (cURL.indexOf("?q=") == -1 ){
-	// 		cURL+="?q=*";
-	// 	}
-	// 	if (cURL.endsWith("?q=") == true ){
-	// 		cURL+="*";
-	// 	}
-	// }
+		// construct path that points to search
+		var path_parts = window.location.pathname.split('/');
+		path_parts[path_parts.length - 1] = 'search';
+		path_whole = path_parts.join('/');
+		var cURL = window.location.origin + path_whole;
+
+		// limit to collection
+		cURL = cURL+'?fq[]=rels_isMemberOfCollection:"info:fedora/'+APIdata.serialMeta.APIParams.PID[0]+'"';
+		console.log(cURL);
+
+		// set solr field
+		var solr_field = 'int_fullText';
+	}
+
+	// search or collection view
+	else {
+		var cURL = window.location.href;		
+
+		// get refine type
+		var refine_type = $("input:radio[name ='refine_type']:checked").val();	
+		if ( refine_type == "fulltext" ) {
+			var solr_field = "int_fullText";
+		}  
+		else if ( refine_type == "metadata"){
+			var solr_field = "metadata";
+		}
+		else {
+			var solr_field = "text";
+		}
+
+	}
 
 	// add parameters
 	if (cURL.indexOf("?") == -1 ){
 		cURL+="?";
-	}		
-
-	// get refine type
-	var refine_type = $("input:radio[name ='refine_type']:checked").val();	
-	if ( refine_type == "fulltext" ) {
-		var solr_field = "int_fullText";
-	}  
-	else if ( refine_type == "metadata"){
-		var solr_field = "metadata";
-	}
-	else {
-		var solr_field = "text";
-	}
+	}	
 
 	// write new URL with correct solr fq
 	if (refine_input !== ""){
@@ -244,7 +255,16 @@ function refineByKeyWord(context){
 
 	// refresh page 
 	nURL = URLcleaner(nURL);
-	window.location = nURL;
+
+	if (open_type == 'new'){
+		window.open(
+		  nURL,
+		  '_blank' // <- This is what makes it open in a new window.
+		);
+	}
+	else {
+		window.location = nURL;	
+	}
 }
 
 // update page functions
