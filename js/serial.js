@@ -52,9 +52,10 @@ function renderMain(){
 		url: "templates/serial-root-content.htm",      
 		dataType: 'html',            
 		async:true,
-		success: function(response){        
+		success: function(response){
+			console.log(APIdata);
 			var template = response;
-			var html = Mustache.to_html(template, APIdata);       
+			var html = Mustache.to_html(template, APIdata); 			
 			$("#serial-root-content").append(html);
 			cleanEmptyMetaRows();
 		}     
