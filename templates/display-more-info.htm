@@ -83,9 +83,26 @@
 	<tr>
 		<td>Rights:</td>
 		<td>
+
+		<!-- Rights specific to the Digital Object trump collection object rights
+		This is reflected in logic below. -->
+
+		<!-- Object Rights -->		
 		{{#singleObjectPackage.objectSolrDoc.dc_rights}}
+			<strong>Digital Objects Rights:</strong></br>
 			{{{.}}}</br></br>
 		{{/singleObjectPackage.objectSolrDoc.dc_rights}}
+		
+		<!-- Collection Rights -->
+		{{^singleObjectPackage.objectSolrDoc.dc_rights}}
+			{{#singleObjectPackage.getCollectionMeta}}
+				<strong>Rights from collection, "<a href="item?id={{subject}}">{{dc_title.0}}</a></strong>"</br>
+				{{#dc_rights}}
+					{{{.}}}</br></br>
+				{{/dc_rights}}
+			{{/singleObjectPackage.getCollectionMeta}}
+		{{/singleObjectPackage.objectSolrDoc.dc_rights}}
+
 		</td>
 	</tr>
 
