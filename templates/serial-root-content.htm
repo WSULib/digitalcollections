@@ -11,17 +11,21 @@
     {{&serialMeta.solrGetFedDoc.response.docs.0.mods_abstract_ms.0}}    
 </p>
 
-<p class="volumes-header"><span>Volumes in the Collection</span></p>
+<div style="margin-top:70px;"></div>
+
+<p class="volumes-header"><span><strong>Volumes in the Collection</strong></span></p>
 
 <ul class="toc-2-col">
 
     {{#serialMeta.cleanVols}}
 
-    <li class="serial-volume"><i class="icon-serial"></i><a href="item?id={{volPID}}"><!-- Volume {{#counter.count}}{{/counter.count}} -->{{volTitle}}</a></li>
+    <li class="serial-volume"><a href="item?id={{volPID}}"><i style="font-size:2em;" class="icon-serial"></i>{{volTitle}}</a></li>
     
     {{/serialMeta.cleanVols}}
 
 </ul>
+
+<div style="margin-top:70px;"></div>
 
 <div class="metadata">
     <table class="table table-hover">
