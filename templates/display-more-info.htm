@@ -171,8 +171,8 @@
 		<td>Structured Data</td>
 		<td>
 			<a href="/fedora/objects/{{APIParams.PID}}/datastreams/MODS/content">MODS</a><br>
-			<a href="http://{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a><br>
-			<a href="http://{{config.APP_HOST}}/WSUAPI?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
+			<a href="//{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a><br>
+			<a href="//{{config.APP_HOST}}/WSUAPI?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
 		</td>		
 	</tr>  
 
@@ -181,7 +181,7 @@
 		<td>Downloads</td>
 		<td>
 			{{#singleObjectPackage.parts_imageDict.sorted}}
-				<a href="http://{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="http://{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
+				<a href="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
 			{{/singleObjectPackage.parts_imageDict.sorted}}
 		</td>
 	</tr>                                  
