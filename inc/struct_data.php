@@ -71,13 +71,13 @@ function concatRepeaters($field){
 </script>
 <!--end piwik-->
 <!-- hidden schema.org stuctured data -->
-<div  id="struct_data" style="display:none;" itemscope itemtype="http://schema.org/CreativeWork">
+<div  id="struct_data" style="display:none;" itemscope itemtype="https://schema.org/CreativeWork">
 <span itemprop="name"><?php echo concatRepeaters($response['response']['docs'][0]['dc_title']); ?></span>
 <span itemprop="description"><?php echo concatRepeaters($response['response']['docs'][0]['dc_description']); ?></span>		
 <span itemprop="text"><?php echo concatRepeaters($response['response']['docs'][0]['mods_abstract_transcription_ms']); ?></span>
 <span itemprop="genre"><?php echo concatRepeaters($response['response']['docs'][0]['mods_resource_type_ms']); ?></span>
 <span itemprop="dateCreated"><?php echo concatRepeaters($response['response']['docs'][0]['facet_mods_year']); ?></span>
-<img src="http://<?php echo $APP_HOST; ?>/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content" class="primary-image" itemprop="image">
+<img src="//<?php echo $APP_HOST; ?>/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content" class="primary-image" itemprop="image">
 <meta itemprop="thumbnailUrl" content="http://<?php echo $APP_HOST; ?>/fedora/objects/<?php echo $objectPID; ?>/THUMBNAIL/content">
 </div>
 <!-- ******************************** -->
