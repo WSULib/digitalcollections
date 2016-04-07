@@ -44,12 +44,12 @@ require("config/config_php.php");
 							},
 							"data": [
 								{
-									"manifestUri": "http://<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
+									"manifestUri": "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
 									"location": "Wayne State University Library Digital Collections"}              
 								],
 							"windowObjects": [                 
 								{
-									"loadedManifest" : "http://<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
+									"loadedManifest" : "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
 									"viewType" : "<?php echo $_REQUEST['type']; ?>",
 									"layoutOptions": 
 										{
