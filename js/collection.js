@@ -22,7 +22,6 @@ var mergedParams = {};
 searchDefs.rows = 20;
 searchDefs.start = 0;
 searchDefs.wt = "json";
-searchDefs.fl = "id dc_title";
 searchDefs.sort = "id asc";
 searchDefs.facet = 'true';
 searchDefs['facets[]'] = [];
