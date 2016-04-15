@@ -8,7 +8,7 @@ require("config/config_php.php");
     <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">
     <link rel="stylesheet" type="text/css" href="css/mirador_local.css">
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="config/config.js" type="text/javascript"></script>
 	
 	<script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
