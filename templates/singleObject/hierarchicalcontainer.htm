@@ -3,7 +3,7 @@
     {{#singleObjectPackage.hierarchicalTree.children.results}}
             <li class="obj-cnt object-container-grid">
             <div class="crop">
-                    <a href="item?id={{child}}"><img src="//digital.library.wayne.edu/loris/fedora:{{child}}|THUMBNAIL/full/full/0/default.jpg"/></a>
+                    <a href="item?id={{child}}"><img src="//{{config.APP_HOST}}/loris/fedora:{{child}}|THUMBNAIL/full/full/0/default.jpg"/></a>
             </div>
             <h3>{{childTitle}}</h3>
             </li>

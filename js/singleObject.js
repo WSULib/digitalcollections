@@ -211,15 +211,7 @@ function finishRendering(){
 		var html = Mustache.to_html(template, APIdata);
 		$(".primary-object-container").html(html);
 	  }); 
-	  break;       
-	//Document
-	case "Document":
-	  unknownType();        
-	  $.get('templates/singleObject/document.htm',function(template){
-		var html = Mustache.to_html(template, APIdata);
-		$(".primary-object-container").html(html);
-	  }); 
-	  break;  
+	  break;
 	//Video
 	case "Video":
 	  // unknownType();        
@@ -228,9 +220,26 @@ function finishRendering(){
 		$(".primary-object-container").html(html);
 	  }); 
 	  break;
+    //Container
+	case "Container":
+		$.get('templates/singleObject/hierarchicalcontainer.htm',function(template){
+			var html = Mustache.to_html(template, APIdata);
+			$(".primary-object-container").html(html);
+		});
+		genHierarchicalTree();	  
+		break;
+    //Document
+	case "Document":
+		$.get('templates/singleObject/hierarchicalfile.htm',function(template){
+			var html = Mustache.to_html(template, APIdata);
+			$(".primary-object-container").html(html);
+		});
+		genHierarchicalTree();
+		break;
 
-	/* ---------------------------------------------------------------------------------------------- */
+	 /* ---------------------------------------------------------------------------------------------- */
 	//Archive
+    /*
 	case "HierarchicalFiles":
 	  // render file
 	  if (APIdata.singleObjectPackage.objectSolrDoc.rels_hierarchicalType[0] == "document") {
@@ -249,6 +258,9 @@ function finishRendering(){
 		genHierarchicalTree();		
 	  }             
 	  break;
+	  */
+
+
 	  /* ---------------------------------------------------------------------------------------------- */   
 
 	// If none known, default to unkwown type    
