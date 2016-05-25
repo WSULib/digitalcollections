@@ -10,9 +10,12 @@
     <h4>
         {{dc_date}}
     </h4>
-    <p class="truncate">        	
+    <p class="truncate" style="margin:0px;">        	
     	{{#solr_data.mods_abstract_ms}}
 		{{{.}}}</br></br>
 		{{/solr_data.mods_abstract_ms}}
     </p>    
+    {{#solr_data.rels_isSensitive}}
+        <span class="sensitive_search" style="max-width:300px;"><a href="sensitive.php">Warning: Sensitive Material</a></span>
+    {{/solr_data.rels_isSensitive}}
 </li>

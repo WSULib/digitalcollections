@@ -7,7 +7,7 @@
     {{singleObjectPackage.objectSolrDoc.mods_key_date_year.0}}
 </h4>
 
-<p class="description">    
+<p class="description">
     <!-- {{#singleObjectPackage.objectSolrDoc.dc_description}}
     {{{.}}}</br></br>
     {{/singleObjectPackage.objectSolrDoc.dc_description}} -->
@@ -20,6 +20,15 @@
         <span><strong>See Transcription Below</strong></span>
     {{/singleObjectPackage.objectSolrDoc.mods_note_transcription_ms}}
 </p>
+
+<!-- ########################################### -->
+<style type="text/css">
+    
+</style>
+
+{{#singleObjectPackage.objectSolrDoc.rels_isSensitive}}
+    <p class="sensitive">Warning: Sensitive Material<br><a href="sensitive.php">Click to learn more</a></p>
+{{/singleObjectPackage.objectSolrDoc.rels_isSensitive}}
 
 <ul class="buttons">    
     
