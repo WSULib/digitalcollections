@@ -6906,9 +6906,11 @@ p.caption {
   margin:10px 0px 10px 0px;
   font-size: 13px;
   line-height: 1.4;
+  margin-left:10px;
+  margin-right:10px;
 }
 
-.sensitive a {
+.sensitive a, .sensitive_search a {
   text-decoration: underline;
 }
 

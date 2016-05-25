@@ -5,11 +5,11 @@
 		<div class="info">
 			<p>{{solr_data.dc_title}}</hp>				
 			<p>{{#solr_data.mods_volume_ms.0}}Vol. {{solr_data.mods_volume_ms.0}}, {{/solr_data.mods_volume_ms.0}} {{#solr_data.mods_issue_ms.0}}Iss. {{solr_data.mods_issue_ms.0}}{{/solr_data.mods_issue_ms.0}}</p>			
-			
+			{{#solr_data.rels_isSensitive}}
+		        <p style="margin-bottom:30px;" class="sensitive_search"><a href="sensitive.php" target="_blank" >Sensitive Material</a></p>
+		    {{/solr_data.rels_isSensitive}}	
 		</div>
-		{{#solr_data.rels_isSensitive}}
-	        <p class="sensitive_search"><a href="sensitive.php">Warning: Sensitive Material</a></p>
-	    {{/solr_data.rels_isSensitive}}
+		
 
 	</a>
 </div>
