@@ -1,7 +1,9 @@
 <li class="obj-cnt object-container-list">
     <div class="crop">
         <a href="item?id={{solr_data.id}}">
-            <img src='//{{config.APP_HOST}}/loris/fedora:{{solr_data.id}}|THUMBNAIL/full/full/0/default.png' width='100%' alt="{{solr_data.dc_title}}">            
+            <!-- <div class="{{#solr_data.rels_isSensitiveContent}}sensitive_content{{/solr_data.rels_isSensitiveContent}}"> -->
+                <img src='//{{config.APP_HOST}}/loris/fedora:{{solr_data.id}}|THUMBNAIL/full/full/0/default.jpg' width='100%' alt="{{solr_data.dc_title}}">
+            <!-- </div> -->
         </a>
     </div>
     <h3>
@@ -10,9 +12,12 @@
     <h4>
         {{dc_date}}
     </h4>
-    <p class="truncate">        	
+    <p class="truncate" style="margin:0px;">        	
     	{{#solr_data.mods_abstract_ms}}
 		{{{.}}}</br></br>
 		{{/solr_data.mods_abstract_ms}}
     </p>    
+    {{#solr_data.rels_isSensitive}}
+        <span class="sensitive_search" style="margin-left:0px;"><a target="_blank" href="sensitive.php">Sensitive Material</a></span>
+    {{/solr_data.rels_isSensitive}}
 </li>

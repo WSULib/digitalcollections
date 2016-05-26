@@ -106,6 +106,16 @@
 		</td>
 	</tr>
 
+	<!-- Credit Line Note -->
+	<tr>
+		<td>Credit:</td>
+		<td>
+			{{#singleObjectPackage.objectSolrDoc.mods_note_creditLine_ms}}				
+				{{.}}<br>
+			{{/singleObjectPackage.objectSolrDoc.mods_note_creditLine_ms}}
+		</td>
+	</tr>
+
 	<!--Components-->
 	<tr>
 		<td>Components:</td>
@@ -161,8 +171,18 @@
 
 	<!--Physical Archival Location-->
 	<tr>
-		<td>Physical Description:</td>
-		<td>{{singleObjectPackage.objectSolrDoc.mods_otherFormat_physLocale_ms.0}}</td>
+		<td>Other Formats:</td>
+		<td>
+			{{#singleObjectPackage.objectSolrDoc.mods_otherFormat_title_ms}}
+				<strong>Title:</strong> {{{.}}}<br><br>
+			{{/singleObjectPackage.objectSolrDoc.mods_otherFormat_title_ms}}
+			{{#singleObjectPackage.objectSolrDoc.mods_otherFormat_physLocale_ms}}
+				<strong>Location:</strong> {{{.}}}<br><br>
+			{{/singleObjectPackage.objectSolrDoc.mods_otherFormat_physLocale_ms}}
+			{{#singleObjectPackage.objectSolrDoc.mods_otherFormat_note_ms}}
+				<strong>Note:</strong> {{{.}}}
+			{{/singleObjectPackage.objectSolrDoc.mods_otherFormat_note_ms}}			
+		</td>
 	</tr>	
 
 	<!--IIIF Manifest-->

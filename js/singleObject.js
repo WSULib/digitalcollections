@@ -131,7 +131,7 @@ function renderPage(PID) {
 
             // Collection objects
             if (APIdata.translated.preferredContentModelPretty == "Collection") {
-                noMoreMeta();
+                // noMoreMeta();
             }
         }
 
