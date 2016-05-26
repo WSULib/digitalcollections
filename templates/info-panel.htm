@@ -59,5 +59,19 @@
         </ul>
     </li>
 
+    <p class="flag">Report a Problem</p>
+    <script>
+    $(".flag").click(function(){
+        $(this).css({
+            'background-color': 'rgba(51, 255, 102, 0.5)',
+            'background-image': 'url(https://cdn0.iconfinder.com/data/icons/free-misc-icon-set-1/512/checklist-128.png)'
+            });
+        $(this).html("Reported. Thanks!<br><div class=flag-form-link><a href='/digitalcollections/contact.php'>Explain problem in more detail</a></div>");
+        });
+    $('.flag-form-link').click(function() {
+        $('.form-flag').show();
+    });
+    </script>
+
 </ul>
 

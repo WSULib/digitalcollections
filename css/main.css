@@ -6927,10 +6927,27 @@ p.caption {
   overflow-y: scroll;
 }
 
+.flag {
+  background: rgba(255, 51, 102, 0.4);
+  background-image: url(https://cdn4.iconfinder.com/data/icons/miu/24/editor-flag-notification-glyph-512.png);
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 32px;
+  padding: 15px 4px;
+  padding-left: 32px;
+  padding-left: 44px;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+  border-radius: 5px;
+  max-width:300px;
+  display: none;
+}
 
+.flag a {
+  text-decoration: underline;
+}
 
-
-
-
-
-
+.flag-form {
+  display: none;
+}
