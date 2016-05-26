@@ -6922,14 +6922,26 @@ p.caption {
 }
 
 
-.facet_container {
+.facet_list {
   max-height:350px;
   overflow-y: scroll;
 }
 
+.facet_list::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.facet_list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+
+}
+
 .flag {
   background: rgba(255, 51, 102, 0.4);
-  background-image: url(https://cdn4.iconfinder.com/data/icons/miu/24/editor-flag-notification-glyph-512.png);
+  background-image: url(../images/flag-glyph.png);
   background-repeat: no-repeat;
   background-position: left 10px center;
   background-size: 32px;
@@ -6942,7 +6954,6 @@ p.caption {
   border-radius: 5px;
   max-width:300px;
   display: none;
-}
 
 .flag a {
   text-decoration: underline;

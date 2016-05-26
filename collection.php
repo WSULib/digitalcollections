@@ -45,8 +45,8 @@
             <div id="facets_container" class="facets">
                 <ul class="facet_container filter" id="search_facet">
                     <li>
-                        <h3 class="tree-toggler">Filter by Term</h3>
-                        <ul class="tree facet_list" id="search_facet_box">
+                        <h3 class="tree-toggler">Refine Results</h3>
+                        <ul class="tree" id="search_facet_box">
                             <form onsubmit="refineByKeyWord('collection','same'); return false;" role="form">
                                 <input id="refine_input" placeholder='Type in word or phrase' class="search-filter">                                                                
 								<label class="radio-inline">
