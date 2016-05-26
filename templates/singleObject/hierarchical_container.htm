@@ -2,8 +2,8 @@
 <ul class="row-fluid objects-container" id="results_container" style="display:block;">
     {{#singleObjectPackage.hierarchicalTree.children.results}}
     <li class="obj-cnt object-container-grid">
-        <div class="crop">
-            <a href="item?id={{child}}"><img src="//{{config.APP_HOST}}/loris/fedora:{{child}}|THUMBNAIL/full/full/0/default.jpg" /></a>
+        <div class="crop" style="height:100%;">
+            <a href="item?id={{child}}"><img src="//{{config.APP_HOST}}/loris/fedora:{{child}}|THUMBNAIL/full/,150/0/default.png" /></a>
         </div>
         <h3>{{childTitle}}</h3>
     </li>

@@ -16,7 +16,7 @@ function APIcall(singleObjectParams) {
     //number of results for related objects
     related_windowSize = 1
 
-    // Calls API functions	  
+    // Calls API functions    
     var API_url = "/" + config.API_url + "?functions[]=singleObjectPackage&PID=" + PID
 
     var APIcallURL = API_url;
@@ -167,7 +167,7 @@ function finishRendering() {
             $.get('templates/singleObject/image.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
-            })
+            });
             break;
             //eBooks
         case "WSUebook":
@@ -204,7 +204,6 @@ function finishRendering() {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
-            genHierarchicalTree();
             break;
             //Document
         case "Document":
@@ -212,12 +211,14 @@ function finishRendering() {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
-            genHierarchicalTree();
             break;
             // If none known, default to unkwown type    
         default:
             unknownType();
     }
+
+    // genereate hierarchical tree if exists
+    genHierarchicalTree();
 
 
 
@@ -295,27 +296,27 @@ function switchItem(playerName, ds_id) {
 // Family Tree
 function genHierarchicalTree() {
 
-    // set counts for use by templates
-    APIdata.singleObjectPackage.hierarchicalTree.parent_siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length
-    APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.siblings.results.length
-    APIdata.singleObjectPackage.hierarchicalTree.children['count'] = APIdata.singleObjectPackage.hierarchicalTree.children.results.length
+    if (APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length > 0) {
+        // set counts for use by templates
+        APIdata.singleObjectPackage.hierarchicalTree.parent_siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length
+        APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.siblings.results.length
+        APIdata.singleObjectPackage.hierarchicalTree.children['count'] = APIdata.singleObjectPackage.hierarchicalTree.children.results.length
 
-    // functional 
-    $.get('templates/hierarchicaltree.htm', function(template) {
-        var html = Mustache.to_html(template, APIdata);
-        $(".related-objects").html(html);
-        // remove empties
-        if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length == 0) {
-            $(".parent").css('display', 'none');
-        }
-        if (APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] == 0) {
-            $(".siblings").css('display', 'none');
-        }
-        if (APIdata.singleObjectPackage.hierarchicalTree.children['count'] == 0) {
-            $(".children").css('display', 'none');
-        }
-    });
-
-
+        // functional 
+        $.get('templates/hierarchicaltree.htm', function(template) {
+            var html = Mustache.to_html(template, APIdata);
+            $(".related-objects").html(html);
+            // remove empties
+            if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length == 0) {
+                $(".parent").css('display', 'none');
+            }
+            if (APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] == 0) {
+                $(".siblings").css('display', 'none');
+            }
+            if (APIdata.singleObjectPackage.hierarchicalTree.children['count'] == 0) {
+                $(".children").css('display', 'none');
+            }
+        });
+    }
 
 }
