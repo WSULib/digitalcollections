@@ -6922,11 +6922,21 @@ p.caption {
 }
 
 
-.facet_container {
+.facet_list {
   max-height:350px;
   overflow-y: scroll;
 }
 
+.facet_list::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.facet_list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
 
 
 
