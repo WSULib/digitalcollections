@@ -74,6 +74,11 @@ $(document).ready(function(){
   
     });
 
+    /* fire forced scroll bars */
+    $(function() {
+        // $('.facet_container').jScrollPane();
+    });
+
     
     
 });
