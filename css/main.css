@@ -6914,7 +6914,12 @@ p.caption {
   text-decoration: underline;
 }
 
-
+.sensitive_content {
+  width:100%;
+  height:100%;
+  background-color:rgba(120,120,120,.7);
+  z-index:10000;
+}
 
 
 
