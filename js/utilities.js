@@ -327,8 +327,8 @@ function populateFacets(){
 
 	for (var each=0; each < APIdata.ordered_facets.length; each++) {   		
 		var facet = APIdata.ordered_facets[each];  	
-		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='icon-minus-thin'></span>"+rosetta(facet)+"</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
-		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet]; 
+		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
+		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='icon-minus-thin'></span>"+rosetta(facet)+" ("+facet_array.length / 2+")</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
 		for (var i = 0; i < facet_array.length; i = i + 2){     
 			// run through rosetta translation
@@ -357,9 +357,11 @@ function populateFacets(){
 				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
 			}
 		}
+		
 		// hide empty facets
-				$('ul:not(:has(li))').parent().parent(".facet_container").hide();  
-				$('#search_facet').show();        
+		$('ul:not(:has(li))').parent().parent(".facet_container").hide();  
+		$('#search_facet').show();      
+
 		// add "more" button if longer than facet_limit   
 		// if (facet_array.length > facet_limit){            
 		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
