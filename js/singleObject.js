@@ -4,7 +4,7 @@
 // Globals
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var APIdata = new Object();
-
+var loaded = false;
 
 // Primary API call
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -319,4 +319,50 @@ function genHierarchicalTree() {
         });
     }
 
+}
+
+
+// Report Problem
+function reportProb() {
+    // send to reportProb API function  
+    if(loaded) return;
+    PID = APIdata.APIParams.PID[0];
+    var APIaddURL = "/" + config.API_url + "?functions[]=reportProb&PID=" + PID;
+
+    function callSuccess(response) {
+        console.log(response);
+        $(".flag").css({
+            'background-color': 'rgba(51, 255, 102, 0.2)',
+            'background-image': 'url(/digitalcollections/images/checklist-glyph.png)'
+            });
+        $(".flag").html("Reported. Thanks!<br><div class=flag-form-link onclick=showForm();><a href='#'>Explain problem in more detail</a></div>");
+
+    }
+
+    function callError(response) {
+        console.log(response);
+        // bootbox.alert("Error.");
+        $(".flag").html("Ooops. Looks like we had an internal error. Please try again later. Thanks!");
+    }
+
+    $.ajax({
+        url: APIaddURL,
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+    });
+
+    loaded = true;
+}
+
+// Show Report a problem form
+function showForm() {
+    $('.flag-form').slideToggle();
+    return false;
+}
+
+
+// Send the form data along with the current object
+function sendProbNote() {
+    console.log('stuff');
 }

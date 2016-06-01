@@ -6893,7 +6893,6 @@ p.caption {
   text-align: center;
   color: #000;
   border-radius: 5px;
-  max-width:300px;
 }
 
 .sensitive_search {
@@ -6940,20 +6939,32 @@ p.caption {
 }
 
 .flag {
-  background: rgba(255, 51, 102, 0.4);
+  background: rgba(255, 51, 102, 0.2);
   background-image: url(../images/flag-glyph.png);
   background-repeat: no-repeat;
   background-position: left 10px center;
   background-size: 32px;
   padding: 15px 4px;
   padding-left: 32px;
-  padding-left: 44px;
   font-weight: 600;
+  font-size: 13px;
   text-align: center;
   color: #000;
   border-radius: 5px;
-  max-width:300px;
-  display: none;
+  /*max-width:300px;*/
+  /*display: none;*/
+  -webkit-transition: all .2s ease-in-out; 
+  -moz-transition: all .2s ease-in-out; 
+  -ms-transition: all .2s ease-in-out; /* ie9 */
+  transition: all .2s ease-in-out; /* ie10+ */
+}
+
+.flag:hover {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-tranform: scale(1.05); /* ie9 */
+  transform: scale(1.05); /* ie10+ */
+}
 
 .flag a {
   text-decoration: underline;
@@ -6961,4 +6972,8 @@ p.caption {
 
 .flag-form {
   display: none;
+}
+
+.flag-form-button {
+  background-color: rgba(51, 255, 102, 0.2);
 }

@@ -59,19 +59,17 @@
         </ul>
     </li>
 
-    <p class="flag">Report a Problem</p>
-    <script>
-    $(".flag").click(function(){
-        $(this).css({
-            'background-color': 'rgba(51, 255, 102, 0.5)',
-            'background-image': 'url(../images/checklist-glyph.png)'
-            });
-        $(this).html("Reported. Thanks!<br><div class=flag-form-link><a href='/digitalcollections/contact.php'>Explain problem in more detail</a></div>");
-        });
-    $('.flag-form-link').click(function() {
-        $('.form-flag').show();
-    });
-    </script>
+    <button class="flag btn btn-block" onclick="reportProb();">Report a Problem</button>
+        <form method="post" class="col-sm-12 col-md-12 flag-form contact-form" action="#">
+            <label for="name" class="nameLabel">Name</label>
+              <input id="name" type="text" name="name" placeholder="Enter your name">
+            <label for="email" class="emailLabel">Email</label>
+              <input id="email" type="text" name="email" placeholder="Enter your email">
+            <label for="message" class="messageLabel">Message</label>
+              <textarea id="message" name="message" placeholder="Your message"></textarea>
+            <button type="submit" class="flag-form-button btn" onclick="sendProbNote();">Send Message</button>
+        </form>
+
 
 </ul>
 
