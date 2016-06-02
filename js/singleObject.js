@@ -330,7 +330,6 @@ function reportProb() {
     var APIaddURL = "/" + config.API_url + "?functions[]=reportProb&PID=" + PID;
 
     function callSuccess(response) {
-        console.log(response);
         $(".flag").css({
             'background-color': 'rgba(51, 255, 102, 0.2)',
             'background-image': 'url(/digitalcollections/images/checklist-glyph.png)'
@@ -340,8 +339,6 @@ function reportProb() {
     }
 
     function callError(response) {
-        console.log(response);
-        // bootbox.alert("Error.");
         $(".flag").html("Ooops. Looks like we had an internal error. Please try again later. Thanks!");
     }
 
@@ -355,14 +352,47 @@ function reportProb() {
     loaded = true;
 }
 
-// Show Report a problem form
+// Show report a problem form
 function showForm() {
     $('.flag-form').slideToggle();
     return false;
 }
 
 
-// Send the form data along with the current object
-function sendProbNote() {
-    console.log('stuff');
+// Send the user-provided form data for associated problem object
+function addProbNote() {
+    // transform form into JS object; re-map form element names with values; encode into JSON string
+    var unindexed_array = $('.flag-form').serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+    var flag_form_contents = JSON.stringify(indexed_array);
+
+
+    // Send form note for associated problem object
+
+    PID = APIdata.APIParams.PID[0];
+    var APIaddURL = "/" + config.API_url + "?functions[]=addProbNote&PID=" + PID + "&notes=" + flag_form_contents;
+    function callSuccess(response) {
+        console.log(response);
+            $('.flag-form').slideToggle();
+            $(".flag").html("Your message has been sent. Thanks!");
+    }
+
+    function callError(response) {
+        console.log(response);
+        $(".flag").html("Ooops. Looks like we had an internal error. Please try again later. Thanks!");
+    }
+
+    $.ajax({
+        url: APIaddURL,
+        dataType: 'json',
+        success: callSuccess,
+        error: callError
+    });
+
+
+    
 }
