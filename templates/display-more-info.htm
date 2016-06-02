@@ -50,6 +50,16 @@
 		</td>
 	</tr>
 
+	<!--Creator-->
+	<tr>
+		<td>Creator:</td>
+		<td>
+			{{#singleObjectPackage.objectSolrDoc.dc_creator}}
+				<a href='search.php?q=*&start=0&fq[]=dc_creator:"{{.}}"&start=0'>{{.}}</a><br>                                            
+			{{/singleObjectPackage.objectSolrDoc.dc_creator}}
+		</td>
+	</tr>
+
 	<!--MODS Resource Type-->
 	<tr>
 		<td>Resource Type:</td>
