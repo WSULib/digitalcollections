@@ -6939,7 +6939,7 @@ p.caption {
 }
 
 .flag {
-  background: rgba(255, 51, 102, 0.2);
+  background: #F9F8F3;
   background-image: url(../images/flag-glyph.png);
   background-repeat: no-repeat;
   background-position: left 10px center;

@@ -334,7 +334,7 @@ function reportProb() {
             'background-color': 'rgba(51, 255, 102, 0.2)',
             'background-image': 'url(/digitalcollections/images/checklist-glyph.png)'
             });
-        $(".flag").html("Reported. Thanks!<br><div class=flag-form-link onclick=showForm();><a href='#'>Explain problem in more detail</a></div>");
+        $(".flag").html("We'll take a look at this page. Thanks!<br><div class=flag-form-link onclick=showForm();><a href='#'>Explain problem in more detail</a></div>");
 
     }
 
