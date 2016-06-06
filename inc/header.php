@@ -33,12 +33,6 @@
                     <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
-
-            <nav>
-                <ul class="nav navbar-right">
-                    <li class="login_status"><a href="login.php"><i class="icon-user"></i> Log In / Sign Up</a></li>
-                </ul>
-            </nav>
         </div>
 
     </div>

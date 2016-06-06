@@ -1,6 +1,6 @@
-RewriteEngine on
-RewriteCond %{SERVER_PORT} !^443$
-RewriteCond %{REQUEST_URI} ^/digitalcollections/login.php/?.*$
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,QSA,L]
+#RewriteEngine on
+#RewriteCond %{SERVER_PORT} !^443$
+#RewriteCond %{REQUEST_URI} ^/digitalcollections/login.php/?.*$
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,QSA,L]
 
 ErrorDocument 404 /digitalcollections/404.php
