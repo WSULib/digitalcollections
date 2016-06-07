@@ -296,7 +296,7 @@ function switchItem(playerName, ds_id) {
 // Family Tree
 function genHierarchicalTree() {
 
-    if (APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length > 0) {
+    if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length > 0) {
         // set counts for use by templates
         APIdata.singleObjectPackage.hierarchicalTree.parent_siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.parent_siblings.results.length
         APIdata.singleObjectPackage.hierarchicalTree.siblings['count'] = APIdata.singleObjectPackage.hierarchicalTree.siblings.results.length

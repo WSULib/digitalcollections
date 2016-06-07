@@ -80,10 +80,14 @@ function populateCollectionsView(){
 		});
 	}
 	// finally, paint when images finish
-  	$(".collection_contents").imagesLoaded().done(function(){
-  		$(".loader").remove();
-  		$(".collection_contents").show();
-	});
+ //  	$(".collection_contents").imagesLoaded().done(function(){
+ //  		$(".loader").remove();
+ //  		$(".collection_contents").show();
+	// });
+
+	// skipping wait
+	$(".loader").remove();
+	$(".collection_contents").show();
 
 }
 

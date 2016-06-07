@@ -10,6 +10,18 @@
   
     <!-- page specific dependencies -->
     <script src="js/contact_random.js"></script>
+
+    <style type="text/css">
+        ul {
+            list-style:circle;
+            padding-left:40px;
+            margin-bottom:20px;
+        }
+        li {
+            margin-bottom:5px;
+            font-weight:300;
+        }
+    </style>
                 
 </head>
 <body>
@@ -25,15 +37,23 @@
                     
                     <br>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget auctor eros, id mollis dui. Cras iaculis, odio et posuere molestie, orci ex vehicula sem, in sodales dolor elit ac tellus. Nullam mollis commodo nisi ac scelerisque. Morbi id est mauris. Nam semper mattis purus, ac placerat erat varius quis. Nunc maximus et enim dignissim congue. Vivamus aliquet commodo nisi id lobortis. Mauris vitae ex non lectus laoreet tempor a sed elit. Maecenas dolor magna, tempor nec massa eu, consectetur efficitur diam. Vivamus a ultricies dolor. Curabitur auctor pellentesque interdum. Suspendisse potenti. Proin tincidunt dapibus magna, vel maximus lorem hendrerit eu. Nunc ut diam metus. Praesent volutpat ut diam vel consequat.</p>
+                    <p>We collect, describe and offer digital collections for many reasons: to support research and teaching, to preserve and promote the historical record, to tell a particular story, to celebrate our locality and culture. We never intend to needlessly shock or offend you, the reader.</p>
 
-                    <p>Aliquam tristique bibendum rhoncus. Proin nec mi sit amet orci maximus egestas. Aenean eget felis id ex molestie volutpat sit amet sit amet massa. Nam odio neque, mollis ac lacus quis, pretium ornare ante. Nulla quis dignissim justo. In molestie pellentesque malesuada. Vivamus nulla massa, euismod ac quam at, blandit ornare risus. Nulla quis ullamcorper orci. Proin vestibulum fringilla tincidunt.</p>
+                    <p>Digital collections often contain materials that are controversial, offensive or uncomfortable to modern sensibilities, but that remain important for historical, contextual or thematic reasons. As curators, we regularly face the question: should we provide access to problematic material, or should we censor the digital objects we curate in order to protect and, in some cases, respect the sensitivities of our potential audiences? In the case of the materials we present here, we decided to provide access.</p>
 
-                    <p>Quisque vitae libero eros. Ut vestibulum ultricies justo pellentesque bibendum. Suspendisse nunc nisi, pharetra sit amet convallis at, malesuada in lacus. Phasellus mattis at turpis tincidunt blandit. Morbi hendrerit lectus sit amet sapien condimentum cursus. Morbi at ligula nec felis sodales condimentum. Aenean mollis semper erat, vitae placerat augue. Etiam vulputate pulvinar sapien eget porta. Duis congue odio ut tristique accumsan. Donec pretium finibus efficitur. In non mauris sit amet felis finibus tristique sed vestibulum lectus. Curabitur ut diam eu enim lacinia cursus. Pellentesque nec blandit dolor.</p>
+                    <p>We empathize with your experience in relating to problematic material—we often have the same reaction to items in the collections we work with! If you’ve come across an item in our collections that gives you pause, offends you, shocks you or makes you question our motives, we ask you to consider the following:</p>
 
-                    <p>Cras condimentum congue lectus, vel tempus neque feugiat vitae. Donec egestas nunc eu blandit malesuada. Aenean vel justo eu dui mollis sodales. Nulla sed lorem accumsan, consectetur nulla sed, ultrices risus. Cras vitae euismod dui, quis dictum justo. In venenatis eros vel scelerisque mollis. Maecenas placerat tellus eu pretium faucibus. Cras molestie erat placerat massa efficitur gravida. Quisque congue purus mauris, in mollis tellus pharetra quis. Sed consectetur, mauris ut ornare cursus, ante mauris imperdiet arcu, ut luctus est augue a velit. Nulla sodales luctus lectus at auctor. Curabitur id sem et urna vestibulum laoreet.</p>
+                    <ul>
+                        <li>Does this image, text, or audio come from a historical period where the words or images would have elicited a different reaction than the one I’m experiencing?</li>
+                        <li>Would sanitizing this image, text, or audio erase a testimony to a fact of nature or history that might otherwise be useful in describing, documenting, challenging or changing the world?</li>
+                        <li>Did the original author of, or audience for, this image, text, or audio differ significantly from me in some way, and is that the root of my problem with this material?</li>
+                        <li>Does my discomfort mean this image, text, or audio shouldn’t be available, or should be available in a different form?</li>
+                    </ul>
 
-                    <p>Etiam ac arcu lorem. Etiam eu porttitor leo. Curabitur magna neque, sollicitudin vel diam ac, dignissim rutrum lorem. Duis lobortis elit nec lorem lobortis, eu semper sem condimentum. Donec sed semper dolor. Maecenas quis tellus eget ante congue ornare. Nunc fringilla pretium nunc, et blandit felis ultricies a. In odio eros, feugiat eget tincidunt nec, euismod et enim. Mauris fermentum metus nisi, sed posuere ipsum ultricies a. In tempor massa at elit semper consectetur. Maecenas id laoreet ligula. Sed varius accumsan tortor, vitae elementum odio feugiat placerat. Integer rutrum ac nisi porta tincidunt. Nulla scelerisque odio quis lorem rutrum, sit amet semper odio euismod. Vestibulum viverra rhoncus mauris. Curabitur ac luctus leo.</p>
+                    <p>If you feel strongly that we’ve erred in judgment, please contact us and talk about it! We welcome dialog about the collections we present here, including challenges to their form or content. Again, our intention is not to offend or provoke, but to faithfully curate materials that support our mission and add to the public and academic discourse.</p>
+
+                    <p>Yours,<br>
+                    The Wayne State University Library System</p>
 
                 </div>
         </div>
