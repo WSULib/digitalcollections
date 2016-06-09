@@ -71,7 +71,8 @@ function rosetta(input){
 		"rels_isMemberOfCollection":"Collection",
 		"int_fullText":"Full-Text",
 		"text":"Keyword",
-		"metadata":"Item Record"
+		"metadata":"Item Record",
+		"mods_name_creator_ms":"Creator"
 	};
 
 	// create APIdata.solrTranslationHash from retrieved and hard-coded

@@ -3,8 +3,8 @@
     {{#singleObjectPackage.objectSolrDoc.mods_volume_ms.0}}Vol. {{singleObjectPackage.objectSolrDoc.mods_volume_ms.0}}, {{/singleObjectPackage.objectSolrDoc.mods_volume_ms.0}} {{#singleObjectPackage.objectSolrDoc.mods_issue_ms.0}}Iss. {{singleObjectPackage.objectSolrDoc.mods_issue_ms.0}}{{/singleObjectPackage.objectSolrDoc.mods_issue_ms.0}}
 </h3>
 
-<h4>
-    {{singleObjectPackage.objectSolrDoc.mods_key_date_year.0}}
+<h4>    
+    {{singleObjectPackage.objectSolrDoc.dc_date.0}}
 </h4>
 
 <p class="description">
@@ -59,6 +59,7 @@
         </ul>
     </li>
 
+    <!-- Report a Problem -->
     <button class="flag btn btn-block" onclick="reportProb();">Report a Problem?</button>
         <form method="post" class="col-sm-12 col-md-12 flag-form contact-form">
             <label for="name" class="nameLabel">Name</label>

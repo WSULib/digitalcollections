@@ -10,9 +10,19 @@
 		</td>		
 	</tr>
 
-	<!--Date-->
+	<!--Date (DC specific)-->
 	<tr>
 		<td>Date:</td>
+		<td>
+			{{#singleObjectPackage.objectSolrDoc.dc_date}}
+				<a href='search.php?q=*&start=0&fq[]=dc_date:"{{.}}"&start=0'>{{.}}</a>
+			{{/singleObjectPackage.objectSolrDoc.dc_date}}
+		</td>
+	</tr>
+
+	<!--Date (Year)-->
+	<tr>
+		<td>Year:</td>
 		<td>
 			{{#singleObjectPackage.objectSolrDoc.mods_key_date_year}}
 				<a href='search.php?q=*&start=0&fq[]=facet_mods_year:"{{.}}"&start=0'>{{.}}</a>
@@ -54,9 +64,9 @@
 	<tr>
 		<td>Creator:</td>
 		<td>
-			{{#singleObjectPackage.objectSolrDoc.dc_creator}}
-				<a href='search.php?q=*&start=0&fq[]=dc_creator:"{{.}}"&start=0'>{{.}}</a><br>                                            
-			{{/singleObjectPackage.objectSolrDoc.dc_creator}}
+			{{#singleObjectPackage.objectSolrDoc.mods_name_creator_ms}}
+				<a href='search.php?q=*&start=0&fq[]=mods_name_creator_ms:"{{.}}"&start=0'>{{.}}</a><br>                                            
+			{{/singleObjectPackage.objectSolrDoc.mods_name_creator_ms}}
 		</td>
 	</tr>
 
