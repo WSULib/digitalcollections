@@ -1,2 +1,10 @@
 <a href="item?id={{APIParams.PID}}&rendered=collection"><img style="width:100%;" src="/loris/fedora:{{APIParams.PID}}|PREVIEW/full/full/0/default.jpg"/></a>
-<h3 style="width:100%; text-align:center;"><a href="item?id={{APIParams.PID}}&rendered=collection">[Browse Items in this Collection]</a></h3>
+
+<!-- <h3 style="text-decoration:underline; width:100%; text-align:center;"><a href="item?id={{APIParams.PID}}&rendered=collection">Browse Items in this Collection</a></h3> -->
+
+<p style="width:100%; text-align:center; margin-top:10px;">
+	<a href="item?id={{APIParams.PID}}&rendered=collection"><button type="btn" class="btn">Browse Items in this Collection</button></a>
+	{{#singleObjectPackage.objectSolrDoc.rels_hasCollectionPDF}}
+		<a href="/WSUAPI/bitStream/{{APIParams.PID}}/COLLECTIONPDF"><button type="btn" class="btn">Supplemental Information</button></a>
+	{{/singleObjectPackage.objectSolrDoc.rels_hasCollectionPDF}}
+</p>

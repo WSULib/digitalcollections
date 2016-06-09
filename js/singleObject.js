@@ -112,10 +112,10 @@ function renderPage(PID) {
                 // generate fullText URLs (ADDRESS IN V2)
                 APIdata.fullText = [{
                     "key": "HTML",
-                    "value": "http://" + config.APP_HOST + "/fedora/objects/" + PID + "/datastreams/HTML_FULL/content"
+                    "value": "http://" + config.APP_HOST + "/WSUAPI/bitStream/" + PID + "/HTML_FULL"
                 }, {
                     "key": "PDF",
-                    "value": "http://" + config.APP_HOST + "/fedora/objects/" + PID + "/datastreams/PDF_FULL/content"
+                    "value": "http://" + config.APP_HOST + "/WSUAPI/bitStream/" + PID + "/PDF_FULL"
                 }, ];
 
                 // check for OCLC num, generate citation link (ADDRESS IN V2)
