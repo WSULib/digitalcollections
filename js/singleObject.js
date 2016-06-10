@@ -101,6 +101,8 @@ function renderPage(PID) {
             var html = Mustache.to_html(template, APIdata);
             $(".display-more-info table").html(html);
             cleanEmptyMetaRows();
+            // fire contentType Specific cleanup / changes
+            ctypeSpecific();
         });
 
         // Content Model Specific
@@ -109,7 +111,7 @@ function renderPage(PID) {
             if (APIdata.translated.preferredContentModelPretty == "WSUebook") {
                 PID_suffix = PID.split(":")[1]
 
-                // generate fullText URLs (ADDRESS IN V2)
+                // generate fullText URLs
                 APIdata.fullText = [{
                     "key": "HTML",
                     "value": "http://" + config.APP_HOST + "/WSUAPI/bitStream/" + PID + "/HTML_FULL"
@@ -131,7 +133,10 @@ function renderPage(PID) {
 
             // Collection objects
             if (APIdata.translated.preferredContentModelPretty == "Collection") {
-                // noMoreMeta();
+
+                // remove iiif manifest link
+                $("#iiif_manifest").remove();
+
             }
         }
 

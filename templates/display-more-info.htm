@@ -5,7 +5,7 @@
 		<td>Content Type(s):</td>	    
 		<td>
 			{{#translated.contentModels}}	    		
-				<a href='search.php?q=*&start=0&fq[]=rels_hasContentModel:"{{key}}"&start=0'>{{value}}</a><br>
+				<a class="linebreak" href='search.php?q=*&start=0&fq[]=rels_hasContentModel:"{{key}}"&start=0'>{{value}}</a>
 			{{/translated.contentModels}}
 		</td>		
 	</tr>
@@ -35,7 +35,7 @@
 		<td>Collection:</td>
 		<td>
 			{{#singleObjectPackage.isMemberOfCollection.results}}                                                
-				<a href="item?id={{subject}}">{{collectionTitle}}</a><br>
+				<a class="linebreak" href="item?id={{subject}}">{{collectionTitle}}</a>
 			{{/singleObjectPackage.isMemberOfCollection.results}}
 		</td>
 	</tr>
@@ -45,7 +45,7 @@
 		<td>Subject:</td>
 		<td>
 			{{#singleObjectPackage.objectSolrDoc.dc_subject}}
-				<a href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a><br>                                            
+				<a class="linebreak" href='search.php?q=*&start=0&fq[]=dc_subject:"{{.}}"&start=0'>{{.}}</a>                                         
 			{{/singleObjectPackage.objectSolrDoc.dc_subject}}
 		</td>
 	</tr>
@@ -55,7 +55,7 @@
 		<td>Coverage:</td>
 		<td>
 			{{#singleObjectPackage.objectSolrDoc.dc_coverage}}
-				<a href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a><br>                                            
+				<a class="linebreak" href='search.php?q=*&start=0&fq[]=dc_coverage:"{{.}}"&start=0'>{{.}}</a>
 			{{/singleObjectPackage.objectSolrDoc.dc_coverage}}
 		</td>
 	</tr>
@@ -65,7 +65,7 @@
 		<td>Creator:</td>
 		<td>
 			{{#singleObjectPackage.objectSolrDoc.mods_name_creator_ms}}
-				<a href='search.php?q=*&start=0&fq[]=mods_name_creator_ms:"{{.}}"&start=0'>{{.}}</a><br>                                            
+				<a class="linebreak" href='search.php?q=*&start=0&fq[]=mods_name_creator_ms:"{{.}}"&start=0'>{{.}}</a>
 			{{/singleObjectPackage.objectSolrDoc.mods_name_creator_ms}}
 		</td>
 	</tr>
@@ -84,7 +84,7 @@
 		<td>Publisher:</td>
 		<td>
 			{{#singleObjectPackage.objectSolrDoc.dc_publisher}}
-				<a href='search.php?q=*&start=0&fq[]=dc_publisher:"{{.}}"&start=0'>{{.}}</a><br>                                            
+				<a class="linebreak" href='search.php?q=*&start=0&fq[]=dc_publisher:"{{.}}"&start=0'>{{.}}</a>
 			{{/singleObjectPackage.objectSolrDoc.dc_publisher}}
 		</td>
 	</tr>
@@ -151,7 +151,7 @@
 		<td>Catalog Record:</td>
 		<td>
 		{{#persistLink}}        
-			<a target="_blank" href='{{persistLink}}'>{{persistLink}}</a><br>
+			<a class="linebreak" target="_blank" href='{{persistLink}}'>{{persistLink}}</a>
 		{{/persistLink}}
 		</td>
 	</tr>
@@ -161,7 +161,7 @@
 		<td>Fulltext(s):</td>
 		<td>
 		{{#fullText}}        
-			<a target="_blank" href='{{value}}'><i class="icon-file4"></i>  {{key}}</a><br>
+			<a class="linebreak" target="_blank" href='{{value}}'><i class="icon-file4"></i>  {{key}}</a>
 		{{/fullText}}
 		</td>
 	</tr>
@@ -210,9 +210,9 @@
 		<!-- <td><img src="img/iiif_logo.png" height=25 /></td> -->
 		<td>Structured Data</td>
 		<td>
-			<a href="/WSUAPI/bitStream/{{APIParams.PID}}/MODS">MODS</a><br>
-			<a href="//{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a><br>
-			<a href="//{{config.APP_HOST}}/WSUAPI?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
+			<a class="linebreak" href="/WSUAPI/bitStream/{{APIParams.PID}}/MODS">MODS</a>
+			<a class="linebreak" id="iiif_manifest" href="//{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a>
+			<a class="linebreak" href="//{{config.APP_HOST}}/WSUAPI?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
 		</td>		
 	</tr>  
 
