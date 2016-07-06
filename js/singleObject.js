@@ -289,8 +289,8 @@ function switchItem(playerName, ds_id) {
     for (num in APIdata.singleObjectPackage.playlist) {
         if (APIdata.singleObjectPackage.playlist[num].ds_id == ds_id) {
             $("div.primary-object-container h3").html("<h3>" + APIdata.singleObjectPackage.playlist[num].label + " - " + APIdata.singleObjectPackage.playlist[num].mimetype + "</h3>");
-            playerName.src(APIdata.singleObjectPackage.playlist[num].mp3);
-            playerName.poster(APIdata.singleObjectPackage.playlist[num].preview);
+            playerName.src("//" + APIdata.singleObjectPackage.playlist[num].mp3);
+            playerName.poster("//" + APIdata.singleObjectPackage.playlist[num].preview);
             playerName.load();
             playerName.play();
         }
