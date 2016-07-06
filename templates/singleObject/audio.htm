@@ -18,7 +18,7 @@ $(document).ready(function() {
 <h3>{{singleObjectPackage.playlist.0.label}} - {{singleObjectPackage.playlist.0.mimetype}}</h3>
 <audio id="audio_player" class="video-js vjs-default-skin"
   controls preload="auto" width="640" height="264"  
-  poster = "{{singleObjectPackage.playlist.0.preview}}"
+  poster = "//{{singleObjectPackage.playlist.0.preview}}"
   data-setup='{"example_option":true}'>
  <source src="{{singleObjectPackage.playlist.0.mp3}}" type='{{singleObjectPackage.playlist.0.mimetype}}' /> 
 </audio>
@@ -28,7 +28,7 @@ $(document).ready(function() {
 	<tbody>
 		{{#singleObjectPackage.playlist}}
 			<tr name = {{ds_id}} style="height:75px;">
-				<td><img src={{thumbnail}}></td>
+				<td><img src=//{{thumbnail}}></td>
 				<td>{{label}}</td>
 				<td>{{order}}</td>
 			</tr>
