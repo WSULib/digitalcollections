@@ -27,9 +27,10 @@ $(document).ready(function() {
 <table class="table table-hover">
 	<tbody>
 		{{#singleObjectPackage.playlist}}
-			<tr name = {{ds_id}}>
+			<tr name = {{ds_id}} style="height:75px;">
 				<td><img src={{thumbnail}}></td>
-				<td>{{ds_id}}</td>
+				<td>{{label}}</td>
+				<td>{{order}}</td>
 			</tr>
 		{{/singleObjectPackage.playlist}}
 	</tbody>
