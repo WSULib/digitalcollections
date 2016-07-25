@@ -37,5 +37,8 @@
 
     </div>
 </header>
-<div class="feedback"></div>
+<div class="feedback">
+    <!-- insert content here to show up in slim yellow line at top of all pages -->
+    <!-- <span>IMPORTANT MESSAGE HERE</span> -->
+</div>
 
