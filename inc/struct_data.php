@@ -86,7 +86,6 @@ function concatRepeaters($field){
 			$i++;
 		}
 	}
-	
 	// content type - hasContentModel	
 	if ( array_key_exists("rels_hasContentModel",$response['response']['docs'][0]) ){
 		foreach($response['response']['docs'][0]['rels_hasContentModel'] as $content_model){
@@ -99,15 +98,15 @@ function concatRepeaters($field){
 		}
 	}
 	?>
-
-	_paq.push(["trackPageView"]);
-	_paq.push(["enableLinkTracking"]);	
+	_paq.push(["setDomains", ["*.digital.library.wayne.edu"]]);
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
 	(function() {
-		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.library.wayne.edu/piwik/";
-		_paq.push(["setTrackerUrl", u+"piwik.php"]);
-		_paq.push(["setSiteId", "28"]);
-		var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-		g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+		var u="//piwik.library.wayne.edu/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 28]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
 	})();
 </script>
 <!--end piwik-->
