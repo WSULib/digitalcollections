@@ -25,10 +25,10 @@ require("config/config_php.php");
 			<div id="LargeView">			
 
 				<!-- downloads -->
-				<div id="downloads">
+				<!-- <div id="downloads">
 					<p onclick="$('#downloads ul').slideToggle(250);"><i class="fa fa-download fa-lg fa-fw"></i></p>
 					<div class="fullsize_download"><ul></ul></div>					
-				</div>
+				</div> -->
 
 				<div id="viewer"></div>
 
@@ -53,11 +53,11 @@ require("config/config_php.php");
 									"viewType" : "<?php echo $_REQUEST['type']; ?>",
 									"layoutOptions": 
 										{
-											"close": false,
-											"slotRight": false,
-											"slotLeft": false,
-											"slotAbove": false,
-											"slotBelow": false
+											"close": true,
+											"slotRight": true,
+											"slotLeft": true,
+											"slotAbove": true,
+											"slotBelow": true
 										},
 								"annotationLayer": false,
 								"availableViews" : ['ImageView','ThumbnailsView','ScrollView','<?php echo $_REQUEST['type']; ?>'] // a bit hacky, potentially includes ImageView twice, but works

@@ -43,3 +43,6 @@
 	display:none;
 }*/
 
+.mirador-viewer, .mirador-main-menu-bar, .mirador-status-bar {
+     font-size: 1em; 
+}
