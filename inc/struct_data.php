@@ -118,7 +118,7 @@ function concatRepeaters($field){
 <span itemprop="text"><?php echo concatRepeaters($response['response']['docs'][0]['mods_abstract_transcription_ms']); ?></span>
 <span itemprop="genre"><?php echo concatRepeaters($response['response']['docs'][0]['mods_resource_type_ms']); ?></span>
 <span itemprop="dateCreated"><?php echo concatRepeaters($response['response']['docs'][0]['facet_mods_year']); ?></span>
-<img src="//<?php echo $APP_HOST; ?>/fedora/objects/<?php echo $objectPID; ?>/datastreams/THUMBNAIL/content" class="primary-image" itemprop="image">
+<img src="//<?php echo $APP_HOST; ?>/item/<?php echo $objectPID; ?>/thumbnail/" class="primary-image" itemprop="image">
 <meta itemprop="thumbnailUrl" content="http://<?php echo $APP_HOST; ?>/fedora/objects/<?php echo $objectPID; ?>/THUMBNAIL/content">
 </div>
 <!-- ******************************** -->
