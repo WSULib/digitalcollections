@@ -7,3 +7,4 @@ Disallow: */fedoraManager/* # Secured, but desinged for internal use
 Disallow: */eTextReader/* # Application
 Disallow: */textAnalysis/* # Application
 Disallow: */fedora/*
+Disallow: */Ouroboros/*
