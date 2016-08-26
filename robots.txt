@@ -6,4 +6,9 @@ Disallow: */dev/* # Intended for testing and development
 Disallow: */fedoraManager/* # Secured, but desinged for internal use
 Disallow: */eTextReader/* # Application
 Disallow: */textAnalysis/* # Application
+<<<<<<< HEAD
 Disallow: */fedora/*
+=======
+Disallow: */fedora/*
+Disallow: */Ouroboros/*
+>>>>>>> 560ca9640d4be8350925176ce5953f0ef1b4ad65
