@@ -19,26 +19,10 @@ var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
 		console.log("Could not retrieve solrTranslationHash");	  
 	}
 
-
-// Piwik (cgi.lib.wayne.edu)
-// Note: defers to /inc/struct_data.php when detects page is /item
-var locale = window.location.pathname.split(/[\/]+/).pop()
-if (locale != "item"){  
-	var _paq = _paq || [];
-	_paq.push(["trackPageView"]);
-	_paq.push(["enableLinkTracking"]);
-	(function() {
-		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://cgi.lib.wayne.edu/stats/piwik/";
-		_paq.push(["setTrackerUrl", u+"piwik.php"]);
-		_paq.push(["setSiteId", "28"]);
-		var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-		g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-	})();  
-}
-
 // Piwik (piwik.library.wayne.edu)
 // Note: defers to /inc/struct_data.php when detects page is /
-if (locale != "item"){  
+var locale = window.location.pathname.split(/[\/]+/).pop()
+if (locale != "item"){
 	var _paq = _paq || [];
 	_paq.push(["setDomains", ["*.digital.library.wayne.edu"]]);
 	_paq.push(['trackPageView']);
@@ -613,43 +597,7 @@ function tpagesPaginate(results,rows){
 }
 
 
-// favObjs CRUD
-// remove object
-function favObjRemove(PID){    
-		if (typeof userData.username_WSUDOR != "undefined"){     
 
-			// send username, hash, and PID to delete
-			var APIaddURL = "/"+config.API_url+"?functions[]=removeFavorite"
-
-			$.ajax({          
-				url: APIaddURL,      
-				dataType: 'json',
-				data: {
-					username: userData.username_WSUDOR,
-					userhash: userData.clientHash,
-					PID: PID
-				},
-				success: callSuccess,
-				error: callError
-			});
-
-			function callSuccess(response){
-				// console.log(response);        
-				$('li.add-to-favorites').html('<img src="img/star.png" alt=""> Removed from Favorites');
-					bootbox.alert("Removed from Favorites", function(){
-						
-					});          
-					window.setTimeout(function(){
-						bootbox.hideAll();
-						location.reload();
-					}, 2000);                  
-			}
-			function callError(response){
-				// console.log(response);
-				bootbox.alert("Could not remove favorite.");
-			}
-		}  
-}
 
 // 404 - Item Not Found
 function load404(refURL){	
@@ -783,6 +731,10 @@ $(document).ready(function(){
 	});
 	Mousetrap.bind('s h o w m e', function(e) {
 	    $(".ks_reveal").fadeToggle();
+	    return false;
+	});
+	Mousetrap.bind('w s u d o r l o g i n', function(e) {
+	    $(".login_status").fadeToggle();
 	    return false;
 	});
 });

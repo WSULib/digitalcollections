@@ -42,8 +42,11 @@ $(document).ready(function(){
 				}
 			});			
 
-			$("li.login_status").html("<a href='favorites.php'><i class='icon-user'></i> Welcome, "+userData.displayName+"!</a> <a onclick='logoutUser(); return false;' href='#' class='logout'><i class='icon-exit'></i> Log Out</a>");
-			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'><i class='icon-exit'></i> Log Out</a>");
+			// update login_nav
+			$(".login_nav").html("<li><a href='userPage.php'><i class='icon-user'></i> "+userData.displayName+"</a></li><li><a onclick='logoutUser(); return false;' href='#' class='logout'><i class='icon-exit'></i> Log Out</a></li>");
+			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'><i class='icon-exit'></i>Log Out</a>");
+
+			// udpate favorites
 			$('nav.header-primary ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 			$('#sidr-main div ul li:eq(2)').before("<li><a href='favorites.php' id='fav_link'>Favorites</a></li>");
 		}  
@@ -54,10 +57,7 @@ $(document).ready(function(){
 });
 
 function logoutUser(){
-	$.removeCookie("WSUDOR",{
-          path:"/"
-        }
-    );
+	Cookies.remove('WSUDOR');
 	// $("#fav_link").remove(); 
 	location.reload();
 }

@@ -1,6 +1,3 @@
-<script>
-window.location.replace("/digitalcollections");
-</script>
 <?php 
 //Barebones of Single Object Page
 $objectPID = $_REQUEST['PID'];

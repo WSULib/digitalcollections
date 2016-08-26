@@ -6982,9 +6982,29 @@ p.caption {
   display:block;
 }
 
+.header-login {
+  text-transform:uppercase;
+  margin-bottom:-1px;
+}
 
+/* recent updates */
 
+.header-login > .nav > li > a:hover {
+  background-color:white;
+  color:black;
+}
 
+.downloads .row {
+  margin-bottom:10px;
+}
+
+.downloads .row button {
+  background-color:rgba(255, 204, 51, 0.7);
+}
+
+.downloads .row button:hover {
+  background-color:rgba(255, 204, 51, 1);
+}
 
 
 

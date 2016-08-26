@@ -44,11 +44,13 @@
         <?php include('inc/footer.php'); ?>
 
     </body>
+
     <!-- init search -->
     <script type="text/javascript">
-    var searchParams = <?php echo json_encode($_GET); ?>;                
-    $(document).ready(function(){         	
-    	getFavs(searchParams);    	        
-    });    
-</script>
+        var searchParams = <?php echo json_encode($_GET); ?>;                
+        $(document).ready(function(){         	
+        	getFavs(searchParams);    	        
+        });    
+    </script>
+    
 </html>

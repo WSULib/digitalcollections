@@ -181,13 +181,54 @@ function populateResults(){
 		  url: 'templates/favoritesObj.htm',      
 		  dataType: 'html',            
 		  async:false,
-		  success: function(response){		  	
+		  success: function(response){
 		  	var template = response;
 		  	var html = Mustache.to_html(template, APIdata.solrSearch.response.docs[i]);		  	
 		  	$("#results_container").append(html);
+		  	$("#results_container").css('display','block');
 		  }		  
 		});
 	}	
 }
 
+
+// CRUD
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// remove object
+function favObjRemove(PID){    
+	alert('removal of favorites under maintenance');
+	// if (typeof userData.username_WSUDOR != "undefined"){     
+
+	// 	// send username, hash, and PID to delete
+	// 	var APIaddURL = "/"+config.API_url+"?functions[]=removeFavorite"
+
+	// 	$.ajax({          
+	// 		url: APIaddURL,      
+	// 		dataType: 'json',
+	// 		data: {
+	// 			username: userData.username_WSUDOR,
+	// 			userhash: userData.clientHash,
+	// 			PID: PID
+	// 		},
+	// 		success: callSuccess,
+	// 		error: callError
+	// 	});
+
+	// 	function callSuccess(response){
+	// 		// console.log(response);        
+	// 		$('li.add-to-favorites').html('<img src="img/star.png" alt=""> Removed from Favorites');
+	// 			bootbox.alert("Removed from Favorites", function(){
+					
+	// 			});          
+	// 			window.setTimeout(function(){
+	// 				bootbox.hideAll();
+	// 				location.reload();
+	// 			}, 2000);                  
+	// 	}
+	// 	function callError(response){
+	// 		// console.log(response);
+	// 		bootbox.alert("Could not remove favorite.");
+	// 	}
+	// }  
+}
 

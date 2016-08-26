@@ -24,6 +24,7 @@
 <!-- 3rd Party -->
 <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/jquery.cookie.js" type="text/javascript"></script> 
+<script src="js/js.cookie.js" type="text/javascript"></script> 
 <script src="inc/sidr/jquery.sidr.min.js"></script>
 <script src="js/vendor/enquire.min.js"></script>
 <script src="inc/imagesloaded.pkgd.min.js" type="text/javascript"></script>

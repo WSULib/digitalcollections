@@ -16,13 +16,18 @@ function APIcall(singleObjectParams) {
     //number of results for related objects
     related_windowSize = 1
 
+    // if user is logged in, include user hash with singleObjectPackage request
+    if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true) {
+        console.log(userData);
+        var API_url = "/" + config.API_url + "?functions[]=singleObjectPackage&PID=" + PID +"&active_user=True&username=" + userData.username_WSUDOR + "&clientHash=" + userData.clientHash
+    }
+    else {
+        var API_url = "/" + config.API_url + "?functions[]=singleObjectPackage&PID=" + PID
+    }
+
     // Calls API functions    
-    var API_url = "/" + config.API_url + "?functions[]=singleObjectPackage&PID=" + PID
-
-    var APIcallURL = API_url;
-
     $.ajax({
-        url: APIcallURL,
+        url: API_url,
         dataType: 'json',
         success: callSuccess,
         error: callError
@@ -30,10 +35,16 @@ function APIcall(singleObjectParams) {
 
     function callSuccess(response) {
         APIdata = response;
+
         //check object status    
         if (APIdata.singleObjectPackage.isActive.object_status == "Inactive" || APIdata.singleObjectPackage.isActive.object_status == "Absent") {
             loadError();
-        } else {
+        } 
+        else {
+            //check if active user
+            if (userData.loggedIn_WSUDOR == true && APIdata.user_auth.hashMatch) {
+                console.log('Welcome, ' + userData.displayName + '!');
+            }
             // make translations as necessary
             makeTranslations();
             // render results on page

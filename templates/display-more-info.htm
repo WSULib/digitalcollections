@@ -217,11 +217,23 @@
 	</tr>  
 
 	<!--Downloads-->
-	<tr>
+	<tr class="downloads">
 		<td>Downloads</td>
 		<td>
 			{{#singleObjectPackage.parts_imageDict.sorted}}
-				<a href="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a><br><br>
+				<div class="row">
+					<div class="col-md-6">
+						<a href="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="//{{config.APP_HOST}}/loris/fedora:{{APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a>
+					</div>
+					{{#bitStream.key}}
+						<div class="col-md-3">
+							<a href="//{{config.APP_HOST}}/item/{{APIParams.PID}}/bitStream/{{ds_id}}_ACCESS/?key={{bitStream.key}}"download="{{APIParams.PID}}_{{ds_id}}.jpg"><button type="btn" class="btn">Fullsize JPEG</button></a>
+						</div>
+						<div class="col-md-3">
+							<a href="//{{config.APP_HOST}}/item/{{APIParams.PID}}/bitStream/{{ds_id}}/?key={{bitStream.key}}" download="{{APIParams.PID}}_{{ds_id}}.tif"><button type="btn" class="btn">Fullsize TIFF</button></a>
+						</div>
+					{{/bitStream.key}}					
+				</div>
 			{{/singleObjectPackage.parts_imageDict.sorted}}
 		</td>
 	</tr>                                  
