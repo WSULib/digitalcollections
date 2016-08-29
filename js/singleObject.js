@@ -18,7 +18,7 @@ function APIcall(singleObjectParams) {
 
     // if user is logged in, include user hash with singleObjectPackage request
     if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true) {
-        console.log(userData);
+        // console.log(userData);
         var API_url = "/" + config.API_url + "?functions[]=singleObjectPackage&PID=" + PID +"&active_user=True&username=" + userData.username_WSUDOR + "&clientHash=" + userData.clientHash
     }
     else {
@@ -411,6 +411,16 @@ function addProbNote() {
     
 // function to generate downloads
 function generateDownloads() {
+
+    // determine if admin user
+    if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true && APIdata.bitStream != undefined) {
+        var is_admin_user = true;
+        $("#downloads_target").append('<div class="row" style="background-color:rgba(51, 255, 102, 0.2); padding-bottom:0px;"><div class="col-md-12"><p style="margin-bottom:10px;"><strong>Admin View:</strong> Each button comes with a token in the URL that allows for ONE download.  These can be downloaded here, or you can right-click the button and copy the link to send to others.</p></div></div>');
+    }
+    else {
+        var is_admin_user = false;   
+    }
+
     // Content Type Handling  
     ctype = APIdata.translated.preferredContentModelPretty;
     switch (ctype) {
@@ -420,7 +430,7 @@ function generateDownloads() {
             var data = {'APIdata':APIdata,'images':[]};
             for (var i = 0; i < APIdata.singleObjectPackage.parts_imageDict.sorted.length; i++) {
                 var image = APIdata.singleObjectPackage.parts_imageDict.sorted[i];                
-                if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true && APIdata.bitStream != 'undefined') {
+                if (is_admin_user == true) {
                     image['bitStream'] = {
                         'ORIGINAL':APIdata.bitStream[image.ds_id],
                         'ACCESS':APIdata.bitStream[image.ds_id + "_ACCESS"],
@@ -430,7 +440,6 @@ function generateDownloads() {
             };
 
             // fire download template
-            console.log(data);
             $.get('templates/singleObject/imageDownload.htm', function(template) {
                 var html = Mustache.to_html(template, data);
                 $("#downloads_target").append(html);
@@ -441,6 +450,7 @@ function generateDownloads() {
 
             break;
     }
+
 }
 
 
