@@ -40,11 +40,7 @@ function APIcall(singleObjectParams) {
         if (APIdata.singleObjectPackage.isActive.object_status == "Inactive" || APIdata.singleObjectPackage.isActive.object_status == "Absent") {
             loadError();
         } 
-        else {
-            //check if active user
-            if (userData.loggedIn_WSUDOR == true && APIdata.user_auth.hashMatch) {
-                console.log('Welcome, ' + userData.displayName + '!');
-            }
+        else {            
             // make translations as necessary
             makeTranslations();
             // render results on page
@@ -101,11 +97,7 @@ function renderPage(PID) {
         $.get('templates/info-panel.htm', function(template) {
             var html = Mustache.to_html(template, APIdata);
             $(".info-panel").html(html);
-            cleanEmptyMetaRows();
-        }).done(function() {
-            // fire contentType Specific cleanup / changes
-            ctypeSpecific();
-        })
+        });
 
         // display-more-info
         $.get('templates/display-more-info.htm', function(template) {
@@ -144,11 +136,12 @@ function renderPage(PID) {
 
             // Collection objects
             if (APIdata.translated.preferredContentModelPretty == "Collection") {
-
                 // remove iiif manifest link
                 $("#iiif_manifest").remove();
-
             }
+
+            // generate downloads
+            generateDownloads();
         }
 
         // finish rendering page and templates (case switching based on content type)
@@ -183,30 +176,34 @@ function finishRendering() {
             $.get('templates/singleObject/image.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
-            });
+            });       
             break;
-            //eBooks
+
+        //eBooks
         case "WSUebook":
             $.get('templates/singleObject/WSUebook.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
             break;
-            //Collections
+
+        //Collections
         case "Collection":
             $.get('templates/singleObject/collection.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
             break;
-            //Audio
+
+        //Audio
         case "Audio":
             $.get('templates/singleObject/audio.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
             break;
-            //Video
+
+        //Video
         case "Video":
             // unknownType();        
             $.get('templates/singleObject/video.htm', function(template) {
@@ -214,29 +211,30 @@ function finishRendering() {
                 $(".primary-object-container").html(html);
             });
             break;
-            //Container
+
+        //Container
         case "Container":
             $.get('templates/singleObject/hierarchical_container.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
             break;
-            //Document
+
+        //Document
         case "Document":
             $.get('templates/singleObject/hierarchical_document.htm', function(template) {
                 var html = Mustache.to_html(template, APIdata);
                 $(".primary-object-container").html(html);
             });
             break;
-            // If none known, default to unkwown type    
+
+        // If none known, default to unkwown type    
         default:
             unknownType();
     }
 
     // genereate hierarchical tree if exists
     genHierarchicalTree();
-
-
 
 }
 
@@ -408,7 +406,57 @@ function addProbNote() {
         success: callSuccess,
         error: callError
     });
-
+}
 
     
+// function to generate downloads
+function generateDownloads() {
+    // Content Type Handling  
+    ctype = APIdata.translated.preferredContentModelPretty;
+    switch (ctype) {
+        case "Image":
+
+            // build image download object
+            var data = {'APIdata':APIdata,'images':[]};
+            for (var i = 0; i < APIdata.singleObjectPackage.parts_imageDict.sorted.length; i++) {
+                var image = APIdata.singleObjectPackage.parts_imageDict.sorted[i];                
+                if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true && APIdata.bitStream != 'undefined') {
+                    image['bitStream'] = {
+                        'ORIGINAL':APIdata.bitStream[image.ds_id],
+                        'ACCESS':APIdata.bitStream[image.ds_id + "_ACCESS"],
+                    }
+                }
+                data['images'].push(image);
+            };
+
+            // fire download template
+            console.log(data);
+            $.get('templates/singleObject/imageDownload.htm', function(template) {
+                var html = Mustache.to_html(template, data);
+                $("#downloads_target").append(html);
+            });
+            
+            // show downloads
+            $(".downloads").show();
+
+            break;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -733,7 +733,7 @@ $(document).ready(function(){
 	    $(".ks_reveal").fadeToggle();
 	    return false;
 	});
-	Mousetrap.bind('w s u d o r l o g i n', function(e) {
+	Mousetrap.bind('l o g i n', function(e) {
 	    $(".login_status").fadeToggle();
 	    return false;
 	});
