@@ -1,14 +1,14 @@
 {{#images}}
 	<div class="row">
 		<div class="col-md-6">
-			<a href="//{{APIdata.config.APP_HOST}}/loris/fedora:{{APIdata.APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="//{{APIdata.config.APP_HOST}}/loris/fedora:{{APIdata.APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a>
+			<a href="//{{APIdata.config.APP_HOST}}/loris/fedora:{{APIdata.APIParams.PID}}|{{jp2}}/full/full/0/default.jpg"><img src="//{{APIdata.config.APP_HOST}}/loris/fedora:{{APIdata.APIParams.PID}}|{{jp2}}/full/60,/0/default.jpg"/>  {{ds_id}} (jpeg)</a>			
 		</div>
 		{{#bitStream}}
 			<div class="col-md-3">
-				<a target="_blank" href="{{bitStream.ACCESS.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Token Used');" type="btn" class="btn">Fullsize JPEG</button></a>
+				<a target="_blank" href="{{bitStream.ACCESS.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Fullsize JPEG</button></a>
 			</div>
 			<div class="col-md-3">
-				<a target="_blank" href="{{bitStream.ORIGINAL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Token Used');" type="btn" class="btn">Fullsize TIFF</button></a>
+				<a target="_blank" href="{{bitStream.ORIGINAL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Fullsize TIFF</button></a>
 			</div>
 		{{/bitStream}}
 	</div>
