@@ -421,13 +421,19 @@ function generateDownloads() {
         var is_admin_user = false;   
     }
 
+    // build download object
+    var data = {'APIdata':APIdata};
+
     // Content Type Handling  
     ctype = APIdata.translated.preferredContentModelPretty;
     switch (ctype) {
+
+        // IMAGE
         case "Image":
 
-            // build image download object
-            var data = {'APIdata':APIdata,'images':[]};
+            // update data object
+            data['images'] = [];
+
             for (var i = 0; i < APIdata.singleObjectPackage.parts_imageDict.sorted.length; i++) {
                 var image = APIdata.singleObjectPackage.parts_imageDict.sorted[i];                
                 if (is_admin_user == true) {
@@ -449,6 +455,29 @@ function generateDownloads() {
             $(".downloads").show();
 
             break;
+        // END IMAGE
+
+        // WSUebook
+        case "WSUebook":
+
+            if (is_admin_user == true) {
+                data['bitStream'] = {
+                    'PDF_FULL':APIdata.objBitStreamTokens.PDF_FULL,
+                    'HTML_FULL':APIdata.objBitStreamTokens.HTML_FULL,
+                }
+            }
+
+            // fire download template
+            $.get('templates/singleObject/WSUebookDownload.htm', function(template) {
+                var html = Mustache.to_html(template, data);
+                $("#downloads_target").append(html);
+            });
+            
+            // show downloads
+            $(".downloads").show();
+
+            break;
+        // END WSUebook
     }
 
 }

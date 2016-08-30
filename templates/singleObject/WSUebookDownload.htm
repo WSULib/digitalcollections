@@ -1,0 +1,23 @@
+<!-- PDF_FULL -->
+<div class="row">
+	<div class="col-md-6">
+		<a href="//{{APIdata.config.APP_HOST}}/item/{{APIdata.APIParams.PID}}/bitStream/PDF_FULL"><img src="//{{APIdata.config.APP_HOST}}/item/{{APIdata.APIParams.PID}}/thumbnail/" height=60 />  Full-Text PDF</a>
+	</div>
+	{{#bitStream}}
+		<div class="col-md-3">
+			<a target="_blank" href="{{bitStream.PDF_FULL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Download</button></a>
+		</div>
+	{{/bitStream}}
+</div>
+
+<!-- HTML_FULL -->
+<div class="row">
+	<div class="col-md-6">
+		<a href="//{{APIdata.config.APP_HOST}}/item/{{APIdata.APIParams.PID}}/bitStream/HTML_FULL"><img src="//{{APIdata.config.APP_HOST}}/item/{{APIdata.APIParams.PID}}/thumbnail/" height=60 />  Full-Text HTML</a>			
+	</div>
+	{{#bitStream}}
+		<div class="col-md-3">
+			<a target="_blank" href="{{bitStream.HTML_FULL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Download</button></a>
+		</div>
+	{{/bitStream}}
+</div>
