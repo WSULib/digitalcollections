@@ -5,7 +5,10 @@
 	</div>
 	{{#bitStream}}
 		<div class="col-md-3">
-			<a target="_blank" href="{{bitStream.PDF_FULL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Download</button></a>
+			<a target="_blank" href="{{bitStream.PDF_FULL.url}}"><button onclick="$('.pdf_buttons').css('background-color','rgba(255,214,214,1)'); $('.pdf_buttons').html('Download Used');" type="btn" class="btn pdf_buttons">View PDF</button></a>
+		</div>
+		<div class="col-md-3">
+			<a target="_blank" href="{{bitStream.PDF_FULL.url}}&download=true" download><button onclick="$('.pdf_buttons').css('background-color','rgba(255,214,214,1)'); $('.pdf_buttons').html('Download Used');" type="btn" class="btn pdf_buttons">Download PDF</button></a>
 		</div>
 	{{/bitStream}}
 </div>
@@ -17,7 +20,10 @@
 	</div>
 	{{#bitStream}}
 		<div class="col-md-3">
-			<a target="_blank" href="{{bitStream.HTML_FULL.url}}"><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used');" type="btn" class="btn">Download</button></a>
+			<a target="_blank" href="{{bitStream.HTML_FULL.url}}"><button onclick="$('.html_buttons').css('background-color','rgba(255,214,214,1)'); $('.html_buttons').html('Download Used');" type="btn" class="btn html_buttons">View HTML</button></a>
+		</div>
+		<div class="col-md-3">
+			<a target="_blank" href="{{bitStream.HTML_FULL.url}}&download=true" download><button onclick="$('.html_buttons').css('background-color','rgba(255,214,214,1)'); $('.html_buttons').html('Download Used');" type="btn" class="btn html_buttons">Download HTML</button></a>
 		</div>
 	{{/bitStream}}
 </div>
