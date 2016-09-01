@@ -2,11 +2,8 @@
 
 if($_POST) {
 
-    // $emailTo = "libwebmaster@wayne.edu";
-    // $emailFrom = "libwebmaster@wayne.edu";
-
-    $emailTo = "ej2929@wayne.edu";
-    $emailFrom = "ej2929@wayne.edu";
+    $emailTo = "libwebmaster@wayne.edu";
+    $emailFrom = "libwebmaster@wayne.edu";
 
     $clientName = trim($_POST['name']);
     $clientEmail = trim($_POST['email']);
