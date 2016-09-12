@@ -3,12 +3,10 @@
 if($_POST) {
 
     $emailTo = "libwebmaster@wayne.edu";
-    $emailFrom = "libwebmaster@wayne.edu";
-
     $clientName = trim($_POST['name']);
     $clientEmail = trim($_POST['email']);
     $subject = "Message about WSU Digital Collections";
-    $message = "Sender:\n" . $clientName . "\n\nMessage:\n" . trim($_POST['message']);
+    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . trim($_POST['message']);
     $recaptcha = trim($_POST["recaptcha_response_field"]);
 
     $array = array();
@@ -46,7 +44,7 @@ if($_POST) {
 
     else {
     // Send email
-    $headers = "From: <$emailFrom>" . "\r\n" . "Reply-To: " . $clientEmail;
+    $headers = "From: <$clientEmail>" . "\r\n" . "Reply-To: " . $clientEmail;
     mail($emailTo, $subject, $message, $headers);
     }
     }
