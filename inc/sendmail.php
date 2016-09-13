@@ -2,11 +2,17 @@
 
 if($_POST) {
 
-    $emailTo = "libwebmaster@wayne.edu";
+    $emailTo = trim($_POST['to']);
     $clientName = trim($_POST['name']);
     $clientEmail = trim($_POST['email']);
-    $subject = "Message about WSU Digital Collections";
-    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . trim($_POST['message']);
+    $subject = trim($_POST['subject']);
+    if (isset($_POST['url'])) {
+        $url = "\n\nURL:\n$url";
+    }
+    else {
+        $url = '';
+    }
+    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
     $recaptcha = trim($_POST["recaptcha_response_field"]);
 
     $array = array();
