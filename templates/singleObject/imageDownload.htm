@@ -5,11 +5,20 @@
 		</div>
 		{{#bitStream}}
 			<div class="col-md-6">
+
+				<!-- view JPEG (ACCESS) -->
 				<a class="{{ds_id}}" target="_blank" href="{{bitStream.ACCESS.url}}"><button onclick="$('.{{ds_id}} .jpeg_buttons').css('background-color','rgba(255,214,214,1)'); $('.{{ds_id}} .jpeg_buttons').html('Download Used'); $('.{{ds_id}} .jpeg_buttons').attr('onclick','return false;');" type="btn" class="btn jpeg_buttons">View JPEG</button></a>
-				<a class="{{ds_id}}" style="margin-left:15px;" href="{{bitStream.ACCESS.url}}&download=true" download><button onclick="$('.{{ds_id}} .jpeg_buttons').css('background-color','rgba(255,214,214,1)'); $('.{{ds_id}} .jpeg_buttons').html('Download Used'); $('.{{ds_id}} .jpeg_buttons').attr('onclick','return false;');" type="btn" class="btn jpeg_buttons">Download JPEG</button></a>
 				<br>
 				<br>
-				<a href="{{bitStream.ORIGINAL.url}}&download=true" download><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used'); $(this).attr('onclick','return false;');" type="btn" class="btn">Fullsize Original</button></a>
+
+				<!-- download JPEG -->
+				<a class="{{ds_id}}" href="{{bitStream.ACCESS.url}}&download=true" download><button onclick="$('.{{ds_id}} .jpeg_buttons').css('background-color','rgba(255,214,214,1)'); $('.{{ds_id}} .jpeg_buttons').html('Download Used'); $('.{{ds_id}} .jpeg_buttons').attr('onclick','return false;');" type="btn" class="btn jpeg_buttons">Download JPEG</button></a>
+				<br>
+				<br>
+				
+				<!-- Original -->
+				<a href="{{bitStream.ORIGINAL.url}}&download=true" download><button onclick="$(this).css('background-color','rgba(255,214,214,1)'); $(this).html('Download Used'); $(this).attr('onclick','return false;');" type="btn" class="btn">Original</button></a>
+
 			</div>			
 		{{/bitStream}}
 	</div>
