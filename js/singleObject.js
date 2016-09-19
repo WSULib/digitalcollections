@@ -415,7 +415,7 @@ function generateDownloads() {
     // determine if admin user
     if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true && APIdata.objBitStreamTokens.status != false) {
         var is_admin_user = true;
-        $("#downloads_target").append('<div class="row" style="background-color:rgba(51, 255, 102, 0.2); padding-bottom:0px;"><div class="col-md-12"><p style="margin-bottom:10px;"><strong>Admin View:</strong> Each button comes with a token in the URL that allows for ONE download.  These can be downloaded here, or you can right-click the button and copy the link to send to others.</p></div></div>');
+        $("#downloads_target").append('<div class="row" style="background-color:rgba(51, 255, 102, 0.2); padding-bottom:0px;"><div class="col-md-12"><p style="margin-bottom:10px;"><strong>Admin View:</strong> Each button comes with a token in the URL that allows for ONE download.  These can be downloaded here, or you can right-click the button and copy the link to send to others.  To regenerate download links, reload the page.</p></div></div>');
     }
     else {
         var is_admin_user = false;   
