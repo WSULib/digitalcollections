@@ -1,9 +1,11 @@
 
 <!-- old ebook reader -->
-<iframe src="/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up" width="100%" height="500px" frameborder="0" ></iframe>
+<iframe src="/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up" width="100%" height="640px" frameborder="0" ></iframe>
 
-<p style="width:100%; text-align:center; margin-top:10px">
-	<a target="_blank" href="/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up"><button type="btn" class="btn">Open Resource in Reader</button></a>
-	<a class="ks_reveal" target="_blank" href="mirador_full.php?id={{APIParams.PID}}&type=BookView"><button type="btn" class="btn">Try Our New Beta Reader!</button></a>
+<h3 style="width:100%; text-align:center; margin-top:10px">Viewing Options</h3>
+<p style="width:100%; text-align:center; margin-top:10px">	
+	<a target="_blank" href="/eTextReader/eTextReader.php?ItemID={{APIParams.PID}}#page/1/mode/2up"><button type="btn" class="btn">BookReader</button></a>
+	<a target="_blank" href="mirador_full.php?id={{APIParams.PID}}&type=BookView"><button type="btn" class="btn">Mirador</button></a>
+	<a target="_blank" href="/readux/books/{{APIParams.PID}}_Readux_VirtualVolume/"><button type="btn" class="btn">Readux (Beta)</button></a>
 </p>
 
