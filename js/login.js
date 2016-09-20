@@ -343,7 +343,7 @@ function setWSUDORCookie(username,clientHash){
 
 function navBack(){
   if (document.referrer == ""){
-    bootbox.alert("You are now logged into WSU digitalcollections.");
+    bootbox.alert("You are now logged in.");
     window.setTimeout(function(){
             bootbox.hideAll();
             window.history.back();
@@ -351,7 +351,7 @@ function navBack(){
     
   }
   else{
-    bootbox.alert("You are now logged into WSU digitalcollections.");
+    bootbox.alert("You are now logged in.");
     window.setTimeout(function(){
             bootbox.hideAll();
             window.location = document.referrer;

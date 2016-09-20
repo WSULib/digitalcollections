@@ -24,7 +24,7 @@ $objectPID = $_REQUEST['PID'];
     <div class="container" id="templateCM">
         <h1 class="brand-login">
             <img src="img/wsulsLogo.png" alt="" style="display:block;margin:0 auto;margin-bottom:20px;width:90px;height:auto;">
-            <a href="index.php">Digital Collections</a>
+            <!-- <a href="index.php">Digital Collections</a> -->
         </h1>
         <div class="flat-form">
             <ul class="tabs">
@@ -36,9 +36,9 @@ $objectPID = $_REQUEST['PID'];
                 </li>
             </ul>
             <div id="login_form_container" class="form-action show">
-                <h1>Hello World.</h1>
+                <h1>Welcome!</h1>
                 <div id="login_form">
-                    <p>Login with your AccessID/Username and Password. If you don't have an AccessID or Username, please sign up!</p>
+                    <p>Login with your Access ID / Username and Password. If you don't have an Access ID or Username, please sign up.</p>
                     <form onsubmit="loginForm(); return false;">
                         <ul>
                             <li><input id="username" type="text" name="username" placeholder="Username"></li>
@@ -52,7 +52,7 @@ $objectPID = $_REQUEST['PID'];
             <div id="createAccount_container" class="form-action hide">
                 <h1>Register.</h1>
                 <p>
-                    Want to save your favorites? If you do not have a WSU accessID, then fill out the information below to sign up for an account.
+                    If you do not have a WSU Access ID, then fill out the information below to sign up for an account.
                 </p>
                 <form onsubmit="createAccountPrep('userDefined'); return false;">
                     <ul>
