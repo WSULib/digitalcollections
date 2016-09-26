@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-md-12">
+		<h4>This item is part of a Learning Object!</h4>
+
+		<div class="facets" style="width:100%;">
+
+			<ul class="facet_container filter siblings" style="display: block;">
+				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Part Of</h3>
+
+				<ul class="tree facet_list" style="display: block;">
+					{{#singleObjectPackage.learning_objects}}
+						<li><a href="//{{config.APP_HOST}}/item/{{lo_pid}}">{{lo_title}}</a></li>	
+					{{/singleObjectPackage.learning_objects}}
+				</ul>
+			</ul>
+
+		</div>
+
+	</div>
+</div>
+

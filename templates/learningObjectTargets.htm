@@ -1,0 +1,22 @@
+<h4>Associated Items</h4>	
+
+<div class="facets" style="width:100%;">
+
+	<ul class="facet_container filter" style="display: block;">
+		<!-- <h3 class="tree-toggler"><span class="icon-plus-thin"></span>Includes</h3> -->
+
+		<ul class="tree facet_list" style="display: block; text-align:center;">
+			{{#lo_targets}}
+				<li>
+					<a href="//{{APP_HOST}}/item/{{.}}">
+						<img src="//{{APP_HOST}}/item/{{.}}/thumbnail" height=50/><br>
+						{{.}}
+					</a>
+				</li>	
+			{{/lo_targets}}
+		</ul>
+	</ul>
+
+</div>
+
+

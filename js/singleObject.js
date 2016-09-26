@@ -233,8 +233,11 @@ function finishRendering() {
             unknownType();
     }
 
-    // genereate hierarchical tree if exists
+    // genereate hierarchical tree
     genHierarchicalTree();
+
+    // learning objects
+    genLearningObjects();
 
 }
 
@@ -307,7 +310,7 @@ function switchItem(playerName, ds_id) {
 }
 
 
-// Family Tree
+// Related Objects
 function genHierarchicalTree() {
 
     if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length > 0) {
@@ -319,7 +322,7 @@ function genHierarchicalTree() {
         // functional 
         $.get('templates/hierarchicaltree.htm', function(template) {
             var html = Mustache.to_html(template, APIdata);
-            $(".related-objects").html(html);
+            $(".related-objects").append(html);
             // remove empties
             if (APIdata.singleObjectPackage.hierarchicalTree.parent.results.length == 0) {
                 $(".parent").css('display', 'none');
@@ -330,6 +333,51 @@ function genHierarchicalTree() {
             if (APIdata.singleObjectPackage.hierarchicalTree.children['count'] == 0) {
                 $(".children").css('display', 'none');
             }
+        }).done(function(){
+
+            // IS learning object
+            /*
+                Consider moving this to a single, sparql query, which would include titles too
+                These objects won't come up often, not that expensive to query a single API endpoint
+            */
+            if (APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length > 0) {
+                var lo_targets_package = {
+                    "APP_HOST":config.APP_HOST
+                };
+                lo_targets_package.lo_targets = [];
+                for (var i = 0; i < APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length; i++) {
+                    lo_target = APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor[i].split("/")[1]            
+                    lo_targets_package.lo_targets.push(lo_target);
+                }
+
+                // functional 
+                $.get('templates/learningObjectTargets.htm', function(template) {
+                    var html = Mustache.to_html(template, lo_targets_package);
+                    $("#hier_tree").append(html);            
+                });
+            }
+    
+        });
+    }
+
+}
+
+
+function genLearningObjects() {
+
+    // HAS associated learning objects
+    if (APIdata.singleObjectPackage.learning_objects.length > 0) {
+        
+        // cleanup
+        for (var i = 0; i < APIdata.singleObjectPackage.learning_objects.length; i++) {
+            lo = APIdata.singleObjectPackage.learning_objects[i];
+            lo.lo_pid = lo.lo_uri.split("/")[1];
+        }
+
+        // functional 
+        $.get('templates/hasLearningObjects.htm', function(template) {
+            var html = Mustache.to_html(template, APIdata);
+            $(".related-objects").append(html);            
         });
     }
 
