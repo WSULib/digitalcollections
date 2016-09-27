@@ -2,26 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact | Digital Collections | WSULS</title>
+    <title>Permissions Request | Digital Collections | WSULS</title>
     <meta name="viewport" content="initial-scale=1">
 
     <!-- load site-wide dependencies -->
     <?php include('inc/site_wide_depends.php'); ?>
-  
-    <!-- page specific dependencies -->
-    <script src="js/contact_random.js"></script>
-                
+  <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <!-- capture values from the preceding page -->
+    <?php
+        $url = $_SERVER['HTTP_REFERER']; // string
+        $isreuther = $_POST['isreuther']; // boolean
+        if ($isreuther) {
+            $subject = "REUTHER | Permissions Request";
+        }
+        else {
+            $subject = "WSULS | Permissions Request";
+        }
+    ?>
+    <!-- image PID array -->
+    <?php
+    $image_array = array(
+        "wayne:UniversityBuildings24902",
+        "wayne:vmc18518",
+        "wayne:UniversityBuildings25441",
+        "wayne:vmc48406",
+        "wayne:CFAIEB01c001",
+        "wayne:UniversityBuildings25703",
+        "wayne:vmc3186_5",
+        "wayne:CFAIEB01a016",
+        "wayne:vmc705",
+        "wayne:CFAIEB01c673",
+        "wayne:vmc26715",
+        "wayne:CFAIEB01c100"
+    );
+
+    ?>
 </head>
 <body>
 
     <?php include('inc/header.php'); ?>
 
     <div class="container">
-        <h2>Contact</h2>
+        <h2>Permissions Request</h2>
           <div class="row">
                 <div class="hidden-xs col-sm-6 col-md-6 contact">
-                    <img id="imagery" src="" alt="">
-                    <p class="caption"></p>
+                    <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+                    <?php
+                    foreach ($image_array as $image_PID) {
+                        echo "<div class='grid-item'><img src='https://digital.library.wayne.edu/item/$image_PID/thumbnail/'></div>";
+                    }
+                    ?>
+                    </div>
                 </div>
                 <div class="col-sm-6 col-md-6 contact-form">
                     <form method="post" action="inc/sendmail.php">
@@ -31,9 +62,9 @@
                           <input id="email" type="text" name="email" placeholder="Enter your email">
                         <label for="message" class="messageLabel">Message</label>
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
-                        <input type="hidden" name="subject" value="Message about WSU Digital Collections" />
-                        <input type="hidden" name="to" value="libwebmaster@wayne.edu" />
-
+                        <input type="hidden" name="url" value=<?php echo $url; ?> />
+                        <input type="hidden" name="subject" value=<?php echo $subject; ?> />
+                        <input type="hidden" name="to" value="reutherav@wayne.edu,libwebmaster@wayne.edu" />
                     <!-- RECAPTCHA -->
                    <script type="text/javascript">
                          var RecaptchaOptions = {
