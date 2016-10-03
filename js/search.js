@@ -81,7 +81,7 @@ function searchGo(){
 	if (searchParams['q'] == undefined || searchParams['q'] == "" ) {
 		var type = "empty_search"
 		searchParams['q'] = "*";
-		searchDefs['sort'] = 'random_'+makeid()+' asc';
+		searchDefs['sort'] = 'random_'+today_string()+' asc';
 	};
 
 	// add API functions to mergedParams
@@ -151,15 +151,24 @@ function updateSearch(){
 	window.location = nURL;
 }
 
-function makeid()
-{
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function today_string() {
+    
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
 
-    for( var i=0; i < 16; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+	if(dd<10) {
+	    dd='0'+dd
+	} 
 
-    return text;
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+
+	today_string = mm+dd+yyyy;
+	return today_string
 }
+
 
 
