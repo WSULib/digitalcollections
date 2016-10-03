@@ -340,23 +340,24 @@ function genHierarchicalTree() {
                 Consider moving this to a single, sparql query, which would include titles too
                 These objects won't come up often, not that expensive to query a single API endpoint
             */
-            if (APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length > 0) {
-                var lo_targets_package = {
-                    "APP_HOST":config.APP_HOST
-                };
-                lo_targets_package.lo_targets = [];
-                for (var i = 0; i < APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length; i++) {
-                    lo_target = APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor[i].split("/")[1]            
-                    lo_targets_package.lo_targets.push(lo_target);
-                }
+            if (APIdata.singleObjectPackage.objectSolrDoc.hasOwnProperty('rels_learningObjectFor')){
+                if (APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length > 0) {
+                    var lo_targets_package = {
+                        "APP_HOST":config.APP_HOST
+                    };
+                    lo_targets_package.lo_targets = [];
+                    for (var i = 0; i < APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor.length; i++) {
+                        lo_target = APIdata.singleObjectPackage.objectSolrDoc.rels_learningObjectFor[i].split("/")[1]            
+                        lo_targets_package.lo_targets.push(lo_target);
+                    }
 
-                // functional 
-                $.get('templates/learningObjectTargets.htm', function(template) {
-                    var html = Mustache.to_html(template, lo_targets_package);
-                    $("#hier_tree").append(html);            
-                });
+                    // functional 
+                    $.get('templates/learningObjectTargets.htm', function(template) {
+                        var html = Mustache.to_html(template, lo_targets_package);
+                        $("#hier_tree").append(html);            
+                    });
+                }    
             }
-    
         });
     }
 

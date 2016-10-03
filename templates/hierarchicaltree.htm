@@ -8,7 +8,9 @@
 			<ul class="facet_container filter parent" style="display: block;">
 				<h3 >Part of</h3>		
 				<ul class="tree facet_list" style="display: block;">
-					<li><a href="item?id={{singleObjectPackage.hierarchicalTree.parent.results.0.parent}}">{{singleObjectPackage.hierarchicalTree.parent.results.0.parentTitle}}</a></li>
+					{{#singleObjectPackage.hierarchicalTree.parent.results}}
+						<li><a href="item?id={{parent}}">{{parentTitle}}</a></li>
+					{{/singleObjectPackage.hierarchicalTree.parent.results}}					
 				</ul>
 			</ul>
 
