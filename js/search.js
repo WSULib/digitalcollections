@@ -81,7 +81,7 @@ function searchGo(){
 	if (searchParams['q'] == undefined || searchParams['q'] == "" ) {
 		var type = "empty_search"
 		searchParams['q'] = "*";
-		searchDefs['sort'] = 'id asc';
+		searchDefs['sort'] = 'random_'+makeid()+' asc';
 	};
 
 	// add API functions to mergedParams
@@ -149,6 +149,17 @@ function updateSearch(){
 	}	
 	// refresh page	
 	window.location = nURL;
+}
+
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 16; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 
