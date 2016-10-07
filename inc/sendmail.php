@@ -5,6 +5,7 @@ if($_POST) {
     $emailTo = trim($_POST['to']);
     $clientName = trim($_POST['name']);
     $clientEmail = trim($_POST['email']);
+    $message = trim($_POST['message']);
     $subject = trim($_POST['subject']);
     if (isset($_POST['url'])) {
         $url = "\n\nURL:\n$_POST[url]";
@@ -12,7 +13,6 @@ if($_POST) {
     else {
         $url = '';
     }
-    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
 
     $array = array();
     $array['nameMessage'] = '';
@@ -24,6 +24,7 @@ if($_POST) {
     if($message == '') {
         $array['messageMessage'] = "This is a required field.";
     }
+
     if(!isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
         $array['recaptchaMessage'] = "Please click on the reCAPTCHA box.";        
     }
@@ -44,6 +45,7 @@ if($_POST) {
 
     else {
     // Send email
+    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
     $headers = "From: <$clientEmail>" . "\r\n" . "Reply-To: " . $clientEmail;
     mail($emailTo, $subject, $message, $headers);
     }
