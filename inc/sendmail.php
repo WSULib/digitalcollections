@@ -8,7 +8,7 @@ if($_POST) {
     $message = trim($_POST['message']);
     $subject = trim($_POST['subject']);
     if (isset($_POST['url'])) {
-        $url = "\n\nURL:\n$_POST[url]";
+        $url = "\n\nURL:\n$_POST[url]\n\n";
     }
     else {
         $url = '';
