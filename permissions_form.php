@@ -11,9 +11,16 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- capture values from the preceding page -->
     <?php
-        $url = $_SERVER['HTTP_REFERER']; // string
-        $isreuther = $_POST['isreuther']; // boolean
-        if ($isreuther) {
+        if(isset($_SERVER['HTTP_REFERER'])) {
+            $url = $_SERVER['HTTP_REFERER']; // string
+        }
+        else {
+            $url = '';
+        }
+        if(isset($_POST['isreuther'])) {
+            $isreuther = $_POST['isreuther']; // boolean
+        }
+        if (isset($isreuther)) {
             $subject = "REUTHER | Permissions Request";
         }
         else {
@@ -53,7 +60,7 @@
                           <input id="email" type="text" name="email" placeholder="Enter your email">
                         <label for="message" class="messageLabel">Message</label>
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
-                        <input type="hidden" name="url" value=<?php echo $url; ?> />
+                        <input type="hidden" id="url" name="url" value=<?php echo $url; ?> />
                         <input type="hidden" name="subject" value=<?php echo $subject; ?> />
                         <input type="hidden" name="to" value="reutherav@wayne.edu,libwebmaster@wayne.edu" />
                         <!-- RECAPTCHA -->
@@ -67,9 +74,6 @@
             </div>
     </div>
     
-    <?php include('inc/footer.php'); ?>
-<script type="text/javascript"> 
-    getImage(array);              
-</script>    
+    <?php include('inc/footer.php'); ?>  
 </body>
 </html>
