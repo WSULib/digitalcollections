@@ -27,7 +27,7 @@
                     <p class="caption"></p>
                 </div>
                 <div class="col-sm-6 col-md-6 contact-form">
-                    <form method="post" action="inc/sendmail.php">
+                    <form method="post" action="#">
                         <label for="name" class="nameLabel">Name</label>
                           <input id="name" type="text" name="name" placeholder="Enter your name">
                         <label for="email" class="emailLabel">Email</label>
@@ -38,7 +38,7 @@
                         <input type="hidden" name="to" value="libwebmaster@wayne.edu" />
                         <!-- RECAPTCHA -->
                         <label></label>
-                        <div class="g-recaptcha" data-sitekey="6LdHqggUAAAAADLHF6l8jV_zgcbf5PT-1O_qwrKA"></div>
+                        <div class="g-recaptcha recaptchaLabel" data-sitekey="6LdHqggUAAAAADLHF6l8jV_zgcbf5PT-1O_qwrKA"></div>
                         <!-- /RECAPTCHA -->
                         <button type="submit" class="btn">Send Message</button>
                     </form>
