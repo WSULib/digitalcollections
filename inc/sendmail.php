@@ -13,7 +13,6 @@ if($_POST) {
         $url = '';
     }
     $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
-    $recaptcha = trim($_POST["recaptcha_response_field"]);
 
     $array = array();
     $array['nameMessage'] = '';
