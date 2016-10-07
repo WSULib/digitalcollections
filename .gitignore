@@ -5,7 +5,7 @@ backups/*
 sitemaps
 sitemaps/*
 google*.html
-inc/recaptcha-php-1.11/privatekey.php
+inc/recaptcha/privatekey.php
 robots.txt
 
 sftp-config.json

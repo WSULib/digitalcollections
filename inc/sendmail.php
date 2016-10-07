@@ -25,27 +25,22 @@ if($_POST) {
     if($message == '') {
         $array['messageMessage'] = "This is a required field.";
     }
-    if ($recaptcha == '') {
-        $array['recaptchaMessage'] = "The reCAPTCHA wasn't entered correctly. Try again.";        
+    if(!isset($_POST['g-recaptcha-response']) && empty($_POST['g-recaptcha-response'])) {
+        $array['recaptchaMessage'] = "Please click on the reCAPTCHA box.";        
     }
 
-    if($message != '' && $recaptcha !== '') {
+    if($message != '' && isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 
     // RECAPTCHA check before send
-    // require_once($_SERVER['ST_ROOT'].'recaptcha-php-1.11/recaptchalib.php');
-    // require_once($_SERVER['ST_ROOT'].'recaptcha-php-1.11/privatekey.php');
+    require_once'recaptcha/privatekey.php';
 
-    require_once'recaptcha-php-1.11/recaptchalib.php';
-    require_once'recaptcha-php-1.11/privatekey.php';
+    //get verify response data
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$privatekey.'&response='.$_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
 
-    $resp = recaptcha_check_answer ($privatekey,
-                                $_SERVER["REMOTE_ADDR"],
-                                $_POST["recaptcha_challenge_field"],
-                                $_POST["recaptcha_response_field"]);
-
-    if (!$resp->is_valid) {
+    if (!$responseData->success) {
         // What happens when the CAPTCHA was entered incorrectly
-        $array['recaptchaMessage'] = "The reCAPTCHA wasn't entered correctly. Try again.";
+        $array['recaptchaMessage'] = "Verification failed. Please try again.";
     } 
 
     else {
