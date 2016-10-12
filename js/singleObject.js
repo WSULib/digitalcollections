@@ -388,17 +388,27 @@ function genLearningObjects() {
 // Report Problem
 function reportProb() {
     // send to reportProb API function  
+    
+    // transform form into JS object; re-map form element names with values; encode into JSON string
+    var unindexed_array = $('.flag-form').serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+    var flag_form_contents = JSON.stringify(indexed_array);
+
     if(loaded) return;
     PID = APIdata.APIParams.PID[0];
-    var APIaddURL = "/" + config.API_url + "?functions[]=reportProb&PID=" + PID;
+    var APIaddURL = "/" + config.API_url + "?functions[]=reportProb&PID=" + PID + "&notes=" + flag_form_contents;
 
     function callSuccess(response) {
-        $(".flag").css({
+        $('.flag-form').slideToggle();
+         $(".flag").css({
             'background-color': 'rgba(51, 255, 102, 0.2)',
             'background-image': 'url(/digitalcollections/images/checklist-glyph.png)'
             });
-        $(".flag").html("We'll take a look at this page. Thanks!<br><div class=flag-form-link><a href='#'>Explain problem in more detail</a></div>");
-        $(".flag").attr('onclick', 'showForm(this)');
+        $(".flag").html("Your message has been sent. Thanks!");
     }
 
     function callError(response) {
