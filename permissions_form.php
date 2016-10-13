@@ -53,7 +53,7 @@
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
                         <input type="hidden" id="url" name="url" value=<?php echo $url; ?> />
                         <input type="hidden" name="subject" value="Permissions Request" />
-                        <input type="hidden" name="to" value="libwebmaster@wayne.edu" />
+                        <input type="hidden" name="to" value="reutherav@wayne.edu, libwebmaster@wayne.edu" />
                         <!-- RECAPTCHA -->
                         <label></label>
                         <div class="g-recaptcha recaptchaLabel" data-sitekey="6LdHqggUAAAAADLHF6l8jV_zgcbf5PT-1O_qwrKA"></div>
