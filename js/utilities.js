@@ -737,6 +737,11 @@ $(document).ready(function(){
 	    $(".login_status").fadeToggle();
 	    return false;
 	});
+	Mousetrap.bind('b u t t o n', function(e) {
+	    $(".tempButtons").fadeToggle();
+	    $(".original").fadeToggle();
+	    return false;
+	});
 });
 
 
