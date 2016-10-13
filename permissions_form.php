@@ -17,20 +17,11 @@
         else {
             $url = '';
         }
-        if(isset($_POST['isreuther'])) {
-            $isreuther = $_POST['isreuther']; // boolean
-        }
-        if (isset($isreuther)) {
-            $subject = "REUTHER | Permissions Request";
-        }
-        else {
-            $subject = "WSULS | Permissions Request";
-        }
     ?>
     <!-- image PID array -->
     <?php
     $image_array = array(
-        "wayne:vmc10055"
+        "wayne:vmc10077"
     );
 
     ?>
@@ -61,7 +52,7 @@
                         <label for="message" class="messageLabel">Message</label>
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
                         <input type="hidden" id="url" name="url" value=<?php echo $url; ?> />
-                        <input type="hidden" name="subject" value=<?php echo $subject; ?> />
+                        <input type="hidden" name="subject" value="Permissions Request" />
                         <input type="hidden" name="to" value="libwebmaster@wayne.edu" />
                         <!-- RECAPTCHA -->
                         <label></label>

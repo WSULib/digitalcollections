@@ -11,7 +11,7 @@ if($_POST) {
         $url = "\n\nURL:\n$_POST[url]\n\n";
     }
     else {
-        $url = '';
+        $url = "\n\nURL:\nitem URL unknown\n\n";
     }
 
     $array = array();
