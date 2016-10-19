@@ -373,7 +373,7 @@ function populateFacets(){
 
 
 // populate results - display uniqueness is found in templates
-function populateResults(templateType,destination,templateData){  
+function populateResults(templateType, destination, templateData){
 	// prescribe template locations
 	templateHash = {
 		'grid' : 'templates/gridObj.htm',
@@ -386,32 +386,34 @@ function populateResults(templateType,destination,templateData){
 	}
 	
 	//push results to results_container
-	// console.log(config);
-	for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
-			$.ajax({                
-				url: templateHash[templateType],      
-				dataType: 'html',            
-				async:false,
-				success: function(response){        
-					var template = response;
-					if (typeof(templateData) == 'undefined') {
-						template_package = {
-							"config":config,
-							"solr_data":APIdata.solrSearch.response.docs[i]
-						}
-						var html = Mustache.to_html(template, template_package);         
+	$.ajax({                
+		url: templateHash[templateType],      
+		dataType: 'html',            
+		async:false,
+		success: function(response){
+			var template = response;
+			
+			// loop through responses
+			for (var i = 0; i < APIdata.solrSearch.response.docs.length; i++) {
+				if (typeof(templateData) == 'undefined') {
+					template_package = {
+						"config":config,
+						"solr_data":APIdata.solrSearch.response.docs[i]
 					}
-					else {
-						template_package = {
-							"config":config,
-							"solr_data":templateData
-						}
-						var html = Mustache.to_html(template, templateData);           
-					}        
-					$(destination).append(html);
-				}     
-			});
-	} 
+					var html = Mustache.to_html(template, template_package);         
+				}
+				else {
+					template_package = {
+						"config":config,
+						"solr_data":templateData
+					}
+					var html = Mustache.to_html(template, templateData);           
+				}        
+				$(destination).append(html);
+			} 
+			
+		}     
+	});
 
 	// retroactively give them index numbers
 	var items = $(".crop a");
