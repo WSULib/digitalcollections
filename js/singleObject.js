@@ -406,13 +406,17 @@ function reportProb() {
         $('.flag-form').slideToggle();
          $(".flag").css({
             'background-color': 'rgba(51, 255, 102, 0.2)',
-            'background-image': 'url(/digitalcollections/images/checklist-glyph.png)'
+            'background-image': 'url(/digitalcollections/images/checklist-glyph.png)',
+            'font-size': '10px'
             });
-        $(".flag").html("Your message has been sent. Thanks!");
+        $(".flag").html("Message sent. Thanks!");
     }
 
     function callError(response) {
-        $(".flag").html("Ooops. Looks like we had an internal error. Please try again later. Thanks!");
+        $(".flag").css({
+            'background-color': 'rgb(255, 50, 101)',
+            });
+        $(".flag").html("Error. Try again.");
     }
 
     $.ajax({
