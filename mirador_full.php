@@ -4,9 +4,11 @@ require("config/config_php.php");
 
 <html>
 <head>
-	<!-- mirador -->
-    <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">
+    <!-- mirador, 2.0 -->
+    <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">    
     <link rel="stylesheet" type="text/css" href="css/mirador_local.css">
+    <!-- mirador, 2.1 -->
+    <link rel="stylesheet" type="text/css" href="inc/mirador21/css/mirador-combined.css">
 	
 	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="config/config.js" type="text/javascript"></script>
@@ -23,12 +25,6 @@ require("config/config_php.php");
 		<div class="standalone">
 			<!-- all_image type template -->
 			<div id="LargeView">			
-
-				<!-- downloads -->
-				<!-- <div id="downloads">
-					<p onclick="$('#downloads ul').slideToggle(250);"><i class="fa fa-download fa-lg fa-fw"></i></p>
-					<div class="fullsize_download"><ul></ul></div>					
-				</div> -->
 
 				<div id="viewer"></div>
 
@@ -72,8 +68,11 @@ require("config/config_php.php");
 
 </body>
 
-<!-- le js -->
+<!-- le js, Mirador 2.0 -->
 <script src="inc/mirador/mirador.js"></script>
 <script src="js/mirador_full.js"></script>
+
+<!-- le js, Mirador 2.1 -->
+<!-- <script src="inc/mirador21/mirador.js"></script> -->
 
 </html>
