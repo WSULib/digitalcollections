@@ -5,8 +5,8 @@ require("config/config_php.php");
 <html>
 <head>
     <!-- mirador, 2.0 -->
-    <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">    
-    <link rel="stylesheet" type="text/css" href="css/mirador_local.css">
+    <!-- <link rel="stylesheet" type="text/css" href="inc/mirador/css/mirador-combined.css">     -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/mirador_local.css"> -->
     <!-- mirador, 2.1 -->
     <link rel="stylesheet" type="text/css" href="inc/mirador21/css/mirador-combined.css">
 	
@@ -32,32 +32,35 @@ require("config/config_php.php");
 					$(function() {					
 						var anno_token;
 						Mirador({
-							"id": "viewer",
-							"saveSession": false,
-							"layout":"1x1",
-							"mainMenuSettings" : {
-								'show' : false
+							id: "viewer",
+							saveSession: false,
+							layout:"1x1",
+							mainMenuSettings : {
+								show : false
 							},
-							"data": [
+							data: [
 								{
-									"manifestUri": "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
-									"location": "Wayne State University Library Digital Collections"}              
-								],
-							"windowObjects": [                 
+									manifestUri: "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
+									location: "Wayne State University Library Digital Collections"
+								}								
+							],
+							windowObjects: [                 
 								{
-									"loadedManifest" : "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
-									"viewType" : "<?php echo $_REQUEST['type']; ?>",
-									"layoutOptions": 
-										{
-											"close": true,
-											"slotRight": true,
-											"slotLeft": true,
-											"slotAbove": true,
-											"slotBelow": true
-										},
-								"annotationLayer": false,
-								"availableViews" : ['ImageView','ThumbnailsView','ScrollView','<?php echo $_REQUEST['type']; ?>'] // a bit hacky, potentially includes ImageView twice, but works
-								}			                     
+									loadedManifest : "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
+									viewType : "<?php echo $_REQUEST['type']; ?>",
+									layoutOptions: 
+									{
+										close: true,
+										slotRight: true,
+										slotLeft: true,
+										slotAbove: true,
+										slotBelow: true
+									},
+									annotationLayer: false,
+									annotationCreation: false,
+									annotationState: false,
+									availableViews : ['ImageView','ThumbnailsView','ScrollView','<?php echo $_REQUEST['type']; ?>'] // a bit hacky, potentially includes ImageView twice, but works
+								}								
 							]
 						});
 					});
@@ -69,10 +72,10 @@ require("config/config_php.php");
 </body>
 
 <!-- le js, Mirador 2.0 -->
-<script src="inc/mirador/mirador.js"></script>
-<script src="js/mirador_full.js"></script>
+<!-- <script src="inc/mirador/mirador.js"></script> -->
+<!-- <script src="js/mirador_full.js"></script> -->
 
 <!-- le js, Mirador 2.1 -->
-<!-- <script src="inc/mirador21/mirador.js"></script> -->
+<script src="inc/mirador21/mirador.js"></script>
 
 </html>
