@@ -49972,7 +49972,8 @@ bindEvents: function() {
 
         _this.osd = $.OpenSeadragon({
           'id':           elemOsd.attr('id'),
-          'toolbarID' : toolbarID
+          'toolbarID' : toolbarID,
+          'visibilityRatio' : 0.1
         });
 
         // if (_this.state.getStateProperty('autoHideControls')) {
