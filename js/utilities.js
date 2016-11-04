@@ -315,7 +315,8 @@ function populateFacets(){
 
 	// DEBUG
 	// var t0 = performance.now();
-	// total_facet_count = 0;
+
+	total_facet_count = 0;
 
 	// get current URL
 	var cURL = document.URL;
