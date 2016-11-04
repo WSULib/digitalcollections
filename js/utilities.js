@@ -379,9 +379,9 @@ function populateFacets(){
 	}   
 
 	var t1 = performance.now();
-	console.log("total facet count: " + total_facet_count);
-	console.log("facet populate: " + (t1 - t0) + "ms")
-	console.log("facets per millisecond: " + (total_facet_count / (t1 - t0)))
+	console.log("total facet count, time (ms), facets per millisecond");
+	console.log(total_facet_count + "\t" + (t1 - t0) + "\t" + (total_facet_count / (t1 - t0)));
+
 }
 
 
