@@ -314,7 +314,7 @@ function populateFacets(){
 
 
 	// DEBUG
-	// var t0 = performance.now();
+	var t0 = performance.now();
 
 	total_facet_count = 0;
 
@@ -365,10 +365,10 @@ function populateFacets(){
 	}   
 
 	// Stats
-	var facet_stats = [total_facet_count + "\t" + (t1 - t0) + "\t" + (total_facet_count / (t1 - t0))]
+	var t1 = performance.now();
+	facet_stats = [total_facet_count, (t1 - t0), (total_facet_count / (t1 - t0))]
 
 	// DEBUG
-	// var t1 = performance.now();
 	// console.log("total facet count, time (ms), facets per millisecond");
 	// console.log(facet_stats);
 	// if (localStorageTest() == true) {
