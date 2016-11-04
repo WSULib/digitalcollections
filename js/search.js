@@ -126,7 +126,7 @@ function searchGo(){
 				// init grid freewall code
 				gridInit();
 			}
-			populateFacets();			
+			// populateFacets();			
 		});
 
 	}
