@@ -312,6 +312,8 @@ function paginationUpdate(){
 // populate facets
 function populateFacets(){
 
+	console.time('populateFacets');
+
 	// DEBUG
 	total_facet_count = 0;
 
@@ -375,6 +377,8 @@ function populateFacets(){
 		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");     
 		// }
 	}   
+
+	console.timeEnd('populateFacets');
 }
 
 
