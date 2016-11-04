@@ -31,6 +31,9 @@ searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
 searchDefs['solrSearchContext'] = "search";
 
+// DEBUG
+searchDefs['facet.limit'] = 10;
+
 // Set Default Views
 if (localStorageTest() == true){	
 	if (localStorage.getItem("search_resultsView") === null ) {                          
