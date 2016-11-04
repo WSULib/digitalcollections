@@ -352,30 +352,30 @@ function populateFacets(){
 				// DEBUG
 				total_facet_count += 1;
 				
-				// for long facet lists, initially hide facets over facet_limit
-				if (i > facet_limit) { 
-					var facet_hidden = "class='hidden_facet'";
-				} 
-				else {
-					var facet_hidden = "";
-				}
+				// // for long facet lists, initially hide facets over facet_limit
+				// if (i > facet_limit) { 
+				// 	var facet_hidden = "class='hidden_facet'";
+				// } 
+				// else {
+				// 	var facet_hidden = "";
+				// }
 				
 				// adding scroll to facet container, loading all
-				// var facet_hidden = "";
+				var facet_hidden = "";
 
 				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
 			}
 		}
 		
 		// hide empty facets
-		$('ul:not(:has(li))').parent().parent(".facet_container").hide();  
-		$('#search_facet').show();      
+		// $('ul:not(:has(li))').parent().parent(".facet_container").hide();  
+		// $('#search_facet').show();      
 
-		// add "more" button if longer than facet_limit   
-		if (facet_array.length > facet_limit){            
-			$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
-			$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");     
-		}
+		// // add "more" button if longer than facet_limit   
+		// if (facet_array.length > facet_limit){            
+		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
+		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");     
+		// }
 	}   
 
 	var t1 = performance.now();
