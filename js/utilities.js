@@ -312,7 +312,7 @@ function paginationUpdate(){
 // populate facets
 function populateFacets(){
 
-	console.time('populateFacets');
+	var t0 = performance.now();
 
 	// DEBUG
 	total_facet_count = 0;
@@ -353,15 +353,15 @@ function populateFacets(){
 				total_facet_count += 1;
 				
 				// for long facet lists, initially hide facets over facet_limit
-				// if (i > facet_limit) { 
-				// 	var facet_hidden = "class='hidden_facet'";
-				// } 
-				// else {
-				// 	var facet_hidden = "";
-				// }
+				if (i > facet_limit) { 
+					var facet_hidden = "class='hidden_facet'";
+				} 
+				else {
+					var facet_hidden = "";
+				}
 				
 				// adding scroll to facet container, loading all
-				var facet_hidden = "";
+				// var facet_hidden = "";
 
 				$("#"+facet+"_list").append("<li "+facet_hidden+"><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
 			}
@@ -372,13 +372,16 @@ function populateFacets(){
 		$('#search_facet').show();      
 
 		// add "more" button if longer than facet_limit   
-		// if (facet_array.length > facet_limit){            
-		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
-		// 	$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");     
-		// }
+		if (facet_array.length > facet_limit){            
+			$("#"+facet+"_list").append("<p class='facet-more'><strong><a id='"+facet+"_more' href='#' onclick='facetCollapseToggle(\"more\", \""+facet+"\"); return false;'>View All &raquo;</a></strong></p>");
+			$("#"+facet+"_list").append("<p class='facet-more'><strong><a class='facet_less' id='"+facet+"_less' href='#' onclick='facetCollapseToggle(\"less\", \""+facet+"\"); return false;'>&laquo; View Less</a></strong></p>");     
+		}
 	}   
 
-	console.timeEnd('populateFacets');
+	var t1 = performance.now();
+	console.log("total facet count: " + total_facet_count);
+	console.log("facet populate: " + (t1 - t0) + "ms")
+	console.log("facets per millisecond: " + (total_facet_count / (t1 - t0)))
 }
 
 

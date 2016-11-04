@@ -32,7 +32,7 @@ searchDefs['fullView'] = '';
 searchDefs['solrSearchContext'] = "search";
 
 // DEBUG
-// searchDefs['facet.limit'] = 10;
+// searchDefs['facet.limit'] = 1;
 
 // Set Default Views
 if (localStorageTest() == true){	
