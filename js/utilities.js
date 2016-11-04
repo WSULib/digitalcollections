@@ -329,13 +329,14 @@ function populateFacets(){
 	}
 
 	// set defaults
-	var facet_limit = 10;    
+	var facet_limit = 10;
 
 	for (var each=0; each < APIdata.ordered_facets.length; each++) {   		
 		var facet = APIdata.ordered_facets[each];  	
 		var facet_array = APIdata.solrSearch.facet_counts.facet_fields[facet];
 		$("#facets_container").append("<ul class='facet_container filter' id='"+facet+"_facet'><li><h3 class='tree-toggler'><span class='icon-minus-thin'></span>"+rosetta(facet)+" ("+facet_array.length / 2+")</h3><ul class='tree facet_list' id='"+facet+"_list'></ul></li>");
 
+		var compiled_facet_list = "";
 		for (var i = 0; i < facet_array.length; i = i + 2){     
 			// run through rosetta translation
 			var facet_value = rosetta(facet_array[i]);      
@@ -347,14 +348,18 @@ function populateFacets(){
 				}
 				else {
 					fURL+="&start=0";
-				}
+				}				
+				
+				compiled_facet_list += "<li><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>";
+				// $("#"+facet+"_list").append("<li><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
 
 				// DEBUG
 				total_facet_count += 1;
-				
-				$("#"+facet+"_list").append("<li><a href='"+fURL+"'>"+facet_value+" ("+facet_array[i+1]+")</a></li>"); 
 			}
 		}
+
+		// add compiled li elements
+		$("#"+facet+"_list").append(compiled_facet_list); 
 			
 	}   
 
