@@ -367,12 +367,14 @@ function populateFacets(){
 	var t1 = performance.now();
 	console.log("total facet count, time (ms), facets per millisecond");
 	console.log(total_facet_count + "\t" + (t1 - t0) + "\t" + (total_facet_count / (t1 - t0)));
-	if (localStorage.getItem("infiniteScrollEnabled") === null) { 
-		localStorage.setItem("facet_log", JSON.stringify([])); 
+	if (localStorageTest() == true) {
+		if (localStorage.getItem("facet_log") === null) { 
+			localStorage.setItem("facet_log", JSON.stringify([])); 
+		}
+		facet_log = JSON.parse(localStorage.getItem("facet_log"));
+		facet_log.push([total_facet_count,(t1 - t0),(total_facet_count / (t1 - t0))]);
+		localStorage.setItem("facet_log", JSON.stringify(facet_log));
 	}
-	facet_log = JSON.parse(localStorage.getItem("facet_log"));
-	facet_log.push([total_facet_count,(t1 - t0),(total_facet_count / (t1 - t0))]);
-	localStorage.setItem("facet_log", JSON.stringify(facet_log));
 
 }
 
