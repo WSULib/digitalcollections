@@ -310,7 +310,10 @@ function paginationUpdate(){
 }
 
 // populate facets
-function populateFacets(){  
+function populateFacets(){
+
+	// DEBUG
+	total_facet_count = 0;
 
 	// get current URL
 	var cURL = document.URL;
@@ -343,6 +346,9 @@ function populateFacets(){
 				else {
 					fURL+="&start=0";
 				}
+
+				// DEBUG
+				total_facet_count += 1;
 				
 				// for long facet lists, initially hide facets over facet_limit
 				// if (i > facet_limit) { 
