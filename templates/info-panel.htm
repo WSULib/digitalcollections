@@ -61,14 +61,14 @@
     </li>
 
     <!-- Report a Problem -->
-<div class="tempButtons" style="width: 100%; overflow: hidden; display: none;">
+<div class="tempButtons" style="width: 100%; overflow: hidden; display: block;">
     <button class="flag btn btn-block" onclick="showForm();" style="width: 49%; float: left;">Report a Problem?</button>
     <a href="permissions_form.php">
         <button class="permission btn btn-block" style="width: 49%; float: right; margin-top: -1px;">Permission Request</button>
     </a>
 </div>
 
-    <button class="original flag btn btn-block" onclick="showForm();">Report a Problem?</button>
+    <button class="original flag btn btn-block" style="display: none;" onclick="showForm();">Report a Problem?</button>
         <form method="post" class="col-sm-12 col-md-12 flag-form contact-form">
             <label for="name" class="nameLabel">Name</label>
               <input id="name" type="text" name="name" placeholder="Enter your name">
