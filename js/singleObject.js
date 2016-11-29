@@ -391,9 +391,9 @@ function displayForm() {
         window.APIdata.singleObjectPackage.getCollectionMeta[0].dc_type[0];
     }
     catch(e) {
-        var catcher = e;
+        var catcher = e.name;
     }
-    if (catcher === "")
+    if (typeof catcher !== 'undefined')
         {
             $('.bothButtons').css('display','block');
         }
