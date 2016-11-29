@@ -384,6 +384,25 @@ function genLearningObjects() {
 
 }
 
+// Determine which form to display
+// For now limited to VMC
+function displayForm() {
+    try {
+        window.APIdata.singleObjectPackage.getCollectionMeta[0].dc_type[0];
+    }
+    catch(e) {
+        var catcher = e;
+    }
+    if (catcher === "")
+        {
+            $('.bothButtons').css('display','block');
+        }
+    else
+        {
+           $('.original').css('display','block');
+        }
+}
+
 
 // Report Problem
 function reportProb() {

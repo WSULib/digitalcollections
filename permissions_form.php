@@ -17,6 +17,16 @@
         else {
             $url = '';
         }
+        $parts = parse_url($url);
+        parse_str($parts['query'], $query);
+        $data = json_decode(file_get_contents("https://digital.library.wayne.edu/WSUAPI?functions[]=singleObjectPackage&PID=$query[id]"), true);
+        $rights = $data["singleObjectPackage"]["getCollectionMeta"][0]["dc_rights"][0];
+        if (strpos($rights, 'Reuther') !== false) {
+            $email = "reutherav@wayne.edu";
+        }
+        else {
+            $email = "libwebmaster@wayne.edu";
+        }
     ?>
     <!-- image PID array -->
     <?php
@@ -53,7 +63,7 @@
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
                         <input type="hidden" id="url" name="url" value=<?php echo $url; ?> />
                         <input type="hidden" name="subject" value="Permissions Request" />
-                        <input type="hidden" name="to" value="reutherav@wayne.edu, libwebmaster@wayne.edu" />
+                        <input type="hidden" name="to" value=<?php echo $email; ?> />
                         <!-- RECAPTCHA -->
                         <label></label>
                         <div class="g-recaptcha recaptchaLabel" data-sitekey="6LdHqggUAAAAADLHF6l8jV_zgcbf5PT-1O_qwrKA"></div>
@@ -64,7 +74,7 @@
                 </div>
             </div>
     </div>
-    
+
     <?php include('inc/footer.php'); ?>  
 </body>
 </html>
