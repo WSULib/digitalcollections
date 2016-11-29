@@ -63,12 +63,14 @@
 <script>
 displayForm();
 $.cookie('item_id','{{singleObjectPackage.objectSolrDoc.dc_identifier.0}}');
+var permissions_url = "permissions_form.php?v="+Math.floor((Math.random() * 10000) + 1);
+$("#permissions").attr("href", permissions_url);
 </script>
 
     <!-- Report a Problem -->
 <div class="bothButtons" style="width: 100%; overflow: hidden; display: none;">
     <button class="flag btn btn-block" onclick="showForm();" style="width: 49%; float: left;">Report a Problem?</button>
-    <a href="permissions_form.php">
+    <a id="permissions" href="permissions_form.php">
         <button class="permission btn btn-block" style="width: 49%; float: right; margin-top: -1px;">Permission Request</button>
     </a>
 </div>
