@@ -11,21 +11,21 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- capture values from the preceding page -->
     <?php
-        if(isset($_SERVER['HTTP_REFERER'])) {
-            $url = $_SERVER['HTTP_REFERER']; // string
+        if(isset($_COOKIE['item_id'])) {
+            $item_id = $_COOKIE['item_id']; // string
         }
         else {
-            $url = '';
+            $item_id = '';
         }
-        $parts = parse_url($url);
-        parse_str($parts['query'], $query);
-        $data = json_decode(file_get_contents("https://digital.library.wayne.edu/WSUAPI?functions[]=singleObjectPackage&PID=$query[id]"), true);
+        $api = "https://digital.library.wayne.edu/WSUAPI?functions[]=singleObjectPackage&PID=$item_id";
+        $url = "https://digital.library.wayne.edu/item/$item_id";
+        $data = json_decode(file_get_contents($api), true);
         $rights = $data["singleObjectPackage"]["getCollectionMeta"][0]["dc_rights"][0];
         if (strpos($rights, 'Reuther') !== false) {
-            $email = "reutherav@wayne.edu";
+            $area = "Reuther";
         }
         else {
-            $email = "libwebmaster@wayne.edu";
+            $area = "Library System";
         }
     ?>
     <!-- image PID array -->
@@ -62,8 +62,8 @@
                         <label for="message" class="messageLabel">Message</label>
                           <textarea id="message" name="message" placeholder="Your message"></textarea>
                         <input type="hidden" id="url" name="url" value=<?php echo $url; ?> />
-                        <input type="hidden" name="subject" value="Permissions Request" />
-                        <input type="hidden" name="to" value=<?php echo $email; ?> />
+                        <input type="hidden" name="subject" value="<?php echo "$area Permissions Request"; ?>" />
+                        <input type="hidden" name="to" value="reutherav@wayne.edu, libwebmaster@wayne.edu" />
                         <!-- RECAPTCHA -->
                         <label></label>
                         <div class="g-recaptcha recaptchaLabel" data-sitekey="6LdHqggUAAAAADLHF6l8jV_zgcbf5PT-1O_qwrKA"></div>

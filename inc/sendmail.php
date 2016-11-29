@@ -44,9 +44,17 @@ if($_POST) {
     } 
 
     else {
+    if (strpos(",", $emailTo) !== false) {
+        $emails = explode($clientEmail, ',');
+        $emailTo = $emails[0];
+        $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
+        $headers = "From: <$clientEmail>" . "\r\n" . "Reply-To: " . $clientEmail . "CC: " . $emails[1];
+    }
+    else {
+        $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
+        $headers = "From: <$clientEmail>" . "\r\n" . "Reply-To: " . $clientEmail;
+    }
     // Send email
-    $message = "Sender:\n" . $clientName . "\n\nEmail:\n" . $clientEmail . "\n\nMessage:\n" . $url . trim($_POST['message']);
-    $headers = "From: <$clientEmail>" . "\r\n" . "Reply-To: " . $clientEmail;
     mail($emailTo, $subject, $message, $headers);
     }
     }

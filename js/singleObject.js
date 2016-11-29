@@ -399,7 +399,7 @@ function displayForm() {
         }
     else
         {
-           $('.original').css('display','block');
+           $('.bothButtons').css('display','block');
         }
 }
 
