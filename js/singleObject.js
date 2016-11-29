@@ -395,11 +395,11 @@ function displayForm() {
     }
     if (typeof catcher !== 'undefined')
         {
-            $('.bothButtons').css('display','block');
+           $('.original').css('display','block');
         }
     else
         {
-           $('.original').css('display','block');
+           $('.bothButtons').css('display','block');
         }
 }
 
