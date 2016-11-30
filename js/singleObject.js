@@ -141,7 +141,7 @@ function renderPage(PID) {
             }
 
             // generate downloads
-            generateDownloads();
+            triggerAdmin();
         }
 
         // finish rendering page and templates (case switching based on content type)
@@ -492,74 +492,16 @@ function addProbNote() {
 
     
 // function to generate downloads
-function generateDownloads() {
+function triggerAdmin() {
 
     // determine if admin user
-    if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true && APIdata.objBitStreamTokens.status != false) {
+    if (typeof userData != 'undefined' && userData.loggedIn_WSUDOR == true) {
         var is_admin_user = true;
-        $("#downloads_target").append('<div class="row" style="background-color:rgba(51, 255, 102, 0.2); padding-bottom:0px;"><div class="col-md-12"><p style="margin-bottom:10px;"><strong>Admin View:</strong> Each button comes with a token in the URL that allows for ONE download.  These can be downloaded here, or you can right-click the button and copy the link to send to others.  To regenerate download links, reload the page.</p></div></div>');
-    }
-    else {
-        var is_admin_user = false;   
-    }
+        // create admin button
+        $(".login_nav").prepend("<li><a target='_blank' id='admin_link' href='#'><i class='icon-key'></i> Admin</a></li>");
 
-    // build download object
-    var data = {'APIdata':APIdata};
-
-    // Content Type Handling  
-    ctype = APIdata.translated.preferredContentModelPretty;
-    switch (ctype) {
-
-        // IMAGE
-        case "Image":
-
-            // update data object
-            data['images'] = [];
-
-            for (var i = 0; i < APIdata.singleObjectPackage.parts_imageDict.sorted.length; i++) {
-                var image = APIdata.singleObjectPackage.parts_imageDict.sorted[i];                
-                if (is_admin_user == true) {
-                    image['bitStream'] = {
-                        'ORIGINAL':APIdata.objBitStreamTokens[image.ds_id],
-                        'ACCESS':APIdata.objBitStreamTokens[image.ds_id + "_ACCESS"],
-                    }
-                }
-                data['images'].push(image);
-            };
-
-            // fire download template
-            $.get('templates/singleObject/imageDownload.htm', function(template) {
-                var html = Mustache.to_html(template, data);
-                $("#downloads_target").append(html);
-            });
-            
-            // show downloads
-            $(".downloads").show();
-
-            break;
-        // END IMAGE
-
-        // WSUebook
-        case "WSUebook":
-
-            if (is_admin_user == true) {
-                data['bitStream'] = {
-                    'PDF_FULL':APIdata.objBitStreamTokens.PDF_FULL,
-                    'HTML_FULL':APIdata.objBitStreamTokens.HTML_FULL,
-                }
-            }
-
-            // fire download template
-            $.get('templates/singleObject/WSUebookDownload.htm', function(template) {
-                var html = Mustache.to_html(template, data);
-                $("#downloads_target").append(html);
-            });
-            
-            // show downloads
-            $(".downloads").show();
-
-            break;
-        // END WSUebook
+        // use ID to populate link
+        $("#admin_link").attr('href','http://'+config.APP_HOST+'/ouroboros/admin_object_overview/'+PID);
     }
 
 }
