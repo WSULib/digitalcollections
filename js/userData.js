@@ -43,7 +43,7 @@ $(document).ready(function(){
 			});			
 
 			// update login_nav
-			$(".login_nav").html("<li><a href='userPage.php'><i class='icon-user'></i> "+userData.displayName+"</a></li><li><a onclick='logoutUser(); return false;' href='#' class='logout'><i class='icon-exit'></i> Log Out</a></li>");
+			$(".login_nav").html("<li><a href='http://"+config.APP_HOST+"/ouroboros/login'><i class='icon-user'></i> "+userData.displayName+"</a></li><li><a onclick='logoutUser(); return false;' href='#' class='logout'><i class='icon-exit'></i> Log Out</a></li>");
 			$("li.sidr-class-login_status").html("<a onclick='logoutUser(); return false;' href='#'><i class='icon-exit'></i>Log Out</a>");
 
 			// udpate favorites
