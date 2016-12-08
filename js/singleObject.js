@@ -140,7 +140,10 @@ function renderPage(PID) {
                 $("#iiif_manifest").remove();
             }
 
-            // generate downloads
+            // generate downloads            
+            generateDownloads();
+            
+            // trigger Admin
             triggerAdmin();
         }
 
@@ -506,7 +509,55 @@ function triggerAdmin() {
 
 }
 
+// function to generate downloads
+function generateDownloads() {
+    
+    // build download object
+    var data = {'APIdata':APIdata};
 
+    // Content Type Handling  
+    ctype = APIdata.translated.preferredContentModelPretty;
+    switch (ctype) {
+
+        // IMAGE
+        case "Image":
+
+            // update data object
+            data['images'] = [];
+
+            for (var i = 0; i < APIdata.singleObjectPackage.parts_imageDict.sorted.length; i++) {
+                var image = APIdata.singleObjectPackage.parts_imageDict.sorted[i];                                
+                data['images'].push(image);
+            };
+
+            // fire download template
+            $.get('templates/singleObject/imageDownload.htm', function(template) {
+                var html = Mustache.to_html(template, data);
+                $("#downloads_target").append(html);
+            });
+            
+            // show downloads
+            $(".downloads").show();
+
+            break;
+        // END IMAGE
+
+        // WSUebook
+        case "WSUebook":            
+
+            // fire download template
+            $.get('templates/singleObject/WSUebookDownload.htm', function(template) {
+                var html = Mustache.to_html(template, data);
+                $("#downloads_target").append(html);
+            });
+            
+            // show downloads
+            $(".downloads").show();
+
+            break;
+        // END WSUebook
+    }
+}
 
 
 
