@@ -7,8 +7,9 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    return $api;
+    return "stuff";
+    // $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    // return $api;
 
     // $args['data'] = json_decode($api->getBody(), true);
 
