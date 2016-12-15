@@ -11,7 +11,8 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
-session_start();
+// Session commented out for now; perhaps a future need
+// session_start();
 
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
