@@ -30,8 +30,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
     // $arguments = $route->getArguments();
 
     $uri = $request->getUri();
-    $path = $uri->getPath();
-
+    $path = substr($uri->getPath(), 1);
 
     // $request = $request->withAttribute('name', $name);
     // $request = $request->withAttribute('groups', $groups);
