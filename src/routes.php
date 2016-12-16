@@ -7,9 +7,8 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    return "stuff";
-    // $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    // return $api;
+    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    return $api;
 
     // $args['data'] = json_decode($api->getBody(), true);
 
@@ -26,6 +25,7 @@ $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
 // SINGLE ITEM/RECORD VIEW
 $app->get('/item/{pid}', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
+    return $api;
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'item.html', $args);
 });
@@ -77,9 +77,10 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
 // Catches all /item/{pid}/* routes not already specified above sends request to API
 $app->get('/item/{pid}/[{params:.*}]', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    echo "<pre>";
-    var_dump($api);
-    echo "</pre>";
+    return $api;
+    // echo "<pre>";
+    // var_dump($api);
+    // echo "</pre>";
     // $args['data'] = json_decode($api->getBody(), true);
     // return $this->view->render($response, 'item.html', $args);
 });

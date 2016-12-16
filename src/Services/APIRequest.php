@@ -51,11 +51,9 @@ class APIRequest
 
         // PLACEHOLDER to sniff out if debug flag was set
         // http://docs.guzzlephp.org/en/latest/request-options.html
-
         // logger interface logs activity; indicate log level through logger->info, error, or critical
         $start = microtime(true);
-        $response = $this->client->request('GET', $this->uri);
-        return $this->client;
+        $response = $this->client->request('GET', $this->uri, $params);
         $time_spent = microtime(true) - $start;
         $this->logger->info("Request took $time_spent");
 
