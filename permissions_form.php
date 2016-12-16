@@ -17,7 +17,7 @@
         else {
             $item_id = '';
         }
-        $api = "https://digital.library.wayne.edu/WSUAPI?functions[]=singleObjectPackage&PID=$item_id";
+        $api = "https://digital.library.wayne.edu/$API_url?functions[]=singleObjectPackage&PID=$item_id";
         $url = "https://digital.library.wayne.edu/item/$item_id";
         $data = json_decode(file_get_contents($api), true);
         $rights = $data["singleObjectPackage"]["getCollectionMeta"][0]["dc_rights"][0];

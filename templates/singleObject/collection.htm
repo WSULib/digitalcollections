@@ -5,6 +5,6 @@
 <p style="width:100%; text-align:center; margin-top:10px;">
 	<a href="item?id={{APIParams.PID}}&rendered=collection"><button type="btn" class="btn">Browse Items in this Collection</button></a>
 	{{#singleObjectPackage.objectSolrDoc.rels_hasCollectionPDF}}
-		<a href="/WSUAPI/bitStream/{{APIParams.PID}}/COLLECTIONPDF"><button type="btn" class="btn">Supplemental Information</button></a>
+		<a href="/{{config.API_url}}/bitStream/{{APIParams.PID}}/COLLECTIONPDF"><button type="btn" class="btn">Supplemental Information</button></a>
 	{{/singleObjectPackage.objectSolrDoc.rels_hasCollectionPDF}}
 </p>
