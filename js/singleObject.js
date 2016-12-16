@@ -117,10 +117,10 @@ function renderPage(PID) {
                 // generate fullText URLs
                 APIdata.fullText = [{
                     "key": "HTML",
-                    "value": "http://" + config.APP_HOST + "/WSUAPI/bitStream/" + PID + "/HTML_FULL"
+                    "value": "http://" + config.APP_HOST + "/"+config.API_url+"/bitStream/" + PID + "/HTML_FULL"
                 }, {
                     "key": "PDF",
-                    "value": "http://" + config.APP_HOST + "/WSUAPI/bitStream/" + PID + "/PDF_FULL"
+                    "value": "http://" + config.APP_HOST + "/"+config.API_url+"/bitStream/" + PID + "/PDF_FULL"
                 }, ];
 
                 // check for OCLC num, generate citation link (ADDRESS IN V2)
