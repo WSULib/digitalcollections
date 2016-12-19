@@ -19,7 +19,7 @@ return [
 
         // API settings
         'API' => [
-            'url' => 'http://192.168.42.5/WSUAPI/v2/',
+            'url' => 'http://localhost/api/',
             'username' => null,
             'password' => null,
         ],
