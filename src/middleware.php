@@ -43,6 +43,56 @@ $app->add(function (Request $request, Response $response, callable $next) {
 });
 
 /**
+ * Login Check Middleware
+ * Note: could have used a library like https://github.com/dflydev/dflydev-fig-cookies
+ * but since the requirements are so low, a simple middleware suffices
+ * @param  \Psr\Http\Message\ServerRequestInterface $request  PSR7 request
+ * @param  \Psr\Http\Message\ResponseInterface      $response PSR7 response
+ * @param  callable                                 $next     Next middleware
+ *
+ * @return \Psr\Http\Message\ResponseInterface
+ */
+$app->add(function (Request $request, Response $response, callable $next) {
+    // Check for the WSUDOR Cookie
+    if($_COOKIE['WSUDOR']) {
+        echo "cookie";
+
+        if (isset($_SESSION['wsudorauth'])) {
+            echo "sessioned";
+            // there's an active wsudorauth session; no need to query wsudorauth
+            // with a WSUDOR cookie and valid session, they are good to go
+            continue;
+        }
+        else {
+            // No active session; ask wsudorauth if cookie is valid
+            try {
+                echo "nope";
+                // now make sure WSUDOR cookie string hasn't been faked
+                $session_check = $this->guzzle->get("http://localhost/wsudorauth/session_check/$_COOKIE[WSUDOR]");
+                $session_check = json_decode($session_check->getBody());
+                session_start();
+                $_SESSION['wsudorauth'] = $session_check;
+            } catch (GuzzleHttp\Exception\ClientException $e) {
+                // cookie not good; trigger an exception if getting a 400 level error
+                // and pass them through with no created session
+                continue;
+
+            } //catch
+        } //else
+
+    } //$_COOKIE['WSUDOR']
+    else {
+        echo "destroyed";
+        // no cookie; kill any session that's still active;
+        // we're assuming they logged out, so killing any session will prevent them from
+        // floating through with no cookie and old (but still good) session data
+        session_destroy();
+    }
+    echo "test";
+    return $next($request, $response);
+});
+
+/**
  * Media Type Parser Middleware
  * See Media Type Parsers section at http://www.slimframework.com/docs/objects/request.html#route-object
  * @param  \Psr\Http\Message\ServerRequestInterface $request  PSR7 request

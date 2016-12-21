@@ -2,7 +2,11 @@
 // Routes
 
 $app->get('/', function ($request, $response, $args) {
-    return $this->view->render($response, 'index.html', $args);
+    $page = "index.html";
+    if ($_SESSION['wsudorauth']) {
+        $page = "admin.php";
+    }
+    return $this->view->render($response, $page, $args);
 });
 
 // SEARCH VIEW
