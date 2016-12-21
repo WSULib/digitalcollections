@@ -1,10 +1,10 @@
-# WSU Digital Collections, v2
+# Digital Collections
 
-Based on the [Slim PHP framework](http://www.slimframework.com/), specifically the [Slim-Skeleton template](https://github.com/slimphp/Slim-Skeleton)
+This framework is the primary display for the WSULS Digital Collections Platform. It uses the [Slim PHP framework](http://www.slimframework.com/), specifically the [Slim-Skeleton template](https://github.com/slimphp/Slim-Skeleton), written in PHP. This search and display interface communicates with Digital Collections infrastructure through our custom API: See [APIRequest class](../src/Services/APIRequest.php) for more info on this process.
 
 ## Installation
 
-Run custom script to install composer and dependencies:
+Run the following custom script to install composer and dependencies:
 
     ./provision.sh
 
@@ -28,3 +28,28 @@ Full composer reset:
     rm -rf vendor/
     composer update -v
 
+
+## Top Level Routes
+
+Top Level routes include
+
+Home
+* route: /
+
+About
+* route: /about
+
+Contact
+* route: /contact
+
+Collections
+* route: /collections
+
+Search / Browse
+* route: /search
+
+Single Item / Record
+* route: /item/{pid}
+
+Single Item / Catch All Route
+* route: /item/{pid}/[{params:.*}]
