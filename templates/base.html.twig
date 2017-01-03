@@ -27,7 +27,7 @@
 
     <body>
         <div id="header">
-            <a id="header-logo" href="<?php echo $host ?>">
+            <a id="header-logo" href="/">
                 <div id="header-logo-top">
                     Wayne State University Libraries
                 </div>
@@ -37,8 +37,8 @@
             </a>
             <div id="header-search">
                 <div id="header-search-nest">
-                    <form action="/search.php" method="GET">
-                        <input id="header-search-nest-input" type="text" name="search" placeholder="Search collections, images, documents, ebooks and more" value="" autocomplete="off" />
+                    <form action="/search" method="GET">
+                        <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="" autocomplete="off" />
                     </form>
                 </div>
             </div>
