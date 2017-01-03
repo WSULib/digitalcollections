@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Slim 3</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-        <style>
-            body {
-                margin: 50px 0 0 0;
-                padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
-            }
+{% extends "base.html.twig" %}
 
-            h1 {
-                color: #719e40;
-                letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
-                font-size: 100px;
-                font-weight: 200;
-                margin-bottom: 0;
-            }
-        </style>
-    </head>
-    {% block body %}
-        <h1>Slim</h1>
-        <div>a microframework for PHP</div>
-            <h2>Hello {{name}}!</h2>
-            <p>Try <a href="http://www.slimframework.com">SlimFramework</a>
-    {% endblock %}
-</html>
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="page">        
+        <p>Welcome!</p>
+        <p>API status: {% if data.header.api_response_time %}<span style="font-weight:bold; color: green;">active</span>, responded in {{ data.header.api_response_time|number_format(10, '.', ',') }} seconds{% else %}<span style="font-weight:bold; color: red;">inactive</span>{% endif %}</p>
+        <p>Powered by <strong>ShoppingHorse</strong> and <strong>DumpsterTurkey</strong>.</p>
+    </div>
+{% endblock %}

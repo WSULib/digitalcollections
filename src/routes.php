@@ -1,12 +1,11 @@
 <?php
 // Routes
 
+// ROOT
 $app->get('/', function ($request, $response, $args) {
-    $page = "index.html";
-    if ($_SESSION['wsudorauth']) {
-        $page = "admin.php";
-    }
-    return $this->view->render($response, $page, $args);
+    $api = $this->APIRequest->get($request->getAttribute('/'));
+    $args['data'] = json_decode($api->getBody(), true);
+    return $this->view->render($response, "index.html.twig", $args);
 });
 
 // SEARCH VIEW
