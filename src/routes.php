@@ -79,7 +79,7 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
 $app->get('/about', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
-    return $this->view->render($response, 'about.html', $args);
+    return $this->view->render($response, 'about.html.twig', $args);
 });
 
 
