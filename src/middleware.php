@@ -54,19 +54,10 @@ $app->add(function (Request $request, Response $response, callable $next) {
  */
 $app->add(function (Request $request, Response $response, callable $next) {
     // Check for the WSUDOR Cookie
-    if($_COOKIE['WSUDOR']) {
-        echo "cookie";
-
-        if (isset($_SESSION['wsudorauth'])) {
-            echo "sessioned";
-            // there's an active wsudorauth session; no need to query wsudorauth
-            // with a WSUDOR cookie and valid session, they are good to go
-            continue;
-        }
-        else {
-            // No active session; ask wsudorauth if cookie is valid
+    if ($_COOKIE['WSUDOR']) {
+        if (!isset($_SESSION['wsudorauth'])) {
+            // No active wsudorauth session; ask /wsudorauth service if cookie is valid
             try {
-                echo "nope";
                 // now make sure WSUDOR cookie string hasn't been faked
                 $session_check = $this->guzzle->get("http://localhost/wsudorauth/session_check/$_COOKIE[WSUDOR]");
                 $session_check = json_decode($session_check->getBody());
@@ -74,21 +65,32 @@ $app->add(function (Request $request, Response $response, callable $next) {
                 $_SESSION['wsudorauth'] = $session_check;
             } catch (GuzzleHttp\Exception\ClientException $e) {
                 // cookie not good; trigger an exception if getting a 400 level error
-                // and pass them through with no created session
-                continue;
-
+                // destroy cookie; destroy session
+                setcookie("WSUDOR", "", time()-3600);
+                session_destroy();
+            } //catch
+        } //isset
+        else {
+            // if there's an active wsudorauth session, no need to query wsudorauth with a WSUDOR cookie for a valid session
+            // Let's just check to see if they are admin
+            try {
+                $username = $_SESSION['wsudorauth']->username;
+                $admin = $this->guzzle->get("http://localhost/api/user/$username/whoami");
+                $admin = json_decode($admin->getBody());
+                $_SESSION['admin'] = $admin->response->exists;
+            } catch (GuzzleHttp\Exception\ClientException $e) {
+                // destroy cookie; destroy session
+                setcookie("WSUDOR", "", time()-3600);
+                session_destroy();
             } //catch
         } //else
-
     } //$_COOKIE['WSUDOR']
     else {
-        echo "destroyed";
         // no cookie; kill any session that's still active;
         // we're assuming they logged out, so killing any session will prevent them from
-        // floating through with no cookie and old (but still good) session data
+        // floating around with no cookie and an old (but still good) session
         session_destroy();
     }
-    echo "test";
     return $next($request, $response);
 });
 
