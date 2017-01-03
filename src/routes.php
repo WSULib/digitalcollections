@@ -75,6 +75,12 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
     return $response;
 });
 
+// ABOUT
+$app->get('/about', function ($request, $response, $args) {
+    $api = $this->APIRequest->get($request->getAttribute('path'));
+    $args['data'] = json_decode($api->getBody(), true);
+    return $this->view->render($response, 'about.html', $args);
+});
 
 
 // Dynamic Route

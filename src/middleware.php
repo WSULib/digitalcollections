@@ -82,13 +82,13 @@ $app->add(function (Request $request, Response $response, callable $next) {
 
     } //$_COOKIE['WSUDOR']
     else {
-        echo "destroyed";
+        // echo "destroyed";
         // no cookie; kill any session that's still active;
         // we're assuming they logged out, so killing any session will prevent them from
         // floating through with no cookie and old (but still good) session data
         session_destroy();
     }
-    echo "test";
+    // echo "test";
     return $next($request, $response);
 });
 
