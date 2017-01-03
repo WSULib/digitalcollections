@@ -25,6 +25,9 @@ $container['view'] = function ($c) {
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
 
+    // Make Session available to twig
+    $view->getEnvironment()->addGlobal('session', $_SESSION);
+
     return $view;
 };
 
