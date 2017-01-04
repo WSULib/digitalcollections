@@ -81,6 +81,11 @@ $app->get('/about', function ($request, $response, $args) {
     return $this->view->render($response, 'about.html.twig', $args);
 });
 
+// 404
+$app->get('/404', function ($request, $response, $args) {
+    return $this->view->render($response, '404.html.twig', $args);
+});
+
 
 // Dynamic Route
 // Catches all /item/{pid}/* routes not already specified above sends request to API

@@ -48,4 +48,11 @@ $container['APIStream'] = function ($c) {
     return $API;
 };
 
+//Override the default Not Found Handler
+$container['notFoundHandler'] = function ($container) {
+    return function ($request, $response) use ($container) {        
+        return $container['response']->withRedirect('/404');
+    };
+};
+
 $container['debug'] = new PhpMiddleware\PhpDebugBar\PhpDebugBarMiddlewareFactory();

@@ -54,7 +54,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
  */
 $app->add(function (Request $request, Response $response, callable $next) {
     // Check for the WSUDOR Cookie
-    if($_COOKIE['WSUDOR']) {
+    if(isset($_COOKIE['WSUDOR'])) {
         echo "cookie";
 
         if (isset($_SESSION['wsudorauth'])) {
