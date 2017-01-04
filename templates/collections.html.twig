@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="page">
+    	<ul>
+			{% for doc in data.response.solr_results.response.docs %}
+				<li>{{ doc.dc_title[0] }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

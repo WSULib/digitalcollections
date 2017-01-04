@@ -18,7 +18,14 @@ $app->get('/search', function ($request, $response, $args) {
     // return $this->view->render($response, 'search.html', $args);
 });
 
-// COLLECTIONS VIEW
+// ALL COLLECTIONS
+$app->get('/collections', function ($request, $response, $args = []) {
+    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $args['data'] = json_decode($api->getBody(), true);
+    return $this->view->render($response, 'collections.html.twig', $args);
+});
+
+// SINGLE COLLECTION VIEW
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
     // $args['data'] = json_decode($api->getBody(), true);
