@@ -64,7 +64,8 @@ $app->add(function (Request $request, Response $response, callable $next) {
                 session_start();
                 $_SESSION['wsudorauth'] = $session_check;
             } catch (GuzzleHttp\Exception\ClientException $e) {
-                // cookie not good; trigger an exception if getting a 400 level error
+                // cookie not good bc either bad actor faked it or it is old
+                // trigger an exception if getting a 400 level error
                 // destroy cookie; destroy session
                 setcookie("WSUDOR", "", time()-3600);
                 session_destroy();
@@ -79,8 +80,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
                 $admin = json_decode($admin->getBody());
                 $_SESSION['admin'] = $admin->response->exists;
             } catch (GuzzleHttp\Exception\ClientException $e) {
-                // destroy cookie; destroy session
-                setcookie("WSUDOR", "", time()-3600);
+                // destroy session; no need to destroy cookie because this still allows them to use other related services
                 session_destroy();
             } //catch
         } //else
