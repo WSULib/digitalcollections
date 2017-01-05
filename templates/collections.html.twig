@@ -22,8 +22,8 @@
 		<div id="collections">
 			{% for doc in data.response.solr_results.response.docs %}
 				<div class="search-result">
-					<a class="search-result-imgwrap" href="LINK_HERE"><img src="http://192.168.42.6/loris/fedora:{{ doc.id }}|PREVIEW/full/500,/0/default.jpg"></a>
-					<a class="search-result-title" href="LINK_HERE">{{ doc.dc_title[0] }}</a>
+					<a class="search-result-imgwrap" href="/collection/{{ doc.id }}"><img src="http://192.168.42.6/loris/fedora:{{ doc.id }}|PREVIEW/full/500,/0/default.jpg"></a>
+					<a class="search-result-title" href="/collection/{{ doc.id }}">{{ doc.dc_title[0] }}</a>
 				</div>
 			{% endfor %}
 		</div>
