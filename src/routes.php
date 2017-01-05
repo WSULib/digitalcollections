@@ -28,16 +28,15 @@ $app->get('/collections', function ($request, $response, $args = []) {
 // SINGLE COLLECTION VIEW
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    // $args['data'] = json_decode($api->getBody(), true);
-    // return $this->view->render($response, 'search.html', $args);
+    $args['data'] = json_decode($api->getBody(), true);
+    return $this->view->render($response, 'item.html.twig', $args);
 });
 
 // SINGLE ITEM/RECORD VIEW
 $app->get('/item/{pid}', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
-    return $api;
     $args['data'] = json_decode($api->getBody(), true);
-    return $this->view->render($response, 'item.html', $args);
+    return $this->view->render($response, 'item.html.twig', $args);
 });
 
 // DATA DISPLAY
