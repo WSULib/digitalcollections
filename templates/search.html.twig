@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ data.id }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="fullpage">
+		<div id="fullpage-title">
+			<h1>Item Page</h1>
+		</div>
+		<div style="padding-left:20px; font-size:75%;">
+			<pre><code>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</code></pre>
+		</div>
+	</div>
+{% endblock %}

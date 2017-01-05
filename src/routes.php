@@ -11,9 +11,8 @@ $app->get('/', function ($request, $response, $args) {
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    return $api;
-    // $args['data'] = json_decode($api->getBody(), true);
-    // return $this->view->render($response, 'search.html', $args);
+    $args['data'] = json_decode($api->getBody(), true);
+    return $this->view->render($response, 'search.html.twig', $args);
 });
 
 // ALL COLLECTIONS
