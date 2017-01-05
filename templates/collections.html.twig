@@ -1,16 +1,31 @@
 {% extends "base.html.twig" %}
 
-{% block title %}About{% endblock %}
+{% block title %}Collections{% endblock %}
 {% block head %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
-    <div id="page">
+    
+    {# <div id="page">
     	<ul>
 			{% for doc in data.response.solr_results.response.docs %}
 				<li>{{ doc.dc_title[0] }}</li>
 			{% endfor %}
 		</ul>
+	</div> #}
+
+	<div id="fullpage">
+		<div id="fullpage-title">
+			<h1>Collections</h1>
+		</div>
+		<div id="collections">
+			{% for doc in data.response.solr_results.response.docs %}
+				<div class="search-result">
+					<a class="search-result-imgwrap" href="LINK_HERE"><img src="http://192.168.42.6/loris/fedora:{{ doc.id }}|PREVIEW/full/500,/0/default.jpg"></a>
+					<a class="search-result-title" href="LINK_HERE">{{ doc.dc_title[0] }}</a>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
