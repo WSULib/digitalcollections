@@ -86,7 +86,8 @@ $app->get('/about', function ($request, $response, $args) {
 
 // 404
 $app->get('/404', function ($request, $response, $args) {
-    return $this->view->render($response, '404.html.twig', $args);
+    // return 404
+    return $this->view->render($response->withStatus(404), '404.html.twig', $args);
 });
 
 
