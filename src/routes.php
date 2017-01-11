@@ -78,12 +78,10 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
 });
 
 // Contact Page
-$app->get('/about', function ($request, $response, $args) {
-    
-    /*
+/*
     This route supports a multi-purpose functioning contact form
     Specifically, for the following purposes:
-        - generic contact, contact_type = 'contact'
+        - generic contact, contact_type = 'general'
         - permissions requests, contact_type = 'permissions'
         - report a problem, contact_type = 'rap'
     
@@ -98,7 +96,75 @@ $app->get('/about', function ($request, $response, $args) {
 
         * If report a problem, also fire off Guzzle HTTP request to
         Ouroboros registering the problem
+*/
+$app->get('/contact', function ($request, $response, $args) {
+
+    $qp = $request->getQueryParams();
+
+    // general contact
+    if (array_key_exists('contact_type', $qp)) {
+
+        $contact_type = $qp['contact_type'];
+
+        // permission request
+        if ($contact_type == 'permissions') {
+            $args['form_title'] = 'Permissions Request Form';
+            $args['pid'] = 'wayne:foobar';
+        }
+
+        // report a problem
+        if ($contact_type == 'rap') {
+            $args['form_title'] = 'Report a Problem';
+            $args['pid'] = 'wayne:foobar';
+        }
+
+    }
+
+    else {
+        $contact_type = 'general';
+        $args['form_title'] = 'General Contact';
+    }
+
+    // final prep
+    $args['contact_type'] = $contact_type;
+    
+    return $this->view->render($response, 'contact.html.twig', $args);    
+
+});
+
+$app->post('/contact', function ($request, $response, $args) {
+
+    // get settings
+    // $settings = $container->get('settings');
+    $settings = $this->get('settings');
+
+    $qp = $request->getParsedBody();
+    $contact_type = $qp['contact_type'];
+
+    // submit form with email client
+    /*    
+        The "to" address is handled by submitting the contact_type ['general','permissions','rap']
+        to 'contact_form' in settings.php
     */
+    $to = $settings['contact_form'][$contact_type];
+    $from = $qp['from'];
+    $subject = $qp['subject'];
+    $msg = $qp['msg'];
+    // EMAIL HERE
+
+    // if report-a-problem, fire off Ouroboros HTTP call (with Guzzle?)
+    // FIRE HERE
+
+    // confirmation package
+    $args['result'] = [
+        'to'=>$to,
+        'from'=>$from,
+        'subject'=>$subject,
+        'msg'=>$msg
+    ];
+    
+    // return response
+    return $this->view->render($response, 'contact_result.html.twig', $args);
 
 });
 

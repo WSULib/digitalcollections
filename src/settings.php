@@ -23,5 +23,12 @@ return [
             'username' => null,
             'password' => null,
         ],
+
+        // contact form settings
+        'contact_form' => [
+            'general' => 'libwebmaster@wayne.edu',
+            'permissions' => 'libwebmaster@wayne.edu, REUTHEREMAIL@wayne.edu',
+            'rap' => 'ej2929@wayne.edu, fi1806@wayne.edu'
+        ]
     ],
 ];
