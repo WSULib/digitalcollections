@@ -77,6 +77,31 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
     return $response;
 });
 
+// Contact Page
+$app->get('/about', function ($request, $response, $args) {
+    
+    /*
+    This route supports a multi-purpose functioning contact form
+    Specifically, for the following purposes:
+        - generic contact, contact_type = 'contact'
+        - permissions requests, contact_type = 'permissions'
+        - report a problem, contact_type = 'rap'
+    
+    If GET, 
+        return form with some text filled in, based on contact_type
+        and any helpful information about where they were (item id, etc.)
+    
+    If POST,
+        trigger again off contact_type, send email to appropriate people
+        (configured in settings.php), and message body and subject from
+        form.
+
+        * If report a problem, also fire off Guzzle HTTP request to
+        Ouroboros registering the problem
+    */
+
+});
+
 // ABOUT
 $app->get('/about', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
