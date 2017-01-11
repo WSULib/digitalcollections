@@ -31,21 +31,28 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+// Create a simple guzzle instance; use whenever you aren't calling to the API
+// $this->guzzle->HTTPMETHOD invokes it
 $container['guzzle'] = function ($c) {
     $request = new \GuzzleHttp\Client();
     return $request;
 };
 
+// Create a guzzle instance already set to query the API; invoked through the API Middleware with APIRequest
+// NOTE: Use APIRequest, not APIClient; APIRequest will invoke APIClient and handle everything for you
 $container['APIClient'] = function ($c) {
     $request = new \GuzzleHttp\Client(['base_uri' => $c->settings['API']['url'], 'http_errors' => FALSE]);
     return $request;
 };
 
+// Create an instance of the APIRequest Middleware; it uses the APIClient guzzle instance
+// $this->APIRequest->HTTPMETHOD invokes it
 $container['APIRequest'] = function ($c) {
     $API = new \App\Services\APIRequest($c['logger'], $c['APIClient']);
     return $API;
 };
 
+// Experimental Streaming data from the API
 $container['APIStream'] = function ($c) {
     $API = new \App\Services\APIStream($c['logger'], $c['APIClient']);
     return $API;
