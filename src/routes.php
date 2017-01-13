@@ -151,9 +151,23 @@ $app->post('/contact', function ($request, $response, $args) {
     $subject = $qp['subject'];
     $msg = $qp['msg'];
     // EMAIL HERE
-
+    $form = ["from" => $from, "to" => $to, "subject" => $subject, "msg" => $msg];
+    $params = ['form_parms' => $form];
+    var_dump($params);
+    $url = 'http://localhost/ouroboros/email';
+    try {
+        $request = $this->guzzle->request('POST', $url, $params);
+        echo $request->getBody();
+        echo "woo";
+    }
+    catch (GuzzleHttp\Exception\ClientException $e) {
+        var_dump($response->getStatusCode());
+        // set some sort of something to flash and tell people to try again later
+        echo "something went wrong";
+    }
     // if report-a-problem, fire off Ouroboros HTTP call (with Guzzle?)
     // FIRE HERE
+
 
     // confirmation package
     $args['result'] = [
