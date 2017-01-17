@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ data.id }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="page">
+		<h1>Advanced Search</h1>
+		<form class="form" action="/advanced_search" method="POST">
+			Query: <input type="text" name="q"/></br>
+			Format: <input type="text" name="format"/></br>
+			<input type="submit" value="Search"/>
+		</form>
+	</div>
+{% endblock %}

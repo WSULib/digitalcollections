@@ -1,6 +1,7 @@
 <?php
 // Routes
 
+
 // ROOT
 $app->get('/', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('/'));
@@ -8,12 +9,60 @@ $app->get('/', function ($request, $response, $args) {
     return $this->view->render($response, "index.html.twig", $args);
 });
 
+
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
+})->setName('search');
+
+
+// ADVANCED SEARCH VIEW
+$app->get('/advanced_search', function ($request, $response, $args) {    
+    /*
+    This will need an API route that returns some values to populate dropdowns
+        - content types
+        - collections
+        - else?
+    */
+    return $this->view->render($response, 'advanced_search.html.twig', $args);
 });
+
+
+// ADVANCED SEARCH PROCESS
+$app->post('/advanced_search', function ($request, $response, $args) {    
+
+    // get settings
+    $settings = $this->get('settings');
+
+    // get post parameters
+    $qp = $request->getParsedBody();
+
+    // translate advanced search form parameters to Solr-ese
+    $search_params = array();
+
+    // base query string, 'q'
+    if (array_key_exists('q', $qp)){
+        $search_params['q'] = $qp['q'];
+    }
+
+    // format, 'format'
+    if (array_key_exists('format', $qp) && !empty($qp['format'])){
+        $search_params['fq'] = "dc_format:".$qp['format'];
+    }
+
+    // DEBUG
+    // return print_r($search_params);
+
+    // redirect to GET:/search, with search parameters
+    $url = $this->router->pathFor('search')."?".http_build_query($search_params);    
+    // waiting on response from http://stackoverflow.com/questions/41703170/slim-3-redirect-to-route-with-get-parameters
+    // $url = $this->router->pathFor('search', $search_params);
+    return $response->withStatus(302)->withHeader('Location', $url);
+
+});
+
 
 // ALL COLLECTIONS
 $app->get('/collections', function ($request, $response, $args = []) {
@@ -22,6 +71,7 @@ $app->get('/collections', function ($request, $response, $args = []) {
     return $this->view->render($response, 'collections.html.twig', $args);
 });
 
+
 // SINGLE COLLECTION VIEW
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
@@ -29,12 +79,14 @@ $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     return $this->view->render($response, 'item.html.twig', $args);
 });
 
+
 // SINGLE ITEM/RECORD VIEW
 $app->get('/item/{pid}', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'item.html.twig', $args);
 });
+
 
 // DATA DISPLAY
 // JSON data display
@@ -44,12 +96,14 @@ $app->get('/item/{pid}/metadata', function ($request, $response, $args) {
     return $api;
 });
 
+
 // MODS DISPLAY
 $app->get('/item/{pid}/MODS', function ($request, $response, $args) {
     // $api = $this->APIRequest->get("/item/$args[pid]");
     // seamlessly passes through JSON response and headers
     return $api;
 });
+
 
 // Streaming Content e.g. A/V and to Download Files -- Work in Progress
 // See https://www.slimframework.com/docs/objects/response.html#the-response-body
@@ -59,6 +113,7 @@ $app->get('/item/{pid}/stream', function ($request, $response, $args) {
     // $streamResponse = $response->withBody($stream);
     return $stream;
 });
+
 
 // Download Items
 $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
@@ -76,6 +131,7 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
     readfile($item);
     return $response;
 });
+
 
 // Contact Page
 /*
@@ -97,6 +153,7 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
         * If report a problem, also fire off Guzzle HTTP request to
         Ouroboros registering the problem
 */
+
 $app->get('/contact', function ($request, $response, $args) {
 
     $qp = $request->getQueryParams();
@@ -135,9 +192,9 @@ $app->get('/contact', function ($request, $response, $args) {
 $app->post('/contact', function ($request, $response, $args) {
 
     // get settings
-    // $settings = $container->get('settings');
     $settings = $this->get('settings');
 
+    // get post parameters
     $qp = $request->getParsedBody();
     $contact_type = $qp['contact_type'];
 
@@ -168,12 +225,14 @@ $app->post('/contact', function ($request, $response, $args) {
 
 });
 
+
 // ABOUT
 $app->get('/about', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'about.html.twig', $args);
 });
+
 
 // 404
 $app->get('/404', function ($request, $response, $args) {
