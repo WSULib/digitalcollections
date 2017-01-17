@@ -42,21 +42,44 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     // translate advanced search form parameters to Solr-ese
     $search_params = array();
 
-    // base query string, 'q'
-    if (array_key_exists('q', $qp)){
-        $search_params['q'] = $qp['q'];
-    }
+    /*
+    prepared for "mighty four" form values
+        - all_q
+        - exact_q
+        - any_q
+        - none_q
 
-    // format, 'format'
-    if (array_key_exists('format', $qp) && !empty($qp['format'])){
-        $search_params['fq'] = "dc_format:".$qp['format'];
+    prepare the appropriate 'q' string based on these    
+    note: with this special preperation, probably can avoid field_skip_escape for 'q'
+    */
+    $q_array = array();
+    // all
+    if (!empty($qp['all_q'])){
+        $q_array['all_q'] = implode(" AND ", explode(' ', $qp['all_q']));
     }
+    // exacct
+    if (!empty($qp['exact_q'])){
+        $q_array['exact_q'] = '"' . $qp['exact_q'] . '"';
+    }
+    // all
+    if (!empty($qp['any_q'])){
+        $q_array['any_q'] = implode(" OR ", explode(' ', $qp['any_q']));
+    }
+    // none
+    if (!empty($qp['none_q'])){
+        $q_array['none_q'] = "-".implode(" -", explode(' ', $qp['none_q']));
+    }
+    // connect
+    $q_string = "q=".implode(" AND ", $q_array);
 
+    // construct string
+    $search_params_string = "?".$q_string."&field_skip_escape=q";
+    
     // DEBUG
-    // return print_r($search_params);
+    // return $search_params_string;
 
     // redirect to GET:/search, with search parameters
-    $url = $this->router->pathFor('search')."?".http_build_query($search_params);    
+    $url = $this->router->pathFor('search').$search_params_string;
     // waiting on response from http://stackoverflow.com/questions/41703170/slim-3-redirect-to-route-with-get-parameters
     // $url = $this->router->pathFor('search', $search_params);
     return $response->withStatus(302)->withHeader('Location', $url);
