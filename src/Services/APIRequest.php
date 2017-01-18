@@ -42,18 +42,49 @@ class APIRequest
      * Note: private method
      *
      * @param  string $type HTTP 1.1 Methods (GET, POST, etc)
-     * @param  array|null $params an optional series of HTTP parameters
+     * @param  array|string|null $params an optional series of HTTP parameters, as array or string
      * @return object PSR-7 response object via Guzzle library
      */
 
     private function request($type, $params = null)
     {
+        
+        /* Custom query parser
+            if 'custom_query_parser' in $params:
+                1) use custom parser to create query string
+                2) affix to $this->uri
+                3) set $params to false, and continue
+        */
+        if (array_key_exists('custom_query_parser', $params['query'])) {
+            $this->logger->info("Using custom query parser");
+            // this will be the custom parser here
+            $q_string = $this->custom_query_parser($params);
+            // affix to URI
+            $this->uri.=$q_string;
+            $this->logger->info($this->uri);
+            // empty $params array, and pass as normal
+            $params = [];
+        }
+
+        /* String style params
+            if $params is string
+                1) affix to $this->uri
+                3) set $params to false, and continue
+        */
+        if (gettype($params)) {
+            $this->logger->info("String passed as params, using");
+            // affix to URI
+            $this->uri.=$params;
+            $this->logger->info($this->uri);
+            // empty $params array, and pass as normal
+            $params = [];
+        }
 
         // PLACEHOLDER to sniff out if debug flag was set
         // http://docs.guzzlephp.org/en/latest/request-options.html
         // logger interface logs activity; indicate log level through logger->info, error, or critical
         $start = microtime(true);
-        $response = $this->client->request('GET', $this->uri, $params);
+        $response = $this->client->request($type, $this->uri, $params);
         $time_spent = microtime(true) - $start;
         $this->logger->info("Request took $time_spent");
 
@@ -103,5 +134,32 @@ class APIRequest
         $params = ['query' => $params];
         $this->uri = $uri;
         return $this->request('HEAD', $params);
+    }
+
+    /**
+     * Custom query parser
+     * @param  array $params  Array of search parameters that were passed to APIRequest
+     * @return string Custom formatted query string, including leading "?"
+     */
+    public function custom_query_parser($params)
+    {
+        $this->logger->info("Working with the following params for custom query parser");
+        $this->logger->info(print_r($params,True));
+        $q_string = '?';
+        foreach ($params['query'] as $param => $value) {
+            if (gettype($value) == 'array') {
+                $this->logger->info("'$param' is array type, converting to non-bracketed, repeating form");
+                $param_string = '';
+                foreach ($value as $value_instance) {
+                    $param_string.="$param=$value_instance&";
+                }
+                $q_string.=$param_string;
+            }
+            else {
+                $q_string.="$param=$value&";
+            }
+        }
+        $this->logger->info("Custom query string: $q_string");
+        return $q_string;
     }
 }

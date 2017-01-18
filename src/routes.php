@@ -12,6 +12,7 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
+    $this->logger->info("Using these query params for search: ".print_r($request->getQueryParams(),True));
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
@@ -41,7 +42,6 @@ $app->post('/advanced_search', function ($request, $response, $args) {
 
     // translate advanced search form parameters to Solr-ese
     $search_params = [];
-    $search_params['fq'] = [];
 
     /* 
     'q'
@@ -80,22 +80,27 @@ $app->post('/advanced_search', function ($request, $response, $args) {
         // escape q field in API (needed for advanced solr syntax)
         $search_params['field_skip_escape'] = 'q';
     }
-    else {
-        // add q_string to search_params for 'q'
-        // $search_params['q'] = "";
-        // $search_params['field_skip_escape'] = 'q';
-    }
     $this->logger->info("Prepared advanced 'q' parameter: $q_string");
 
     /* 
     prepare 'fq' section
     reacts to dropdown (e.g. collection, content-type)        
     */
-    // if (!empty($qp['select_collection'])){
-    //     // do stuff
-    //     array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
-    // }
-    // $this->logger->info(print_r($search_params['fq']));
+
+    // begin
+    $search_params['fq'] = [];
+
+    if (!empty($qp['select_collection'])){
+        // push to 
+        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
+        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
+        // $search_params['field_skip_escape'] = 'fq';
+    }
+    
+    $this->logger->info(print_r($search_params,True));
+
+    // set custom_query_parser
+    $search_params['custom_query_parser'] = true;
 
     // set url using pathFor()
     $url = $this->router->pathFor('search', [], $search_params);
