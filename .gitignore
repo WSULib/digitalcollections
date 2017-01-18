@@ -2,4 +2,3 @@
 /logs/*
 /cache/
 !/logs/README.md
-/src/settings.php
