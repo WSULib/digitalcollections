@@ -40,9 +40,11 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     $qp = $request->getParsedBody();
 
     // translate advanced search form parameters to Solr-ese
-    $search_params = array();
+    $search_params = [];
+    $search_params['fq'] = [];
 
-    /*
+    /* 
+    'q'
     prepared for "mighty four" form values
         - all_q
         - exact_q
@@ -50,9 +52,9 @@ $app->post('/advanced_search', function ($request, $response, $args) {
         - none_q
 
     prepare the appropriate 'q' string based on these    
-    note: with this special preperation, probably can avoid field_skip_escape for 'q'
     */
-    $q_array = array();
+
+    $q_array = [];
     // all
     if (!empty($qp['all_q'])){
         $q_array['all_q'] = implode(" AND ", explode(' ', $qp['all_q']));
@@ -69,19 +71,36 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     if (!empty($qp['none_q'])){
         $q_array['none_q'] = "-".implode(" -", explode(' ', $qp['none_q']));
     }
-    // connect
-    $q_string = "q=".implode(" AND ", $q_array);
+    // create search string from q_array
+    $q_string = implode(" AND ", $q_array);    
+    // add to search_params
+    if (!$q_string == ''){
+        // add q_string to search_params for 'q'
+        $search_params['q'] = $q_string;
+        // escape q field in API (needed for advanced solr syntax)
+        $search_params['field_skip_escape'] = 'q';
+    }
+    else {
+        // add q_string to search_params for 'q'
+        // $search_params['q'] = "";
+        // $search_params['field_skip_escape'] = 'q';
+    }
+    $this->logger->info("Prepared advanced 'q' parameter: $q_string");
 
-    // construct string
-    $search_params_string = "?".$q_string."&field_skip_escape=q";
+    /* 
+    prepare 'fq' section
+    reacts to dropdown (e.g. collection, content-type)        
+    */
+    // if (!empty($qp['select_collection'])){
+    //     // do stuff
+    //     array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
+    // }
+    // $this->logger->info(print_r($search_params['fq']));
+
+    // set url using pathFor()
+    $url = $this->router->pathFor('search', [], $search_params);
     
-    // DEBUG
-    // return $search_params_string;
-
-    // redirect to GET:/search, with search parameters
-    $url = $this->router->pathFor('search').$search_params_string;
-    // waiting on response from http://stackoverflow.com/questions/41703170/slim-3-redirect-to-route-with-get-parameters
-    // $url = $this->router->pathFor('search', $search_params);
+    // redirect to /search with prepared parameters
     return $response->withStatus(302)->withHeader('Location', $url);
 
 });
