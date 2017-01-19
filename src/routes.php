@@ -10,21 +10,21 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
 });
 
 // ALL COLLECTIONS
 $app->get('/collections', function ($request, $response, $args = []) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'collections.html.twig', $args);
 });
 
 // SINGLE COLLECTION VIEW
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'item.html.twig', $args);
 });
@@ -66,12 +66,12 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
     $item = $this->APIStream->get("/item/$args[pid]/$args[size]");
     // Set Headers
     $response = $response->withHeader('Content-Description', 'File Transfer')
-   ->withHeader('Content-Type', 'application/octet-stream')
-   ->withHeader('Content-Disposition', 'attachment;filename="'.basename($args['pid']).'"')
-   ->withHeader('Expires', '0')
-   ->withHeader('Cache-Control', 'must-revalidate')
-   ->withHeader('Pragma', 'public')
-   ->withHeader('Content-Length', filesize($item->getSize()));
+    ->withHeader('Content-Type', 'application/octet-stream')
+    ->withHeader('Content-Disposition', 'attachment;filename="'.basename($args['pid']).'"')
+    ->withHeader('Expires', '0')
+    ->withHeader('Cache-Control', 'must-revalidate')
+    ->withHeader('Pragma', 'public')
+    ->withHeader('Content-Length', filesize($item->getSize()));
 
     readfile($item);
     return $response;
@@ -103,7 +103,6 @@ $app->get('/contact', function ($request, $response, $args) {
 
     // general contact
     if (array_key_exists('contact_type', $qp)) {
-
         $contact_type = $qp['contact_type'];
 
         // permission request
@@ -117,10 +116,7 @@ $app->get('/contact', function ($request, $response, $args) {
             $args['form_title'] = 'Report a Problem';
             $args['pid'] = 'wayne:foobar';
         }
-
-    }
-
-    else {
+    } else {
         $contact_type = 'general';
         $args['form_title'] = 'General Contact';
     }
@@ -128,8 +124,7 @@ $app->get('/contact', function ($request, $response, $args) {
     // final prep
     $args['contact_type'] = $contact_type;
     
-    return $this->view->render($response, 'contact.html.twig', $args);    
-
+    return $this->view->render($response, 'contact.html.twig', $args);
 });
 
 $app->post('/contact', function ($request, $response, $args) {
@@ -142,7 +137,7 @@ $app->post('/contact', function ($request, $response, $args) {
     $contact_type = $qp['contact_type'];
 
     // submit form with email client
-    /*    
+    /*
         The "to" address is handled by submitting the contact_type ['general','permissions','rap']
         to 'contact_form' in settings.php
     */
@@ -157,8 +152,7 @@ $app->post('/contact', function ($request, $response, $args) {
     $url = 'http://localhost/ouroboros/email';
     try {
         $this->guzzle->request('POST', $url, $params);
-    }
-    catch (GuzzleHttp\Exception\ClientException $e) {
+    } catch (GuzzleHttp\Exception\ClientException $e) {
         // set some sort of something to flash and tell people to try again later
         echo "TEMP - flashing a request that something went wrong";
     }
@@ -176,7 +170,6 @@ $app->post('/contact', function ($request, $response, $args) {
     
     // return response
     return $this->view->render($response, 'contact_result.html.twig', $args);
-
 });
 
 // ABOUT
@@ -196,7 +189,7 @@ $app->get('/404', function ($request, $response, $args) {
 // Dynamic Route
 // Catches all /item/{pid}/* routes not already specified above sends request to API
 $app->get('/item/{pid}/[{params:.*}]', function ($request, $response, $args) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     return $api;
     // echo "<pre>";
     // var_dump($api);
