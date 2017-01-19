@@ -8,6 +8,8 @@ Run the following custom script to install composer and dependencies:
 
     ./provision.sh
 
+Copy settings.template.php found in src/ and make settings.php. Adjust values in file accordingly.
+
 ## Running / Testing
 
 To run the application in development, you can also run this command:
