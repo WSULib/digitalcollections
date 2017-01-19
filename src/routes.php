@@ -108,13 +108,13 @@ $app->get('/contact', function ($request, $response, $args) {
         // permission request
         if ($contact_type == 'permissions') {
             $args['form_title'] = 'Permissions Request Form';
-            $args['pid'] = 'wayne:foobar';
+            $args['pid'] = $qp['pid'];
         }
 
         // report a problem
         if ($contact_type == 'rap') {
             $args['form_title'] = 'Report a Problem';
-            $args['pid'] = 'wayne:foobar';
+            $args['pid'] = $qp['pid'];
         }
     } else {
         $contact_type = 'general';
@@ -145,13 +145,13 @@ $app->post('/contact', function ($request, $response, $args) {
     $from = $qp['from'];
     $subject = $qp['subject'];
     $msg = $qp['msg'];
-    $pid = isset($qp['pid']) ? $pid : null;
+    $pid = $qp['pid'];
     // EMAIL HERE
     $form = ['from' => $from, 'to' => $to, 'subject' => $subject, 'msg' => $msg, 'passphrase' => $settings['contact_form']['passphrase'], 'pid' => $pid];
     $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
     $url = 'http://localhost/ouroboros/email';
     try {
-        $this->guzzle->request('POST', $url, $params);
+        $stuff = $this->guzzle->request('POST', $url, $params);
     } catch (GuzzleHttp\Exception\ClientException $e) {
         // set some sort of something to flash and tell people to try again later
         echo "TEMP - flashing a request that something went wrong";

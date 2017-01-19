@@ -13,6 +13,11 @@
 			Subject: <input type="text" name="subject"/></br>
 			Message: <textarea name="msg"/></textarea><br>
 			<input type="hidden" name="contact_type" value="{{contact_type}}">
+			{% if contact_type == "rap" or contact_type == "permissions" %}
+			{% if pid %}
+				<input type="hidden" name="pid" value="{{pid}}">
+			{% endif %}			
+			{% endif %}
 			<input type="submit">
 		</form>
 		{% if result %}<h2>{{result}}</h2>{% endif %}
