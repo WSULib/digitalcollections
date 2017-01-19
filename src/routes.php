@@ -147,7 +147,7 @@ $app->post('/contact', function ($request, $response, $args) {
     $msg = $qp['msg'];
     $pid = $qp['pid'];
     // EMAIL HERE
-    $form = ['from' => $from, 'to' => $to, 'subject' => $subject, 'msg' => $msg, 'passphrase' => $settings['contact_form']['passphrase'], 'pid' => $pid];
+    $form = ['from' => $from, 'to' => $to, 'subject' => $subject, 'msg' => $msg, 'passphrase' => $settings['contact_form']['passphrase'], 'pid' => $pid, 'contact_type' => $contact_type];
     $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
     $url = 'http://localhost/ouroboros/email';
     try {
