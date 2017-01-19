@@ -49,40 +49,41 @@ class APIRequest
     private function request($type, $params = null)
     {
         
-        /* Custom query parser
-            if 'custom_query_parser' in $params:
-                1) use custom parser to create query string
-                2) affix to $this->uri
-                3) set $params to false, and continue
+        ////////////////////////////////////////////////////////////////////////////////
+        // Experimental, convert query params array to query string before request
+        /*
+        This would be our custom parser, that runs everytime, for every GET request
         */
-        if (array_key_exists('custom_query_parser', $params['query'])) {
-            $this->logger->info("Using custom query parser");
-            // this will be the custom parser here
-            $q_string = $this->custom_query_parser($params);
-            // affix to URI
-            $this->uri.=$q_string;
+        ////////////////////////////////////////////////////////////////////////////////
+        if ($type == 'GET') {
+
+            // Working
+            // $this->logger->info("Converting parameters to string");
+            // // affix to URI
+            // $qstring = "?".http_build_query($params['query']);
+            // // clean here of indexed brackets
+            // $qstring = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $qstring);
+            // $this->uri.=$qstring;
+            // $this->logger->info($this->uri);
+            // // empty $params array, and pass as normal
+            // $params = [];
+
+            // function / walk based (http://stackoverflow.com/a/26565074/1196358)
+            $walk = function( $item, $key, $parent_key = '' ) use ( &$output, &$walk ) {
+                is_array( $item ) 
+                    ? array_walk( $item, $walk, $key ) 
+                    : $output[] = http_build_query( array( $parent_key ?: $key => $item ) );
+            };
+            array_walk( $params['query'], $walk );
+            $this->logger->info(print_r($output,True));
+            $qstring = implode( '&', $output );            
+            $this->uri.="?".$qstring;
             $this->logger->info($this->uri);
-            // empty $params array, and pass as normal
             $params = [];
         }
+        ////////////////////////////////////////////////////////////////////////////////
 
-        /* String style params
-            if $params is string
-                1) affix to $this->uri
-                3) set $params to false, and continue
-        */
-        if (gettype($params)) {
-            $this->logger->info("String passed as params, using");
-            // affix to URI
-            $this->uri.=$params;
-            $this->logger->info($this->uri);
-            // empty $params array, and pass as normal
-            $params = [];
-        }
-
-        // PLACEHOLDER to sniff out if debug flag was set
-        // http://docs.guzzlephp.org/en/latest/request-options.html
-        // logger interface logs activity; indicate log level through logger->info, error, or critical
+        // send request to API
         $start = microtime(true);
         $response = $this->client->request($type, $this->uri, $params);
         $time_spent = microtime(true) - $start;
@@ -136,30 +137,4 @@ class APIRequest
         return $this->request('HEAD', $params);
     }
 
-    /**
-     * Custom query parser
-     * @param  array $params  Array of search parameters that were passed to APIRequest
-     * @return string Custom formatted query string, including leading "?"
-     */
-    public function custom_query_parser($params)
-    {
-        $this->logger->info("Working with the following params for custom query parser");
-        $this->logger->info(print_r($params,True));
-        $q_string = '?';
-        foreach ($params['query'] as $param => $value) {
-            if (gettype($value) == 'array') {
-                $this->logger->info("'$param' is array type, converting to non-bracketed, repeating form");
-                $param_string = '';
-                foreach ($value as $value_instance) {
-                    $param_string.="$param=$value_instance&";
-                }
-                $q_string.=$param_string;
-            }
-            else {
-                $q_string.="$param=$value&";
-            }
-        }
-        $this->logger->info("Custom query string: $q_string");
-        return $q_string;
-    }
 }

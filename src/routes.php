@@ -12,8 +12,9 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $this->logger->info("Using these query params for search: ".print_r($request->getQueryParams(),True));
+    $this->logger->debug("Using these query params for search: ".print_r($request->getQueryParams(),True));
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    // capture and return data
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
 })->setName('search');
@@ -43,15 +44,13 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     // translate advanced search form parameters to Solr-ese
     $search_params = [];
 
-    /* 
-    'q'
-    prepared for "mighty four" form values
+    /*     
+    anticipating one of the "mighty four" form values:
         - all_q
         - exact_q
         - any_q
         - none_q
-
-    prepare the appropriate 'q' string based on these    
+    prepare the 'q' string based on these
     */
 
     $q_array = [];
@@ -79,8 +78,7 @@ $app->post('/advanced_search', function ($request, $response, $args) {
         $search_params['q'] = $q_string;
         // escape q field in API (needed for advanced solr syntax)
         $search_params['field_skip_escape'] = 'q';
-    }
-    $this->logger->info("Prepared advanced 'q' parameter: $q_string");
+    }    
 
     /* 
     prepare 'fq' section
@@ -90,23 +88,21 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     // begin
     $search_params['fq'] = [];
 
-    if (!empty($qp['select_collection'])){
-        // push to 
-        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
-        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['select_collection']);
-        // $search_params['field_skip_escape'] = 'fq';
+    if (!empty($qp['collection'])){
+        // push to fq array
+        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['collection']);
     }
-    
-    $this->logger->info(print_r($search_params,True));
 
-    // set custom_query_parser
-    $search_params['custom_query_parser'] = true;
+    if (!empty($qp['content_type'])){
+        // push to fq array
+        array_push($search_params['fq'], "rels_hasContentModel:".$qp['content_type']);
+    }
 
-    // set url using pathFor()
-    $url = $this->router->pathFor('search', [], $search_params);
-    
-    // redirect to /search with prepared parameters
-    return $response->withStatus(302)->withHeader('Location', $url);
+    // convert advanced query parameters into prepared query string
+    $prepared_query_string = http_build_query($search_params);
+
+    // Redirect to /search, with prepared query string
+    return $response->withStatus(302)->withHeader('Location', "/search?".$prepared_query_string);
 
 });
 
