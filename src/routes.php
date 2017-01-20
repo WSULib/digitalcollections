@@ -130,7 +130,6 @@ $app->get('/contact', function ($request, $response, $args) {
 $app->post('/contact', function ($request, $response, $args) {
 
     // get settings
-    // $settings = $container->get('settings');
     $settings = $this->get('settings');
 
     $qp = $request->getParsedBody();
@@ -146,19 +145,25 @@ $app->post('/contact', function ($request, $response, $args) {
     $subject = $qp['subject'];
     $msg = $qp['msg'];
     $pid = $qp['pid'];
-    // EMAIL HERE
-    $form = ['from' => $from, 'to' => $to, 'subject' => $subject, 'msg' => $msg, 'passphrase' => $settings['contact_form']['passphrase'], 'pid' => $pid, 'contact_type' => $contact_type];
+
+    $form = [
+        'from' => $from,
+        'to' => $to,
+        'subject' => $subject,
+        'msg' => $msg,
+        'passphrase' => $settings['contact_form']['passphrase'],
+        'pid' => $pid,
+        'contact_type' => $contact_type
+    ];
+
     $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
     $url = 'http://localhost/ouroboros/email';
     try {
-        $stuff = $this->guzzle->request('POST', $url, $params);
+        $this->guzzle->request('POST', $url, $params);
     } catch (GuzzleHttp\Exception\ClientException $e) {
         // set some sort of something to flash and tell people to try again later
         echo "TEMP - flashing a request that something went wrong";
     }
-    // if report-a-problem, fire off Ouroboros HTTP call (with Guzzle?)
-    // FIRE HERE
-
 
     // confirmation package
     $args['result'] = [
