@@ -58,10 +58,10 @@ $container['APIStream'] = function ($c) {
     return $API;
 };
 
-// CustomQuery
-$container['CustomQuery'] = function ($c) {
-    $CustomQuery = new \App\Services\CustomQuery($c['logger']);
-    return $CustomQuery;
+// QueryBuilder
+$container['QueryBuilder'] = function ($c) {
+    $QueryBuilder = new \App\Services\QueryBuilder($c['logger']);
+    return $QueryBuilder;
 };
 
 //Override the default Not Found Handler

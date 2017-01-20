@@ -12,7 +12,7 @@ namespace App\Services;
 use Monolog\Logger;
 
 
-class CustomQuery
+class QueryBuilder
 {    
     public $type;
     public $uri;
@@ -38,6 +38,7 @@ class CustomQuery
         $this->logger = $logger;
     }
 
+
 	/**
      * Remove indices and brackets from repeating GET parameters
      * @param  array $params  Associative array of GET parameters
@@ -61,6 +62,7 @@ class CustomQuery
         return $qstring;
     }
 
+
     /**
      * Remove indices from repeating GET parameters
      * @param  array $params  Associative array of GET parameters
@@ -72,6 +74,26 @@ class CustomQuery
     	$this->logger->info("query string via q_string_without_indices(): ".$qstring);
     	return $qstring;
     }
+
+
+    /**
+     * Add parameter
+     * @return Return associative array of parameters
+     */
+    public function add_param($params)
+    {
+        //
+    }
+
+    /**
+     * Add parameter
+     * @return Return associative array of parameters
+     */
+    public function del_param($params)
+    {
+        //
+    }
+    
 }
 
 

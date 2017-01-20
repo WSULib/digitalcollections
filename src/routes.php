@@ -92,7 +92,7 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     }
 
     // use CustomQuery service to prepare q string
-    $prepared_query_string = $this->CustomQuery->q_string_without_indices($search_params);
+    $prepared_query_string = $this->QueryBuilder->q_string_without_indices($search_params);
 
     // Redirect to /search, with prepared query string
     $uri = $this->router->pathFor('search')."?".$prepared_query_string;
