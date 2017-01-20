@@ -15,6 +15,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
 
+
 class APIRequest
 {
     protected $client;
@@ -22,6 +23,8 @@ class APIRequest
     public $uri;
     public $username;
     public $password;
+    public $type;
+    public $params;
 /**
  * Constructor
  * @param Logger $logger Monolog logging
@@ -35,6 +38,10 @@ class APIRequest
         $this->logger = $logger;
         // Instantiate a guzzle client with the base_uri already pointed to the API
         $this->client = $client;
+        // Query parameters for request instance
+        $this->type = null;
+        // Query parameters for request instance
+        $this->params = null;
     }
 
     /**
@@ -48,44 +55,30 @@ class APIRequest
 
     private function request($type, $params = null)
     {
-        
-        ////////////////////////////////////////////////////////////////////////////////
-        // Experimental, convert query params array to query string before request
+
+        // catch type
+        $this->type = $type;
+
+        // catch params
+        $this->params = $params;
+
+        // run through custom query parser
         /*
-        This would be our custom parser, that runs everytime, for every GET request
+            Figure out how to use CustomQuery service, import/use from container?
+            For the time being, using local, repeated custom_query_writer below
+            And it's possible, that method should exist, and IT should use the CustomQuery
         */
-        ////////////////////////////////////////////////////////////////////////////////
-        if ($type == 'GET') {
+        $this->custom_query_writer();
 
-            // Working
-            // $this->logger->info("Converting parameters to string");
-            // // affix to URI
-            // $qstring = "?".http_build_query($params['query']);
-            // // clean here of indexed brackets
-            // $qstring = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', $qstring);
-            // $this->uri.=$qstring;
-            // $this->logger->info($this->uri);
-            // // empty $params array, and pass as normal
-            // $params = [];
-
-            // function / walk based (http://stackoverflow.com/a/26565074/1196358)
-            $walk = function( $item, $key, $parent_key = '' ) use ( &$output, &$walk ) {
-                is_array( $item ) 
-                    ? array_walk( $item, $walk, $key ) 
-                    : $output[] = http_build_query( array( $parent_key ?: $key => $item ) );
-            };
-            array_walk( $params['query'], $walk );
-            $this->logger->info(print_r($output,True));
-            $qstring = implode( '&', $output );            
-            $this->uri.="?".$qstring;
-            $this->logger->info($this->uri);
-            $params = [];
-        }
-        ////////////////////////////////////////////////////////////////////////////////
-
+        // debug
+        $this->logger->debug("---------------- APIRequest firing: ----------------");
+        $this->logger->debug($this->uri);
+        $this->logger->debug(print_r($this->params,True));
+        $this->logger->debug("----------------------------------------------------");
+        
         // send request to API
         $start = microtime(true);
-        $response = $this->client->request($type, $this->uri, $params);
+        $response = $this->client->request($type, $this->uri, $this->params);
         $time_spent = microtime(true) - $start;
         $this->logger->info("Request took $time_spent");
 
@@ -135,6 +128,31 @@ class APIRequest
         $params = ['query' => $params];
         $this->uri = $uri;
         return $this->request('HEAD', $params);
+    }
+
+    /**
+     * Custom query parser - formats requests to accomodate back-end API
+     * @param  string $uri  The Route that initialized this request (/action/PID/sub-action)
+     * @param  array $params Associative array of parameters
+     * @return object PSR-7 response object via Guzzle library
+     */
+    private function custom_query_writer()
+    {
+        // custom parsing for GET requests
+        // removes indexes from bracketed, repeating parameters
+        if ($this->type == 'GET') {
+            // function / walk based (http://stackoverflow.com/a/26565074/1196358)
+            $walk = function( $item, $key, $parent_key = '' ) use ( &$output, &$walk ) {
+                is_array( $item ) 
+                    ? array_walk( $item, $walk, $key ) 
+                    : $output[] = http_build_query( array( $parent_key ?: $key => $item ) );
+            };
+            array_walk( $this->params['query'], $walk );
+            $qstring = implode( '&', $output );
+            $this->logger->info("custom query string via APIRequest: ".$qstring);
+            $this->uri.="?".$qstring;            
+            $this->params = [];
+        }
     }
 
 }

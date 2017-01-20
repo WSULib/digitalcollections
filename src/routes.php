@@ -12,9 +12,7 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $this->logger->debug("Using these query params for search: ".print_r($request->getQueryParams(),True));
     $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
-    // capture and return data
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
 })->setName('search');
@@ -22,12 +20,7 @@ $app->get('/search', function ($request, $response, $args) {
 
 // ADVANCED SEARCH VIEW
 $app->get('/advanced_search', function ($request, $response, $args) {    
-    /*
-    This will need an API route that returns some values to populate dropdowns
-        - content types
-        - collections
-        - else?
-    */
+    // This will need an API route that returns some values to populate dropdowns
     return $this->view->render($response, 'advanced_search.html.twig', $args);
 });
 
@@ -82,7 +75,7 @@ $app->post('/advanced_search', function ($request, $response, $args) {
 
     /* 
     prepare 'fq' section
-    reacts to dropdown (e.g. collection, content-type)        
+    reacts to dropdown (e.g. collection, content-type, etc.)        
     */
 
     // begin
@@ -98,11 +91,12 @@ $app->post('/advanced_search', function ($request, $response, $args) {
         array_push($search_params['fq'], "rels_hasContentModel:".$qp['content_type']);
     }
 
-    // convert advanced query parameters into prepared query string
-    $prepared_query_string = http_build_query($search_params);
+    // use CustomQuery service to prepare q string
+    $prepared_query_string = $this->CustomQuery->q_string_without_indices($search_params);
 
     // Redirect to /search, with prepared query string
-    return $response->withStatus(302)->withHeader('Location', "/search?".$prepared_query_string);
+    $uri = $this->router->pathFor('search')."?".$prepared_query_string;
+    return $response->withRedirect($uri);
 
 });
 
