@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
+use App\Services\QueryBuilder;
 
 
 class APIRequest
@@ -31,7 +32,7 @@ class APIRequest
  * @param Client $client Guzzle Client
  * @return void
  */
-    public function __construct(Logger $logger, Client $client)
+    public function __construct(Logger $logger, Client $client, QueryBuilder $QueryBuilder)
     {
         $this->uri = null;
         // Future Stuff to do about sessions go here
@@ -42,6 +43,8 @@ class APIRequest
         $this->type = null;
         // Query parameters for request instance
         $this->params = null;
+        // load QueryBuilder class
+        $this->QueryBuilder = $QueryBuilder;
     }
 
     /**
@@ -62,12 +65,7 @@ class APIRequest
         // catch params
         $this->params = $params;
 
-        // run through custom query parser
-        /*
-            Figure out how to use CustomQuery service, import/use from container?
-            For the time being, using local, repeated custom_query_writer below
-            And it's possible, that method should exist, and IT should use the CustomQuery
-        */
+        // run through custom_query_parser
         $this->custom_query_writer();
 
         // debug
@@ -138,18 +136,12 @@ class APIRequest
      */
     private function custom_query_writer()
     {
-        // custom parsing for GET requests
-        // removes indexes from bracketed, repeating parameters
+        
         if ($this->type == 'GET') {
-            // function / walk based (http://stackoverflow.com/a/26565074/1196358)
-            $walk = function( $item, $key, $parent_key = '' ) use ( &$output, &$walk ) {
-                is_array( $item ) 
-                    ? array_walk( $item, $walk, $key ) 
-                    : $output[] = http_build_query( array( $parent_key ?: $key => $item ) );
-            };
-            array_walk( $this->params['query'], $walk );
-            $qstring = implode( '&', $output );
-            $this->logger->info("custom query string via APIRequest: ".$qstring);
+            // custom parsing for GET requests
+            // removes indexes from bracketed, repeating parameters
+            // uses Services\QueryBuilder class
+            $qstring = $this->QueryBuilder->q_string_without_brackets($this->params['query']);
             $this->uri.="?".$qstring;            
             $this->params = [];
         }

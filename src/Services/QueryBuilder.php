@@ -46,8 +46,6 @@ class QueryBuilder
      */
     public function q_string_without_brackets($params)
     {
-    	$this->logger->info("*$(#)#$)(#*$)#(*$)#(");
-    	$this->logger->info(print_r($params,True));
         // removes indexes from bracketed, repeating parameters
         // function / walk based (http://stackoverflow.com/a/26565074/1196358)
         // function / walk based (http://stackoverflow.com/a/26565074/1196358)
@@ -58,7 +56,7 @@ class QueryBuilder
         };
         array_walk( $params, $walk );
         $qstring = implode( '&', $output );
-        $this->logger->info("q string via q_string_without_brackets(): ".$qstring);
+        $this->logger->debug("QueryBuilder -> q string via q_string_without_brackets(): ".$qstring);
         return $qstring;
     }
 
@@ -71,7 +69,7 @@ class QueryBuilder
     public function q_string_without_indices($params)
     {
     	$qstring = preg_replace('/%5B[0-9]+%5D/simU', '%5B%5D', http_build_query($params));
-    	$this->logger->info("query string via q_string_without_indices(): ".$qstring);
+    	$this->logger->debug("QueryBuilder -> query string via q_string_without_indices(): ".$qstring);
     	return $qstring;
     }
 
@@ -84,6 +82,7 @@ class QueryBuilder
     {
         //
     }
+
 
     /**
      * Add parameter

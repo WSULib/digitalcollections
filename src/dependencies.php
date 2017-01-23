@@ -48,7 +48,7 @@ $container['APIClient'] = function ($c) {
 // Create an instance of the APIRequest Middleware; it uses the APIClient guzzle instance
 // $this->APIRequest->HTTPMETHOD invokes it
 $container['APIRequest'] = function ($c) {
-    $API = new \App\Services\APIRequest($c['logger'], $c['APIClient']);
+    $API = new \App\Services\APIRequest($c['logger'], $c['APIClient'], $c['QueryBuilder']);
     return $API;
 };
 
