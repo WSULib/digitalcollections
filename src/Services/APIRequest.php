@@ -136,6 +136,14 @@ class APIRequest
      */
     private function custom_query_writer()
     {
+        // if user logged in, include "isDiscoverable=true"        
+        if ($_SESSION['admin']) {
+            $this->logger->debug("---------------- User Status ------------");
+            $this->logger->debug($user_status);
+            $this->logger->debug("-----------------------------------------");    
+            $this->params['query']['isDiscoverable'] = false;
+        }
+        
         
         if ($this->type == 'GET') {
             // custom parsing for GET requests
