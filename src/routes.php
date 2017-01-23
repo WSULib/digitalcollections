@@ -28,71 +28,11 @@ $app->get('/advanced_search', function ($request, $response, $args) {
 // ADVANCED SEARCH PROCESS
 $app->post('/advanced_search', function ($request, $response, $args) {    
 
-    // get settings
-    $settings = $this->get('settings');
-
     // get post parameters
-    $qp = $request->getParsedBody();
+    $qp = $request->getParsedBody();    
 
-    // translate advanced search form parameters to Solr-ese
-    $search_params = [];
-
-    /*     
-    anticipating one of the "mighty four" form values:
-        - all_q
-        - exact_q
-        - any_q
-        - none_q
-    prepare the 'q' string based on these
-    */
-
-    $q_array = [];
-    // all
-    if (!empty($qp['all_q'])){
-        $q_array['all_q'] = implode(" AND ", explode(' ', $qp['all_q']));
-    }
-    // exacct
-    if (!empty($qp['exact_q'])){
-        $q_array['exact_q'] = '"' . $qp['exact_q'] . '"';
-    }
-    // all
-    if (!empty($qp['any_q'])){
-        $q_array['any_q'] = implode(" OR ", explode(' ', $qp['any_q']));
-    }
-    // none
-    if (!empty($qp['none_q'])){
-        $q_array['none_q'] = "-".implode(" -", explode(' ', $qp['none_q']));
-    }
-    // create search string from q_array
-    $q_string = implode(" AND ", $q_array);    
-    // add to search_params
-    if (!$q_string == ''){
-        // add q_string to search_params for 'q'
-        $search_params['q'] = $q_string;
-        // escape q field in API (needed for advanced solr syntax)
-        $search_params['field_skip_escape'] = 'q';
-    }    
-
-    /* 
-    prepare 'fq' section
-    reacts to dropdown (e.g. collection, content-type, etc.)        
-    */
-
-    // begin
-    $search_params['fq'] = [];
-
-    if (!empty($qp['collection'])){
-        // push to fq array
-        array_push($search_params['fq'], "rels_isMemberOfCollection:".$qp['collection']);
-    }
-
-    if (!empty($qp['content_type'])){
-        // push to fq array
-        array_push($search_params['fq'], "rels_hasContentModel:".$qp['content_type']);
-    }
-
-    // use CustomQuery service to prepare q string
-    $prepared_query_string = $this->QueryBuilder->q_string_without_indices($search_params);
+    // run advanced_query_build from QueryBuilder, with "true" flag to return as query string
+    $prepared_query_string = $this->QueryBuilder->advanced_query_build($qp, true);
 
     // Redirect to /search, with prepared query string
     $uri = $this->router->pathFor('search')."?".$prepared_query_string;

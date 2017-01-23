@@ -6,12 +6,62 @@
 {% endblock %}
 
 {% block content %}
-    <div id="fullpage">
-		<div id="fullpage-title">
-			<h1>Item Page</h1>
+    <div id="search-page">
+
+	<div id="search-options">
+		<div id="search-options-collapse"></div>
+		<div class="search-option">
+			<div class="search-option-title">Content Type</div>
+			<div class="search-option-list"></div>
 		</div>
-		<div style="padding-left:20px; font-size:75%;">
-			<pre><code>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</code></pre>
+		<div class="search-option">
+			<div class="search-option-title">Collection</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Date</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Subject</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Creator</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Publisher</div>
+			<div class="search-option-list"></div>
 		</div>
 	</div>
+
+	<div id="search-results">
+
+	{# 	<div id="search-results-facets">
+			<div class="facet">
+				<div class="facet-remove"></div>
+				<div class="facet-label">Content Type:</div>
+				<div class="facet-value">Image</div>
+			</div>
+		</div> #}
+
+		<div id="search-results-loading"></div>
+
+		<!-- <div id="search-results-ne"> -->
+			<div id="search-results-nest">
+				{# iterate through results #}
+				{% for doc in data.response.solr_results.response.docs %}
+					<div class="search-result">
+						<a class="search-result-imgwrap" href="/item/{{doc.id}}"><img src="/item/{{doc.id}}/thumbnail" /></a>
+						<a class="search-result-title" href="/item/{{doc.id}}">{{doc.dc_title[0]}}</a>
+						<a class="search-result-description" href="/item/{{doc.id}}">{{(doc.dc_description[0]|length > 100 ? doc.dc_description[0]|slice(0, 100) ~ '&hellip;' : doc.dc_description[0])|raw}}</a> {# consider trimming #}
+					</div>
+				{% endfor %}
+			</div>
+		<!-- </div> -->
+	</div>
+
+	<div style="clear:both;"></div>
+</div>
 {% endblock %}
