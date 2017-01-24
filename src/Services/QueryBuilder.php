@@ -48,7 +48,7 @@ class QueryBuilder
     {
 
         $this->logger->debug("running advanced_query_build");
-        
+
         // translate advanced search form parameters to Solr-ese
         $search_params = [];
 
@@ -155,19 +155,24 @@ class QueryBuilder
      * Add parameter
      * @return Return associative array of parameters
      */
-    public function add_param($params)
+    public function add_param_to_query_string($params)
     {
         //
     }
 
 
     /**
-     * Add parameter
+     * Removes parameter from current URL
+     * @param  string $param  key=value string to remove from query string
+     * @param  string $query_string  all parameters as single query string
      * @return Return associative array of parameters
      */
-    public function del_param($params)
+    public function del_param_from_query_string($param, $query_string)
     {
-        //
+        $this->logger->debug("Looking for: ".urlencode($param)." in ".$query_string);
+        $cleaned_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
+        $this->logger->debug($cleaned_query_string);
+        return $cleaned_query_string;
     }
     
 }

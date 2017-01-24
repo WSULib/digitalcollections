@@ -60,10 +60,10 @@
 
 		<div id="search-results-facets">
 			{% for fq in search_params.fq %}
-				<div class="facet">
-					{# <div class="facet-remove"><p><a href="{{'goober|pingpong'}}">X</a></p></div> #}
-					<div class="facet-label">{{fq}}</div>
-					<div class="facet-value">{{fq}}</div>
+				<div class="facet">				
+					<div class="facet-remove"><p><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string)}}">X</a></p></div>
+					<div class="facet-label">{{fq|split(":")[0]}}</div>
+					<div class="facet-value">{{fq|split(":")|slice(1,3)|join(":")}}</div>					
 				</div>
 			{% endfor %}
 		</div>

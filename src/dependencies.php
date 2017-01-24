@@ -27,12 +27,13 @@ $container['view'] = function ($c) {
 
     // Make Session available to twig
     $view->getEnvironment()->addGlobal('session', $_SESSION);
+    $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);    
 
     // QueryBuilder methods exposed in Twig
-    // $function = new Twig_Function('pingpong', function ($input) {
-    //     echo "$input - PONG";
-    // });
-    // $view->getEnvironment()->addFunction($function);
+    $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string) {
+        return $QueryBuilder->del_param_from_query_string($param, $query_string);
+    });
+    $view->getEnvironment()->addFunction($function);
 
     return $view;
 };

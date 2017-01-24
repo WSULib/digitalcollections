@@ -13,6 +13,7 @@ $app->get('/', function ($request, $response, $args) {
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
+    $args['query_string'] = $request->getUri()->getQuery();
     $this->logger->debug(print_r($args['search_params'],True));
     $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
