@@ -56,7 +56,7 @@ class APIRequest
      * @return object PSR-7 response object via Guzzle library
      */
 
-    private function request($type, $params = null)
+    private function request($type, $params = null, $custom_query = false)
     {
 
         // catch type
@@ -65,8 +65,11 @@ class APIRequest
         // catch params
         $this->params = $params;
 
-        // run through custom_query_parser
-        $this->custom_query_writer();
+        // run through custom_query_writer if custom_query == true
+        if ($custom_query && !empty($params)) {
+            $this->logger->debug("using custom query writer");
+            $this->custom_query_writer();
+        }
 
         // debug
         $this->logger->debug("---------------- APIRequest firing: ----------------");
@@ -78,7 +81,7 @@ class APIRequest
         $start = microtime(true);
         $response = $this->client->request($type, $this->uri, $this->params);
         $time_spent = microtime(true) - $start;
-        $this->logger->info("Request took $time_spent");
+        $this->logger->info("Request took: $time_spent");
 
         // parse status code
         $httpStatus = $response->getStatusCode();
@@ -93,22 +96,24 @@ class APIRequest
      * Send a GET request
      * @param  string $uri  The Route that initialized this request (/action/PID/sub-action)
      * @param  array $params Associative array of parameters
+     * @param  boolean $custom_query If True, runs $this->custom_query_writer() before query
      * @return object PSR-7 response object via Guzzle library
      */
-    public function get($uri, $params = null)
+    public function get($uri, $params = null, $custom_query = false)
     {
         $params = ['query' => $params];
         $this->uri = $uri;
-        return $this->request('GET', $params);
+        return $this->request('GET', $params, $custom_query);
     }
 
     /**
      * Send a POST request
      * @param  string $uri  The Route that initialized this request (/action/PID/sub-action)
      * @param  array $params Associative array of parameters
+     * @param  boolean $custom_query If True, runs $this->custom_query_writer() before query
      * @return object PSR-7 response object via Guzzle library
      */
-    public function post($uri, $params = null)
+    public function post($uri, $params = null, $custom_query = false)
     {
         $params = ['form_params' => $params];
         $this->uri = $uri;
@@ -129,29 +134,31 @@ class APIRequest
     }
 
     /**
-     * Custom query parser - formats requests to accomodate back-end API
+     * Custom query writer - formats requests to accomodate back-end API
      * @param  string $uri  The Route that initialized this request (/action/PID/sub-action)
      * @param  array $params Associative array of parameters
      * @return object PSR-7 response object via Guzzle library
      */
     private function custom_query_writer()
     {
-        // if user logged in, include "isDiscoverable=true"        
-        if ($_SESSION['admin']) {
-            $this->logger->debug("---------------- User Status ------------");
-            $this->logger->debug($user_status);
-            $this->logger->debug("-----------------------------------------");    
-            $this->params['query']['isDiscoverable'] = false;
-        }
         
-        
-        if ($this->type == 'GET') {
+        if ($this->type == 'GET') { 
+            // if user logged in, include "isDiscoverable=true"        
+            if (isset($_SESSION['admin']) && $_SESSION['admin']) {
+                $this->params['query']['isDiscoverable'] = false;
+            }
             // custom parsing for GET requests
             // removes indexes from bracketed, repeating parameters
             // uses Services\QueryBuilder class
-            $qstring = $this->QueryBuilder->q_string_without_brackets($this->params['query']);
-            $this->uri.="?".$qstring;            
-            $this->params = [];
+            if (!empty($this->params['query'])){
+                $qstring = $this->QueryBuilder->q_string_without_brackets($this->params['query']);
+                $this->uri.="?".$qstring;            
+                $this->params = [];    
+            }
+        }
+
+        if ($this->type == 'POST') { 
+            // handle custom POST form_data
         }
     }
 

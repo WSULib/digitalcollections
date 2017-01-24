@@ -28,6 +28,12 @@ $container['view'] = function ($c) {
     // Make Session available to twig
     $view->getEnvironment()->addGlobal('session', $_SESSION);
 
+    // QueryBuilder methods exposed in Twig
+    // $function = new Twig_Function('pingpong', function ($input) {
+    //     echo "$input - PONG";
+    // });
+    // $view->getEnvironment()->addFunction($function);
+
     return $view;
 };
 

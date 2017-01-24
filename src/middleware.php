@@ -54,7 +54,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
  */
 $app->add(function (Request $request, Response $response, callable $next) {
     // Check for the WSUDOR Cookie
-    if ($_COOKIE['WSUDOR']) {
+    if (isset($_COOKIE['WSUDOR'])) {
         $this->logger->debug("WSUDOR cookie found, checking");
         if (!isset($_SESSION['wsudorauth'])) {
             // No active wsudorauth session; ask /wsudorauth service if cookie is valid

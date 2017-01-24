@@ -12,7 +12,9 @@ $app->get('/', function ($request, $response, $args) {
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $api = $this->APIRequest->get($request->getAttribute('path'),$request->getQueryParams());
+    $args['search_params'] = $request->getQueryParams();
+    $this->logger->debug(print_r($args['search_params'],True));
+    $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
 })->setName('search');

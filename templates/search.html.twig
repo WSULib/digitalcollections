@@ -11,12 +11,27 @@
 	<div id="search-options">
 		<div id="search-options-collapse"></div>
 		<div class="search-option">
+			{#
+				create links with QueryBuilder->add_param() method to get URLs with that facet included
+			#}
 			<div class="search-option-title">Content Type</div>
-			<div class="search-option-list"></div>
+			<div class="search-option-list">
+				<ul>
+					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_hasContentModel %}
+						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
 		<div class="search-option">
 			<div class="search-option-title">Collection</div>
-			<div class="search-option-list"></div>
+			<div class="search-option-list">
+			<ul>
+					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_isMemberOfCollection %}
+						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
 		<div class="search-option">
 			<div class="search-option-title">Date</div>
@@ -38,12 +53,19 @@
 
 	<div id="search-results">
 
+		{# 
+			1) iterate through fq elements 
+			2) indicate with facet buttons at top, using QueryBuilder->remove_param() method to generate URL minus that facet
+		#}
+
 		<div id="search-results-facets">
-			<div class="facet">
-				<div class="facet-remove"></div>
-				<div class="facet-label">Content Type:</div>
-				<div class="facet-value">Image</div>
-			</div>
+			{% for fq in search_params.fq %}
+				<div class="facet">
+					{# <div class="facet-remove"><p><a href="{{'goober|pingpong'}}">X</a></p></div> #}
+					<div class="facet-label">{{fq}}</div>
+					<div class="facet-value">{{fq}}</div>
+				</div>
+			{% endfor %}
 		</div>
 
 		<div id="search-results-loading"></div>
@@ -55,7 +77,7 @@
 					<div class="search-result">
 						<a class="search-result-imgwrap" href="/item/{{doc.id}}"><img src="/item/{{doc.id}}/thumbnail" /></a>
 						<a class="search-result-title" href="/item/{{doc.id}}">{{doc.dc_title[0]}}</a>
-						<a class="search-result-description" href="/item/{{doc.id}}">{{(doc.dc_description[0]|length > 100 ? doc.dc_description[0]|slice(0, 100) ~ '&hellip;' : doc.dc_description[0])|raw}}</a> {# consider trimming #}
+						<a class="search-result-description" href="/item/{{doc.id}}">{{(doc.dc_description[0]|length > 100 ? doc.dc_description[0]|slice(0, 100) ~ '&hellip;' : doc.dc_description[0])|raw}}</a>
 					</div>
 				{% endfor %}
 			</div>
