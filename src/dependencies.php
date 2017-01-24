@@ -27,6 +27,13 @@ $container['view'] = function ($c) {
 
     // Make Session available to twig
     $view->getEnvironment()->addGlobal('session', $_SESSION);
+    $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);    
+
+    // QueryBuilder methods exposed in Twig
+    $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string) {
+        return $QueryBuilder->del_param_from_query_string($param, $query_string);
+    });
+    $view->getEnvironment()->addFunction($function);
 
     return $view;
 };
@@ -48,7 +55,7 @@ $container['APIClient'] = function ($c) {
 // Create an instance of the APIRequest Middleware; it uses the APIClient guzzle instance
 // $this->APIRequest->HTTPMETHOD invokes it
 $container['APIRequest'] = function ($c) {
-    $API = new \App\Services\APIRequest($c['logger'], $c['APIClient']);
+    $API = new \App\Services\APIRequest($c['logger'], $c['APIClient'], $c['QueryBuilder']);
     return $API;
 };
 
@@ -56,6 +63,12 @@ $container['APIRequest'] = function ($c) {
 $container['APIStream'] = function ($c) {
     $API = new \App\Services\APIStream($c['logger'], $c['APIClient']);
     return $API;
+};
+
+// QueryBuilder
+$container['QueryBuilder'] = function ($c) {
+    $QueryBuilder = new \App\Services\QueryBuilder($c['logger']);
+    return $QueryBuilder;
 };
 
 //Override the default Not Found Handler

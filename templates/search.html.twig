@@ -6,12 +6,84 @@
 {% endblock %}
 
 {% block content %}
-    <div id="fullpage">
-		<div id="fullpage-title">
-			<h1>Item Page</h1>
+    <div id="search-page">
+
+	<div id="search-options">
+		<div id="search-options-collapse"></div>
+		<div class="search-option">
+			{#
+				create links with QueryBuilder->add_param() method to get URLs with that facet included
+			#}
+			<div class="search-option-title">Content Type</div>
+			<div class="search-option-list">
+				<ul>
+					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_hasContentModel %}
+						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-		<div style="padding-left:20px; font-size:75%;">
-			<pre><code>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</code></pre>
+		<div class="search-option">
+			<div class="search-option-title">Collection</div>
+			<div class="search-option-list">
+			<ul>
+					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_isMemberOfCollection %}
+						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Date</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Subject</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Creator</div>
+			<div class="search-option-list"></div>
+		</div>
+		<div class="search-option">
+			<div class="search-option-title">Publisher</div>
+			<div class="search-option-list"></div>
 		</div>
 	</div>
+
+	<div id="search-results">
+
+		{# 
+			1) iterate through fq elements 
+			2) indicate with facet buttons at top, using QueryBuilder->remove_param() method to generate URL minus that facet
+		#}
+
+		<div id="search-results-facets">
+			{% for fq in search_params.fq %}
+				<div class="facet">				
+					<div class="facet-remove"><p><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string)}}">X</a></p></div>
+					<div class="facet-label">{{fq|split(":")[0]}}</div>
+					<div class="facet-value">{{fq|split(":")|slice(1,3)|join(":")}}</div>					
+				</div>
+			{% endfor %}
+		</div>
+
+		<div id="search-results-loading"></div>
+
+		<!-- <div id="search-results-ne"> -->
+			<div id="search-results-nest">
+				{# iterate through results #}
+				{% for doc in data.response.solr_results.response.docs %}
+					<div class="search-result">
+						<a class="search-result-imgwrap" href="/item/{{doc.id}}"><img src="/item/{{doc.id}}/thumbnail" /></a>
+						<a class="search-result-title" href="/item/{{doc.id}}">{{doc.dc_title[0]}}</a>
+						<a class="search-result-description" href="/item/{{doc.id}}">{{(doc.dc_description[0]|length > 100 ? doc.dc_description[0]|slice(0, 100) ~ '&hellip;' : doc.dc_description[0])|raw}}</a>
+					</div>
+				{% endfor %}
+			</div>
+		<!-- </div> -->
+	</div>
+
+	<div style="clear:both;"></div>
+</div>
 {% endblock %}

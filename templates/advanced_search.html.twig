@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ data.id }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="page">
+		<h1>Advanced Search</h1>
+
+		<form class="form" action="/advanced_search" method="POST">
+			<div>
+				all these words: <input type="text" name="all_q"/></br>
+				this exact word or phrase: <input type="text" name="exact_q"/></br>
+				any of these words: <input type="text" name="any_q"/></br>
+				none of these words: <input type="text" name="none_q"/></br>
+			</div>
+			<div>
+				{#
+					These will need to be populated with API call, or some kind of hash in memory
+				#}
+				collection: <select type="text" name="collection"/>
+					<option value="">Limit by Collection</option>
+					<option value="info:fedora/wayne:collectionvmc">Virtual Motor City Collection</option>
+					<option value="info:fedora/wayne:collectionswanger">Toni Swanger Collection</option>
+				</select>
+				</br>
+				content type: <select type="text" name="content_type"/>
+					<option value="">Limit by Content Type</option>
+					<option value="info:fedora/CM:Image">Image</option>
+					<option value="info:fedora/CM:Document">Document</option>
+				</select>
+			</div>
+			<input type="submit" value="Search"/>
+		</form>
+
+	</div>
+{% endblock %}

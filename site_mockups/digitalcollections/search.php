@@ -137,7 +137,7 @@ foreach ($results['solrSearch']['response']['docs'] as $key => $result) {
 
 	<div id="search-results">
 
-		<div id="search-results-facets">
+		<!-- <div id="search-results-facets">
 			<?php if ( $_GET['content_type'] ): ?>
 				<div class="facet">
 					<div class="facet-remove"></div>
@@ -145,7 +145,7 @@ foreach ($results['solrSearch']['response']['docs'] as $key => $result) {
 					<div class="facet-value"><?php echo ucwords($_GET['content_type']) ?></div>
 				</div>
 			<?php endif; ?>
-		</div>
+		</div> -->
 
 		<div id="search-results-loading"></div>
 
