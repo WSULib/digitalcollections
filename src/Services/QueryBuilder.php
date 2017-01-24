@@ -152,12 +152,17 @@ class QueryBuilder
 
 
     /**
-     * Add parameter
-     * @return Return associative array of parameters
+     * Add parameter to current URL
+     * @param  string $param  key=value string to add to query string
+     * @param  string $query_string  all parameters as single query string
+     * @return Return new query string
      */
-    public function add_param_to_query_string($params)
+    public function add_param_to_query_string($param, $query_string)
     {
-        //
+        $this->logger->debug("Adding: ".urlencode($param)." to ".$query_string);
+        $new_query_string = $query_string."&fq%5B%5D=".urlencode($param);
+        $this->logger->debug($new_query_string);
+        return $new_query_string;
     }
 
 
@@ -165,14 +170,14 @@ class QueryBuilder
      * Removes parameter from current URL
      * @param  string $param  key=value string to remove from query string
      * @param  string $query_string  all parameters as single query string
-     * @return Return associative array of parameters
+     * @return Return new query string
      */
     public function del_param_from_query_string($param, $query_string)
     {
         $this->logger->debug("Looking for: ".urlencode($param)." in ".$query_string);
-        $cleaned_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
-        $this->logger->debug($cleaned_query_string);
-        return $cleaned_query_string;
+        $new_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
+        $this->logger->debug($new_query_string);
+        return $new_query_string;
     }
     
 }

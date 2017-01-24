@@ -18,7 +18,7 @@
 			<div class="search-option-list">
 				<ul>
 					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_hasContentModel %}
-						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+						<li><a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, "rels_hasContentModel:" ~ facet_value[0], query_string)}}">{{facet_value[0]}} ({{facet_value[1]}})</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -28,7 +28,7 @@
 			<div class="search-option-list">
 			<ul>
 					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.rels_isMemberOfCollection %}
-						<li>{{facet_value[0]}} ({{facet_value[1]}})</li>
+						<li><a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, "rels_isMemberOfCollection:" ~ facet_value[0], query_string)}}">{{facet_value[0]}} ({{facet_value[1]}})</a></li>
 					{% endfor %}
 				</ul>
 			</div>

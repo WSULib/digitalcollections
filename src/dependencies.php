@@ -29,9 +29,15 @@ $container['view'] = function ($c) {
     $view->getEnvironment()->addGlobal('session', $_SESSION);
     $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);    
 
-    // QueryBuilder methods exposed in Twig
+    // QueryBuilder->del_param_from_query_string()
     $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string) {
         return $QueryBuilder->del_param_from_query_string($param, $query_string);
+    });
+    $view->getEnvironment()->addFunction($function);
+
+    // QueryBuilder->add_param_to_query_string()
+    $function = new Twig_SimpleFunction('add_param_to_query_string', function ($QueryBuilder, $param, $query_string) {
+        return $QueryBuilder->add_param_to_query_string($param, $query_string);
     });
     $view->getEnvironment()->addFunction($function);
 
