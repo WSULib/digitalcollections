@@ -28,7 +28,8 @@ return [
         'contact_form' => [
             'general' => 'libwebmaster@wayne.edu',
             'permissions' => 'libwebmaster@wayne.edu, REUTHEREMAIL@wayne.edu',
-            'rap' => 'ej2929@wayne.edu, fi1806@wayne.edu'
+            'rap' => 'ej2929@wayne.edu, fi1806@wayne.edu',
+            'passphrase' => 'WSUDORR0x'
         ]
     ],
 ];
