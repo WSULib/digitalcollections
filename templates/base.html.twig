@@ -37,9 +37,11 @@
             </a>
             <div id="header-search">
                 <div id="header-search-nest">
+                    {% block search_form %}
                     <form action="/search" method="GET">
-                        <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="" autocomplete="off" />
+                        <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
                     </form>
+                    {% endblock search_form %}
                 </div>
             </div>
             <div id="header-links">

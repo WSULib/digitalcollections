@@ -27,7 +27,10 @@ $container['view'] = function ($c) {
 
     // Make Session available to twig
     $view->getEnvironment()->addGlobal('session', $_SESSION);
-    $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);    
+    // make facet_map available
+    $view->getEnvironment()->addGlobal('facet_map', $c->get('settings')['facet_map']);
+    // make QueryBuilder available below when passed through templates
+    $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);
 
     // QueryBuilder->del_param_from_query_string()
     $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string) {

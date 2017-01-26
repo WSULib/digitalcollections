@@ -98,12 +98,12 @@ class QueryBuilder
 
         if (!empty($params['collection'])){
             // push to fq array
-            array_push($search_params['fq'], "rels_isMemberOfCollection:".$params['collection']);
+            array_push($search_params['fq'], "human_isMemberOfCollection:".$params['collection']);
         }
 
         if (!empty($params['content_type'])){
             // push to fq array
-            array_push($search_params['fq'], "rels_hasContentModel:".$params['content_type']);
+            array_push($search_params['fq'], "human_hasContentModel:".$params['content_type']);
         }
 
         if ($as_string) {
