@@ -31,5 +31,11 @@ return [
             'rap' => 'email',
             'passphrase' => 'string'
         ]
+
+        // contact form settings
+        'facet_map' => [
+            'human_isMemberOfCollection' => 'Collection',
+            'human_hasContentModel' => 'Content Type',            
+        ]
     ],
 ];
