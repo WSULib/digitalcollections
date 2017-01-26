@@ -24,6 +24,8 @@ $app->get('/search', function ($request, $response, $args) {
 // ADVANCED SEARCH VIEW
 $app->get('/advanced_search', function ($request, $response, $args) {    
     // This will need an API route that returns some values to populate dropdowns
+    $api = $this->APIRequest->get("/api/search_limiters");
+    $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'advanced_search.html.twig', $args);
 });
 
