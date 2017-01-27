@@ -12,6 +12,30 @@
 		</div>
 		<div style="padding-left:20px; font-size:75%;">
 			<pre><code>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</code></pre>
+			<!-- set variable -->
+			{% set pid = data.response.pid %}
+			{% set solr = data.response.solr_doc %}
+
+			Main Image<br/>
+			{# get preview image #}
+			Secondary Image go here (for complex images, etc)<br/>
+			{# if there are any associated images, those come below #}
+			{% for img in data.response.content_type_specific[0].imageParts.sorted %}
+			<img src="http://192.168.42.5/loris/fedora:{{pid}}%7C{{img.preview}}/full/63,/0/default.jpg">
+			{% endfor %}
+		</br>
+		{# Title #}
+		{{solr.dc_title[0]}}<br/>
+		{# Resource Type #}
+		{# Collection #}
+		{# Date #}
+		{# Creator #}
+		{# Size #}
+		{# Download #}
+		{# Subjects #}
+		{# Identifier #}
+		{# Citation #}
+
 		</div>
 	</div>
 {% endblock %}
