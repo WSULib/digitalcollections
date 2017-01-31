@@ -186,6 +186,14 @@ class QueryBuilder
     public function query_string_cleaner($query_string)
     {
         // clean query string
+        // remove & from beginning and end of query string
+        $query_string = trim($query_string, "&");
+        // remove repeating & from query string
+        $repeating = preg_match_all('/&{2,}/', $query_string, $matches);
+        $this->logger->debug("Looking for repeating ampersands; found the following matches: ".print_r($matches, True));
+        foreach ($matches[0] as $match) {
+            $query_string = str_replace($match, "&", $query_string);
+        }
         return $query_string;
     }
     
