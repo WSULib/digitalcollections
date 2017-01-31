@@ -1,3 +1,4 @@
+{% import "variables.html.twig" as v %}
 <!DOCTYPE html>
 <html>
 
@@ -54,6 +55,9 @@
         </div>
         <div id="content">{% block content %}{% endblock content %}</div>
         <div id="footer">{% block footer %}{% endblock footer %}</div>
+        <script>
+            var data = {{data|json_encode|raw}};
+        </script>
     </body>
 
 </html>
