@@ -29,7 +29,7 @@
 		<div class="search-option">
 			<div class="search-option-title">Collection</div>
 			<div class="search-option-list">
-			<ul>
+				<ul>
 					{% for facet_value in data.response.solr_results.facet_counts.facet_fields.human_isMemberOfCollection %}
 						<li><a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, "human_isMemberOfCollection:" ~ facet_value[0], query_string)}}">{{facet_value[0]}} ({{facet_value[1]}})</a></li>
 					{% endfor %}
