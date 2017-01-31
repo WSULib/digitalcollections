@@ -17,20 +17,47 @@
 			{# get preview image #}
 			Secondary Image go here (for complex images, etc)<br/>
 			{# if there are any associated images, those come below #}
-			{{v.secondaryImages(data)}}
-		</br>
+			{{m.secondaryImages(data)}}
+		
 		{# Title #}
-		{{v.title(data)}}<br/>
+		<div class="label">Title</div>
+		<div>{{data.response.solr_doc.dc_title[0]}}</div>
+		
 		{# Resource Type #}
+		<div class="label">Resource Type</div>
+		<div>{{data.response.solr_doc.mods_resource_type_ms[0]}}</div>
+		
+		{# Content Type #}
+		<div class="label">Content Type</div>
+		{{m.contentType("add", data)}}
+		
 		{# Collection #}
+		
 		{# Date #}
-		{{v.date(data)}}
+		<div class="label">Date</div>
+		{{m.date("add", data)}}
+		
 		{# Creator #}
+		
 		{# Size #}
+		<div class="label">Size</div>
+		<div>{{data.response.solr_doc.obj_size_human[0]}}</div>
+		
 		{# Download #}
+		
 		{# Subjects #}
+		<div class="label">Subjects</div>
+		{{m.subjects("add", data)}}
+
 		{# Identifier #}
+		<div class="label">Identifier</div>
+		<div>{{data.response.pid}}</div>
+
 		{# Citation #}
+
+		{# Permissions Form #}
+		<div class="label">Permissions</div>
+		<a href="/contact?contact_type=permissions&pid={{data.response.pid}}">Inquire</a>
 
 		</div>
 	</div>
