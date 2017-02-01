@@ -14,7 +14,10 @@ searchDefs.facet = 'true';
 searchDefs['facets[]'] = [];
 searchDefs['facets[]'].push("facet_mods_year","dc_subject","dc_creator","dc_language","rels_hasContentModel", "dc_coverage");
 searchDefs['f.facet_mods_year.facet.sort'] = "index";
-searchDefs['fq[]'] = [];
+searchDefs['fq[]'] = [
+	"rels_hasContentModel:info\\:fedora/CM\\:Collection",
+	"rels_isPrimaryCollection:True"
+];
 searchDefs['facet.mincount'] = 1;
 
 
@@ -28,7 +31,7 @@ var type = '';
 function searchGo(){		
 
 	// Set Search Parameters
-	searchParams['q'] = "rels_hasContentModel:info\\:fedora/CM\\:Collection";
+	searchParams['q'] = "*:*";
 	searchParams['raw'] = "noescape";	
 
 	// fix facets / fq	

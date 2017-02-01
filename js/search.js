@@ -26,6 +26,7 @@ searchDefs.facet = 'true';
 searchDefs['facets[]'] = [];
 for (var i=0; i<APIdata.ordered_facets.length; i++){ searchDefs['facets[]'].push(APIdata.ordered_facets[i]) }
 searchDefs['f.facet_mods_year.facet.sort'] = "index";
+searchDefs['f.rels_isMemberOfCollection.facet.sort'] = "count";
 searchDefs['fq[]'] = [];
 searchDefs['facet.mincount'] = 1;
 searchDefs['fullView'] = '';
