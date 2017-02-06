@@ -1,0 +1,56 @@
+{# Date #}
+{% macro date(action, data) %}
+	{% import _self as m %}
+	{% for date in data.response.solr_doc.dc_date %}
+		{{m.facetBuilder(action, "dc_date", date, "")}}
+	{% endfor %}
+{% endmacro %}
+
+{# Subjects #}
+{% macro subjects(action, data) %}
+	{% import _self as m %}
+	{% if data.response.solr_doc.dc_subject > 1 %}
+		{% for subject in data.response.solr_doc.dc_subject %}
+			{{m.facetBuilder(action, "dc_subject", subject, "")}}
+		{% endfor %}
+	{% else %}
+		{{m.facetBuilder(action, "dc_subject", data.response.solr_doc.dc_subject, "")}}
+	{% endif %}
+{% endmacro %}
+
+{# Content type #}
+{% macro contentType(action, data) %}
+	{% import _self as m %}
+	{% if data.response.content_type > 1 %}
+		{% for ct in data.response.content_type %}
+			{{m.facetBuilder(action, "human_hasContentModel", ct, "")}}
+		{% endfor %}
+	{% else %}
+		{{m.facetBuilder(action, "human_hasContentModel", data.response.content_type, "")}}
+	{% endif %}
+{% endmacro %}
+
+{# Facet Builder #}
+{% macro facetBuilder(action,facet,facet_value,query_string) %}
+	{% if action == "add" %}
+		<a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}">{{facet_value}}</a>
+	{% elseif action == "del" %}
+		<a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}">{{facet_value}}</a>
+	{% endif %}
+
+{% endmacro %}
+
+{# Secondary Images -- if any #}
+{% macro secondaryImages(data) %}
+	{% for img in data.response.content_type_specific[0].imageParts.sorted %}
+		<img src="/loris/fedora:{{data.response.pid}}%7C{{img.preview}}/full/63,/0/default.jpg">
+	{% endfor %}
+{% endmacro %}
+
+{# Downloads #}
+
+{# Social Media #}
+
+{# MLA Citation #}
+
+{# APA Citation #}
