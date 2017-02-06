@@ -6,59 +6,117 @@
 {% endblock %}
 
 {% block content %}
-    <div id="fullpage">
-		<div id="fullpage-title">
-			<h1>Item Page</h1>
+
+{% block item_content %}{% endblock %}
+
+
+<div id="details">
+	<div id="details-nest">
+		<h1>{{data.response.solr_doc.dc_title[0]}}</h1>
+		<div id="details-nest-left">
+			<div>
+				<div class="label">Resource Type</div>
+				{% for facet_value in data.response.solr_doc.human_hasContentModel %}
+					{{m.facetBuilder("add", "human_hasContentModel", facet_value, false, false, '')}}<br>
+				{% endfor %}
+			</div>
+			<div>
+				<div class="label">Collection</div>
+				{% for facet_value in data.response.solr_doc.human_isMemberOfCollection %}
+					{{m.facetBuilder("add", "human_isMemberOfCollection", facet_value, false, false, '')}}<br>
+				{% endfor %}
+			</div>
+			<div>
+				<div class="label">Date</div>
+				{% for facet_value in data.response.solr_doc.dc_date %}
+					{{m.facetBuilder("add", "dc_date", facet_value, false, false, '')}}<br>
+				{% endfor %}
+			</div>
+			<div>
+				<div class="label">Creator</div>
+				{% for facet_value in data.response.solr_doc.dc_creator %}
+					{{m.facetBuilder("add", "dc_creator", facet_value, false, false, '')}}<br>
+				{% endfor %}
+			</div>
+			<div>
+				<div class="label">Size</div>
+				{% for facet_value in data.response.solr_doc.obj_size_human %}
+					{{m.facetBuilder("add", "obj_size_human", facet_value, false, false, '')}}<br>
+				{% endfor %}
+			</div>
+			
 		</div>
-		<div style="padding-left:20px; font-size:75%;">
-			<pre><code>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</code></pre>
-
-			Main Image<br/>
-			{# get preview image #}
-			Secondary Image go here (for complex images, etc)<br/>
-			{# if there are any associated images, those come below #}
-			{{m.secondaryImages(data)}}
-		
-		{# Title #}
-		<div class="label">Title</div>
-		<div>{{data.response.solr_doc.dc_title[0]}}</div>
-		
-		{# Resource Type #}
-		<div class="label">Resource Type</div>
-		<div>{{data.response.solr_doc.mods_resource_type_ms[0]}}</div>
-		
-		{# Content Type #}
-		<div class="label">Content Type</div>
-		{{m.contentType("add", data)}}
-		
-		{# Collection #}
-		
-		{# Date #}
-		<div class="label">Date</div>
-		{{m.date("add", data)}}
-		
-		{# Creator #}
-		
-		{# Size #}
-		<div class="label">Size</div>
-		<div>{{data.response.solr_doc.obj_size_human[0]}}</div>
-		
-		{# Download #}
-		
-		{# Subjects #}
-		<div class="label">Subjects</div>
-		{{m.subjects("add", data)}}
-
-		{# Identifier #}
-		<div class="label">Identifier</div>
-		<div>{{data.response.pid}}</div>
-
-		{# Citation #}
-
-		{# Permissions Form #}
-		<div class="label">Permissions</div>
-		<a href="/contact?contact_type=permissions&pid={{data.response.pid}}">Inquire</a>
-
+		<div id="details-nest-right">
+			{% block item_downloads %}{% endblock %}
+			<div id="details-nest-right-share">
+				<div class="label">Share</div>
+				<a id="details-nest-right-share-facebook" href="#">Facebook</a>
+				<a id="details-nest-right-share-twitter" href="#">Twitter</a>
+				<a id="details-nest-right-share-instagram" href="#">Instagram</a>
+				<a id="details-nest-right-share-pinterest" href="#">Pinterest</a>
+			</div>
+			<div id="details-nest-right-order">
+				<div class="label">Permissions</div>
+				<a href="#">Inquire</a>
+			</div>
 		</div>
 	</div>
+</div>
+
+<div id="item-data">
+	<div id="item-data-nest">
+		<div id="item-data-left">
+			<h1>Item Data</h1>
+
+			{# title #}
+			{{ m.metadataField('Title', data.response.solr_doc.dc_title, 'dc_title', false) }}
+
+			{# date #}
+			{{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }}
+
+			{# publisher #}
+			{{ m.metadataField('Publisher', data.response.solr_doc.dc_publisher, 'dc_publisher', true) }}
+
+			{# subjects #}
+			{{ m.metadataField('Subjects', data.response.solr_doc.dc_subject, 'dc_subject', true) }}
+			
+		</div>
+		<div id="item-data-right">
+			<h1>Cite This Item</h1>
+			<div>
+				<div class="label">MLA FORMAT</div>
+				<div class="cite">
+					{{data.response.solr_doc.dc_creator[0]}}, Wayne State University Library. "{{data.response.solr_doc.dc_title[0]}}" <i>Wayne State University Library Digital Collections</i>. <?php echo $item["date"] ?>. <?php echo $item["url"] ?>
+				</div>
+			</div>
+			<div>
+				<div class="label">APA FORMAT</div>
+				<div class="cite">
+					{{data.response.solr_doc.dc_creator[0]}}, Wayne State University Library. ({{data.response.solr_doc.dc_title[0]}}). <?php echo $item["title"] ?>. Retrieved from <?php echo $item["url"] ?>
+				</div>
+			</div>
+			<div>
+				<div class="label">CHICAGO/TURABIAN FORMAT</div>
+				<div class="cite">
+					{{data.response.solr_doc.dc_creator[0]}}, Wayne State University Library. "{{data.response.solr_doc.dc_title[0]}}" Wayne State University Library Digital Collections. Accessed <?php echo date("F j, Y") ?>. <?php echo $item["url"] ?>
+				</div>
+			</div>
+			<div>
+				<div class="label">WIKIPEDIA CITATION</div>
+				<div class="cite">
+					<div>
+						&lt;ref name=NYPL&gt;\{\{cite web | url=URL_HERE | title= ({{TITLE_HERE}}) TITLE_HERE }} |author=Digital Collections, Wayne State University Library |accessdate=TODAY_DATE |publisher=Wayne State University Library\}\}&lt;/ref&gt;
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
 {% endblock %}
+
+
+

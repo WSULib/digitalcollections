@@ -66,7 +66,11 @@ $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
 $app->get('/item/{pid}', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
-    return $this->view->render($response, 'item.html.twig', $args);
+
+    // determine content type, load template
+    $content_type = strtolower($args['data']['response']['content_type']);
+
+    return $this->view->render($response, 'item_view/'.$content_type.'.html.twig', $args);
 });
 
 
