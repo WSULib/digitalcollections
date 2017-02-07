@@ -56,8 +56,9 @@
 				<a id="details-nest-right-share-pinterest" href="#">Pinterest</a>
 			</div>
 			<div id="details-nest-right-order">
-				<div class="label">Permissions</div>
-				<a href="#">Inquire</a>
+				<div class="label">Contact</div>
+				<a href="/contact?type=permissions&pid={{data.response.pid}}">Request permission</a>
+				<a href="/contact?type=rap&pid={{data.response.pid}}">Report a Problem</a>
 			</div>
 		</div>
 	</div>
@@ -71,15 +72,30 @@
 			{# title #}
 			{{ m.metadataField('Title', data.response.solr_doc.dc_title, 'dc_title', false) }}
 
+			{# creator #}
+			{{ m.metadataField('Creator', data.response.solr_doc.dc_creator, 'dc_creator', false) }}
+
+			{# description #}
+			{{ m.metadataField('Description', data.response.solr_doc.mods_abstract_ms, 'mods_abstract_ms', false) }}
+
 			{# date #}
 			{{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }}
+
+			{# transcription #}
+			{{ m.metadataField('Transcription', data.response.solr_doc.mods_note_transcription_ms, 'mods_note_transcription_ms', false, true) }}
 
 			{# publisher #}
 			{{ m.metadataField('Publisher', data.response.solr_doc.dc_publisher, 'dc_publisher', true) }}
 
 			{# subjects #}
 			{{ m.metadataField('Subjects', data.response.solr_doc.dc_subject, 'dc_subject', true) }}
-			
+
+			{# coverage #}
+			{{ m.metadataField('Coverage', data.response.solr_doc.dc_coverage, 'dc_coverage', true) }}
+
+			{# mods identifier #}
+			{{ m.metadataField('Identifier', data.response.solr_doc.mods_identifier_local_ms, 'mods_identifier_local_ms', true) }}
+
 		</div>
 		<div id="item-data-right">
 			<h1>Cite This Item</h1>
