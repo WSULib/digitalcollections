@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ data.id }}{% endblock %}
+{% block title %}{{data.response.solr_doc.dc_title[0]}}{% endblock %}
 {% block head %}
     {{ parent() }}
 {% endblock %}
