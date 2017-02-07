@@ -93,8 +93,11 @@
 			{# coverage #}
 			{{ m.metadataField('Coverage', data.response.solr_doc.dc_coverage, 'dc_coverage', true) }}
 
+			{# PID #}
+			{{ m.metadataField('Digital Collections Identifier', data.response.pid, 'pid', false) }}
+
 			{# mods identifier #}
-			{{ m.metadataField('Identifier', data.response.solr_doc.mods_identifier_local_ms, 'mods_identifier_local_ms', true) }}
+			{{ m.metadataField('Other Identifiers', data.response.solr_doc.mods_identifier_local_ms, 'mods_identifier_local_ms', false) }}
 
 		</div>
 		<div id="item-data-right">

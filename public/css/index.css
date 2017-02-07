@@ -187,8 +187,8 @@ a {
 		}
 
 #viewer {
-	/*height: 600px;*/
-	/*padding: 40px 0;*/
+	/*height: 600px;
+	padding-top: 50px;*/
 	width: 100%;
 	background: #000;
 	background: #161514;
@@ -246,16 +246,20 @@ a {
 			#viewer-ribbon-nest > div {
 				float: left;
 				height: 100px;
-				width: 100px;
+				/*width: 100px;*/
 				margin: 0 5px;
 				/*background: red;*/
-				background-image: url(https://digital.library.wayne.edu/loris/fedora:wayne:vmc32100_1%7CTHUMBNAIL/full/full/0/default.jpg);
+				/*background-image: url(https://digital.library.wayne.edu/loris/fedora:wayne:vmc32100_1%7CTHUMBNAIL/full/full/0/default.jpg);*/
 				background-size: cover;
 				cursor: pointer;
 			}
+
 			#viewer-ribbon-nest > div:hover {
 				opacity: 0.6;
 			}
+				#viewer-ribbon-nest > div > img {
+					height:100%;
+				}
 
 
 #details {

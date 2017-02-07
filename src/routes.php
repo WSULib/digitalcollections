@@ -58,7 +58,7 @@ $app->get('/collections', function ($request, $response, $args = []) {
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
-    return $this->view->render($response, 'item.html.twig', $args);
+    return $this->view->render($response, 'item_view/collection.html.twig', $args);
 });
 
 
