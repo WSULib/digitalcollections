@@ -237,6 +237,14 @@ $app->get('/404', function ($request, $response, $args) {
 });
 
 
+// Mirador
+$app->get('/mirador', function ($request, $response, $args) {
+    $args['params'] = $request->getQueryParams();
+    $args['settings'] = $this->get('settings');
+    return $this->view->render($response, 'mirador.html.twig', $args);
+});
+
+
 // Dynamic Route
 // Catches all /item/{pid}/* routes not already specified above sends request to API
 $app->get('/item/{pid}/[{params:.*}]', function ($request, $response, $args) {

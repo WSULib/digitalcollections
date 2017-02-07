@@ -1,0 +1,70 @@
+<html>
+<head>
+    <!-- mirador, 2.1 -->
+    <link rel="stylesheet" type="text/css" href="/inc/mirador21/css/mirador-combined.css">
+	
+	<!-- jquery -->
+	<script src="/js/jquery.min.js" type="text/javascript"></script>
+	
+	<!-- <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script> -->
+	<meta name="viewport" content="initial-scale=1">
+
+	<title>Wayne State Digital Library - Mirador Viewer</title>
+
+<head>
+
+<body>
+
+		<div class="standalone">
+			<!-- all_image type template -->
+			<div id="LargeView">			
+
+				<div id="viewer"></div>
+
+				<script type="text/javascript">
+					$(function() {					
+						var anno_token;
+						Mirador({
+							id: "viewer",
+							saveSession: false,
+							layout:"1x1",
+							mainMenuSettings : {
+								show : false
+							},
+							data: [
+								{
+									manifestUri: "//{{settings.server.host}}/{{settings.API.prefix}}/item/{{params.id}}/iiif",
+									location: "Wayne State University Library Digital Collections"
+								}								
+							],
+							windowObjects: [                 
+								{
+									loadedManifest : "//{{settings.server.host}}/{{settings.API.prefix}}/item/{{params.id}}/iiif", 
+									viewType : "{{params.type}}",
+									layoutOptions: 
+									{
+										close: true,
+										slotRight: true,
+										slotLeft: true,
+										slotAbove: true,
+										slotBelow: true
+									},
+									annotationLayer: false,
+									annotationCreation: false,
+									annotationState: false,
+									availableViews : ['ImageView','ThumbnailsView','ScrollView','{{params.type}}']
+								}								
+							]
+						});
+					});
+				</script>
+
+			</div>
+		</div>
+
+</body>
+
+<!-- le js, Mirador 2.1 -->
+<script src="/inc/mirador21/mirador.js"></script>
+
+</html>
