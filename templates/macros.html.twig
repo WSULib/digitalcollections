@@ -39,6 +39,15 @@
 	{% endif %}
 {% endmacro %}
 
+{# Facet Link Builder #}
+{% macro facetLinkBuilder(action, facet, facet_value, query_string) %}
+	{% if action == "add" %}
+		{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}
+	{% elseif action == "del" %}
+		{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}
+	{% endif %}
+{% endmacro %}
+
 {# Secondary Images -- if any #}
 {% macro secondaryImages(data) %}
 	{% for img in data.response.content_type_specific[0].imageParts.sorted %}

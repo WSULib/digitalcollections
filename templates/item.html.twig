@@ -13,38 +13,23 @@
 <div id="details">
 	<div id="details-nest">
 		<h1>{{data.response.solr_doc.dc_title[0]}}</h1>
-		<div id="details-nest-left">
-			<div>
-				<div class="label">Resource Type</div>
-				{% for facet_value in data.response.solr_doc.human_hasContentModel %}
-					{{m.facetBuilder("add", "human_hasContentModel", facet_value, false, false, '')}}<br>
-				{% endfor %}
-			</div>
-			<div>
-				<div class="label">Collection</div>
-				{% for facet_value in data.response.solr_doc.human_isMemberOfCollection %}
-					{{m.facetBuilder("add", "human_isMemberOfCollection", facet_value, false, false, '')}}<br>
-				{% endfor %}
-			</div>
-			<div>
-				<div class="label">Date</div>
-				{% for facet_value in data.response.solr_doc.dc_date %}
-					{{m.facetBuilder("add", "dc_date", facet_value, false, false, '')}}<br>
-				{% endfor %}
-			</div>
-			<div>
-				<div class="label">Creator</div>
-				{% for facet_value in data.response.solr_doc.dc_creator %}
-					{{m.facetBuilder("add", "dc_creator", facet_value, false, false, '')}}<br>
-				{% endfor %}
-			</div>
-			<div>
-				<div class="label">Size</div>
-				{% for facet_value in data.response.solr_doc.obj_size_human %}
-					{{m.facetBuilder("add", "obj_size_human", facet_value, false, false, '')}}<br>
-				{% endfor %}
-			</div>
+		<div id="details-nest-left">			
 			
+			{# Content Type #}
+			{{ m.metadataField('Content Type', data.response.solr_doc.human_hasContentModel, 'human_hasContentModel', true) }}
+
+			{# Collections #}
+			{{ m.metadataField('Collection', data.response.solr_doc.human_isMemberOfCollection, 'human_isMemberOfCollection', true) }}
+
+			{# date #}
+			{# {{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }} #}
+
+			{# creator #}
+			{# {{ m.metadataField('Creator', data.response.solr_doc.dc_creator, 'dc_creator', false) }} #}
+
+			{# objSize #}
+			{{ m.metadataField('Object Size', data.response.solr_doc.obj_size_human, 'obj_size_human', true) }}
+		
 		</div>
 		<div id="details-nest-right">
 			{% block item_downloads %}{% endblock %}
@@ -67,7 +52,7 @@
 <div id="item-data">
 	<div id="item-data-nest">
 		<div id="item-data-left">
-			<h1>Item Data</h1>
+			<h1>Metadata</h1>
 
 			{# title #}
 			{{ m.metadataField('Title', data.response.solr_doc.dc_title, 'dc_title', false) }}
@@ -98,6 +83,12 @@
 
 			{# mods identifier #}
 			{{ m.metadataField('Other Identifiers', data.response.solr_doc.mods_identifier_local_ms, 'mods_identifier_local_ms', false) }}
+
+			{# API #}
+			<div>
+				<div class="label">Structured Data</div>
+				<div><a href="/{{settings.API.prefix}}/item/{{data.response.pid}}">WSUDOR API</a></div>
+			</div>
 
 		</div>
 		<div id="item-data-right">
