@@ -21,3 +21,9 @@ li.collapsibleListClosed{
 ul {
 	margin-left:10px;
 }
+
+.hierarchy_self {
+	background-color:yellow;
+	/*font-size:125%;*/
+	font-weight:bold;
+}

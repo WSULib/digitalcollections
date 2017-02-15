@@ -59,6 +59,7 @@
         <div id="footer">{% block footer %}{% endblock footer %}</div>
         <script>
             var data = {{data|json_encode|raw}};
+            console.log(data.header);
         </script>
     </body>
 
