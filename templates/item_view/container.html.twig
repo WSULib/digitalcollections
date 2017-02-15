@@ -2,30 +2,6 @@
 
 {% block item_content %}
 
-	<style>
-	.collapsibleList li{
-	  list-style-image:url('/img/hierarchy_root.png');
-	  cursor:auto;
-	  margin:5px;
-	}
-
-	li.collapsibleListOpen{
-	  list-style-image:url('/img/hierarchy_open.png');
-	  cursor:pointer;
-	}
-
-	li.collapsibleListClosed{
-	  list-style-image:url('/img/hierarchy_closed.png');
-	  cursor:pointer;
-	}
-
-	#hierarchy {
-		width: 100%;
-		text-align:center;
-	}
-	</style>
-
-
 	<div id="viewer">
 		<div id="viewer-nest">
 			<img src="/item/{{data.response.pid}}/thumbnail" />
@@ -41,29 +17,21 @@
 		</div>
 	</div>
 
-	<div id="hierarchy">
-		<h3>Object Hierarchy</h3>
-		<ul class="collapsibleList">
-		  <li>
-		    Parent item
-		    <ul>
-		      <li>Child item</li>
-		      <li>Child item</li>
-		    </ul>
-		  </li>
-		  <li>
-		    Parent item
-		    <ul>
-		      <li>Child item</li>
-		      <li>Child item</li>
-		    </ul>
-		  </li>
-		</ul>
-	</div>
-
-	<script>
-	// make the appropriate lists collapsible
-	CollapsibleLists.apply();
-	</script>
-
 {% endblock %}
+
+{% block object_hierarchy %}
+
+	<div style="margin-left:20px;" id="hierarchy">
+		<div>
+			<h3>Object Hierarchy</h3>
+		</div>
+		
+		<div>
+	        <ul>
+                {{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
+	        </ul>
+		</div>
+	</div>
+	
+{% endblock %}
+

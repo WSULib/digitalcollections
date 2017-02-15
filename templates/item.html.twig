@@ -9,6 +9,7 @@
 
 {% block item_content %}{% endblock %}
 
+{% block object_hierarchy %}{% endblock %}
 
 <div id="details">
 	<div id="details-nest">
@@ -20,12 +21,6 @@
 
 			{# Collections #}
 			{{ m.metadataField('Collection', data.response.solr_doc.human_isMemberOfCollection, 'human_isMemberOfCollection', true) }}
-
-			{# date #}
-			{# {{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }} #}
-
-			{# creator #}
-			{# {{ m.metadataField('Creator', data.response.solr_doc.dc_creator, 'dc_creator', false) }} #}
 
 			{# objSize #}
 			{{ m.metadataField('Object Size', data.response.solr_doc.obj_size_human, 'obj_size_human', true) }}

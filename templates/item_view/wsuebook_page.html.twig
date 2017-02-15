@@ -1,0 +1,17 @@
+{% extends "item.html.twig" %}
+
+{% block item_content %}
+
+	<!-- static -->
+	<div id="viewer">
+		<div id="static">
+			<div id="viewer-nest">
+				<span style="cursor:pointer;" onclick="$('#static').toggle(); $('#mirador').toggle(); return false;"><img src="/item/{{data.response.pid}}/preview"/></a>
+			</div>
+		</div>
+		<div id="mirador" style="display:none;">
+			<iframe title="Mirador" src="/mirador?id={{data.response.pid}}&type=BookView" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" height="800px" width="100%"></iframe>
+		</div>
+	</div>
+
+{% endblock %}

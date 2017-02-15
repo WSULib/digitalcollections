@@ -71,7 +71,7 @@ $app->get('/item/{pid}', function ($request, $response, $args) {
     $content_type = strtolower($args['data']['response']['content_type']);
 
     return $this->view->render($response, 'item_view/'.$content_type.'.html.twig', $args);
-});
+})->setName('item');
 
 
 // DATA DISPLAY
