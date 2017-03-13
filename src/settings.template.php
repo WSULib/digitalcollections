@@ -19,7 +19,7 @@ return [
 
         // API settings
         'API' => [
-            'url' => 'http://localhost/api/',
+            'url' => 'http://VM_HOST/api/',
             'username' => null,
             'password' => null,
         ],

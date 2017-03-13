@@ -201,7 +201,7 @@ $app->post('/contact', function ($request, $response, $args) {
     ];
 
     $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
-    $url = 'http://localhost/ouroboros/email';
+    $url = 'http://VM_HOST/ouroboros/email';
     try {
         $this->guzzle->request('POST', $url, $params);
     } catch (GuzzleHttp\Exception\ClientException $e) {
