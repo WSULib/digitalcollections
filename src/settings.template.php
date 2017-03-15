@@ -17,6 +17,11 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
 
+        // server
+        'server' => [
+            'host' => 'VM_HOST'
+        ],
+
         // API settings
         'API' => [
             'url' => 'http://VM_HOST/api/',
