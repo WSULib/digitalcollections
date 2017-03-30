@@ -149,8 +149,8 @@ $app->get('/contact', function ($request, $response, $args) {
     $qp = $request->getQueryParams();
 
     // general contact
-    if (array_key_exists('contact_type', $qp)) {
-        $contact_type = $qp['contact_type'];
+    if (array_key_exists('type', $qp)) {
+        $contact_type = $qp['type'];
 
         // permission request
         if ($contact_type == 'permissions') {
