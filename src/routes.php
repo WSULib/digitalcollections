@@ -143,7 +143,12 @@ $app->get('/item/{pid}/{size}/download', function ($request, $response, $args) {
 $app->get('/contact', function ($request, $response, $args) {
 
     $qp = $request->getQueryParams();
+    // get settings
+    $settings = $this->get('settings');
 
+    // set host
+    $host = $settings['server']['host'];
+    echo $host;
     // general contact
     if (array_key_exists('type', $qp)) {
         $contact_type = $qp['type'];
@@ -175,6 +180,9 @@ $app->post('/contact', function ($request, $response, $args) {
     // get settings
     $settings = $this->get('settings');
 
+    // set host
+    $host = $settings['server']['host'];
+
     // get post parameters
     $qp = $request->getParsedBody();
     $contact_type = $qp['contact_type'];
@@ -201,7 +209,7 @@ $app->post('/contact', function ($request, $response, $args) {
     ];
 
     $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
-    $url = 'http://VM_HOST/ouroboros/email';
+    $url = "http://$host/ouroboros/email";
     try {
         $this->guzzle->request('POST', $url, $params);
     } catch (GuzzleHttp\Exception\ClientException $e) {

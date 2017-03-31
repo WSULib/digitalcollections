@@ -53,6 +53,11 @@ $app->add(function (Request $request, Response $response, callable $next) {
  * @return \Psr\Http\Message\ResponseInterface
  */
 $app->add(function (Request $request, Response $response, callable $next) {
+    // get settings
+    $settings = $this->get('settings');
+
+    // set host
+    $host = $settings['server']['host'];
     // Check for the WSUDOR Cookie
     if (isset($_COOKIE['WSUDOR'])) {
         $this->logger->debug("WSUDOR cookie found, checking");
@@ -60,7 +65,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
             // No active wsudorauth session; ask /wsudorauth service if cookie is valid
             try {
                 // now make sure WSUDOR cookie string hasn't been faked
-                $session_check = $this->guzzle->get("http://VM_HOST/wsudorauth/session_check/$_COOKIE[WSUDOR]");
+                $session_check = $this->guzzle->get("http://$host/wsudorauth/session_check/$_COOKIE[WSUDOR]");
                 $session_check = json_decode($session_check->getBody());
                 session_start();
                 $_SESSION['wsudorauth'] = $session_check;
@@ -78,7 +83,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
             try {
                 if (!$_SESSION['admin']){
                     $username = $_SESSION['wsudorauth']->username;
-                    $admin = $this->guzzle->get("http://VM_HOST/api/user/$username/whoami");
+                    $admin = $this->guzzle->get("http://$host/api/user/$username/whoami");
                     $admin = json_decode($admin->getBody());
                     $_SESSION['admin'] = $admin->response->exists; // they are Ouroboros user, so we consider "admin" here    
                 }
