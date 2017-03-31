@@ -67,9 +67,13 @@ $app->get('/item/{pid}', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
     $args['settings'] = $this->get('settings');
+    // confirm exists
+    if ($api->getStatusCode() == 404) {
+        $this->logger->debug('item does not exist, pushing to 404');
+        return $response->withStatus(404)->withHeader('Location', '/404');
+    }
     // determine content type, load template
     $content_type = strtolower($args['data']['response']['content_type']);
-
     return $this->view->render($response, 'item_view/'.$content_type.'.html.twig', $args);
 })->setName('item');
 

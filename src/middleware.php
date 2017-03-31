@@ -83,7 +83,9 @@ $app->add(function (Request $request, Response $response, callable $next) {
             try {
                 if (!$_SESSION['admin']){
                     $username = $_SESSION['wsudorauth']->username;
+
                     $admin = $this->guzzle->get("http://$host/api/user/$username/whoami");
+
                     $admin = json_decode($admin->getBody());
                     $_SESSION['admin'] = $admin->response->exists; // they are Ouroboros user, so we consider "admin" here    
                 }
