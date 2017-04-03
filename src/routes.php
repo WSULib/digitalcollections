@@ -198,12 +198,14 @@ $app->post('/contact', function ($request, $response, $args) {
     */
     $to = $settings['contact_form'][$contact_type];
     $from = $qp['from'];
+    $email = $qp['email'];
     $subject = $qp['subject'];
     $msg = $qp['msg'];
     $pid = $qp['pid'];
 
     $form = [
         'from' => $from,
+        'email' => $email,
         'to' => $to,
         'subject' => $subject,
         'msg' => $msg,
