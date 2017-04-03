@@ -152,7 +152,7 @@ $app->get('/contact', function ($request, $response, $args) {
 
     // set host
     $host = $settings['server']['host'];
-    echo $host;
+    
     // general contact
     if (array_key_exists('type', $qp)) {
         $contact_type = $qp['type'];
