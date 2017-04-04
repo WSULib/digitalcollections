@@ -197,16 +197,20 @@ $app->post('/contact', function ($request, $response, $args) {
         to 'contact_form' in settings.php
     */
     $to = $settings['contact_form'][$contact_type];
-    $from = $qp['from'];
-    $email = $qp['email'];
+    $from = $qp['email'];
+    $name = $qp['from'];
     $subject = $qp['subject'];
     $msg = $qp['msg'];
     $pid = $qp['pid'];
+    date_default_timezone_set('America/Detroit');
+    $dt = new DateTime();
+    $date = $dt->format('r');
 
     $form = [
         'from' => $from,
-        'email' => $email,
+        'name' => $name,
         'to' => $to,
+        'date' => $date,
         'subject' => $subject,
         'msg' => $msg,
         'passphrase' => $settings['contact_form']['passphrase'],
@@ -225,7 +229,7 @@ $app->post('/contact', function ($request, $response, $args) {
 
     // confirmation package
     $args['result'] = [
-        'to'=>$to,
+        'to'=>"Digital Collections Team",
         'from'=>$from,
         'subject'=>$subject,
         'msg'=>$msg
