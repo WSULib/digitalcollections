@@ -152,6 +152,15 @@ $app->get('/contact', function ($request, $response, $args) {
 
     // set host
     $host = $settings['server']['host'];
+
+    $api = $this->APIRequest->get("item/$qp[pid]");
+    $data = json_decode($api->getBody(), true);
+    print_r($args);
+    if (strpos($data['response']['solr_doc']['dc_rights'][0], 'Reuther') !== false) {
+        $permissions_routing = "Reuther";
+    } else {
+        $permissions_routing = "Library System";
+    }
     
     // general contact
     if (array_key_exists('type', $qp)) {
@@ -161,16 +170,19 @@ $app->get('/contact', function ($request, $response, $args) {
         if ($contact_type == 'permissions') {
             $args['form_title'] = 'Permissions Request Form';
             $args['pid'] = $qp['pid'];
+            $args['subject'] = "$permissions_routing Permissions Request";
         }
 
         // report a problem
         if ($contact_type == 'rap') {
             $args['form_title'] = 'Report a Problem';
             $args['pid'] = $qp['pid'];
+            $args['subject'] = "Report a Problem";
         }
     } else {
         $contact_type = 'general';
         $args['form_title'] = 'General Contact';
+        $args['subject'] = "WSULS Digital Collections Contact Form";
     }
 
     // final prep
