@@ -155,7 +155,7 @@ $app->get('/contact', function ($request, $response, $args) {
 
     $api = $this->APIRequest->get("item/$qp[pid]");
     $data = json_decode($api->getBody(), true);
-    print_r($args);
+
     if (strpos($data['response']['solr_doc']['dc_rights'][0], 'Reuther') !== false) {
         $permissions_routing = "Reuther";
     } else {
