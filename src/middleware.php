@@ -137,7 +137,16 @@ $app->add(function (Request $request, Response $response, callable $next) {
 $container = $app->getContainer();
 $settings = $container->get('settings');
 if ($settings['debug']) {
+    // Set a debug cookie; this will tell varnish to not cache any responses while debug mode is on
+    if (!isset($_COOKIE['SLIMDEBUG'])) {
+        setcookie("SLIMDEBUG", true, time()+3600);
+    }
     $app->add($app->getContainer()->get('DebugBar'));
+} else {
+    // Since debug is not on right now, let's make sure there is no old debug mode cookie set
+    if (isset($_COOKIE['SLIMDEBUG'])) {
+        setcookie("SLIMDEBUG", "", time()-3600);
+    }
 }
         
 /**
