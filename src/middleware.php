@@ -81,13 +81,13 @@ $app->add(function (Request $request, Response $response, callable $next) {
             // if there's an active wsudorauth session, no need to query wsudorauth with a WSUDOR cookie for a valid session
             // Let's just check to see if they are admin
             try {
-                if (!$_SESSION['admin']){
+                if (!$_SESSION['admin']) {
                     $username = $_SESSION['wsudorauth']->username;
 
                     $admin = $this->guzzle->get("http://$host/api/user/$username/whoami");
 
                     $admin = json_decode($admin->getBody());
-                    $_SESSION['admin'] = $admin->response->exists; // they are Ouroboros user, so we consider "admin" here    
+                    $_SESSION['admin'] = $admin->response->exists; // they are Ouroboros user, so we consider "admin" here
                 }
             } catch (GuzzleHttp\Exception\ClientException $e) {
                 // destroy session; no need to destroy cookie because this still allows them to use other related services
@@ -127,30 +127,19 @@ $app->add(function (Request $request, Response $response, callable $next) {
 // });
 
 /**
+ * Debug Mode
+ * Currently using:
  * PHP Debug Bar Middleware
  * Uses https://github.com/php-middleware/phpdebugbar
- * @param  \Psr\Http\Message\ServerRequestInterface $request  PSR7 request
- * @param  \Psr\Http\Message\ResponseInterface      $response PSR7 response
- * @param  callable                                 $next     Next middleware
- *
- * @return \Psr\Http\Message\ResponseInterface
+ * Add other middleware below in similar format; also add any dependencies into the debug section found
+ * in the dependency container (dependencies.php)
  */
-$app->add(function (Request $request, Response $response, callable $next) use ($app) {
-
-
-    // Check for debug flag
-    // if ($request->getQueryParam('debug') == "true") {
-        // echo "TRUE";
-        // $debug = $app->getContainer()->get('debug');
-     // var_dump($debug);
-     // Wrap response
-        // return $debug($request, $response, $next);
-    // }
-    // echo "FALSE";
-    // Invoke next middleware and return response
-    return $next($request, $response);
-});
-
+$container = $app->getContainer();
+$settings = $container->get('settings');
+if ($settings['debug']) {
+    $app->add($app->getContainer()->get('DebugBar'));
+}
+        
 /**
  * Redirects/rewrites URLs with a / to a non-trailing / equivalent
  * @param  \Psr\Http\Message\ServerRequestInterface $request  PSR7 request
@@ -169,8 +158,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
         
         if ($request->getMethod() == 'GET') {
             return $response->withRedirect((string)$uri, 301);
-        }
-        else {
+        } else {
             return $next($request->withUri($uri), $response);
         }
     }

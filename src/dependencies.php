@@ -87,4 +87,9 @@ $container['notFoundHandler'] = function ($container) {
     };
 };
 
-$container['debug'] = new PhpMiddleware\PhpDebugBar\PhpDebugBarMiddlewareFactory();
+// Debug
+$debug = $container->get('settings')['debug'];
+if ($debug){
+    $container['DebugBar'] = new PhpMiddleware\PhpDebugBar\PhpDebugBarMiddlewareFactory();    
+}
+
