@@ -4,6 +4,7 @@ return [
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
         'determineRouteBeforeAppMiddleware' => true, // Only set this if you need access to route within middleware
+        'debug' => false, // Allow the debug bar panel (perhaps other future displays/modes to appear)
 
         // Renderer settings
         'renderer' => [
