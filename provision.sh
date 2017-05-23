@@ -18,6 +18,6 @@ RESULT=$?
 rm composer-setup.php
 
 # install dependencies via composer
-composer update
+su -c "composer update" ouroboros
 
 exit $RESULT
