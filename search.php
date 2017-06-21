@@ -92,12 +92,19 @@
 
         <!-- init search -->
         <script type="text/javascript">
+		
+	    <?php
+        	array_walk_recursive($_GET, function (&$value) {
+                    $value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+                });
+    	    ?>
 
 	    var searchParams = <?php echo json_encode($_GET); ?>;
 	        
             $(document).ready(function(){                
-                searchGo();
-        	});
+            	searchGo();
+            });
+		
         </script>
         
     </body>
