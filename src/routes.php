@@ -218,26 +218,26 @@ $app->post('/contact', function ($request, $response, $args) {
     $dt = new DateTime();
     $date = $dt->format('r');
 
-    // $form = [
-    //     'from' => $from,
-    //     'name' => $name,
-    //     'to' => $to,
-    //     'date' => $date,
-    //     'subject' => $subject,
-    //     'msg' => $msg,
-    //     'passphrase' => $settings['contact_form']['passphrase'],
-    //     'pid' => $pid,
-    //     'contact_type' => $contact_type
-    // ];
+    $form = [
+        'from' => $from,
+        'name' => $name,
+        'to' => $to,
+        'date' => $date,
+        'subject' => $subject,
+        'msg' => $msg,
+        'passphrase' => $settings['contact_form']['passphrase'],
+        'pid' => $pid,
+        'contact_type' => $contact_type
+    ];
 
-    // $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
-    // $url = "http://$host/ouroboros/email";
-    // try {
-    //     $this->guzzle->request('POST', $url, $params);
-    // } catch (GuzzleHttp\Exception\ClientException $e) {
-    //     // set some sort of something to flash and tell people to try again later
-    //     echo "TEMP - flashing a request that something went wrong";
-    // }
+    $params = ['form_params' => $form, 'headers' => ['Content-Type' => 'application/x-www-form-urlencoded']];
+    $url = "http://$host/ouroboros/email";
+    try {
+        $this->guzzle->request('POST', $url, $params);
+    } catch (GuzzleHttp\Exception\ClientException $e) {
+        // set some sort of something to flash and tell people to try again later
+        echo "TEMP - flashing a request that something went wrong";
+    }
 
     // confirmation package
     $args['result'] = [
