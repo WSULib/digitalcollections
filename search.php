@@ -93,15 +93,7 @@
         <!-- init search -->
         <script type="text/javascript">
 
-		    // var searchParams = <?php echo json_encode($_GET); ?>;
-	        var searchParams = <?php echo json_encode(filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING)); ?>;
-            // if filtering nothing, returns null, make sure empty list
-            if (searchParams == null) {
-                searchParams = [];
-            }
-
-            // DEBUG
-            // console.log(searchParams);
+	    var searchParams = <?php echo json_encode($_GET); ?>;
 	        
             $(document).ready(function(){                
                 searchGo();

@@ -44,6 +44,6 @@
 </header>
 <div class="feedback">
     <!-- insert content here to show up in slim yellow line at top of all pages -->
-    <!-- <span>IMPORTANT MESSAGE HERE</span> -->
+    <!-- <span>Please excuse any intermittent downtime,  we are performing some maintenance</span> -->
 </div>
 
