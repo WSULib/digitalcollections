@@ -1,5 +1,12 @@
 <tbody>
 
+	<style>
+		tbody a {
+			text-decoration: underline;
+			color:#093f39;
+		}
+	</style>
+
 	<!--Identifier-->
 	<tr>
 		<td>Identifier:</td>	    
@@ -305,7 +312,28 @@
 				<a href="item?id={{parent}}">{{{parentTitle}}}</a>
 			{{/singleObjectPackage.hierarchicalTree.parent.results.0}}
 		</td>
-	</tr>	
+	</tr>
+
+	<!--Related Objects-->
+	{{#singleObjectPackage.complexMODS.mods:mods.mods:relatedItem}}
+	<tr class='relatedItem' type={{@type}}>
+		<td>Related Item:</td>
+		<td>
+			<strong>Title:</strong> <a target="_blank" href="{{mods:location.mods:url}}">{{mods:titleInfo.mods:title}} {{mods:titleInfo.mods:subTitle}}</a><br><br>
+			{{#mods:location.mods:physicalLocation}}<strong>Location:</strong> {{mods:location.mods:physicalLocation}}<br><br>{{/mods:location.mods:physicalLocation}}
+			{{#mods:abstract}}<strong>Note:</strong> {{mods:abstract}}{{/mods:abstract}}
+		</td>
+	</tr>
+	{{/singleObjectPackage.complexMODS.mods:mods.mods:relatedItem}}
+
+	<script>
+		// remove instances of <mods:relatedItem> if includes @type attribute, as we handle other ways
+		$('.relatedItem').each(function(){
+			if ($(this).attr('type') != '') {
+				$(this).remove();
+			}
+		});
+	</script>
 
 	<!--Physical Archival Location-->
 	<tr>
@@ -330,7 +358,7 @@
 		<td>
 			<a class="linebreak" href="/item/{{APIParams.PID}}/bitStream/MODS">MODS</a>
 			<a class="linebreak" id="iiif_manifest" href="//{{config.APP_HOST}}/iiif_manifest/{{APIParams.PID}}">IIIF Manifest</a>
-			<a class="linebreak" href="//{{config.APP_HOST}}/WSUAPI?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
+			<a class="linebreak" href="//{{config.APP_HOST}}/{{config.API_url}}?functions[]=singleObjectPackage&PID={{APIParams.PID}}">WSUDOR API data</a>
 		</td>		
 	</tr>  
 
