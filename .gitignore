@@ -9,3 +9,4 @@ inc/recaptcha/privatekey.php
 robots.txt
 
 sftp-config.json
+.DS_Store

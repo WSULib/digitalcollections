@@ -52,14 +52,21 @@ function searchGo(){
 		});
 		function callSuccess(response){
 			// console.log(response);
-			mix(response, APIdata);			
+			mix(response, APIdata);
+
+			// organize select collections at the front
+			for (var i = APIdata.solrSearch.response.docs.length - 1; i >= 0; i--) {
+				col = APIdata.solrSearch.response.docs[i]
+				if (col.id == 'wayne:collectionvmc') {
+					promote = APIdata.solrSearch.response.docs[i];
+					APIdata.solrSearch.response.docs.splice(i,1);
+					APIdata.solrSearch.response.docs.unshift(promote);
+				};
+				
+			};
+
 			populateCollectionsView();
 
-			//////////////////////////////////
-			// load hardcoded collection tiles
-			//////////////////////////////////			
-			// VMC
-			// loadHardcodedCollections("http://dlxs.lib.wayne.edu/cgi/i/image/image-idx?page=index;c=vmc;g=localhistic","/loris/fedora:wayne:collectionVMC%7CPREVIEW/full/460,/0/default.jpg","Virtual Motor City (<strong>IE incompatible</strong>)");
 		}
 		function callError(response){			
 			load503(APIcallURL);
@@ -82,11 +89,6 @@ function populateCollectionsView(){
 		  }			    
 		});
 	}
-	// finally, paint when images finish
- //  	$(".collection_contents").imagesLoaded().done(function(){
- //  		$(".loader").remove();
- //  		$(".collection_contents").show();
-	// });
 
 	// skipping wait
 	$(".loader").remove();
