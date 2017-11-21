@@ -85,6 +85,12 @@ $("#permissions").attr("href", permissions_url);
               <textarea id="message" name="message" required="required" placeholder="Your message"></textarea>
             <button type="submit" class="flag-form-button btn" onclick="reportProb(); return false;">Send Message</button>
         </form>
+<script>
+    //epub
+        if (APIdata.singleObjectPackage.objectSolrDoc && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub[0]) {
+            $(".info-panel").append("<br/><a href='//"+config.APP_HOST+"/item/"+PID+"/bitStream/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>");
+        }
+</script>
 
 </ul>
 
