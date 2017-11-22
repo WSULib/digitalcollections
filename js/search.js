@@ -92,7 +92,7 @@ function searchGo(){
 	searchParams['functions[]'] = "solrSearch";
 	
 	// Set Search Parameters - Merge default and URL search parameters
-	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);	
+	mergedParams = jQuery.extend(true,{},searchDefs,searchParams);
 
 	// save params to localStorage, if lsTest is true
 	if (lsTest() == true){

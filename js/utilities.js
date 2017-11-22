@@ -270,10 +270,17 @@ function showFacets(){
 	var cURL = document.URL;
 
 	for (var i = 0; i < mergedParams['fq[]'].length; i++){    
-		var facet_string = mergedParams['fq[]'][i];       
+		var facet_string = mergedParams['fq[]'][i];
 		var facet_type = facet_string.split(":")[0];
 		var facet_value = facet_string.split(":").slice(1).join(":");
+		
+		// old
 		var nURL = cURL.replace(("fq[]="+encodeURI(facet_string)),'');
+		
+		// new
+		console.log(facet_value);
+		var nURL = cURL.replace("fq[]="+facet_type+":"+encodeURIComponent(facet_value).replace(/[!'()*]/g, escape),'');
+		
 		nURL = URLcleaner(nURL);
 		$(".filtered-by").append("<span class='facet-item'><a href='"+nURL+"'><i class='icon-delete'></i> <span class='facet_name'>"+rosetta(facet_type)+"</span>: "+rosetta(facet_value)+"</a></span>");
 	}
@@ -341,9 +348,17 @@ function populateFacets(){
 		for (var i = 0; i < facet_array.length; i = i + 2){     
 			// run through rosetta translation
 			var facet_value = rosetta(facet_array[i]);      
-			if (facet_array[i] != ""){        
+			if (facet_array[i] != ""){
+
+				// url encode facet for link
+				// including RFC 3986, https://stackoverflow.com/a/18251730/1196358
+				facet_search_value = facet_array[i]
+				facet_search_value = encodeURIComponent(facet_search_value).replace(/[!'()*]/g, escape);
+
+				// create facet link
+				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_search_value +"\""; 
+				
 				// find and replace start value with 0
-				fURL = cURL + "&fq[]=" + facet + ":\"" + facet_array[i] +"\""; 
 				if (fURL.contains("start=")){
 					fURL = fURL.replace(/start=([0-9]+)/g,"start=0");
 				}
