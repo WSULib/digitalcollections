@@ -21,7 +21,7 @@ require("config/config_php.php");
 <head>
 
 <body>
-
+<?php unset($_REQUEST['type']); ?>
 		<div class="standalone">
 			<!-- all_image type template -->
 			<div id="LargeView">			
@@ -40,14 +40,14 @@ require("config/config_php.php");
 							},
 							data: [
 								{
-									manifestUri: "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>",
+									manifestUri: "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo filter_input(INPUT_GET,'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>",
 									location: "Wayne State University Library Digital Collections"
 								}								
 							],
 							windowObjects: [                 
 								{
-									loadedManifest : "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo $_REQUEST['id']; ?>", 
-									viewType : "<?php echo $_REQUEST['type']; ?>",
+									loadedManifest : "//<?php echo $APP_HOST; ?>/iiif_manifest/<?php echo filter_input(INPUT_GET,'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>", 
+									viewType : "<?php echo filter_input(INPUT_GET,'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>",
 									layoutOptions: 
 									{
 										close: true,
@@ -59,7 +59,7 @@ require("config/config_php.php");
 									annotationLayer: false,
 									annotationCreation: false,
 									annotationState: false,
-									availableViews : ['ImageView','ThumbnailsView','ScrollView','<?php echo $_REQUEST['type']; ?>'] // a bit hacky, potentially includes ImageView twice, but works
+									availableViews : ['ImageView','ThumbnailsView','ScrollView','<?php echo filter_input(INPUT_GET,'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>'] // a bit hacky, potentially includes ImageView twice, but works
 								}								
 							]
 						});
