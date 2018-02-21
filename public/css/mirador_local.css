@@ -1,0 +1,48 @@
+/* Mirador Overrides */
+
+/* shared overrides between embedded and standalone viewere */
+.content-container {
+	margin-top: 40px;
+}
+
+#viewer { 
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.window-manifest-title {
+	color:#8E8E8E;
+}
+
+
+/* CSS for standalone viewer */
+#downloads {
+	background-color:#fafafa;
+	padding:0px 5px 0px 5px;
+	left:0px;
+	top:45px;
+	position:absolute;
+	z-index:1000;
+	border-bottom-right-radius:7px;
+}
+#downloads p {
+	cursor:pointer;
+}
+#downloads ul {
+	display:none;
+	padding-right:5px;
+}
+#downloads ul a{
+	text-decoration: underline;
+	/*color: inherit;*/
+}
+.standalone .window-manifest-title {
+	margin-top:4px;
+}
+/*.fullsize_download {
+	display:none;
+}*/
+
+.mirador-viewer, .mirador-main-menu-bar, .mirador-status-bar {
+     font-size: 1em; 
+}

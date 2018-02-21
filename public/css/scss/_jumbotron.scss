@@ -1,0 +1,64 @@
+//
+// Jumbotron
+// --------------------------------------------------
+
+
+.jumbotron {
+  padding: $jumbotron-padding;
+  margin-bottom: $jumbotron-padding;
+  font-size: ($font-size-base * 1.5);
+  font-weight: 200;
+  line-height: ($line-height-base * 1.5);
+  color: $jumbotron-color;
+  background-color: $jumbotron-bg;
+
+  h1 {
+    line-height: 1;
+    color: $jumbotron-heading-color;
+  }
+  p {
+    line-height: 1.4;
+  }
+
+  .container & {
+    border-radius: $border-radius-large; // Only round corners at higher resolutions if contained in a container
+  }
+
+  @media screen and (min-width: $screen-tablet) {
+    padding-top:    ($jumbotron-padding * 1.6);
+    padding-bottom: ($jumbotron-padding * 1.6);
+
+    .container & {
+      padding-left:  ($jumbotron-padding * 2);
+      padding-right: ($jumbotron-padding * 2);
+    }
+
+    h1 {
+      font-size: ($font-size-base * 4.5);
+    }
+  }
+}
+
+.masthead {
+  // background: rgba(0, 0, 0, 0) url(img/masthead-overflow-bg.jpg) 0 0 no-repeat scroll;
+  // margin: -75px auto 0;
+  // max-width: 1210px;
+  width: 100%;
+  z-index: 2;
+
+  h2,h3 {
+    background: white;
+    padding: 5px;
+  }
+
+  h2 {
+        margin-top: 100px;
+
+    display: block;
+    width: 260px;
+  }
+  h3 {
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+}
