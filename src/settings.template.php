@@ -41,7 +41,7 @@ return [
         // contact form settings
         'facet_map' => [
             'human_isMemberOfCollection' => 'Collection',
-            'human_hasContentModel' => 'Content Type',            
+            'human_hasContentModel' => 'Content Type'            
         ]
     ],
 ];

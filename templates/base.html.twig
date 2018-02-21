@@ -112,26 +112,22 @@
         <div id="content">{% block content %}{% endblock content %}</div>
 
     <footer>
-    <div class="container">
-        <div class="row">
-          <div class="col-xs-6 pull-right">
-            <ul class="links">
-              <li><a href="https://libraries.wayne.edu">Libraries</a></li>
-              <li><a href="https://www.surveymonkey.com/s/QHWX3V7">Feedback</a></li>
-              <li><a href="https://libraries.wayne.edu/info/policies/privacy.php">Privacy</a></li>
-              <li><a href="https://libraries.wayne.edu/info/policies/eresources.php">Acceptable Use</a></li>
-            </ul>
-          </div>
-          <div class="col-xs-6 copyright">
-            &copy; 2009 - 2018 Wayne State University Board of Governors
-          </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-6 pull-right">
+                <ul class="links">
+                  <li><a href="https://libraries.wayne.edu">Libraries</a></li>
+                  <li><a href="https://www.surveymonkey.com/s/QHWX3V7">Feedback</a></li>
+                  <li><a href="https://libraries.wayne.edu/info/policies/privacy.php">Privacy</a></li>
+                  <li><a href="https://libraries.wayne.edu/info/policies/eresources.php">Acceptable Use</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-6 copyright">
+                &copy; 2009 - 2018 Wayne State University Board of Governors
+              </div>
+            </div>
         </div>
-    </div>
-</footer>  
-        <script>
-            var data = {{data|json_encode|raw}};
-            console.log(data.header);
-        </script>
- 
+    </footer>
 </body>
+
 </html>
