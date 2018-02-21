@@ -74,8 +74,8 @@
                 <form action="/search" class="inline-form search-form" >
                     <fieldset>
                         <legend class="hide">Search</legend>
-                        <label for="q" class="hide">Search</label>
-                        <input class="searchTerm search-field" value="" name="q" id="q" type="text" autofocus="autofocus" placeholder="Search our digital collections" lang="en" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
+                        <label for="q" class="hide">Search</label>                        
+                        <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
                         <button type="submit" class="search-submit">
                             <span class="icon-search" aria-hidden="true"></span>
                             <span class="hide">Search</span>

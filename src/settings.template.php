@@ -28,6 +28,7 @@ return [
             'url' => 'http://VM_HOST/api/',
             'username' => null,
             'password' => null,
+            'prefix' => 'api'
         ],
 
         // contact form settings
@@ -41,7 +42,13 @@ return [
         // contact form settings
         'facet_map' => [
             'human_isMemberOfCollection' => 'Collection',
-            'human_hasContentModel' => 'Content Type'            
+            'human_hasContentModel' => 'Content Type',
+            'facet_mods_year' => 'Date',
+            'dc_subject' => 'Subject',
+            'dc_creator' => 'Creator',
+            'dc_coverage' => 'Coverage',
+            'dc_language' => 'Language',
+            'dc_publisher' => 'Publisher'
         ]
     ],
 ];

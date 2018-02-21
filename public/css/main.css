@@ -2138,7 +2138,7 @@ input[type="button"].btn-block {
   display: inline; }
 
 #results_container {
-  display:none;
+  /*display:none;*/
 }
 
 .fave-top {
