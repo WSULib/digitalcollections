@@ -3,17 +3,10 @@
 
 {% block item_content %}
 
-	<div id="viewer">
-		<div id="viewer-nest">
-			<img src="/item/{{data.response.pid}}/preview" />
-		</div>
-		<div id="viewer-ribbon">
-			<div id="viewer-ribbon-prev"></div>
-			<div id="viewer-ribbon-next"></div>
-			<div id="viewer-ribbon-nest">
-				<div><a href="{{ m.facetLinkBuilder('add','human_isMemberOfCollection',data.response.solr_doc.dc_title[0]) }}"><h2 style="color:white;">Browse Collection</h2></a></div>			
-			</div>
-		</div>
-	</div>
+<a href="/item/{{data.response.pid}}/preview"><img style="width:100%;" src="/item/{{data.response.pid}}/preview" onerror="this.style.display='none';"/></a>
+
+<p style="width:100%; text-align:center; margin-top:10px;">
+	<a href="{{ m.facetLinkBuilder('add','human_isMemberOfCollection',data.response.solr_doc.dc_title[0]) }}"><button type="btn" class="btn">Browse Items in this Collection</button></a>
+</p>
 
 {% endblock %}
