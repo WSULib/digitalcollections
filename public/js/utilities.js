@@ -5,19 +5,19 @@
 
 // On utilities.js file load, generate translation hash from Solr
 var solrTranslationHash = {}
-var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
-	$.ajax({          
-		url: APIcallURL,      
-		dataType: 'json',	  	    
-		success: callSuccess,
-		error: callError
-	});
-	function callSuccess(response){
-		solrTranslationHash = response.solrTranslationHash;			
-	}
-	function callError(response){
-		console.log("Could not retrieve solrTranslationHash");	  
-	}
+// var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
+// 	$.ajax({          
+// 		url: APIcallURL,      
+// 		dataType: 'json',	  	    
+// 		success: callSuccess,
+// 		error: callError
+// 	});
+// 	function callSuccess(response){
+// 		solrTranslationHash = response.solrTranslationHash;			
+// 	}
+// 	function callError(response){
+// 		console.log("Could not retrieve solrTranslationHash");	  
+// 	}
 
 // Piwik (piwik.library.wayne.edu)
 // Note: defers to /inc/struct_data.php when detects page is /
