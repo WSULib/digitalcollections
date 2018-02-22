@@ -3,24 +3,69 @@
 
 {% block item_content %}
 
-	<!-- static -->
-	<div id="viewer">
-		<div id="static">
-			<div id="viewer-nest">
-				<!-- link out -->
-				{# <a href="/mirador?id={{data.response.pid}}&type=ImageView"><img src="/item/{{data.response.pid}}/preview"/></a> #}
-				<!-- flip to mirador -->
-				<span style="cursor:pointer;" onclick="$('#static').toggle(); $('#mirador').toggle(); return false;"><img src="/item/{{data.response.pid}}/preview"/></a>
-			</div>
+<!-- old ebook reader -->
+<iframe src="/eTextReader/eTextReader.php?ItemID={{data.response.pid}}#page/1/mode/2up" width="100%" height="640px" frameborder="0" ></iframe>
+
+<h3 style="width:100%; text-align:center; margin-top:10px">Book Viewing Options</h3>
+
+<style type="text/css">
+	.viewer {
+		width:100%;
+		border-radius:10px;
+		/*border-width:2px;	
+    	border-style:dashed;
+    	border-color:#839394;*/
+	}
+	.viewer:hover {
+		background-color:#c7c7c7;
+	}
+	.viewer span {
+		font-weight: bold;
+	}
+	.viewer ul {
+		margin-top:10px;
+	}
+	.viewer li {
+		font-size:75%;
+	}
+</style>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<a target="_blank" href="/eTextReader/eTextReader.php?ItemID={{data.response.pid}}#page/1/mode/2up"><button type="btn" class="btn viewer">
+				<span>BookReader (default)</span>
+				<br>
+				<ul>
+					<li>Full-Text Search</li>
+					<li>Page Flipping</li>
+					<li>Image Clipping</li>
+				</ul>
+			</button></a>
 		</div>
-		<div id="mirador" style="display:none;">
-			<iframe title="Mirador" src="/mirador?id={{data.response.pid}}&type=BookView" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" height="800px" width="100%"></iframe>
+		<div class="col-md-4">
+			<a target="_blank" href="mirador_full.php?id={{data.response.pid}}&type=BookView"><button type="btn" class="btn viewer">
+				<span>Mirador</span>
+				<br>
+				<ul>
+					<li>Zooming and Scanning</li>
+					<li>Side-by-Side Book Comparison</li>
+				</ul>
+			</button></a>
+		</div>
+		<div class="col-md-4">
+			<a target="_blank" href="/readux/books/{{data.response.pid}}_Readux_VirtualVolume/"><button type="btn" class="btn viewer">
+				<span>Readux (Beta)</span>
+				<br>
+				<ul>
+					<li>Full-Text Search</li>
+					<li>Annotations</li>
+					<li>Export</li>
+					<li>Zooming and Scanning</li>
+				</ul>
+			</button></a>
 		</div>
 	</div>
-
-	<!-- mirador -->
-	{# <div id="viewer">
-		<iframe title="Mirador" src="/mirador?id={{data.response.pid}}&type=BookView" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" height="600px" width="100%"></iframe>
-	</div> #}
+</div>
 
 {% endblock %}
