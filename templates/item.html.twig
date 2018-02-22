@@ -404,31 +404,22 @@
         </ul>
     </li>
 
-<script>
-displayForm();
-$.cookie('item_id','{{data.response.pid}}');
-var permissions_url = "permissions_form.php?v="+Math.floor((Math.random() * 10000) + 1);
-$("#permissions").attr("href", permissions_url);
-</script>
-
     <!-- Report a Problem -->
-<div class="bothButtons" style="width: 100%; overflow: hidden; display: none;">
-    <button class="flag btn btn-block" onclick="showForm();" style="width: 49%; float: left;">Report a Problem?</button>
-    <a id="permissions" href="permissions_form.php?v=7710">
+<div class="bothButtons" style="width: 100%;">
+    {% if "info:fedora/wayne:collectionvmc" in data.response.solr_doc.rels_isMemberOfCollection %}
+    <a href="/contact?type=rap&pid={{data.response.pid}}">
+        <button class="original flag btn btn-block" style="width: 49%; float: left;">Report a Problem?</button>
+    </a>
+    <a id="permissions" href="/contact?type=permissions&pid{{data.response.pid}}">
         <button class="permission btn btn-block" style="width: 49%; float: right; margin-top: -1px;">Permission Request</button>
     </a>
+    {% else %}
+        <a href="/contact?type=rap&pid={{data.response.pid}}">
+            <button class="original flag btn btn-block" style="width: 100%;">Report a Problem?</button>
+        </a>
+    {% endif %}
 </div>
 
-    <button class="original flag btn btn-block" style="display: block;" onclick="showForm();">Report a Problem?</button>
-        <form method="post" class="col-sm-12 col-md-12 flag-form contact-form">
-            <label for="name" class="nameLabel">Name</label>
-              <input id="name" type="text" name="name" placeholder="Enter your name">
-            <label for="email" class="emailLabel">Email</label>
-              <input id="email" type="email" name="email" placeholder="Enter your email">
-            <label for="message" class="messageLabel">Message</label>
-              <textarea id="message" name="message" required="required" placeholder="Your message"></textarea>
-            <button type="submit" class="flag-form-button btn" onclick="reportProb(); return false;">Send Message</button>
-        </form>
 <script>
     //epub
     /// EPUB SECTION
