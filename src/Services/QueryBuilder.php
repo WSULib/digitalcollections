@@ -177,6 +177,32 @@ class QueryBuilder
         return $this->query_string_cleaner($new_query_string);
     }
 
+
+     /**
+     * Set layout URL param for search/browse page
+     * @param  string $param  key=value string to remove from query string
+     * @param  string $query_string all parameters as single query string
+     * @return Return new query string
+     */
+    public function set_layout_param($target_layout, $query_string)
+    {
+        $this->logger->debug("setting layout as: $target_layout");
+
+        // handle list
+        if ($target_layout == 'list'){
+            $new_query_string = str_replace("layout=grid", '', $query_string);
+        }
+
+        // handle grid
+        if ($target_layout == 'grid'){
+            $new_query_string = $query_string."&layout=grid";
+        }
+
+        // $new_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
+        return $this->query_string_cleaner($new_query_string);        
+    }
+
+
      /**
      * Cleans up query string, errant &'s, etc.
      * @param  string $query_string all parameters as single query string

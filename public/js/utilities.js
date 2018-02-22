@@ -684,22 +684,6 @@ function toggleResultsView(context){
 	location.reload();
 }
 
-// // update results per page
-// $(document).ready(function(){
-// 	$(".resPerPage").change(function() {    
-// 		var nURL = window.location.href;    
-// 		searchParams.rows = $(this).val();
-// 		var nURL = updateURLParameter(nURL, 'rows', searchParams.rows); 
-// 		// adjust start pointer
-// 		if (searchParams.rows > searchParams.start){    
-// 			var nURL = updateURLParameter(nURL, 'start', "0");
-// 		} 
-// 		// refresh page 
-// 		window.location = nURL;
-// 	});  
-// });
-
-
 // check for localStorage
 function lsTest(){
 		var test = 'test';

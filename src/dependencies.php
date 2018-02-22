@@ -44,6 +44,12 @@ $container['view'] = function ($c) {
     });
     $view->getEnvironment()->addFunction($function);
 
+    // QueryBuilder->set_layout_param()
+    $function = new Twig_SimpleFunction('set_layout_param', function ($QueryBuilder, $target_layout, $query_string) {
+        return $QueryBuilder->set_layout_param($target_layout, $query_string);
+    });
+    $view->getEnvironment()->addFunction($function);
+
     return $view;
 };
 

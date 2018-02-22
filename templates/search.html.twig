@@ -34,10 +34,11 @@
 	                		<option {% if search_params.rows == 100 %}selected{% endif %} value=100>100</option>
 	            		</select>
 	        		</li>
-	        		<!-- old selector -->
+
                     <li id="toggleView">
-	                	<span style="cursor:pointer;" onclick="toggleResultsView('search'); return false;">Toggle <i class="icon-list4"></i> / <i class="icon-layout"></i></span>
-                    </li>                            
+	                	<a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'list', query_string)}}"><i class="icon-list4"></i></a> | <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'grid', query_string)}}"><i class="icon-layout"></i></a>
+                    </li>
+
 	        	</ul>
         	</div>
     	</div>
@@ -88,8 +89,8 @@
 
 	    <!-- MODS Year -->
         <ul class="facet_container filter" id="facet_mods_year_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Date ({{data.response.solr_results.facet_counts.facet_fields.facet_mods_year|length}})</h3>
-	        	<ul class="tree facet_list" id="facet_mods_year_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Date ({{data.response.solr_results.facet_counts.facet_fields.facet_mods_year|length}})</h3>
+	        	<ul class="tree facet_list" id="facet_mods_year_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.facet_mods_year %}
 		        		<li>{{m.facetBuilder("add", "facet_mods_year", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -99,8 +100,8 @@
 
 	    <!-- DC Subject -->
         <ul class="facet_container filter" id="dc_subject_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Subject ({{data.response.solr_results.facet_counts.facet_fields.dc_subject|length}})</h3>
-	        	<ul class="tree facet_list" id="dc_subject_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Subject ({{data.response.solr_results.facet_counts.facet_fields.dc_subject|length}})</h3>
+	        	<ul class="tree facet_list" id="dc_subject_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_subject %}
 		        		<li>{{m.facetBuilder("add", "dc_subject", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -110,8 +111,8 @@
 
 	    <!-- Creator -->
         <ul class="facet_container filter" id="dc_creator_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Creator ({{data.response.solr_results.facet_counts.facet_fields.dc_creator|length}})</h3>
-	        	<ul class="tree facet_list" id="dc_creator_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Creator ({{data.response.solr_results.facet_counts.facet_fields.dc_creator|length}})</h3>
+	        	<ul class="tree facet_list" id="dc_creator_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_creator %}
 		        		<li>{{m.facetBuilder("add", "dc_creator", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -121,8 +122,8 @@
 
 	    <!-- Coverage -->
         <ul class="facet_container filter" id="dc_coverage_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Coverage ({{data.response.solr_results.facet_counts.facet_fields.dc_coverage|length}})</h3>
-	        	<ul class="tree facet_list" id="dc_coverage_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Coverage ({{data.response.solr_results.facet_counts.facet_fields.dc_coverage|length}})</h3>
+	        	<ul class="tree facet_list" id="dc_coverage_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_coverage %}
 		        		<li>{{m.facetBuilder("add", "dc_coverage", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -132,8 +133,8 @@
 
 	    <!-- Language -->
         <ul class="facet_container filter" id="dc_language_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Language ({{data.response.solr_results.facet_counts.facet_fields.dc_language|length}})</h3>
-	        	<ul class="tree facet_list" id="dc_language_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Language ({{data.response.solr_results.facet_counts.facet_fields.dc_language|length}})</h3>
+	        	<ul class="tree facet_list" id="dc_language_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_language %}
 		        		<li>{{m.facetBuilder("add", "dc_language", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -143,8 +144,8 @@
 
 	    <!-- Publisher -->
         <ul class="facet_container filter" id="dc_publisher_facet"><li>
-        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Publisher ({{data.response.solr_results.facet_counts.facet_fields.dc_publisher|length}})</h3>
-	        	<ul class="tree facet_list" id="dc_publisher_list">
+        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Publisher ({{data.response.solr_results.facet_counts.facet_fields.dc_publisher|length}})</h3>
+	        	<ul class="tree facet_list" id="dc_publisher_list" style="display:none;">
 	        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_publisher %}
 		        		<li>{{m.facetBuilder("add", "dc_publisher", facet_value[0], facet_value[1], true, query_string)}}</li>
 	        		{% endfor %}
@@ -166,21 +167,38 @@
         <!-- results -->
         <ul class="row-fluid objects-container" id="results_container">
 
-        	{% for doc in data.response.solr_results.response.docs %}
-	        	<li class="obj-cnt object-container-list">
-				    <div class="crop">
-				        <a href="/item/{{doc.id}}">
-		                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
-				        </a>
-				    </div>
-				    <h3>
-				        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
-				    </h3>
-				    <!-- what is this reserved for? -->
-				    <h4></h4>
-				    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
-				</li>
-			{% endfor %}
+	        	<!-- list -->
+	        	{% if search_params.layout == 'list' %}
+	        		{% for doc in data.response.solr_results.response.docs %}
+		        	<li class="obj-cnt object-container-list">
+					    <div class="crop">
+					        <a href="/item/{{doc.id}}">
+			                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+					        </a>
+					    </div>
+					    <h3>
+					        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
+					    </h3>
+					    <!-- what is this reserved for? -->
+					    <h4></h4>
+					    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
+					</li>
+					{% endfor %}
+				{% endif %}
+
+				<!-- grid -->
+				{% if search_params.layout == 'grid' %}
+					{% for doc in data.response.solr_results.response.docs %}
+						<div class='tile'>
+							<a href="/item/{{doc.id}}">		
+								<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}">
+								{# <div class="info">
+									<p>{{doc.dc_title[0]}}</p>						
+								</div> #}
+							</a>
+						</div>
+					{% endfor %}
+				{% endif %}
 
         </ul>
         
@@ -253,9 +271,9 @@
 	});
 
 	/////////////////////////////////////////////////////
-	// DEBUG
+	// init grid freewall code
 	/////////////////////////////////////////////////////
-	// var search_params = {{search_params|json_encode|raw}};
+	gridInit();
 
 </script>
 

@@ -14,12 +14,15 @@ $app->get('/', function ($request, $response, $args) {
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
 
-    // if start or rows not set, set defaults
+    // set search view defaults
     if (!array_key_exists('start', $args['search_params'])){
         $args['search_params']['start'] = 0;
     }
     if (!array_key_exists('rows', $args['search_params'])){
         $args['search_params']['rows'] = 20;
+    }
+    if (!array_key_exists('layout', $args['search_params'])){
+        $args['search_params']['layout'] = 'list';
     }
 
     $args['query_string'] = $request->getUri()->getQuery();
