@@ -14,7 +14,9 @@ $app->get('/', function ($request, $response, $args) {
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
     $args['query_string'] = $request->getUri()->getQuery();
+    $this->logger->debug("----------------- ARGS ----------------");
     $this->logger->debug(print_r($args['search_params'],True));
+    $this->logger->debug("----------------- ARGS ----------------");
     $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);
