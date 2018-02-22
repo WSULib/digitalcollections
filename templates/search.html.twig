@@ -36,7 +36,7 @@
 	        		</li>
 
                     <li id="toggleView">
-	                	<a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'list', query_string)}}"><i class="icon-list4"></i></a> | <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'grid', query_string)}}"><i class="icon-layout"></i></a>
+	                	<a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'list', query_string)}}">List <i class="icon-list4"></i></a> | <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'grid', query_string)}}">Grid <i class="icon-layout"></i></a> | <a href="#" onclick="toggleFacets(); return false;">Facets <i class="icon-eye"></i></a>
                     </li>
 
 	        	</ul>
@@ -45,9 +45,10 @@
     </div><!-- /row for sub-header -->
     
     <div id="facets_container" class="facets">
-        <ul class="facet_container filter" id="search_facet">                	
+
+        <ul class="facet_container filter" id="search_facet">
             <li>
-                <h3 class="tree-toggler">Refine Results</h3>
+                <h3 class="tree-toggler">Search within Results</h3>
                 <ul class="tree facet_list" id="search_facet_box">
                     <form onsubmit="refineByKeyWord('search','same'); return false;" role="form">
                         <input id="refine_input" placeholder='Type in word or phrase' class="search-filter">                                                                
@@ -192,9 +193,9 @@
 						<div class='tile'>
 							<a href="/item/{{doc.id}}">		
 								<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}">
-								{# <div class="info">
+								<div class="info">
 									<p>{{doc.dc_title[0]}}</p>						
-								</div> #}
+								</div>
 							</a>
 						</div>
 					{% endfor %}

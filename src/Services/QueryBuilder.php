@@ -158,7 +158,7 @@ class QueryBuilder
      */
     public function add_param_to_query_string($param, $query_string)
     {
-        $this->logger->debug("Adding: ".urlencode($param)." to ".$query_string);
+        // $this->logger->debug("Adding: ".urlencode($param)." to ".$query_string);
         $new_query_string = $query_string."&fq%5B%5D=".urlencode($param);
         return $this->query_string_cleaner($new_query_string);
     }
