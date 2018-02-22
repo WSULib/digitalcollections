@@ -193,9 +193,9 @@
 						<div class='tile'>
 							<a href="/item/{{doc.id}}">		
 								<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}">
-								<div class="info">
+								{# <div class="info">
 									<p>{{doc.dc_title[0]}}</p>						
-								</div>
+								</div> #}
 							</a>
 						</div>
 					{% endfor %}
@@ -233,7 +233,7 @@
 		$('.pagination-centered').bootpag({
 			 total: tpagesPaginate({{data.response.solr_results.response.numFound}}, {{search_params.rows}}),
 			 page: spage,
-			 maxVisible: 10,
+			 maxVisible: 8,
 			 leaps:false
 		}).on('page', function(event, num){         
 				var nURL = updateURLParameter(window.location.href, "start", ((num * {{search_params.rows}}) - {{search_params.rows}}) );
@@ -275,6 +275,59 @@
 	// init grid freewall code
 	/////////////////////////////////////////////////////
 	gridInit();
+
+
+	/////////////////////////////////////////////////////
+	// toggle facets
+	/////////////////////////////////////////////////////
+	$(document).ready(function(){
+		
+		var facet_check = getUrlParameter('facets');
+		console.log(facet_check);
+
+		if (facet_check == 'true') {
+			toggleFacets();
+		}
+
+	});
+
+	function toggleFacets(){	
+
+
+		$("#facets_container").toggle();
+
+		if (($(".main-container").width() / $(".main-container").parent().width() * 100) < 75){		
+			$(".main-container").css('width','100%');
+			facetLayoutRefresh();
+		}
+		else {		
+			$(".main-container").css('width','70%');
+			facetLayoutRefresh();
+		}	
+	}
+
+	function facetLayoutRefresh(){
+		if (getUrlParameter('layout') == 'grid'){
+			var wall = new freewall("#results_container");
+			wall.refresh();	
+			window.dispatchEvent(new Event('resize'));		
+		}
+	}
+
+	function getUrlParameter(sParam) {
+	    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+	        sURLVariables = sPageURL.split('&'),
+	        sParameterName,
+	        i;
+
+	    for (i = 0; i < sURLVariables.length; i++) {
+	        sParameterName = sURLVariables[i].split('=');
+
+	        if (sParameterName[0] === sParam) {
+	            return sParameterName[1] === undefined ? true : sParameterName[1];
+	        }
+	    }
+	};
 
 </script>
 
