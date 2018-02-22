@@ -18,10 +18,6 @@
 		</div>
 	</div>
 
-{% endblock %}
-
-{% block object_hierarchy %}
-
 
 <!-- default -->
 <ul class="row-fluid objects-container" id="results_container" style="display:block;">
@@ -33,17 +29,20 @@
     </li>
 </ul>
 
-	<div style="margin-left:20px;" id="hierarchy">
-		<div>
-			<h3>Object Hierarchy</h3>
-		</div>
-		
-		<div>
-	        <ul>
-                {{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
-	        </ul>
-		</div>
+
+{% endblock %}
+
+
+{% block hierarchicalTree %}
+
+<div class="row">
+	<div id="hier_tree" class="col-md-12">
+		<h4>Navigation</h4>	
+			<div class="facets" style="width:100%;">
+                {{ m.hierarchicalTree(data.response.content_type_specific.object_hierarchy, 0) }}
+       		</div>
 	</div>
+</div>
 	
 {% endblock %}
 
