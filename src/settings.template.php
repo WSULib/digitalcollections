@@ -25,7 +25,7 @@ return [
 
         // API settings
         'API' => [
-            'url' => 'http://VM_HOST/api/',
+            'url' => 'https://VM_HOST/api/',
             'username' => null,
             'password' => null,
             'prefix' => 'api'

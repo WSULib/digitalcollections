@@ -100,7 +100,7 @@ class APIRequest
      * @return object PSR-7 response object via Guzzle library
      */
     public function get($uri, $params = null, $custom_query = false)
-    {
+    {        
         $params = ['query' => $params];
         $this->uri = $uri;
         return $this->request('GET', $params, $custom_query);

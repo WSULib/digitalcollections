@@ -27,10 +27,11 @@
 	            <ul >                	                    		        	
 	                <li>
 	                	<span>Items per page:</span>
-	                	<select class="resPerPage">                    		
-	                		<option value=12>12</option>
-	                		<option value=20>20</option>
-	                		<option value=50>50</option>			                		
+	                	<select class="resPerPage">	                		
+	                		<option {% if search_params.rows == 10 %}selected{% endif %} value=10>10</option>
+	                		<option {% if search_params.rows == 20 %}selected{% endif %} value=20>20</option>
+	                		<option {% if search_params.rows == 50 %}selected{% endif %} value=50>50</option>
+	                		<option {% if search_params.rows == 100 %}selected{% endif %} value=100>100</option>
 	            		</select>
 	        		</li>
 	        		<!-- old selector -->
@@ -159,7 +160,7 @@
         <div class="row-fluid filtered-by refined-by">
 	    	{% for fq in search_params.fq %}
 	    		<span class="facet-item"><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string)}}"><i class="icon-delete"></i> <span class="facet_name">{{ facet_map[fq|split(":")[0]] }}</span>: {{ fq|split(":")|slice(1,3)|join(":") }}</a></span>
-	        {% endfor %}
+	        {% endfor %}	        
         </div>
 
         <!-- results -->
@@ -184,9 +185,79 @@
         </ul>
         
         <!-- pagination -->
-        <div class="pagination-centered"></div>
+        <div class="pagination-centered">
+
+        </div>
+
+
     </div><!-- /objects -->
       
 </div> <!-- /container -->
+
+
+<script>
+
+	/* ############################################### */
+	/* Move these to another JS file during JS cleanup */
+	/* ############################################### */
+
+	/////////////////////////////////////////////////////
+	// update pagination
+	/////////////////////////////////////////////////////
+	$(document).ready(function(){
+		
+		var spage = parseInt({{search_params.start}} / {{search_params.rows}}) + 1;
+		if (spage == 0) {
+			spage = 1;
+		}
+		
+		$('.pagination-centered').bootpag({
+			 total: tpagesPaginate({{data.response.solr_results.response.numFound}}, {{search_params.rows}}),
+			 page: spage,
+			 maxVisible: 10,
+			 leaps:false
+		}).on('page', function(event, num){         
+				var nURL = updateURLParameter(window.location.href, "start", ((num * {{search_params.rows}}) - {{search_params.rows}}) );
+				// refresh page 
+			window.location = nURL;
+		});
+	});
+
+	function tpagesPaginate(results, rows){
+		var tpage_dec = results / rows;
+		if (tpage_dec % 1 != 0){
+			return parseInt(tpage_dec) + 1
+		}
+		else {
+			return tpage_dec
+		}
+	}
+
+	/////////////////////////////////////////////////////
+	// update results per page
+	/////////////////////////////////////////////////////
+	$(document).ready(function(){
+		
+		// monitor for change
+		$(".resPerPage").change(function() {    
+			var nURL = window.location.href;    
+			new_rows = $(this).val();
+			nURL = updateURLParameter(nURL, 'rows', new_rows); 
+			// adjust start pointer
+			if (new_rows > {{search_params.start}}){    
+				nURL = updateURLParameter(nURL, 'start', "0");
+			} 
+			// refresh page 
+			window.location = nURL;
+		});  
+	});
+
+	/////////////////////////////////////////////////////
+	// DEBUG
+	/////////////////////////////////////////////////////
+	// var search_params = {{search_params|json_encode|raw}};
+
+</script>
+
 
 {% endblock %}

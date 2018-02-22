@@ -13,8 +13,19 @@ $app->get('/', function ($request, $response, $args) {
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
+
+    // if start or rows not set, set defaults
+    if (!array_key_exists('start', $args['search_params'])){
+        $args['search_params']['start'] = 0;
+    }
+    if (!array_key_exists('rows', $args['search_params'])){
+        $args['search_params']['rows'] = 20;
+    }
+
     $args['query_string'] = $request->getUri()->getQuery();
+    $this->logger->debug("----------------- SEARCH ARGS ----------------");
     $this->logger->debug(print_r($args['search_params'],True));
+    $this->logger->debug("----------------- SEARCH ARGS ----------------");
     $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);

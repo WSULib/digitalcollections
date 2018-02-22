@@ -124,8 +124,7 @@ class QueryBuilder
     public function q_string_without_brackets($params)
     {
         // removes indexes from bracketed, repeating parameters
-        // function / walk based (http://stackoverflow.com/a/26565074/1196358)
-        // function / walk based (http://stackoverflow.com/a/26565074/1196358)
+        // function / walk based (http://stackoverflow.com/a/26565074/1196358)        
         $walk = function( $item, $key, $parent_key = '' ) use ( &$output, &$walk ) {
             is_array( $item ) 
                 ? array_walk( $item, $walk, $key ) 
