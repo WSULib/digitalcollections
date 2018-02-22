@@ -394,15 +394,7 @@
     </li> -->
 
     <!-- Share -->
-    <li class="share">            
-        <ul>
-          <!-- facebook -->          
-          <li><a href="//www.facebook.com/sharer/sharer.php?u=https://digital.library.wayne.edu/digitalcollections/item/{{data.response.pid}}"><span class="st_facebook_custom icon-facebook" displaytext="Facebook"></span></a></li>
-          <li><a href="//twitter.com/share?url=https://digital.library.wayne.edu/digitalcollections/item/{{data.response.pid}}&amp;text=Virtual Motor City"><span class="st_twitter_custom icon-twitter4" displaytext="Tweet"></span></a></li>
-          <li><a href="//www.tumblr.com/share/link?url=https://digital.library.wayne.edu/digitalcollections/item/{{data.response.pid}}" target="blank_"><span class="st_email_custom icon-tumblr" displaytext="Email"></span></a></li>
-          <li><a href="mailto:?subject=Virtual Motor City - Wayne State University Digital Collections&amp;body=Look%20what%20I%20found%20in%20the%20Wayne%20State%20University%20Digital%20Collections!%0A%0Ahttps://digital.library.wayne.edu/digitalcollections/item/{{data.response.pid}}"><span class="st_email_custom icon-email" displaytext="Email"></span></a></li>
-        </ul>
-    </li>
+    {{ m.socialMedia() }}
 
     <!-- Report a Problem -->
 <div class="bothButtons" style="width: 100%;">
