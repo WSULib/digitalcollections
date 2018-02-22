@@ -3,22 +3,6 @@
 
 // ALWAYS LOADS
 
-// On utilities.js file load, generate translation hash from Solr
-var solrTranslationHash = {}
-// var APIcallURL = "/"+config.API_url+"?functions[]=solrTranslationHash"
-// 	$.ajax({          
-// 		url: APIcallURL,      
-// 		dataType: 'json',	  	    
-// 		success: callSuccess,
-// 		error: callError
-// 	});
-// 	function callSuccess(response){
-// 		solrTranslationHash = response.solrTranslationHash;			
-// 	}
-// 	function callError(response){
-// 		console.log("Could not retrieve solrTranslationHash");	  
-// 	}
-
 // Piwik (piwik.library.wayne.edu)
 // Note: defers to /inc/struct_data.php when detects page is /
 var locale = window.location.pathname.split(/[\/]+/).pop()
@@ -45,14 +29,6 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-63434748-1', 'auto');
 ga('send', 'pageview');
 
-
-// hide things that need localStorage
-$(document).ready(function(){
-	if (lsTest() === false){  
-		// toggle views
-		$("#toggleView").remove();
-	}  
-});
 
 
 // Digital Collections Front-End Translation Dictionary
@@ -242,7 +218,7 @@ function refineByKeyWord(context, open_type){
 
 	// write new URL with correct solr fq
 	if (refine_input !== ""){
-		var nURL = cURL+"&fq[]="+solr_field+":"+refine_input+"&start=0";   
+		var nURL = cURL+"&fq[]="+solr_field+"%3A"+refine_input+"&start=0";   
 	}
 	else{
 		var nURL = cURL+"&start=0";     
@@ -765,9 +741,6 @@ $(document).ready(function(){
 // fire freewall js for grid view
 function gridInit(){
 	
-	// unhide
-	$("#results_container").show();
-
 	var wall = new freewall("#results_container");
 	wall.reset({
 		selector: '.tile',
@@ -819,31 +792,8 @@ String.prototype.stripFedRDFPrefix = function() {
 };
 
 
-function toggleFacets(){
-	$("#facets_container").toggle();
-	$(".main-container").width("100%");
-	$(".object-container-grid .crop").css("height","375px");
-}
 
-// // function for related items (V2, deprecated)
-// function genRelatedItems(){
-// 	APIdata.objectLoci.collection_list = [];
-//     for (var key in APIdata.objectLoci.collection_loci) {      
-//       var temp_obj = {
-//       	"name":key,
-//       	"previous_objects": APIdata.objectLoci.collection_loci[key]['previous_objects'],
-//       	"next_objects": APIdata.objectLoci.collection_loci[key]['next_objects']
-//       }
-//       APIdata.objectLoci.collection_list.push(temp_obj)
-//     }
 
-//     // functional 
-//     $.get('templates/related-objects.htm',function(template){
-//       var html = Mustache.to_html(template, APIdata);
-//       $(".related-objects").html(html);
-//       cleanEmptyMetaRows();
-//     });	
-// }
 
 
 

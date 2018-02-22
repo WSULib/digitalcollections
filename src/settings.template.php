@@ -48,7 +48,10 @@ return [
             'dc_creator' => 'Creator',
             'dc_coverage' => 'Coverage',
             'dc_language' => 'Language',
-            'dc_publisher' => 'Publisher'
+            'dc_publisher' => 'Publisher',
+            'text' => 'Keyword',
+            'metadata' => 'Metadata Keyword',
+            'int_fullText' => 'Fulltext Keyword'
         ]
     ],
 ];
