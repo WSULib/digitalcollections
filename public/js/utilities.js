@@ -792,23 +792,7 @@ String.prototype.stripFedRDFPrefix = function() {
 };
 
 
-function toggleFacets(){	
-	// $("#facets_container").animate({width: 'toggle'});
-	$("#facets_container").toggle();
 
-	if (($(".main-container").width() / $(".main-container").parent().width() * 100) < 75){		
-		$(".main-container").css('width','100%');
-		var wall = new freewall("#results_container");
-		wall.refresh();	
-		window.dispatchEvent(new Event('resize'));	
-	}
-	else {		
-		$(".main-container").css('width','70%');
-		var wall = new freewall("#results_container");
-		wall.refresh();
-		window.dispatchEvent(new Event('resize'));		
-	}	
-}
 
 
 
