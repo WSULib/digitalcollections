@@ -31,10 +31,10 @@
 <!-- hidden schema.org stuctured data -->
 <div id="struct_data" style="display:none;" itemscope="" itemtype="https://schema.org/CreativeWork">
 <span itemprop="name">{{data.response.solr_doc.dc_title[0]}}<br></span>
-<span itemprop="description">{{ m.metadataField('Description', data.response.solr_doc.mods_abstract_ms, 'mods_abstract_ms', false) }}<br></span>       
+<span itemprop="description">{{ data.response.solr_doc.mods_abstract_ms }}<br></span>       
 <span itemprop="text"></span>
-<span itemprop="genre">still image<br></span>
-<span itemprop="dateCreated">{{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }}</span>
+<span itemprop="genre">{{ data.response.solr_doc.mods_resource_type_ms}}<br></span>
+<span itemprop="dateCreated">{{ data.response.solr_doc.dc_date }}</span>
 <img src="//digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/" class="primary-image" itemprop="image">
 <meta itemprop="thumbnailUrl" content="https://digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/">
 </div>
@@ -318,6 +318,7 @@
     </script>
 
     <!--Physical Archival Location-->
+    {% if response.solr_doc.mods_otherFormat_title_ms %}
     <tr>
         <td>Other Formats:</td>
         <td>
@@ -325,7 +326,8 @@
                 <strong>Location:</strong> {{data.response.solr_doc.mods_otherFormat_physLocale_ms[0]}}<br><br>
                 <strong>Note:</strong> {{data.response.solr_doc.mods_otherFormat_note_ms[0]}}
         </td>
-    </tr>   
+    </tr>
+    {% endif %}
 
     <!--IIIF Manifest-->
     <tr>
@@ -359,12 +361,12 @@
 
                 <!-- metadata new -->
                 <div class="info-panel col-md-3"><h3 class="title">
-    Virtual Motor City<br>
+    {{data.response.solr_doc.dc_title[0]}}<br>
      
 </h3>
 
 <h4>    
-    1860-1980
+    {{ data.response.solr_doc.dc_date[0] }}
 </h4>
 
 <p style="max-height:395px; overflow-y:scroll;" class="description">
@@ -429,6 +431,7 @@ $("#permissions").attr("href", permissions_url);
         </form>
 <script>
     //epub
+    /// EPUB SECTION
         if (APIdata.singleObjectPackage.objectSolrDoc && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub[0]) {
             $(".info-panel").append("<br/><a href='//"+config.APP_HOST+"/item/"+PID+"/bitStream/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>");
         }
