@@ -8,36 +8,57 @@
 {% endblock %}
 
 {% block content %}
-    <div id="page">
-		<h1>Advanced Search</h1>
 
-		<form class="form" action="/advanced_search" method="POST">
-			<div>
-				all these words: <input type="text" name="all_q"/></br>
-				this exact word or phrase: <input type="text" name="exact_q"/></br>
-				any of these words: <input type="text" name="any_q"/></br>
-				none of these words: <input type="text" name="none_q"/></br>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-6">	
+				<h1>Advanced Search</h1>
 			</div>
-			<div>
-				{#
-					These will need to be populated with API call, or some kind of hash in memory
-				#}
-				collection: <select type="text" name="collection"/>
-					<option value="">Limit by Collection</option>
-					{% for collection in data.response.solr_results.facet_counts.facet_fields.human_isMemberOfCollection %}
-						<option value="{{collection[0]}}">{{collection[0]}}</option>
-					{% endfor %}
-				</select>
-				</br>
-				content type: <select type="text" name="content_type"/>
-					<option value="">Limit by Content Type</option>
-					{% for content_type in data.response.solr_results.facet_counts.facet_fields.human_hasContentModel %}
-						<option value="{{content_type[0]}}">{{content_type[0]}}</option>
-					{% endfor %}
-				</select>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6 col-md-6">
+				<form class="form" action="/advanced_search" method="POST">
+					<div class="form-group">
+						<label for="all_q" class="nameLabel">all these words:</label>
+							<input type="text" class="form-control" name="all_q"/>
+					</div>
+					<div class="form-group">
+						<label for="exact_q" class="nameLabel">this exact word or phrase:</label>
+							<input type="text" class="form-control" name="exact_q"/>
+					</div>
+					<div class="form-group">
+						<label for="any_q" class="nameLabel">any of these words:</label>
+							<input type="text" class="form-control" name="any_q"/>
+					</div>
+					<div class="form-group">
+						<label for="none_q" class="nameLabel">none of these words:</label>
+							<input type="text" class="form-control" name="none_q"/>
+					</div>
+					<div class="form-group">
+						<label for="collection" class="nameLabel">collection:</label>
+						<select class="form-control" name="collection">
+							<option value="">Limit by Collection</option>
+							{% for collection in data.response.solr_results.facet_counts.facet_fields.human_isMemberOfCollection %}
+								<option value="{{collection[0]}}">{{collection[0]}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="content_type" class="nameLabel">content type:</label>
+						<select class="form-control" name="content_type">
+							<option value="">Limit by Content Type</option>
+							{% for content_type in data.response.solr_results.facet_counts.facet_fields.human_hasContentModel %}
+								<option value="{{content_type[0]}}">{{content_type[0]}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<button type="submit" class="btn">Search</button>
+				</form>
 			</div>
-			<input type="submit" value="Search"/>
-		</form>
+		</div>
 
 	</div>
+
 {% endblock %}
