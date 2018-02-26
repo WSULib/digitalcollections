@@ -92,45 +92,6 @@
 
 {% endmacro %}
 
-
-{# hierarchical tree #}
-{% macro hierarchicalTree(object_hierarchy, i) %}
-
-			<!-- parent container -->
-			<ul class="facet_container filter parent" style="display: block;">
-				<h3 >Part of</h3>		
-				<ul class="tree facet_list" style="display: block;">
-					{% for ancestor in object_hierarchy.ancestors %}
-						<li><a href="/item/{{ancestor.pid}}">{{ancestor.title}}</a></li>
-					{% endfor %}					
-				</ul>
-			</ul>
-
-			<!-- current item siblings -->
-			<ul class="facet_container filter siblings" style="display: block;">
-				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Siblings ({{ object_hierarchy.siblings|length }})</h3>
-				<ul class="tree facet_list" style="display: none;">
-					{% for sibling in object_hierarchy.siblings %}
-						<li><a href="/item/{{sibling.pid}}">{{sibling.title}}</a></li>
-					{% endfor %}
-				</ul>
-			</ul>
-
-			<!-- current item children -->
-			<ul class="facet_container filter children" style="display: block;">
-				<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Contents ({{ object_hierarchy.children|length }})</h3>
-				<ul class="tree facet_list" style="display: none;">
-					{% for child in object_hierarchy.children %}
-						<li><a href="/item/{{child.pid}}">{{child.title}}</a></li>
-					{% endfor %}
-				</ul>
-			</ul>
-
-
-
-{% endmacro %}
-
-
 {# recursive hierarchy #}
 {% macro objectHierarchy(object_hierarchy, i) %}
 
