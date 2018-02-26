@@ -8,9 +8,6 @@
 
 {% block content %}
 
-
-{% block hierarchicalTree %}{% endblock %}
-
 <!-- piwik.library.wayne code here-->
 <script type="text/javascript"> 
     var _paq = _paq || [];  
@@ -55,6 +52,7 @@
 
         <!-- empty pending work -->
         <div class="col-md-3 related-objects">                                    
+            {% block hierarchicalTree %}{% endblock %}
         </div>
 
         <div class="col-md-6 primary-object">
@@ -91,8 +89,8 @@
                     <td>Content Type(s):</td>       
                     <td>
                         {# Content Type #}
-                        {{ m.metadataField('Content Type', data.response.solr_doc.human_hasContentModel, 'human_hasContentModel', true) }}
-                        <a class="linebreak" href="/search?q=*&amp;start=0&amp;fq[]=rels_hasContentModel:&quot;info:fedora/CM:Collection&quot;">Collection</a>
+                        {{ m.metadataField('Content Type', data.response.content_type, 'content_type', true) }}
+                        <!-- <a class="linebreak" href="/search?q=*&amp;start=0&amp;fq[]=rels_hasContentModel:&quot;info:fedora/CM:Collection&quot;">Collection</a> -->
                     </td>       
                 </tr>
 
