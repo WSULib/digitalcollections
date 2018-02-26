@@ -78,15 +78,23 @@
 {% endmacro %}
 
 
+{# container thumbs #}
+{% macro containerThumbs(object_hierarchy, i) %}
+
+   	{% for child in object_hierarchy.children %}
+    <li class="obj-cnt object-container-grid">
+        <div class="crop" style="height:100%;">
+            <a href="item/{{child.pid}}"><img src="/item/{{child.pid}}/thumbnail"></a>
+        </div>
+        <h3>{{child.title}}</h3>
+    </li>
+    {% endfor %}
+
+{% endmacro %}
+
 
 {# hierarchical tree #}
 {% macro hierarchicalTree(object_hierarchy, i) %}
-
-<div class="row">
-	<div id="hier_tree" class="col-md-12">
-		<h4>Navigation</h4>	
-
-		<div class="facets" style="width:100%;">
 
 			<!-- parent container -->
 			<ul class="facet_container filter parent" style="display: block;">
@@ -118,12 +126,58 @@
 				</ul>
 			</ul>
 
-		</div>
 
-	</div>
-</div>
 
 {% endmacro %}
+
+
+{# recursive hierarchy #}
+{% macro objectHierarchy(object_hierarchy, i) %}
+
+	{# self, siblings, and children macro #}
+	{% macro self_siblings_children(object_hierarchy) %}
+			<ul class="tree facet_list" style="display: block;">
+    		<li class="self"><a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
+    			{% if object_hierarchy.children|length > 0 %}
+    				<ul>
+    					{% for child in object_hierarchy.children %}
+    						<li><a href="/item/{{child.pid}}">{{ child.title}}</a></li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+    		</li>
+    		{% for sibling in object_hierarchy.siblings %}
+    			<li><a href="/item/{{sibling.pid}}">{{ sibling.title}}</a></li>
+			{% endfor %}
+		</ul>
+	{% endmacro %}
+
+	{% import _self as self %}
+
+	{# set ancestors if exist #}
+	{% if object_hierarchy.ancestors|length > 0 %}
+		{% set ancestor = object_hierarchy.ancestors[i] %}
+	    <li>
+	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
+	        {% if ancestor.level > 1 %}            	
+	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
+	            </ul>
+	        {% else %}
+	        	{# write self, siblings, and children #}
+	        	{{ self.self_siblings_children(object_hierarchy) }}
+	        {% endif %}
+	    </li>
+    {% else %}
+    	{{ self.self_siblings_children(object_hierarchy) }}
+	{% endif %}
+
+    <script>
+		// make the appropriate lists collapsible
+		CollapsibleLists.apply();
+	</script>
+
+{% endmacro %}
+
 
 {# Downloads #}
 
