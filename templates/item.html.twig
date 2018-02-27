@@ -77,126 +77,173 @@
                 </style>
 
                 <!--Identifier-->
+                {% if data.response.pid %}
                 <tr>
                     <td>Identifier:</td>        
                     <td>
                         <span>{{data.response.pid}}</span>
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!--Content Type(s)-->
+                {% if data.response.content_type %}
                 <tr>
                     <td>Content Type(s):</td>       
                     <td>
+                        {% if data.response.solr_doc.human_hasContentModel %}
                         {# Content Type #}
-                        {{ m.metadataField('Content Type', data.response.content_type, 'content_type', true) }}
+                        {{ m.metadataField('Content Type', data.response.solr_doc.human_hasContentModel, 'content_type', true) }}
                         <!-- <a class="linebreak" href="/search?q=*&amp;start=0&amp;fq[]=rels_hasContentModel:&quot;info:fedora/CM:Collection&quot;">Collection</a> -->
+                        {% else %}
+                        {{ m.metadataField('Content Type', data.response.content_type, 'content_type', true) }}
+                        {% endif %}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!--Date (DC specific)-->
+                {% if data.response.solr_doc.dc_date %}
                 <tr>
                     <td>Date:</td>
                     <td>
                         {{ m.metadataField('Date', data.response.solr_doc.dc_date, 'dc_date', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!--Date (Year)-->
+                {% if data.response.solr_doc.mods_key_date_year %}
                 <tr>
                     <td>Year:</td>
                     <td>
-                        ????
+                        {{ m.metadataField('Date', data.response.solr_doc.mods_key_date_year, 'mods_key_date_year', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!--Collections-->
-                <tr style="display: none;">
+                {% if data.response.solr_doc.human_isMemberOfCollection %}
+                <tr>
                     <td>Collection:</td>
                     <td>
+                        {{ m.metadataField('Collection', data.response.solr_doc.human_isMemberOfCollection, 'human_isMemberOfCollection', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!--Subjects-->
+                {% if data.response.solr_doc.dc_subject %}
                 <tr>
                     <td>Subject:</td>
                     <td>
-                        <a class="linebreak" href="search.php?q=*&amp;start=0&amp;fq[]=dc_subject:&quot;History&quot;&amp;start=0">History</a>  {{ m.metadataField('Subjects', data.response.solr_doc.dc_subject, 'dc_subject', true) }}
+                        {{ m.metadataField('Subjects', data.response.solr_doc.dc_subject, 'dc_subject', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!-- ######################## Archival Finding Aids ######################## -->
 
                 <!-- acqusition -->
+                {% if data.response.solr_doc.mods_note_acquisition_ms %}
                 <tr style="display: none;">
                     <td>Acquisition:</td>       
                     <td>
+                        {{ m.metadataField('Acquisition', data.response.solr_doc.mods_note_acquisition_ms, 'mods_note_acquisition_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- processHist -->
+                {% if data.response.solr_doc.mods_note_processHist_ms %}
                 <tr style="display: none;">
                     <td>Process History:</td>       
                     <td>
+                        {{ m.metadataField('Process History', data.response.solr_doc.mods_note_processHist_ms, 'mods_note_processHist_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- arrangement -->
+                {% if data.response.solr_doc.mods_note_arrangement_ms %}
                 <tr style="display: none;">
                     <td>Arrangement:</td>       
                     <td>
+                        {{ m.metadataField('Arrangement', data.response.solr_doc.mods_note_arrangement_ms, 'mods_note_arrangement_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- relatedMaterials -->
+                {% if data.response.solr_doc.mods_note_relatedMaterials_ms %}
                 <tr style="display: none;">
                     <td>Related Materials:</td>     
                     <td>
+                        {{ m.metadataField('Related Materials', data.response.solr_doc.mods_note_relatedMaterials_ms, 'mods_note_relatedMaterials_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- preferredCitation -->
+                {% if data.response.solr_doc.mods_note_preferredCitation_ms %}
                 <tr style="display: none;">
                     <td>Preferred Citation:</td>        
                     <td>
+                        {{ m.metadataField('Preferred Citation', data.response.solr_doc.mods_note_preferredCitation_ms, 'mods_note_preferredCitation_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- scopeAndContent -->
+                {% if data.response.solr_doc.mods_note_scopeAndContent_ms %}
                 <tr style="display: none;">
                     <td>Scope &amp; Content:</td>       
                     <td>
+                        {{ m.metadataField('Scope and Content', data.response.solr_doc.mods_note_scopeAndContent_ms, 'mods_note_scopeAndContent_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- findingAid -->
+                {% if data.response.solr_doc.mods_note_findingAid_ms %}
                 <tr style="display: none;">
                     <td>Finding Aid:</td>       
                     <td>
+                        {{ m.metadataField('Finding Aid', data.response.solr_doc.mods_note_findingAid_ms, 'mods_note_findingAid_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- transfers -->
+                {% if data.response.solr_doc.mods_note_transfers_ms %}
                 <tr style="display: none;">
                     <td>Transfers:</td>     
                     <td>
+                        {{ m.metadataField('Transfers', data.response.solr_doc.mods_note_transfers_ms, 'mods_note_transfers_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- history -->
+                {% if data.response.solr_doc.mods_note_history_ms %}
                 <tr style="display: none;">
                     <td>History:</td>       
                     <td>
+                        {{ m.metadataField('History', data.response.solr_doc.mods_note_history_ms, 'mods_note_history_ms', true) }}
                     </td>       
                 </tr>
+                {% endif %}
 
                 <!-- dateStatement -->
+                {% if data.response.solr_doc.mods_note_dateStatement_ms %}
                 <tr style="display: none;">
                     <td>Date Statement:</td>        
                     <td>
+                        {{ m.metadataField('Date Statement', data.response.solr_doc.mods_note_dateStatement_ms, 'mods_note_dateStatement_ms', true) }}
                         ?
                     </td>       
                 </tr>
+                {% endif %}
 
 
 
@@ -205,45 +252,57 @@
                 <!-- ######################## / Archival Finding Aids ######################## -->
 
                 <!--Coverage-->
+                {% if data.response.solr_doc.dc_coverage %}
                 <tr>
                     <td>Coverage:</td>
                     <td>
                         {{ m.metadataField('Coverage', data.response.solr_doc.dc_coverage, 'dc_coverage', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!--Creator-->
+                {% if data.response.solr_doc.mods_name_creator_ms %}
                 <tr>
                     <td>Creator:</td>
                     <td>
-                        {{ m.metadataField('Creator', data.response.solr_doc.dc_creator, 'dc_creator', false) }}
+                        {{ m.metadataField('Creator', data.response.solr_doc.mods_name_creator_ms, 'mods_name_creator_ms', true) }}
                     </td>
                 </tr>
+                {% endif %}
 
                 <!--MODS Resource Type-->
+                {% if data.response.solr_doc.mods_resource_type_ms %}
                 <tr>
                     <td>Resource Type:</td>
                     <td>
-                       ?????
-                   </td>   
+                        {{ m.metadataField('Creator', data.response.solr_doc.mods_resource_type_ms, 'mods_resource_type_ms', true) }}
+                   </td>
+                </tr>
+                {% endif %}
 
                    <!--Publisher-->
-               </tr><tr style="display: none;">
-                <td>Publisher:</td>
-                <td>
-                    {{ m.metadataField('Publisher', data.response.solr_doc.dc_publisher, 'dc_publisher', true) }}
-                </td>
-            </tr>
+                   {% if data.response.solr_doc.dc_publisher %}
+                <tr style="display: none;">
+                    <td>Publisher:</td>
+                    <td>
+                        {{ m.metadataField('Publisher', data.response.solr_doc.dc_publisher, 'dc_publisher', true) }}
+                    </td>
+                </tr>
+                {% endif %}
 
             <!--Source-->
+            {% if data.response.solr_doc.dc_source %}
             <tr style="display: none;">
                 <td>Source:</td>
                 <td>
-                    ????
+                    {{ m.metadataField('Source', data.response.solr_doc.dc_source, 'dc_source', true) }}
                 </td>
             </tr>
+            {% endif %}
 
             <!--Rights-->
+            {% if data.response.solr_doc.dc_rights %}
             <tr>
                 <td>Rights:</td>
                 <td>
@@ -257,8 +316,9 @@
 
             <!-- Collection Rights -->
 
-        </td>
-    </tr>
+                </td>
+            </tr>
+            {% endif %}
 
     <!-- Credit Line Note -->
     <tr>
@@ -333,9 +393,9 @@
         <!-- <td><img src="img/iiif_logo.png" height=25 /></td> -->
         <td>Structured Data</td>
         <td>
-            <a class="linebreak" href="/item/{{data.response.pid}}/bitStream/MODS">MODS</a>
+            <a class="linebreak" href="/item/{{data.response.pid}}/MODS">MODS</a>
             
-            <a class="linebreak" href="//digital.library.wayne.edu/WSUAPI/?functions[]=singleObjectPackage&amp;PID={{data.response.pid}}">WSUDOR API data</a>
+            <a class="linebreak" href="/api/item/{{data.response.pid}}">WSUDOR API data</a>
         </td>       
     </tr>  
 
@@ -411,13 +471,10 @@
         {% endif %}
     </div>
 
-    <script>
-    //epub
-    /// EPUB SECTION
-    if (APIdata.singleObjectPackage.objectSolrDoc && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub && APIdata.singleObjectPackage.objectSolrDoc.rels_hasEpub[0]) {
-        $(".info-panel").append("<br/><a href='//"+config.APP_HOST+"/item/"+PID+"/bitStream/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>");
-    }
-</script>
+    <!-- EPUB SECTION -->
+    {% if response.solr_doc.rels_hasEpub %}
+        <br/><a href='/item/{{data.response.pid}}/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>
+    {% endif %}
 
 </ul>
 
@@ -452,18 +509,6 @@
 
 <!--API call-->
 
-
-<script type="text/javascript">
-    enquire.register("screen and (max-width:991px)", {
-        match : function() { 
-            // move to top
-            $('.info-panel').prependTo('.primary-object');      
-        },
-        unmatch : function() {
-            $('.info-panel').insertAfter('.primary-object');
-        }
-    });
-</script>
 
 
 <div id="sidr-main" class="sidr left"><div class="sidr-inner">
