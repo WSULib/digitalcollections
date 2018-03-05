@@ -77,12 +77,27 @@
 	{{ path_for('item') ~ "/" ~ pid }}
 {% endmacro %}
 
+
+{# container thumbs #}
+{% macro containerThumbs(object_hierarchy, i) %}
+
+   	{% for child in object_hierarchy.children %}
+    <li class="obj-cnt object-container-grid">
+        <div class="crop" style="height:100%;">
+            <a href="/item/{{child.pid}}"><img src="/item/{{child.pid}}/thumbnail"></a>
+        </div>
+        <h3>{{child.title}}</h3>
+    </li>
+    {% endfor %}
+
+{% endmacro %}
+
 {# recursive hierarchy #}
 {% macro objectHierarchy(object_hierarchy, i) %}
 
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-		<ul>
+			<ul class="tree facet_list" style="display: block;">
     		<li class="self"><a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
@@ -105,8 +120,7 @@
 		{% set ancestor = object_hierarchy.ancestors[i] %}
 	    <li>
 	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
-	        {% if ancestor.level > 1 %}
-	            <ul>			            	
+	        {% if ancestor.level > 1 %}            	
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
 	            </ul>
 	        {% else %}
@@ -124,6 +138,7 @@
 	</script>
 
 {% endmacro %}
+
 
 {# Downloads #}
 

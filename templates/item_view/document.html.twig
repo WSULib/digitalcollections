@@ -3,33 +3,27 @@
 
 {% block item_content %}
 
-	<div id="viewer">
-		<div>
-			<div id="viewer-nest">
-				<span style="cursor:pointer;" onclick="$('#static').toggle(); $('#object_viewer').toggle(); return false;"><img id="static" src="/item/{{data.response.pid}}/preview"/></span>
-				<div id="object_viewer" style="width:100%; height:100%; display:none;">
-					<object data="/item/{{data.response.pid}}/file/FILE" width="100%" height="100%"></object>
-				</div>
-			</div>
-		</div>
-		
-	</div>
+<object data="/item/{{data.response.pid}}/file/FILE" type="application/pdf" width="100%" height="500px">
+ 
+  <p>It appears you don't have a PDF plugin for this browser.  <a href="/item/{{data.response.pid}}/file/FILE">click here to download the PDF file.</a></p>
+  
+</object>
 
 {% endblock %}
 
-{% block object_hierarchy %}
+{% block hierarchicalTree %}
 
-	<div id="hierarchy">
-		<div>
-			<h3>Object Hierarchy</h3>
-		</div>
-		
-		<div>
-	        <ul>
-                {{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
-	        </ul>
-		</div>
+<div class="row">
+	<div id="hier_tree" id="hierarchy" class="col-md-12">
+		<h4>Navigation</h4>	
+			<div class="facets" style="width:100%;">
+				<ul class="facet_container filter" style="display: block;">
+				<h3>Collection</h3>	
+                	{{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
+                </ul>
+       		</div>
 	</div>
-
+</div>
+	
 {% endblock %}
 
