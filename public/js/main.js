@@ -78,8 +78,6 @@ $(document).ready(function(){
     $(function() {
         // $('.facet_container').jScrollPane();
     });
-
-    
     
 });
 
@@ -124,3 +122,15 @@ jQuery(document).ready(function() {
         return false;
     });
 });
+
+/*
+    Object Hierarchy
+*/
+$(document).ready(function(){
+
+    // listener for .hierslide      
+    $(".hierarchy_toggle").click(function(){        
+        $(this).siblings('ul').slideToggle();
+    });
+
+})

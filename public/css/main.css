@@ -6923,7 +6923,6 @@ p.caption {
   z-index:10000;
 }
 
-
 .facet_list {
   max-height:700px;
   overflow-y: scroll;
@@ -6938,7 +6937,20 @@ p.caption {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
 
+.filter.hierarchy_navigation {
+  padding:10px 0px 0px 10px;
+  max-height:700px;
+  overflow-y: scroll;
+}
+
+.hierarchy_toggle {
+  cursor: pointer;
+}
+
+.hierarchy_toggle_hidden {
+  display:none;
 }
 
 .permission {

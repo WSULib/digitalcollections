@@ -97,8 +97,9 @@ Date #}
 
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-		<ul class="tree" style="display: block;">
-    		<li class="self"><a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
+		<ul class="tree hierarchy_navigation" style="display: block;">
+    		<li class="self">
+    			<span class="hierarchy_toggle">+</span> <a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
     					{% for child in object_hierarchy.children %}
@@ -120,7 +121,7 @@ Date #}
 	{% if object_hierarchy.ancestors|length > 0 %}
 		{% set ancestor = object_hierarchy.ancestors[i] %}
 	    <li>
-	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
+	        <span class="hierarchy_toggle">+</span> <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
 	        {% if ancestor.level > 1 %}
         		<ul>
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
@@ -132,12 +133,7 @@ Date #}
 	    </li>
     {% else %}
     	{{ self.self_siblings_children(object_hierarchy) }}
-	{% endif %}
-
-    <script>
-		// make the appropriate lists collapsible
-		CollapsibleLists.apply();
-	</script>
+	{% endif %}    
 
 {% endmacro %}
 
