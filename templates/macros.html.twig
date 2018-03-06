@@ -99,7 +99,7 @@ Date #}
 	{% macro self_siblings_children(object_hierarchy) %}
 		<ul class="tree hierarchy_navigation" style="display: block;">
     		<li class="self">
-    			<span class="hierarchy_toggle">+</span> <a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
+    			{% if object_hierarchy.children|length > 0 %}<span class="hierarchy_toggle">+</span>{% endif %} <a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
     					{% for child in object_hierarchy.children %}

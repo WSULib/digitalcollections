@@ -6940,17 +6940,13 @@ p.caption {
 }
 
 .filter.hierarchy_navigation {
-  padding:10px 0px 0px 10px;
+  padding:10px 0px 10px 10px;
   max-height:700px;
   overflow-y: scroll;
 }
 
 .hierarchy_toggle {
   cursor: pointer;
-}
-
-.hierarchy_toggle_hidden {
-  display:none;
 }
 
 .permission {
