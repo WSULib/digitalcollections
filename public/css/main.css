@@ -2759,7 +2759,8 @@ ul.toc-2-col {
     .facets .filter ul {
       list-style: none;
       padding: 5px 15px;
-      font-size: 0.9em; }
+      /*font-size: 0.9em; */
+    }
       .facets .filter ul li {
         padding: 5px 0; }
 
@@ -6924,7 +6925,7 @@ p.caption {
 
 
 .facet_list {
-  max-height:350px;
+  max-height:700px;
   overflow-y: scroll;
 }
 

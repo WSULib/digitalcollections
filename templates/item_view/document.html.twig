@@ -15,10 +15,11 @@
 
 <div class="row">
 	<div id="hier_tree" id="hierarchy" class="col-md-12">
-		<h4>Navigation</h4>	
+		<h4>Hierarchical Navigation</h4>
 			<div class="facets" style="width:100%;">
 				<ul class="facet_container filter" style="display: block;">
-				<h3>Collection</h3>	
+				{# <h3>Collection</h3>	 #}
+				<ul>
                 	{{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
                 </ul>
        		</div>

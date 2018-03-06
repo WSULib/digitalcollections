@@ -1,4 +1,4 @@
-{# Date #}
+Date #}
 {% macro date(action, data) %}
 	{% import _self as m %}
 	{% for date in data.response.solr_doc.dc_date %}
@@ -97,7 +97,7 @@
 
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-			<ul class="tree facet_list" style="display: block;">
+		<ul class="tree" style="display: block;">
     		<li class="self"><a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
@@ -113,6 +113,7 @@
 		</ul>
 	{% endmacro %}
 
+	{# allows recursive use of this macro #}	
 	{% import _self as self %}
 
 	{# set ancestors if exist #}
@@ -120,7 +121,8 @@
 		{% set ancestor = object_hierarchy.ancestors[i] %}
 	    <li>
 	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
-	        {% if ancestor.level > 1 %}            	
+	        {% if ancestor.level > 1 %}
+        		<ul>
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
 	            </ul>
 	        {% else %}
