@@ -1194,7 +1194,7 @@ pre {
     margin-left: 91.66667%; } }
 @media (min-width: 1600px) {
   .container {
-    max-width: 1470px;
+    max-width: 90%;
     /*max-width: 1920px; */
   }
 
