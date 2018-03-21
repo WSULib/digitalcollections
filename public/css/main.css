@@ -2759,7 +2759,8 @@ ul.toc-2-col {
     .facets .filter ul {
       list-style: none;
       padding: 5px 15px;
-      font-size: 0.9em; }
+      /*font-size: 0.9em; */
+    }
       .facets .filter ul li {
         padding: 5px 0; }
 
@@ -6922,9 +6923,8 @@ p.caption {
   z-index:10000;
 }
 
-
 .facet_list {
-  max-height:350px;
+  max-height:700px;
   overflow-y: scroll;
 }
 
@@ -6937,7 +6937,16 @@ p.caption {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
 
+.filter.hierarchy_navigation {
+  padding:10px 0px 10px 10px;
+  max-height:700px;
+  overflow-y: scroll;
+}
+
+.hierarchy_toggle {
+  cursor: pointer;
 }
 
 .permission {

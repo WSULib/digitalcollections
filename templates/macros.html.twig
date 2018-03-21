@@ -1,4 +1,4 @@
-{# Date #}
+Date #}
 {% macro date(action, data) %}
 	{% import _self as m %}
 	{% for date in data.response.solr_doc.dc_date %}
@@ -94,8 +94,9 @@
 
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-			<ul class="tree facet_list" style="display: block;">
-    		<li class="self"><a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
+		<ul class="tree hierarchy_navigation" style="display: block;">
+    		<li class="self">
+    			{# {% if object_hierarchy.children|length > 0 %}<span class="hierarchy_toggle">+</span>{% endif %}  #}<a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
     					{% for child in object_hierarchy.children %}
@@ -104,20 +105,22 @@
 					</ul>
 				{% endif %}
     		</li>
-    		{% for sibling in object_hierarchy.siblings %}
+    		{# {% for sibling in object_hierarchy.siblings %}
     			<li><a href="/item/{{sibling.pid}}">{{ sibling.title}}</a></li>
-			{% endfor %}
+			{% endfor %} #}
 		</ul>
 	{% endmacro %}
 
+	{# allows recursive use of this macro #}	
 	{% import _self as self %}
 
 	{# set ancestors if exist #}
 	{% if object_hierarchy.ancestors|length > 0 %}
 		{% set ancestor = object_hierarchy.ancestors[i] %}
 	    <li>
-	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
-	        {% if ancestor.level > 1 %}            	
+	        {# <span class="hierarchy_toggle">+</span>  #}<a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
+	        {% if ancestor.level > 1 %}
+        		<ul>
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
 	            </ul>
 	        {% else %}
@@ -127,12 +130,7 @@
 	    </li>
     {% else %}
     	{{ self.self_siblings_children(object_hierarchy) }}
-	{% endif %}
-
-    <script>
-		// make the appropriate lists collapsible
-		CollapsibleLists.apply();
-	</script>
+	{% endif %}    
 
 {% endmacro %}
 

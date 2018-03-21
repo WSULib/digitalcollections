@@ -51,18 +51,17 @@
     <div class="row">
 
         <!-- empty pending work -->
-        <div class="col-md-3 related-objects">                                    
-            {% block hierarchicalTree %}{% endblock %}
+        <div class="col-md-3 related-objects">
+            {# show hierarchy if exists #}
+            {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
+                {% block hierarchicalTree %}{% endblock %}
+            {% endif %}
         </div>
 
         <div class="col-md-6 primary-object">
             <div class="primary-object-container">
 
-
-
                 {% block item_content %}{% endblock %}
-
-
 
             </div>
 
