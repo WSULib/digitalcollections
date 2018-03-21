@@ -231,6 +231,14 @@ function finishRendering() {
             });
             break;
 
+        //Archive
+        case "Archive":
+            $.get('templates/singleObject/archive.htm', function(template) {
+                var html = Mustache.to_html(template, APIdata);
+                $(".primary-object-container").html(html);
+            });
+            break;
+
         // If none known, default to unkwown type    
         default:
             unknownType();
