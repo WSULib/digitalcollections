@@ -42,30 +42,100 @@
 
 <div id="templateCM" class="container">
 
-    <div class="row">
+    {# <div class="row">
         <div class="breadcrumb col-md-3">               
             <a href="#" onclick="window.history.back(); return false;" style="font-size:17px;"><span style="font-size:20px; margin-right:5px;">«</span> Back</a>
         </div>
-    </div>
+    </div> #}
+
+    {# optional navigation #}
+    {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
+        <div class="row">
+            <div class="col-md-12 related-objects">
+                {# show hierarchy if exists #}            
+                {% block hierarchicalTree %}{% endblock %}
+                {# show related if exists #}            
+                {# {% block hierarchicalTree %}{% endblock %} #}
+            </div>
+        </div>
+    {% endif %}
 
     <div class="row">
 
-        <!-- empty pending work -->
-        <div class="col-md-3 related-objects">
-            {# show hierarchy if exists #}
-            {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
-                {% block hierarchicalTree %}{% endblock %}
-            {% endif %}
-        </div>
+        
 
-        <div class="col-md-6 primary-object">
+
+        <div class="col-md-8 primary-object">
             <div class="primary-object-container">
 
                 {% block item_content %}{% endblock %}
 
             </div>
 
-            <div class=" metadata display-more-info" id="more-info">    
+            
+</div>
+
+<!-- metadata new -->
+<div class="info-panel col-md-3"><h3 class="title">
+    {{data.response.solr_doc.dc_title[0]}}<br>
+
+</h3>
+
+<h4>    
+    {{ data.response.solr_doc.dc_date[0] }}
+</h4>
+
+<p style="max-height:395px; overflow-y:scroll;" class="description">
+    {{ m.metadataField('Description', data.response.solr_doc.mods_abstract_ms, 'mods_abstract_ms', false) }}
+</p>
+
+<!-- ########################################### -->
+<style type="text/css">
+
+</style>
+
+
+<ul class="buttons">    
+
+    <!-- More info -->
+    <li class="more-info-clickr">
+        <i class="icon-info"></i> <span class="more-info">Less Info</span>
+    </li>
+    
+    <!-- Add citation button if WSUebook -->
+    
+    <!-- Favorite -->
+    <!-- <li class="add-to-favorites" onclick="addFav();">
+        <i class="icon-star"></i> Add to Favorites
+    </li> -->
+
+    <!-- Share -->
+    {{ m.socialMedia() }}
+
+    <!-- Report a Problem -->
+    <div class="bothButtons" style="width: 100%;">
+        {% if "info:fedora/wayne:collectionvmc" in data.response.solr_doc.rels_isMemberOfCollection %}
+        <a href="/contact?type=rap&pid={{data.response.pid}}">
+            <button class="original flag btn btn-block" style="width: 49%; float: left;">Report a Problem?</button>
+        </a>
+        <a id="permissions" href="/contact?type=permissions&pid{{data.response.pid}}">
+            <button class="permission btn btn-block" style="width: 49%; float: right; margin-top: -1px;">Permission Request</button>
+        </a>
+        {% else %}
+        <a href="/contact?type=rap&pid={{data.response.pid}}">
+            <button class="original flag btn btn-block" style="width: 100%;">Report a Problem?</button>
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- EPUB SECTION -->
+    {% if response.solr_doc.rels_hasEpub %}
+        <br/><a href='/item/{{data.response.pid}}/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>
+    {% endif %}
+
+</ul>
+
+<div class=" metadata display-more-info" id="more-info">    
                 <table class="table table-hover"><tbody>
 
                     <style>
@@ -407,75 +477,10 @@
 </tbody>
 
 
-
-
-
-
-
-
 </table>                    
 </div>
+
 </div>
-
-<!-- metadata new -->
-<div class="info-panel col-md-3"><h3 class="title">
-    {{data.response.solr_doc.dc_title[0]}}<br>
-
-</h3>
-
-<h4>    
-    {{ data.response.solr_doc.dc_date[0] }}
-</h4>
-
-<p style="max-height:395px; overflow-y:scroll;" class="description">
-    {{ m.metadataField('Description', data.response.solr_doc.mods_abstract_ms, 'mods_abstract_ms', false) }}
-</p>
-
-<!-- ########################################### -->
-<style type="text/css">
-
-</style>
-
-
-<ul class="buttons">    
-
-    <!-- More info -->
-    <li class="more-info-clickr">
-        <i class="icon-info"></i> <span class="more-info">Less Info</span>
-    </li>
-    
-    <!-- Add citation button if WSUebook -->
-    
-    <!-- Favorite -->
-    <!-- <li class="add-to-favorites" onclick="addFav();">
-        <i class="icon-star"></i> Add to Favorites
-    </li> -->
-
-    <!-- Share -->
-    {{ m.socialMedia() }}
-
-    <!-- Report a Problem -->
-    <div class="bothButtons" style="width: 100%;">
-        {% if "info:fedora/wayne:collectionvmc" in data.response.solr_doc.rels_isMemberOfCollection %}
-        <a href="/contact?type=rap&pid={{data.response.pid}}">
-            <button class="original flag btn btn-block" style="width: 49%; float: left;">Report a Problem?</button>
-        </a>
-        <a id="permissions" href="/contact?type=permissions&pid{{data.response.pid}}">
-            <button class="permission btn btn-block" style="width: 49%; float: right; margin-top: -1px;">Permission Request</button>
-        </a>
-        {% else %}
-        <a href="/contact?type=rap&pid={{data.response.pid}}">
-            <button class="original flag btn btn-block" style="width: 100%;">Report a Problem?</button>
-        </a>
-        {% endif %}
-    </div>
-
-    <!-- EPUB SECTION -->
-    {% if response.solr_doc.rels_hasEpub %}
-        <br/><a href='/item/{{data.response.pid}}/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>
-    {% endif %}
-
-</ul>
 
 </div>
 

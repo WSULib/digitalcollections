@@ -6941,7 +6941,7 @@ p.caption {
 
 .filter.hierarchy_navigation {
   padding:10px 0px 10px 10px;
-  max-height:700px;
+  max-height:200px;
   overflow-y: scroll;
 }
 
