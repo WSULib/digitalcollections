@@ -7,21 +7,35 @@
 {% endblock %}
 
 {% block content %}
-    <div id="page">
-		<h1>{{form_title}}</h1>
-		<form class="form" action="/contact" method="POST">
-			From: <input type="text" name="from"/></br>
-			Email: <input type="text" name="email"/></br>
-			Message: <textarea name="msg"/></textarea><br>
-			<input type="hidden" name="subject" value="{{subject}}">
-			<input type="hidden" name="contact_type" value="{{contact_type}}">
-			{% if contact_type == "rap" or contact_type == "permissions" %}
-			{% if pid %}
-				<input type="hidden" name="pid" value="{{pid}}">
-			{% endif %}			
-			{% endif %}
-			<input type="submit">
-		</form>
-		{% if result %}<h2>{{result}}</h2>{% endif %}
-	</div>
+	<div id="page">
+    <div class="container">
+        <h2>{{form_title}}</h2>
+            <div class="row">
+                <div class="hidden-xs col-sm-6 col-md-6 contact">
+                	{% set image = m.randomImage() %}
+                    <a href="/item/{{ image }}"><img id="imagery" src="/item/{{ image }}/preview" alt=""></a>
+                    <p class="caption"></p>
+                </div>
+        <div class="col-sm-6 col-md-6 contact-form">
+            <form class="form" action="/contact" method="POST">
+                <label for="name" class="nameLabel">Name</label>
+                    <input type="text" name="from" id="name" placeholder="Enter your name">
+                <label for="email" class="emailLabel">Email</label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email">
+                <label for="msg" class="messageLabel">Message</label>
+                    <textarea name="msg" id="msg" placeholder="Your message"></textarea>
+                <input type="hidden" name="subject" value="{{subject}}">
+                <input type="hidden" name="contact_type" value="{{contact_type}}">
+                {% if contact_type == "rap" or contact_type == "permissions" %}
+                {% if pid %}
+                    <input type="hidden" name="pid" value="{{pid}}">
+                {% endif %}         
+                {% endif %}
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div> <!-- contact-form -->
+        </div> <!-- row -->
+        {% if result %}<h2>{{result}}</h2>{% endif %}
+    </div>
+</div>
 {% endblock %}

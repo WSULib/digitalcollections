@@ -81,47 +81,7 @@ $(document).ready(function(){
     
 });
 
-/*
-    Contact form
-*/
-jQuery(document).ready(function() {
-    $('.contact-form form').submit(function() {
 
-        $('.contact-form form .nameLabel').html('Name');
-        $('.contact-form form .emailLabel').html('Email');
-        $('.contact-form form .messageLabel').html('Message');
-
-        var postdata = $('.contact-form form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: 'inc/sendmail.php',
-            data: postdata,
-            dataType: 'json',
-            success: function(json) {
-                if(json.nameMessage !== '') {
-                    $('.contact-form form .nameLabel').append(' - <span class="validation"> ' + json.nameMessage + '</span>');
-                }
-                if(json.emailMessage !== '') {
-                    $('.contact-form form .emailLabel').append(' - <span class="validation"> ' + json.emailMessage + '</span>');
-                }
-                if(json.messageMessage !== '') {
-                    $('.contact-form form .messageLabel').append(' - <span class="validation"> ' + json.messageMessage + '</span>');
-                }
-                if(json.recaptchaMessage !== '') {
-                    $('.contact-form form .recaptchaLabel').append(' - <span class="validation"> ' + json.recaptchaMessage + '</span>');
-                }
-                else {
-                    if(json.nameMessage === '' && json.emailMessage === '' && json.messageMessage === '' && json.recaptchaMessage === '') {
-                        $('.contact-form form').fadeOut('fast', function() {
-                            $('.contact-form').append('<p class="thanks"><strong>Thanks for contacting us!</strong><br/>We will get back to you very soon.</p>');
-                        });
-                    }
-                }
-            }
-        });
-        return false;
-    });
-});
 
 /*
     Object Hierarchy
