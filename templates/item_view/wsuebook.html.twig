@@ -47,8 +47,8 @@
 			</button></a>
 		</div>
 		<div class="col-md-4">
-			<a target="_blank" href="mirador_full.php?id={{data.response.pid}}&type=BookView"><button type="btn" class="btn viewer">
-				<span>Mirador</span>
+			<a target="_blank" href="/mirador?id={{data.response.pid}}&type=BookView"><button type="btn" class="btn viewer">
+				<span>Mirador (default)</span>
 				<br>
 				<ul>
 					<li>Zooming and Scanning</li>
@@ -57,14 +57,12 @@
 			</button></a>
 		</div>
 		<div class="col-md-4">
-			<a target="_blank" href="/readux/books/{{data.response.pid}}_Readux_VirtualVolume/"><button type="btn" class="btn viewer">
-				<span>Readux (Beta)</span>
+			<a target="_blank" href="/item/{{data.response.pid}}/file/PDF_FULL"><button type="btn" class="btn viewer">
+				<span>PDF</span>
 				<br>
 				<ul>
-					<li>Full-Text Search</li>
-					<li>Annotations</li>
-					<li>Export</li>
-					<li>Zooming and Scanning</li>
+					<li>Cross-broswer compatible</li>
+					<li>Full-Text Overlay</li>
 				</ul>
 			</button></a>
 		</div>

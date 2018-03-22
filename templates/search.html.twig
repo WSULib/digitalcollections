@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-6 pull-left">
                 <ul id="search_results_ul">
-                    <li><span id='num_results'>{{data.response.solr_results.response.numFound}}</span> Objects</li>                    
+                    <li><span id='num_results'>{{ data.response.solr_results.response.numFound|number_format }}</span> Objects</li>                    
                 </ul>                
             </div>
             <div class="col-md-6 pull-right" style="text-align:right;">
@@ -166,42 +166,46 @@
         </div>
 
         <!-- results -->
-        <ul class="row-fluid objects-container" id="results_container">
+        <div class="row">
+        	<div class="col-md-12">
+		        <ul class="row-fluid objects-container" id="results_container">
 
-	        	<!-- list -->
-	        	{% if search_params.layout == 'list' %}
-	        		{% for doc in data.response.solr_results.response.docs %}
-		        	<li class="obj-cnt object-container-list">
-					    <div class="crop">
-					        <a href="/item/{{doc.id}}">
-			                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
-					        </a>
-					    </div>
-					    <h3>
-					        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
-					    </h3>
-					    <!-- what is this reserved for? -->
-					    <h4></h4>
-					    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
-					</li>
-					{% endfor %}
-				{% endif %}
+		        	<!-- list -->
+		        	{% if search_params.layout == 'list' %}
+		        		{% for doc in data.response.solr_results.response.docs %}
+			        	<li class="obj-cnt object-container-list">
+						    <div class="crop">
+						        <a href="/item/{{doc.id}}">
+				                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+						        </a>
+						    </div>
+						    <h3>
+						        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
+						    </h3>
+						    <!-- what is this reserved for? -->
+						    <h4></h4>
+						    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
+						</li>
+						{% endfor %}
+					{% endif %}
 
-				<!-- grid -->
-				{% if search_params.layout == 'grid' %}
-					{% for doc in data.response.solr_results.response.docs %}
-						<div class='tile'>
-							<a href="/item/{{doc.id}}">		
-								<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}">
-								<div class="info">
-									<p>{{doc.dc_title[0]}}</p>						
-								</div>
-							</a>
-						</div>
-					{% endfor %}
-				{% endif %}
+					<!-- grid -->
+					{% if search_params.layout == 'grid' %}
+						{% for doc in data.response.solr_results.response.docs %}
+							<div class='tile'>
+								<a href="/item/{{doc.id}}">		
+									<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
+									<div class="info">
+										<p>{{doc.dc_title[0]}}</p>						
+									</div>
+								</a>
+							</div>
+						{% endfor %}
+					{% endif %}
 
-        </ul>
+	        	</ul>
+			</div>
+		</div>
         
         <!-- pagination -->
         <div class="pagination-centered">

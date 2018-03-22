@@ -2955,7 +2955,7 @@ li:last-child.object-container-list {
     margin: 10px 0 20px 0;
     color: #999999; }
   .object-container-list p {
-    font-size: 13px;
+    font-size: 14px;
     color: #555555;
     display: block;
     /* Fallback for non-webkit */
@@ -2963,7 +2963,7 @@ li:last-child.object-container-list {
     max-width: 80%;
     /*height: 54.6px;*/
     /* Fallback for non-webkit */
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.4;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
