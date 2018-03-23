@@ -9,6 +9,10 @@
 {% block content %}
 
     <style>
+        #frontpage_image {
+            max-height: 1024px;
+            overflow: hidden;
+        }
         #masthead {            
             margin-top:120px;
             background-color:rgba(241, 239, 229, 0.9);
@@ -23,7 +27,7 @@
             /*text-decoration: underline;*/
         }
         .main_nav_button {
-            background-color:rgba(241, 239, 229, 1);
+            background-color:rgba(212, 204, 166, 0.9);
             padding:10px;
         }
         .main_nav_button:hover {
@@ -39,14 +43,8 @@
     </style>
 
     <div class="row" style="position:absolute;">
-        <div class="col-md-12">
-            {# <img src="img/banner_skyline_uncropped.jpg" /> #}
-            {# <img src="img/spring.jpg" /> #}
-            {# <img src="img/dhs.jpg" /> #}
-            {# <img src="img/rencen.jpg" /> #}
-            <img src="img/traffic.jpg" />
-            {# <img src="img/skyline.jpg" /> #}
-            {# <img src="img/buckeye.jpg" /> #}
+        <div id="frontpage_image" class="col-md-12">            
+            <img src="img/frontpage/{{random(frontpage_images)}}" />
         </div>
     </div>
 
