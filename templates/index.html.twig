@@ -10,13 +10,13 @@
 
     <style>
         #masthead {            
-            margin-top:240px;
+            margin-top:120px;
             background-color:rgba(241, 239, 229, 0.9);
             padding:20px;
         }
         .main_content {
             margin-top:10px;
-            background-color:white;
+            background-color:rgba(255, 255, 255, 0.9);
             padding:20px;
         }
         .main_content a {
@@ -27,13 +27,26 @@
             padding:10px;
         }
         .main_nav_button:hover {
-            background-color:rgba(241, 239, 229, .2);            
+            background-color:rgba(255, 204, 51, 0.7);
+        }
+        .featured {
+            text-align: center;
+            padding:20px;
+        }
+        .featured:hover {
+            background-color:rgba(255, 204, 51, 0.7);
         }
     </style>
 
     <div class="row" style="position:absolute;">
         <div class="col-md-12">
-            <img src="img/banner_skyline.jpg" />
+            {# <img src="img/banner_skyline_uncropped.jpg" /> #}
+            {# <img src="img/spring.jpg" /> #}
+            {# <img src="img/dhs.jpg" /> #}
+            {# <img src="img/rencen.jpg" /> #}
+            <img src="img/traffic.jpg" />
+            {# <img src="img/skyline.jpg" /> #}
+            {# <img src="img/buckeye.jpg" /> #}
         </div>
     </div>
 
@@ -42,7 +55,7 @@
         <div  class="row">
 
             <div id="masthead" class="col-md-6 main_content">
-                <h1 style="margin-top:10px; margin-bottom:10px;">Wayne State University Library<br>Digital Collections</h1>                
+                <h1 style="margin-top:10px; margin-bottom:10px;">Wayne State University Library<br>Digital Collections</h1>
             </div>
 
         </div>
@@ -52,28 +65,35 @@
             <div class="col-md-12 main_content">
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <a href="/search"><h4 class="main_nav_button">Search and Browse</h4></a>
-                        <a href="/collections"><h4 class="main_nav_button">All Collections</h4></a>
-                        <a href="/about"><h4 class="main_nav_button">About</h4></a>
-                        <a href="/contact"><h4 class="main_nav_button">Contact</h4></a>
+                    <div class="col-md-12">
+                        <p>Welcome!  The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p>
                     </div>
-                    <div class="col-md-9">                        
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Navigation</h2>
+                        <a href="/search"><h3 class="main_nav_button">Search and Browse</h3></a>
+                        <a href="/collections"><h3 class="main_nav_button">All Collections</h3></a>
+                        <a href="/about"><h3 class="main_nav_button">About</h3></a>
+                        <a href="/contact"><h3 class="main_nav_button">Contact</h3></a>
+                    </div>
+                    <div class="col-md-8">                        
                         <h2>Featured Collections</h2>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionvmc">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionvmc/preview"/>
                                     <p>Virtual Motor City</p>
                                 </a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionCFAI">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionCFAI/preview"/>
                                     <p>Changing Face of the Auto Industry</p>
                                 </a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionRamsey">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionRamsey/preview"/>
                                     <p>Eloise Ramsey Collection of Literature for Young People</p>
@@ -81,19 +101,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionDigDressColl">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDigDressColl/preview"/>
                                     <p>Digital Dress Collection</p>
                                 </a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionDSJ">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDSJ/preview"/>
                                     <p>The Detroit Sunday Journal</p>
                                 </a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 featured">
                                 <a href="/collection/wayne:collectionMOTprogram">
                                     <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionMOTprogram/preview"/>
                                     <p>Michigan Opera Theatre Archive Programs Collection</p>
