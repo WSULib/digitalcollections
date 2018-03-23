@@ -72,10 +72,8 @@ class APIRequest
         }
 
         // debug
-        $this->logger->debug("---------------- APIRequest firing: ----------------");
         $this->logger->debug($this->uri);
         $this->logger->debug(print_r($this->params,True));
-        $this->logger->debug("----------------------------------------------------");
         
         // send request to API
         $start = microtime(true);

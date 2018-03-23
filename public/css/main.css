@@ -6634,7 +6634,9 @@ html {
   min-height: 100%; }
 
 body {
-  margin: 0 0 55px; }
+  margin: 0 0 75px; 
+  background-color:rgba(255,255,255,0.1);
+}
 
 footer {
   position: absolute;
@@ -6643,7 +6645,8 @@ footer {
   bottom: 0;
   height: 55px;
   width: 100%; 
-  margin-top: 50px; }
+  margin-top: 30px; 
+}
 
 .toc-2-col li a {
   font-size: 0.9em; }

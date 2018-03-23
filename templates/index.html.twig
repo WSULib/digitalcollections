@@ -8,46 +8,121 @@
 
 {% block content %}
 
-    <div class="masthead cf masthead-overflowing">
-        <div class="slides-wrap">
-            <div class="slide photo" id="mh-slide-24956">
-              <img data-pm-sized="yes" src="img/vmc_banner.jpg" alt="Virtual Motor City"></div>
+    <style>
+        #frontpage_image {
+            max-height: 1024px;
+            overflow: hidden;
+        }
+        #masthead {            
+            margin-top:40px;
+            background-color:rgba(241, 239, 229, 0.9);
+            padding:20px;
+            border-radius:5px;
+        }
+        .main_content {
+            margin-top:40px;
+            background-color:rgba(255, 255, 255, 0.9);
+            padding:20px;
+            border-radius: 5px;
+        }        
+        .main_nav_button {
+            background-color:rgba(212, 204, 166, 0.9);
+            padding:10px;
+            border-radius: 5px;
+        }
+        .main_nav_button:hover {
+            background-color:rgba(255, 204, 51, 0.7);
+        }
+        .featured {
+            text-align: center;
+            padding:20px;
+        }
+        .featured:hover {
+            background-color:rgba(255, 204, 51, 0.7);
+        }
+    </style>
+
+    <div class="row" style="position:absolute;">
+        <div id="frontpage_image" class="col-md-12">            
+            <img src="img/frontpage/{{random(frontpage_images)}}" />
         </div>
     </div>
 
-    <div class="container feature">
-        <div class="col-sm-6 col-md-7">
-            <span class="featured-collection">Featured Collection</span>
-            <h3><a href="/item/wayne:collectionvmc">Virtual Motor City</a></h3>
-           <!-- button to view collection -->
-        </div>
-        <!-- <div class="col-sm-6 col-md-5">
-            <ul class="slider pull-right">
-                <li class="thumbs"><img src="img/masthead1.jpeg" alt=""></li>
-                <li class="thumbs"><img src="img/masthead2.jpeg" alt=""></li>
-                <li class="thumbs"><img src="img/masthead3.jpeg" alt=""></li>
-            </ul>
-        </div> -->
-    </div>
+    <div class="container">
 
-    <div class="container feature-bottom">
+        <div  class="row">
 
-        <div class="col-md-6">
-            <h2>Welcome to the WSULS Digital Collections!</h2>
-            <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p>
-
-            <h4><a href="/allcollections">Collections</a></h4>
-            <h4><a href="/search">Search and Browse</a></h4>
-            <h4><a href="/about">About</a></h4>
-            <h4><a href="/contact">Contact</a></h4>
-            
-            <!-- <h4>Most Recent News</h4> -->
-                    </div>
-        
-        <div class="col-md-6 featured-item">
-            <div class="featured-image">
-              <div style="max-width: 650px" class="wp-caption aligncenter"><a href="http://digital.library.wayne.edu/item/wayne:collectionVanRiperLetters"><img src="https://digital.library.wayne.edu/loris/fedora:wayne:collectionVanRiperLetters%7CCOLLECTIONART_PREVIEW/full/640,/0/default.jpg" width="640" height="320" /></a><p class="wp-caption-text">We are excited to release a new collection, the Van Riper Family Correspondence collection. This collection consists of 78 letters written between 1836-1889 to members of the Van Riper family of Wayne County, Michigan. The majority of the letters are between cousins, Alexander and Henry Van Riper, from the years surrounding the Civil War; others are written between various family members and friends. Click to see more!</p></div>
+            <div id="masthead" class="col-md-5 main_content">                
+                <h1 style="margin-top:10px; margin-bottom:10px;">Digital Collections<br>Wayne State University Libraries</h1>
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12 main_content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {# <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p> #}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2>Navigation</h2>
+                        <a href="/search"><h3 class="main_nav_button">Search and Browse</h3></a>
+                        <a href="/collections"><h3 class="main_nav_button">All Collections</h3></a>
+                        <a href="/about"><h3 class="main_nav_button">About</h3></a>
+                        <a href="/contact"><h3 class="main_nav_button">Contact</h3></a>
+                    </div>
+                    <div class="col-md-7">                        
+                        <h2>Featured Collections</h2>
+                        <div class="row">
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionvmc">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionvmc/preview"/>
+                                    <p>Virtual Motor City</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionCFAI">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionCFAI/preview"/>
+                                    <p>Changing Face of the Auto Industry</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionRamsey">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionRamsey/preview"/>
+                                    <p>Eloise Ramsey Collection of Literature for Young People</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionDigDressColl">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDigDressColl/preview"/>
+                                    <p>Digital Dress Collection</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionDSJ">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDSJ/preview"/>
+                                    <p>The Detroit Sunday Journal</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 featured">
+                                <a href="/collection/wayne:collectionMOTprogram">
+                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionMOTprogram/preview"/>
+                                    <p>Michigan Opera Theatre Archive Programs Collection</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>

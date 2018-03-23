@@ -6,6 +6,13 @@
 $app->get('/', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('/'));
     $args['data'] = json_decode($api->getBody(), true);
+
+    // scan frontpages directory
+    $dir = '../public/img/frontpage';
+    $frontpage_images = preg_grep('/^([^.|^..])/', scandir($dir));;
+    $this->logger->debug(print_r($frontpage_images,True));
+    $args['frontpage_images'] = $frontpage_images;
+
     return $this->view->render($response, "index.html.twig", $args);
 });
 
