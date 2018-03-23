@@ -215,7 +215,7 @@ class QueryBuilder
         $query_string = trim($query_string, "&");
         // remove repeating & from query string
         $repeating = preg_match_all('/&{2,}/', $query_string, $matches);
-        $this->logger->debug("Looking for repeating ampersands; found the following matches: ".print_r($matches, True));
+        // $this->logger->debug("Looking for repeating ampersands; found the following matches: ".print_r($matches, True));
         foreach ($matches[0] as $match) {
             $query_string = str_replace($match, "&", $query_string);
         }
