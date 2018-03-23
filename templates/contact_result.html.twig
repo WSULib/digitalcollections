@@ -7,11 +7,13 @@
 {% endblock %}
 
 {% block content %}
-    <div id="page">
+	<div id="page">
+    <div class="container">
 		<h1>Message Sent!</h1>
 		<p>To: {{result.to}}</p>
 		<p>From: {{result.from}}</p>
 		<p>Subject: {{result.subject}}</p>
 		<p>Message: {{result.msg}}</p>
+	</div>
 	</div>
 {% endblock %}
