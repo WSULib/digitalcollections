@@ -8,18 +8,30 @@
 
 {% block content %}
     
-	<div id="fullpage">
-		<div id="fullpage-title">
-			<h1>Collections</h1>
+	<div class="container">
+
+		<div class="row">
+			
+			<div class="col-md-12">
+				<h2>Collections</h2>
+				
+				<!-- loop through collections -->
+				{% for doc in data.response.solr_results.response.docs %}
+					<div class="row" style="margin-top:40px;">
+						<div class="col-md-3">
+							<a href="/item/{{doc.id}}"><img src="http://graham.digidev.library.wayne.edu/item/{{doc.id}}/preview"/></a>
+						</div>
+						<div class="col-md-9">
+							<a href="/item/{{doc.id}}"><h4>{{doc.dc_title.0}}</h4></a>
+							<p>{{doc.dc_description.0}}</p>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+
 		</div>
-		<div id="collections">
-			{% for doc in data.response.solr_results.response.docs %}
-				<div class="search-result">
-					<a class="search-result-imgwrap" href="/collection/{{ doc.id }}"><img src="/item/{{doc.id}}/loris/PREVIEW/full/500,/0/default.jpg"></a>
-					<a class="search-result-title" href="/collection/{{ doc.id }}">{{ doc.dc_title[0] }}</a>
-				</div>
-			{% endfor %}
-		</div>
+
 	</div>
 	
 {% endblock %}
