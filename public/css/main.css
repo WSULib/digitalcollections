@@ -594,8 +594,9 @@ pre {
     clear: both; }
 
 .row {
-  margin-left: -15px;
-  margin-right: -15px; }
+  /*margin-left: -15px;
+  margin-right: -15px; */
+}
   .row:before, .row:after {
     content: " ";
     /* 1 */
@@ -2772,16 +2773,18 @@ ul.toc-2-col {
 
 .facet-item a {
   display: inline-block;
-  margin: 0 5px 35px 0;
+  margin: 10px 5px 0px 0;
   padding: 5px 10px;
-  background: #f1efe5;
+  /*background: #f1efe5;*/
+  background: #ffffff;
   color: black;
   font-size: 13px;
   font-family: "Roboto Condensed";
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  letter-spacing: 1px; }
+  letter-spacing: 1px; 
+}
 
 li span.facet-toggle, .tree-toggler span {
   background-color: transparent;
