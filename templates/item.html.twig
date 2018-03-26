@@ -114,8 +114,8 @@
                 </div>
 
                 <!-- EPUB SECTION -->
-                {% if response.solr_doc.rels_hasEpub %}
-                    <br/><a href='/item/{{data.response.pid}}/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>
+                {% if data.response.solr_doc.rels_hasEpub %}
+                    <br/><a href='/item/{{data.response.pid}}/file/EPUB'><button class='original btn btn-block' style='display: block;background-color: lightgreen;'>Download eBook</button></a>
                 {% endif %}
 
             </ul>
@@ -149,10 +149,10 @@
                             <td>
                                 {% if data.response.solr_doc.human_hasContentModel %}
                                 {# Content Type #}
-                                {{ m.metadataField('Content Type', data.response.solr_doc.human_hasContentModel, 'content_type', true) }}
+                                {{ m.metadataField('Content Type', data.response.solr_doc.human_hasContentModel, 'human_hasContentModel', true) }}
                                 <!-- <a class="linebreak" href="/search?q=*&amp;start=0&amp;fq[]=rels_hasContentModel:&quot;info:fedora/CM:Collection&quot;">Collection</a> -->
                                 {% else %}
-                                {{ m.metadataField('Content Type', data.response.content_type, 'content_type', true) }}
+                                {{ m.metadataField('Content Type', data.response.content_type, 'human_hasContentModel', true) }}
                                 {% endif %}
                             </td>       
                         </tr>
@@ -198,107 +198,105 @@
                         </tr>
                         {% endif %}
 
-                        <!-- ######################## Archival Finding Aids ######################## -->
+                        <!-- ######################## Archival Collection Level Finding Aids Information ######################## -->
 
-                        {% for collection in data.response.member_of_collections.pids %}
-                        
+                       
                         <!-- acqusition -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_acquisition_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_acquisition_ms %}
+                        <tr>
                             <td>Acquisition:</td>       
                             <td>
-                                {{ m.metadataField('Acquisition', data.response.member_of_collections.metadata[collection].mods_note_acquisition_ms, 'mods_note_acquisition_ms', true) }}
+                                {{ m.metadataField('Acquisition', data.response.solr_doc.mods_note_acquisition_ms, 'mods_note_acquisition_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- processHist -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_processHist_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_processHist_ms %}
+                        <tr>
                             <td>Process History:</td>       
                             <td>
-                                {{ m.metadataField('Process History', data.response.member_of_collections.metadata[collection].mods_note_processHist_ms, 'mods_note_processHist_ms', true) }}
+                                {{ m.metadataField('Process History', data.response.solr_doc.mods_note_processHist_ms, 'mods_note_processHist_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- arrangement -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_arrangement_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_arrangement_ms %}
+                        <tr>
                             <td>Arrangement:</td>       
                             <td>
-                                {{ m.metadataField('Arrangement', data.response.member_of_collections.metadata[collection].mods_note_arrangement_ms, 'mods_note_arrangement_ms', true) }}
+                                {{ m.metadataField('Arrangement', data.response.solr_doc.mods_note_arrangement_ms, 'mods_note_arrangement_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- relatedMaterials -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_relatedMaterials_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_relatedMaterials_ms %}
+                        <tr>
                             <td>Related Materials:</td>     
                             <td>
-                                {{ m.metadataField('Related Materials', data.response.member_of_collections.metadata[collection].mods_note_relatedMaterials_ms, 'mods_note_relatedMaterials_ms', true) }}
+                                {{ m.metadataField('Related Materials', data.response.solr_doc.mods_note_relatedMaterials_ms, 'mods_note_relatedMaterials_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- preferredCitation -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_preferredCitation_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_preferredCitation_ms %}
+                        <tr>
                             <td>Preferred Citation:</td>        
                             <td>
-                                {{ m.metadataField('Preferred Citation', data.response.member_of_collections.metadata[collection].mods_note_preferredCitation_ms, 'mods_note_preferredCitation_ms', true) }}
+                                {{ m.metadataField('Preferred Citation', data.response.solr_doc.mods_note_preferredCitation_ms, 'mods_note_preferredCitation_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- scopeAndContent -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_scopeAndContent_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_scopeAndContent_ms %}
+                        <tr>
                             <td>Scope &amp; Content:</td>       
                             <td>
-                                {{ m.metadataField('Scope and Content', data.response.member_of_collections.metadata[collection].mods_note_scopeAndContent_ms, 'mods_note_scopeAndContent_ms', true) }}
+                                {{ m.metadataField('Scope and Content', data.response.solr_doc.mods_note_scopeAndContent_ms, 'mods_note_scopeAndContent_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- findingAid -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_findingAid_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_findingAid_ms %}
+                        <tr>
                             <td>Finding Aid:</td>       
                             <td>
-                                {{ m.metadataField('Finding Aid', data.response.member_of_collections.metadata[collection].mods_note_findingAid_ms, 'mods_note_findingAid_ms', true) }}
+                                {{ m.metadataField('Finding Aid', data.response.solr_doc.mods_note_findingAid_ms, 'mods_note_findingAid_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- transfers -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_transfers_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_transfers_ms %}
+                        <tr>
                             <td>Transfers:</td>     
                             <td>
-                                {{ m.metadataField('Transfers', data.response.member_of_collections.metadata[collection].mods_note_transfers_ms, 'mods_note_transfers_ms', true) }}
+                                {{ m.metadataField('Transfers', data.response.solr_doc.mods_note_transfers_ms, 'mods_note_transfers_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- history -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_history_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_history_ms %}
+                        <tr>
                             <td>History:</td>       
                             <td>
-                                {{ m.metadataField('History', data.response.member_of_collections.metadata[collection].mods_note_history_ms, 'mods_note_history_ms', true) }}
+                                {{ m.metadataField('History', data.response.solr_doc.mods_note_history_ms, 'mods_note_history_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
 
                         <!-- dateStatement -->
-                        {% if data.response.member_of_collections.metadata[collection].mods_note_dateStatement_ms %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_dateStatement_ms %}
+                        <tr>
                             <td>Date Statement:</td>        
                             <td>
-                                {{ m.metadataField('Date Statement', data.response.member_of_collections.metadata[collection].mods_note_dateStatement_ms, 'mods_note_dateStatement_ms', true) }}
-                                ?
+                                {{ m.metadataField('Date Statement', data.response.solr_doc.mods_note_dateStatement_ms, 'mods_note_dateStatement_ms', false) }}
                             </td>       
                         </tr>
                         {% endif %}
@@ -306,81 +304,102 @@
                         <!-- ######################## / Archival Finding Aids ######################## -->
 
                         <!--Coverage-->
-                        {% if data.response.member_of_collections.metadata[collection].dc_coverage %}
+                        {% if data.response.solr_doc.dc_coverage %}
                         <tr>
                             <td>Coverage:</td>
                             <td>
-                                {{ m.metadataField('Coverage', data.response.member_of_collections.metadata[collection].dc_coverage, 'dc_coverage', true) }}
+                                {{ m.metadataField('Coverage', data.response.solr_doc.dc_coverage, 'dc_coverage', true) }}
                             </td>
                         </tr>
                         {% endif %}
 
                         <!--Creator-->
-                        {% if data.response.member_of_collections.metadata[collection].mods_name_creator_ms %}
+                        {% if data.response.solr_doc.mods_name_creator_ms %}
                         <tr>
                             <td>Creator:</td>
                             <td>
-                                {{ m.metadataField('Creator', data.response.member_of_collections.metadata[collection].mods_name_creator_ms, 'mods_name_creator_ms', true) }}
+                                {{ m.metadataField('Creator', data.response.solr_doc.mods_name_creator_ms, 'mods_name_creator_ms', true) }}
                             </td>
                         </tr>
                         {% endif %}
 
                         <!--MODS Resource Type-->
-                        {% if data.response.member_of_collections.metadata[collection].mods_resource_type_ms %}
+                        {% if data.response.solr_doc.mods_resource_type_ms %}
                         <tr>
                             <td>Resource Type:</td>
                             <td>
-                                {{ m.metadataField('Resource Type', data.response.member_of_collections.metadata[collection].mods_resource_type_ms, 'mods_resource_type_ms', false) }}
+                                {{ m.metadataField('Resource Type', data.response.solr_doc.mods_resource_type_ms, 'mods_resource_type_ms', false) }}
                            </td>
                         </tr>
                         {% endif %}
 
                            <!--Publisher-->
-                           {% if data.response.member_of_collections.metadata[collection].dc_publisher %}
-                        <tr style="display: none;">
+                           {% if data.response.solr_doc.dc_publisher %}
+                        <tr>
                             <td>Publisher:</td>
                             <td>
-                                {{ m.metadataField('Publisher', data.response.member_of_collections.metadata[collection].dc_publisher, 'dc_publisher', true) }}
+                                {{ m.metadataField('Publisher', data.response.solr_doc.dc_publisher, 'dc_publisher', true) }}
                             </td>
                         </tr>
                         {% endif %}
 
                         <!--Source-->
-                        {% if data.response.member_of_collections.metadata[collection].dc_source %}
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.dc_source %}
+                        <tr>
                             <td>Source:</td>
                             <td>
-                                {{ m.metadataField('Source', data.response.member_of_collections.metadata[collection].dc_source, 'dc_source', true) }}
+                                {{ m.metadataField('Source', data.response.solr_doc.dc_source, 'dc_source', true) }}
                             </td>
                         </tr>
                         {% endif %}
 
-                         <!--Rights-->
-                        {% if data.response.member_of_collections.metadata[collection].mods_accessCondition_ms %}
-                            <tr>
-                                <td>Rights:</td>
-                                <td>
 
-                                 <!-- Rights specific to the Digital Object trump collection object rights
-                                This is reflected in logic below. -->
+                        <!-- This is provides a bit of logic to juggle between Collection and other item level objects -->
+                        {% if data.response.member_of_collections.pids %}
+                            {% for collection in data.response.member_of_collections.pids %}
+                             <!--Rights-->
+                                    <tr>
+                                        <td>Rights:</td>
+                                        <td>
 
-                                <!-- Object Rights -->      
-                                <strong>Digital Objects Rights:</strong><br>
+                                         <!-- Rights specific to the Digital Object trump collection object rights
+                                        This is reflected in logic below. -->
 
-                                {{ m.metadataField('Rights', data.response.solr_doc.dc_rights, 'dc_rights', false) }}
+                                {% if data.response.member_of_collections.metadata[collection].dc_rights %}
+                                        <!-- Object Rights -->      
+                                        <strong>Digital Objects Rights:</strong><br>
 
-                                <!-- Collection Rights -->
+                                        {{ m.metadataField('Rights', data.response.member_of_collections.metadata[collection].dc_rights, 'dc_rights', false) }}
 
-                                </td>
-                            </tr>
+                                        <!-- Collection Rights -->
 
+                                {% else %}
+                                        <strong>Rights from collection, <a href="/item/{{ collection }}">"{{ data.response.member_of_collections.metadata[collection].dc_title[0] }}"</a></strong><br>
+                                        {{ m.metadataField('Rights', data.response.member_of_collections.metadata[collection].mods_accessCondition_ms, 'mods_accessCondition_ms', false) }}
+                                {% endif %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
                         {% else %}
-                            {{data.response.solr_doc.dc_rights}}
+                           {% if data.response.solr_doc.dc_rights %}
+                                <tr>
+                                    <td>Rights:</td>
+                                    <td>
 
+                                     <!-- Rights specific to the Digital Object trump collection object rights
+                                    This is reflected in logic below. -->
+
+                                    <!-- Object Rights -->      
+                                    <strong>Digital Objects Rights:</strong><br>
+
+                                    {{ m.metadataField('Rights', data.response.solr_doc.dc_rights, 'dc_rights', false) }}
+
+                                    <!-- Collection Rights -->
+
+                                    </td>
+                                </tr>
+                            {% endif %}
                         {% endif %}
-
-
-                        {% endfor %}
 
 
                         <!-- Credit Line Note -->
@@ -394,7 +413,7 @@
                         {% endif %}
                         
                         <!--Components-->
-                        <tr style="display: none;">
+                        <tr style="display:none;">
                             <td>Components:</td>
                             <td>
                             </td>
@@ -411,26 +430,34 @@
                         {% endif %}
 
                         <!--Fulltext Datastreams-->
-                        <tr style="display: none;">
+                        <tr style="display:none;">
                             <td>Fulltext(s):</td>
                             <td>
                             </td>
                         </tr>
 
                         <!--Transcripts -->
-                        <tr style="display: none;">
+                        {% if data.response.solr_doc.mods_note_transcription_ms %}
+                        <tr>
                             <td>Transcription:</td>
                             <td>
+                            {{ m.metadataField('Transcription', data.response.solr_doc.mods_note_transcription_ms, 'transcript', false) }}
+                            <strong>{{ m.metadataField('About Transcription', data.response.solr_doc.mods_note_about_transcription_ms, 'transcript_about', false) }}</strong>
                             </td>
                         </tr>
+                        {% endif %}
 
                         <!--Hierarchical Container-->
-                        <tr style="display: none;">
+                        {% for parent in data.response.content_type_specific.object_hierarchy.ancestors %}
+                        {% if parent.level == 1 %}
+                        <tr>
                             <td>Container:</td>
                             <td>
-
+                                <a href="/item/{{ parent.pid }}">{{ parent.title }}</a>
                             </td>
                         </tr>
+                        {% endif %}
+                        {% endfor %}
 
                         <!--Related Objects-->
                         
