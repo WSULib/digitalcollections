@@ -135,7 +135,7 @@
 		    </div>
 	    </div> <!-- /facets -->
 
-	    <div class="col-md-9" style="margin-bottom:10px;">
+	    <div id="results" class="col-md-9" style="margin-bottom:10px;">
 
 	    	<div id="results_header" class="row row-fluid filtered-by refined-by" style="background-color: #ffdb744d; padding-top: 20px; margin-bottom: 20px;">
 
@@ -177,14 +177,6 @@
 
 			</div>
 	    	
-	    	{# <div class="row row-fluid filtered-by refined-by">
-	        	<div class="col-md-12" style="padding-left:0px;">
-			    	{% for fq in search_params.fq %}
-			    		<span class="facet-item"><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string)}}"><i class="icon-delete"></i> <span class="facet_name">{{ facet_map[fq|split(":")[0]] }}</span>: {{ fq|split(":")|slice(1,3)|join(":") }}</a></span>
-			        {% endfor %}
-		        </div>
-	        </div> #}
-
 	        <!-- results -->
 	        <div class="row">
 	        	<div class="col-md-12" style="padding-left:0px;">
@@ -324,17 +316,9 @@
 
 	function toggleFacets(){	
 
-
 		$("#facets_container").toggle();
-
-		if (($(".main-container").width() / $(".main-container").parent().width() * 100) < 75){		
-			$(".main-container").css('width','100%');
-			facetLayoutRefresh();
-		}
-		else {		
-			$(".main-container").css('width','70%');
-			facetLayoutRefresh();
-		}	
+		$("#results").toggleClass('col-md-9').toggleClass('col-md-12');
+		facetLayoutRefresh();
 	}
 
 	function facetLayoutRefresh(){
