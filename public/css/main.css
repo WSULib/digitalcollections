@@ -872,7 +872,7 @@ pre {
     margin-left: 91.66667%; } }
 @media (min-width: 992px) {
   .container {
-    max-width: 970px; }
+    max-width: 90%; }
 
   .col-md-1,
   .col-md-2,
@@ -1034,7 +1034,8 @@ pre {
 @media (min-width: 1200px) { 
 
   .container {
-    max-width: 1170px; }
+    max-width:90%;   
+  }
 
   .col-lg-1,
   .col-lg-2,
@@ -1194,8 +1195,7 @@ pre {
     margin-left: 91.66667%; } }
 @media (min-width: 1600px) {
   .container {
-    max-width: 90%;
-    /*max-width: 1920px; */
+    max-width: 90%;    
   }
 
   .col-xlg-1,
@@ -2732,11 +2732,12 @@ ul.toc-2-col {
       border-bottom: 1px solid #ddd; } }
 
 .facets {
-  width: 30%;
-  float: left;
+  /*width: 30%;*/
+  /*float: left;*/
   position: relative;
   margin: 0;
-  padding: 0 30px 0 0; }
+  /*padding: 0 30px 0 0;*/
+}
   .facets .filter {
     list-style: none;
     padding: 0;
@@ -2827,10 +2828,11 @@ img {
   max-width: 100%; }
 
 .main-container {
-  width: 70%;
-  float: left;
+  /*width: 70%;*/
+  /*float: left;*/
   position: relative;
-  padding: 0 0 0 15px; }
+  /*padding: 0 0 0 15px; */
+}
 
 #serial-nav {
   width: 30%;
