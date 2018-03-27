@@ -77,14 +77,23 @@
 
 	    	<div id="facet_modal" class="row" style="display:none;">
 	    		<div class="col-md-12">
-	    			<table class="table">
+	    			<table id="facet_modal_table" class="table">
 	    				<thead>
 	    					<tr>
 	    						<th>Facet Value</th>
 	    						<th>Facet Count</th>
     						</tr>
 						</thead>
-						<tbody></tbody>
+						<tbody>
+							<tr>
+								<td>Georgia</td>
+								<td>42</td>
+							</tr>
+							<tr>
+								<td>Arkansas</td>
+								<td>44</td>
+							</tr>
+						</tbody>
     				</table>
     			</div>
 			</div>
@@ -321,6 +330,19 @@
 
 			// add facet_id as attr, in case return to immediately, don't reload data		
 			$("#facet_modal").attr('current_facet_id',facet_id);
+
+			// build and prep table
+		    $('#facet_modal_table').DataTable({
+		    	ajax: {
+					url: 'http://graham.digidev.library.wayne.edu/api/search?facet.limit=-1',
+					dataSrc: 'response.solr_results.facet_counts.facet_fields.' + facet_id,					
+				},
+				columns: [
+					{data: 0},
+					{data: 1}
+				],
+				order: [[1,'desc']]
+	    	});
 
 		}
 
