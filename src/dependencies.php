@@ -33,14 +33,14 @@ $container['view'] = function ($c) {
     $view->getEnvironment()->addGlobal('QueryBuilder', $c['QueryBuilder']);
 
     // QueryBuilder->del_param_from_query_string()
-    $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string) {
-        return $QueryBuilder->del_param_from_query_string($param, $query_string);
+    $function = new Twig_SimpleFunction('del_param_from_query_string', function ($QueryBuilder, $param, $query_string, $remove_start_param) {
+        return $QueryBuilder->del_param_from_query_string($param, $query_string, $remove_start_param);
     });
     $view->getEnvironment()->addFunction($function);
 
     // QueryBuilder->add_param_to_query_string()
-    $function = new Twig_SimpleFunction('add_param_to_query_string', function ($QueryBuilder, $param, $query_string) {
-        return $QueryBuilder->add_param_to_query_string($param, $query_string);
+    $function = new Twig_SimpleFunction('add_param_to_query_string', function ($QueryBuilder, $param, $query_string, $remove_start_param) {
+        return $QueryBuilder->add_param_to_query_string($param, $query_string, $remove_start_param);
     });
     $view->getEnvironment()->addFunction($function);
 

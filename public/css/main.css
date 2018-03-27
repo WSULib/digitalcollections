@@ -2938,13 +2938,13 @@ li:last-child.object-container-list {
   border: none; }
 
 .object-container-list {
-  min-height: 175px;
+  min-height: 235px;
   width: 100%; }
   .object-container-list .crop {
     overflow: hidden;
     float: right;
     width: 185px;
-    height: 130px;
+    height: 200px;
     margin-left: 40px; }
   .object-container-list img {
     max-height: 100%;

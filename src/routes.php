@@ -33,9 +33,7 @@ $app->get('/search', function ($request, $response, $args) {
     }
 
     $args['query_string'] = $request->getUri()->getQuery();
-    $this->logger->debug("----------------- SEARCH ARGS ----------------");
     $this->logger->debug(print_r($args['search_params'],True));
-    $this->logger->debug("----------------- SEARCH ARGS ----------------");
     $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
     return $this->view->render($response, 'search.html.twig', $args);

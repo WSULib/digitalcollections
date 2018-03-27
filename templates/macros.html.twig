@@ -33,18 +33,18 @@
 {# Facet Builder #}
 {% macro facetBuilder(action, facet, facet_value, facet_count, show_count, query_string) %}
 	{% if action == "add" %}
-		<a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}">{{facet_value}}{% if show_count %} ({{facet_count|number_format}}){% endif %}</a>
+		<a href="{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string, true)}}">{{facet_value}}{% if show_count %} ({{facet_count|number_format}}){% endif %}</a>
 	{% elseif action == "del" %}
-		<a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}">{{facet_value}}{% if show_count %} ({{facet_count|number_format}}){% endif %}</a>
+		<a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string, true)}}">{{facet_value}}{% if show_count %} ({{facet_count|number_format}}){% endif %}</a>
 	{% endif %}
 {% endmacro %}
 
 {# Facet Link Builder #}
 {% macro facetLinkBuilder(action, facet, facet_value, query_string) %}
 	{% if action == "add" %}
-		{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}
+		{{path_for('search') ~ "?" ~ add_param_to_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string, true)}}
 	{% elseif action == "del" %}
-		{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string)}}
+		{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, facet ~ ":" ~ facet_value, query_string, true)}}
 	{% endif %}
 {% endmacro %}
 
