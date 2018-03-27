@@ -11,6 +11,8 @@
 
 {% block content %}
 
+
+
 <div class="container cached">
 
 	<div class="row">
@@ -45,187 +47,140 @@
 		        </ul>
 
 		        <!-- ContentModel -->
-		        <ul class="facet_container filter" id="rels_hasContentModel_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Content Type ({{data.response.solr_results.facet_counts.facet_fields.human_hasContentModel|length}})</h3>
-			        	<ul class="tree facet_list" id="rels_hasContentModel_list">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.human_hasContentModel %}
-				        		<li>{{m.facetBuilder("add", "human_hasContentModel", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Content-Type', 'human_hasContentModel') }}
 
-			    <!-- ContentModel -->
-		        <ul class="facet_container filter" id="rels_isMemberOfCollection_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-minus-thin"></span>Collection ({{data.response.solr_results.facet_counts.facet_fields.human_isMemberOfCollection|length}})</h3>
-			        	<ul class="tree facet_list" id="rels_isMemberOfCollection_list">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.human_isMemberOfCollection %}
-				        		<li>{{m.facetBuilder("add", "human_isMemberOfCollection", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    <!-- Collection -->
+			    {{ m.facetBlockBuilder(data, 'Collection', 'human_isMemberOfCollection') }}
 
 			    <!-- MODS Year -->
-		        <ul class="facet_container filter" id="facet_mods_year_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Date ({{data.response.solr_results.facet_counts.facet_fields.facet_mods_year|length}})</h3>
-			        	<ul class="tree facet_list" id="facet_mods_year_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.facet_mods_year %}
-				        		<li>{{m.facetBuilder("add", "facet_mods_year", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Date', 'facet_mods_year') }}
 
 			    <!-- DC Subject -->
-		        <ul class="facet_container filter" id="dc_subject_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Subject ({{data.response.solr_results.facet_counts.facet_fields.dc_subject|length}})</h3>
-			        	<ul class="tree facet_list" id="dc_subject_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_subject %}
-				        		<li>{{m.facetBuilder("add", "dc_subject", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Subject', 'dc_subject') }}
 
 			    <!-- Creator -->
-		        <ul class="facet_container filter" id="dc_creator_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Creator ({{data.response.solr_results.facet_counts.facet_fields.dc_creator|length}})</h3>
-			        	<ul class="tree facet_list" id="dc_creator_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_creator %}
-				        		<li>{{m.facetBuilder("add", "dc_creator", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Creator', 'dc_creator') }}
 
 			    <!-- Coverage -->
-		        <ul class="facet_container filter" id="dc_coverage_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Coverage ({{data.response.solr_results.facet_counts.facet_fields.dc_coverage|length}})</h3>
-			        	<ul class="tree facet_list" id="dc_coverage_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_coverage %}
-				        		<li>{{m.facetBuilder("add", "dc_coverage", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Coverage', 'dc_coverage') }}
 
 			    <!-- Language -->
-		        <ul class="facet_container filter" id="dc_language_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Language ({{data.response.solr_results.facet_counts.facet_fields.dc_language|length}})</h3>
-			        	<ul class="tree facet_list" id="dc_language_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_language %}
-				        		<li>{{m.facetBuilder("add", "dc_language", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Language', 'dc_language') }}
 
 			    <!-- Publisher -->
-		        <ul class="facet_container filter" id="dc_publisher_facet"><li>
-		        	<h3 class="tree-toggler"><span class="icon-plus-thin"></span>Publisher ({{data.response.solr_results.facet_counts.facet_fields.dc_publisher|length}})</h3>
-			        	<ul class="tree facet_list" id="dc_publisher_list" style="display:none;">
-			        		{% for facet_value in data.response.solr_results.facet_counts.facet_fields.dc_publisher %}
-				        		<li>{{m.facetBuilder("add", "dc_publisher", facet_value[0], facet_value[1], true, query_string)}}</li>
-			        		{% endfor %}
-			        	</ul>
-			        </li>
-			    </ul>
+			    {{ m.facetBlockBuilder(data, 'Publisher', 'dc_publisher') }}
 		        
 		    </div>
 	    </div> <!-- /facets -->
 
 	    <div id="results" class="col-md-9" style="margin-bottom:10px;">
 
-	    	<div id="results_header" class="row row-fluid filtered-by refined-by" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 20px; margin-bottom: 20px;">
-
-	    		<div class="row">
-
-		    		<div class="col-md-4">
-		    			<h2 style="margin-top:0px;"><span style="font-weight:bold;" id='num_results'>{{ data.response.solr_results.response.numFound|number_format }}</span> Results</h2>
-	    			</div>
-
-	    			<div class="col-md-8" style="float:right; text-align:right;">
-						<span style="font-weight:bold; display:inline-block;">Results per Page</span>
-				    	<div style="display:inline-block; padding-right:10px;" class="form-group">
-				    		<select id="results_per_page" class="resPerPage form-control" name="results_per_page">
-				    			{# <label for="results_per_page">Results per Page</label> #}
-				        		<option {% if search_params.rows == 10 %}selected{% endif %} value=10>10</option>
-				        		<option {% if search_params.rows == 20 %}selected{% endif %} value=20>20</option>
-				        		<option {% if search_params.rows == 50 %}selected{% endif %} value=50>50</option>
-				        		<option {% if search_params.rows == 100 %}selected{% endif %} value=100>100</option>
-				    		</select>
-						</div>
-						<span style="font-weight:bold; display:inline-block; padding-right:10px;">Layout</span>
-						<a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'list', query_string)}}">List <i class="icon-list4"></i></a> | <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'grid', query_string)}}">Grid <i class="icon-layout"></i></a> | <a href="#" onclick="toggleFacets(); return false;">Facets <i class="icon-eye"></i></a>
-
-					</div>
-
-				</div>				
-
-				{% if search_params.fq|length > 0 %}
-				<div class="row">
-					<div class="col-md-12" style="margin-bottom:20px;">
-						<h5 style="margin-top:0px; margin-bottom:0px;">Refined by:</h5>
-						{% for fq in search_params.fq %}
-				    		<span class="facet-item"><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string, true)}}"><i class="icon-delete"></i> <span class="facet_name">{{ facet_map[fq|split(":")[0]] }}</span>: {{ fq|split(":")|slice(1,3)|join(":") }}</a></span>
-				        {% endfor %}
-			        </div>
-		        </div>
-		        {% endif %}
-
-
+	    	<div id="facet_modal" class="row" style="display:none;">
+	    		<div class="col-md-12">
+	    			<table class="table">
+	    				<thead>
+	    					<tr>
+	    						<th>Facet Value</th>
+	    						<th>Facet Count</th>
+    						</tr>
+						</thead>
+						<tbody></tbody>
+    				</table>
+    			</div>
 			</div>
-	    	
-	        <!-- results -->
-	        <div class="row">
-	        	<div class="col-md-12" style="padding-left:0px;">
-			        <ul class="row-fluid objects-container" id="results_container">
 
-			        	<!-- list -->
-			        	{% if search_params.layout == 'list' %}
-			        		{% for doc in data.response.solr_results.response.docs %}
-				        	<li class="obj-cnt object-container-list">
-							    <div class="crop">
-							        <a href="/item/{{doc.id}}">
-					                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
-							        </a>
-							    </div>
-							    <h3>
-							        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
-							    </h3>
-							    <!-- what is this reserved for? -->
-							    <h4></h4>
-							    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
-							</li>
-							{% endfor %}
-						{% endif %}
+			<div id="non_modal">
 
-						<!-- grid -->
-						{% if search_params.layout == 'grid' %}
-							{% for doc in data.response.solr_results.response.docs %}
-								<div class='tile'>
-									<a href="/item/{{doc.id}}">		
-										<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
-										<div class="info">
-											<p>{{doc.dc_title[0]}}</p>						
-										</div>
-									</a>
-								</div>
-							{% endfor %}
-						{% endif %}
+		    	<div id="results_header" class="row row-fluid filtered-by refined-by" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px;">
 
-						<!-- facets -->
-						{% if search_params.hide_facets == 'true' %}
-							<script>
-								$(document).ready(function(){
-									toggleFacets();
-								});
-							</script>
-						{% endif %}
+		    		<div class="row">
 
-		        	</ul>
+			    		<div class="col-md-4">
+			    			<h2 style="margin-top:0px;"><span style="font-weight:bold;" id='num_results'>{{ data.response.solr_results.response.numFound|number_format }}</span> Results</h2>
+		    			</div>
+
+		    			<div class="col-md-8" style="float:right; text-align:right;">
+							<span style="font-weight:bold; display:inline-block;">Results per Page</span>
+					    	<div style="display:inline-block; padding-right:10px;" class="form-group">
+					    		<select id="results_per_page" class="resPerPage form-control" name="results_per_page">
+					    			{# <label for="results_per_page">Results per Page</label> #}
+					        		<option {% if search_params.rows == 10 %}selected{% endif %} value=10>10</option>
+					        		<option {% if search_params.rows == 20 %}selected{% endif %} value=20>20</option>
+					        		<option {% if search_params.rows == 50 %}selected{% endif %} value=50>50</option>
+					        		<option {% if search_params.rows == 100 %}selected{% endif %} value=100>100</option>
+					    		</select>
+							</div>
+							<span style="font-weight:bold; display:inline-block; padding-right:10px;">Layout</span> <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'list', query_string)}}">List <i class="icon-list4"></i></a> | <a href="{{path_for('search') ~ "?" ~ set_layout_param(QueryBuilder, 'grid', query_string)}}">Grid <i class="icon-layout"></i></a> | <a href="#" onclick="toggleFacets(); return false;">Facets <i class="icon-eye"></i></a>
+
+						</div>
+
+					</div>				
+
+					{% if search_params.fq|length > 0 %}
+					<div class="row">
+						<div class="col-md-12" style="margin-bottom:20px;">
+							<h5 style="margin-top:0px; margin-bottom:0px;">Refined by:</h5>
+							{% for fq in search_params.fq %}
+					    		<span class="facet-item"><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string, true)}}"><i class="icon-delete"></i> <span class="facet_name">{{ facet_map[fq|split(":")[0]] }}</span>: {{ fq|split(":")|slice(1,3)|join(":") }}</a></span>
+					        {% endfor %}
+				        </div>
+			        </div>
+			        {% endif %}
+
+
 				</div>
+		    	
+		        <!-- results -->
+		        <div class="row">
+		        	<div class="col-md-12" style="padding-left:0px;">
+				        <ul class="row-fluid objects-container" id="results_container">
+
+				        	<!-- list -->
+				        	{% if search_params.layout == 'list' %}
+				        		{% for doc in data.response.solr_results.response.docs %}
+					        	<li class="obj-cnt object-container-list">
+								    <div class="crop">
+								        <a href="/item/{{doc.id}}">
+						                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+								        </a>
+								    </div>
+								    <h3>
+								        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
+								    </h3>
+								    <!-- what is this reserved for? -->
+								    <h4></h4>
+								    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
+								</li>
+								{% endfor %}
+							{% endif %}
+
+							<!-- grid -->
+							{% if search_params.layout == 'grid' %}
+								{% for doc in data.response.solr_results.response.docs %}
+									<div class='tile'>
+										<a href="/item/{{doc.id}}">		
+											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
+											<div class="info">
+												<p>{{doc.dc_title[0]}}</p>						
+											</div>
+										</a>
+									</div>
+								{% endfor %}
+							{% endif %}
+
+							<!-- facets -->
+							{% if search_params.hide_facets == 'true' %}
+								<script>
+									$(document).ready(function(){
+										toggleFacets();
+									});
+								</script>
+							{% endif %}
+
+			        	</ul>
+					</div>
+				</div>
+
 			</div>
 
 		</div> <!-- close right side -->
@@ -315,7 +270,6 @@
 	$(document).ready(function(){
 		
 		var facet_check = getUrlParameter('facets');
-		console.log(facet_check);
 
 		if (facet_check == 'true') {
 			toggleFacets();
@@ -353,7 +307,53 @@
 	    }
 	};
 
+	/////////////////////////////////////////////////////
+	// select facets
+	/////////////////////////////////////////////////////
+	function facet_select(facet_id){
+		
+		console.log('opening facet party for:',facet_id);
+
+		// if not already set, prep and build table
+		if (!$("#facet_modal").attr('current_facet_id') || $("#facet_modal").attr('current_facet_id') != facet_id ){
+
+			console.log('current_facet_id either not set, or does not equal current request - creating table');
+
+			// add facet_id as attr, in case return to immediately, don't reload data		
+			$("#facet_modal").attr('current_facet_id',facet_id);
+
+		}
+
+		// after table built, or if returning to pre-built table, show
+		$("#non_modal").toggle();
+		$("#facet_modal").toggle();
+
+	}
+
 </script>
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

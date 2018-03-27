@@ -48,6 +48,21 @@
 	{% endif %}
 {% endmacro %}
 
+{# Facet sideblock #}
+{% macro facetBlockBuilder(data, facet_name, facet_id) %}
+	{% import _self as m %}
+	<ul class="facet_container filter" id="{{ facet_id }}_facet"><li>
+		<h3 class="tree-toggler"><span class="icon-minus-thin"></span>{{ facet_name }}</h3>
+	    	<ul class="tree facet_list" id="{{ facet_id }}_list">
+	    		{% for facet_value in data.response.solr_results.facet_counts.facet_fields[facet_id] %}
+	        		<li>{{m.facetBuilder("add", facet_id, facet_value[0], facet_value[1], true, query_string)}}</li>
+	    		{% endfor %}
+    			<li><a style="font-weight:bold;" href="#" onclick="facet_select('{{facet_id}}'); return false;">More >></a></li>
+	    	</ul>
+	    </li>
+	</ul>
+{% endmacro %}
+
 {# Secondary Images -- if any #}
 {% macro secondaryImages(data) %}
 	{% for img in data.response.content_type_specific[0].imageParts.sorted %}
@@ -159,3 +174,5 @@
 {# MLA Citation #}
 
 {# APA Citation #}
+
+
