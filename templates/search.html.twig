@@ -81,7 +81,7 @@
 	    			<!-- facets modal -->
 	    			<div class="row" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px;">
 	    				<div class="col-md-12">
-	    					<h2>Refine by Facet</h2>
+	    					<h2>Refine by: <span id="facet_label" style="font-weight:bold;"></span></h2>
     					</div>
     					<div class="col-md-12">
 			    			<table id="facet_modal_table" class="table stripe">
@@ -95,7 +95,7 @@
 		    				</table>
 	    				</div>
 	    				<div class="col-md-12">
-		    				<p><button type="btn" class="btn btn-sm" style="border: 1px solid #8c8c8c;" onclick="facet_select(null, true); return false;">Cancel</button></p>	    				
+		    				<p><button type="btn" class="btn btn-sm" style="border: 1px solid #8c8c8c;" onclick="facet_select(null, null, true); return false;">Cancel</button></p>	    				
 	    				</div>
 	    			</div>
     			</div>
@@ -335,7 +335,7 @@
 	/////////////////////////////////////////////////////
 	// select facets
 	/////////////////////////////////////////////////////
-	function facet_select(facet_id, close_facet_sel=false, toggle_view=true){
+	function facet_select(facet_id, facet_name, close_facet_sel=false, toggle_view=true){
 
 		if (close_facet_sel != true ){
 
@@ -351,6 +351,9 @@
 				
 				// add facet_id as attr, in case return to immediately, don't reload data
 				$("#facet_modal").attr('current_facet_id',facet_id);
+
+				// update facet label
+				$("#facet_label").html(facet_name);
 
 				// build and prep table
 				facet_query_url = '/api/search?{{ query_string|raw }}&facet.limit=-1&facet.field=' + facet_id;
