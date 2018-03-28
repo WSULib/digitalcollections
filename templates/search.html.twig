@@ -126,12 +126,24 @@
 
 						</div>
 
+						{% if search_params.q != '' %}
+							{% if search_params.field_skip_escape %}
+								<div class="col-md-12">
+									<p><strong>Boolean Searching:</strong> <span style="font-style:italic;">{{search_params.q|raw}}</span></p>
+								</div>
+							{% else %}
+								<div class="col-md-12">
+									<p><strong>Searching:</strong> <span style="font-style:italic;">{{search_params.q|raw}}</span></p>
+								</div>
+							{% endif %}
+						{% endif %}
+
 					</div>				
 
 					{% if search_params.fq|length > 0 %}
 					<div class="row">
 						<div class="col-md-12" style="margin-bottom:20px;">
-							<h5 style="margin-top:0px; margin-bottom:0px;">Refined by:</h5>
+							<p style="margin-top:0px; margin-bottom:0px;"><strong>Refined by:</strong></p>
 							{% for fq in search_params.fq %}
 					    		<span class="facet-item"><a href="{{path_for('search') ~ "?" ~ del_param_from_query_string(QueryBuilder, fq, query_string, true)}}"><i class="icon-delete"></i> <span class="facet_name">{{ facet_map[fq|split(":")[0]] }}</span>: {{ fq|split(":")|slice(1,3)|join(":") }}</a></span>
 					        {% endfor %}

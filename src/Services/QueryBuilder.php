@@ -186,7 +186,7 @@ class QueryBuilder
             $query_string = preg_replace('/start=[0-9]+/i', '', $query_string);
         }
 
-        $this->logger->debug("Looking for: ".urlencode($param)." in ".$query_string);
+        $this->logger->debug("Looking for: ".urlencode($param)." in ".$query_string);        
         $new_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
         return $this->query_string_cleaner($new_query_string);
     }
