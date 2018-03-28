@@ -342,22 +342,25 @@
 				$("#facet_modal").attr('current_facet_id',facet_id);
 
 				// build and prep table
+				facet_query_url = '/api/search?{{ query_string|raw }}&facet.limit=-1&facet.field=' + facet_id;
+				console.log(facet_query_url);
 			    $('#facet_modal_table').DataTable({
 			    	"ajax": {
-						"url": 'http://graham.digidev.library.wayne.edu/api/search?facet.limit=-1&facet.field=' + facet_id,
+						"url": facet_query_url,
 						"dataSrc": 'response.solr_results.facet_counts.facet_fields.' + facet_id,					
 					},
 					"columns": [
 						{
 							"data": 0,
 							"render": function ( data, type, row, meta ) {
-								return '<a href="#">'+ data +'</a>';
+								return add_facet(facet_id, data);
 							}
 						},
 						{
 							"data": 1,
 							"render": function ( data, type, row, meta ) {
-								return '<a href="#">'+ data +'</a>';
+								// return add_facet(facet_id, data);
+								return data
 							}
 						}
 					],
@@ -378,6 +381,17 @@
 		// always scroll to top
 		$("html").scrollTop(0);
 		
+	}
+
+	function add_facet(facet_id, facet_value){		
+
+		// build new URL
+		new_url = '/search?{{query_string|raw}}'+'&fq%5B%5D='+facet_id+'%3A'+encodeURIComponent(facet_value).replace(/%20/g, '+');
+		// console.log(new_url);
+
+		// return
+		return '<a href="'+ new_url +'">'+ facet_value +'</a>';
+
 	}
 
 </script>
