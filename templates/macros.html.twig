@@ -51,16 +51,18 @@
 {# Facet sideblock #}
 {% macro facetBlockBuilder(data, query_string, facet_name, facet_id) %}
 	{% import _self as m %}
-	<ul class="facet_container filter" id="{{ facet_id }}_facet"><li>
-		<h3 class="tree-toggler"><span class="icon-minus-thin"></span>{{ facet_name }}</h3>
-	    	<ul class="tree facet_list" id="{{ facet_id }}_list">
-	    		{% for facet_value in data.response.solr_results.facet_counts.facet_fields[facet_id] %}
-	        		<li>{{m.facetBuilder("add", facet_id, facet_value[0], facet_value[1], true, query_string)}}</li>
-	    		{% endfor %}
-    			<li><span style="font-weight:bold; cursor:pointer;" href="#" onclick="facet_select('{{facet_id}}','{{facet_name}}'); return false;">more >></span></li>
-	    	</ul>
-	    </li>
-	</ul>
+	{% if data.response.solr_results.facet_counts.facet_fields[facet_id]|length > 0 %}
+		<ul class="facet_container filter" id="{{ facet_id }}_facet"><li>
+			<h3 class="tree-toggler"><span class="icon-minus-thin"></span>{{ facet_name }}</h3>
+		    	<ul class="tree facet_list" id="{{ facet_id }}_list">
+		    		{% for facet_value in data.response.solr_results.facet_counts.facet_fields[facet_id] %}
+		        		<li>{{m.facetBuilder("add", facet_id, facet_value[0], facet_value[1], true, query_string)}}</li>
+		    		{% endfor %}
+	    			<li><span style="font-weight:bold; cursor:pointer;" href="#" onclick="facet_select('{{facet_id}}','{{facet_name}}'); return false;">more >></span></li>
+		    	</ul>
+		    </li>
+		</ul>
+	{% endif %}
 {% endmacro %}
 
 {# Secondary Images -- if any #}
