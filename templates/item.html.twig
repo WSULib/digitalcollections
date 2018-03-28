@@ -367,14 +367,14 @@
 
                                 {% if data.response.member_of_collections.metadata[collection].dc_rights %}
                                         <!-- Object Rights -->      
-                                        <strong>Digital Objects Rights:</strong><br>
+                                        Digital Objects Rights from <strong>{{ data.response.member_of_collections.metadata[collection].dc_title[0] }}:</strong><br /><br />
 
                                         {{ m.metadataField('Rights', data.response.member_of_collections.metadata[collection].dc_rights, 'dc_rights', false) }}
 
                                         <!-- Collection Rights -->
 
                                 {% else %}
-                                        <strong>Rights from collection, <a href="/item/{{ collection }}">"{{ data.response.member_of_collections.metadata[collection].dc_title[0] }}"</a></strong><br>
+                                        Rights from collection, <strong><a href="/item/{{ collection }}">"{{ data.response.member_of_collections.metadata[collection].dc_title[0] }}"</a></strong><br /><br />
                                         {{ m.metadataField('Rights', data.response.member_of_collections.metadata[collection].mods_accessCondition_ms, 'mods_accessCondition_ms', false) }}
                                 {% endif %}
                                         </td>
