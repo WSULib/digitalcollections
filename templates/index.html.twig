@@ -9,6 +9,74 @@
 {% block content %}
 
     <style>
+        body {
+            background: url('/img/frontpage/traffic.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            min-height: 700px;
+            background-attachment: fixed;
+            -webkit-background-size: cover !important;
+            -moz-background-size: cover !important;
+            -o-background-size: cover !important;
+            background-size: cover !important;
+        }
+
+        header, footer {
+            display:none;
+        }
+
+        #littlefooter.container {
+            margin-right: 0;
+            margin-left: 0;
+            margin-top: 30px;
+            padding-left: 0px;
+            padding-right: 0px;
+            font-size:.7em;
+            color: #999;
+        }
+        #littlefooter ul {
+            text-align:right;
+        }
+        #littlefooter ul li {
+            display:inline;
+            color: #999;
+            padding: 0px 3px;
+        }
+        #littlefooter ul li a {
+            color: #999;
+        }
+        #littlefooter ul > li > a:hover, footer ul > li > a:active {
+            color: #ffcc33;
+            border-bottom: 1px dotted #666;
+        }
+        .search-container {
+            width: 100%;
+            float: none;
+            padding: 20px;
+        }
+        .search-box {
+            position:relative;
+        }
+
+        #masthead h1 {
+            background-color:#0c5449;
+            border-radius: 5px;
+            display:block;
+        }
+        #masthead h1 img {
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #masthead h3 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #masthead p {
+            text-align:center;
+            margin-top:20px;
+            margin-bottom: 20px;
+        }
         #frontpage_image {
             max-height: 1024px;
             overflow: hidden;
@@ -18,6 +86,7 @@
             background-color:rgba(241, 239, 229, 0.9);
             padding:20px;
             border-radius:5px;
+            width:488px;
         }
         .main_content {
             margin-top:40px;
@@ -40,89 +109,67 @@
         .featured:hover {
             background-color:rgba(255, 204, 51, 0.7);
         }
+        @media (min-width: 1600px) {
+            #littlefooter.container {
+                max-width:100%;
+            }
+        }
+        @media (max-width: 768px) {
+            #masthead { width: 100%; }
+        }
+        @media (min-width: 768px) {
+            #littlefooter.container { max-width:100%; }
+        }
     </style>
-
-    <div class="row" style="position:absolute;">
-        <div id="frontpage_image" class="col-md-12">            
-            <img src="img/frontpage/{{random(frontpage_images)}}" />
-        </div>
-    </div>
 
     <div class="container">
 
-        <div  class="row">
-
-            <div id="masthead" class="col-md-5 main_content">                
-                <h1 style="margin-top:10px; margin-bottom:10px;">Digital Collections<br>Wayne State University Libraries</h1>
-            </div>
-
-        </div>
-
         <div class="row">
 
-            <div class="col-md-12 main_content">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        {# <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring unique, important, or institutionally relevant content to Wayne State University’s academic community and to the larger world.  Our Digital Collections represent text, images, and audiovisual material that support this mission through a diversity of projects.</p> #}
+            <div id="masthead" class="col-md-5 main_content">                
+                <h1 style="margin-top:10px; margin-bottom:10px;">
+                    <img src="/img/logo.448x105.jpg" alt="Digital Collections at Wayne State University Libraries" />
+                </h1>
+                <p>The Wayne State University Library System, through its digital publishing initiatives, strives to bring <strong>unique, important, or institutionally relevant</strong> content to Wayne State University’s academic community and to the larger world.  <strong>Our Digital Collections represent text, images, and audiovisual material that support this mission</strong> through a diversity of projects.</p>
+                <div class="search-container">
+                    <div class="search-box">
+                    {% block search_form %}
+                    <form action="/search" class="inline-form search-form" >
+                        <fieldset>
+                            <legend class="hide">Search</legend>
+                            <label for="q" class="hide">Search</label>                        
+                            <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, ebooks and more" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
+                            <button type="submit" class="search-submit">
+                                <span class="icon-search" aria-hidden="true"></span>
+                                <span class="hide">Search</span>
+                            </button>
+                        </fieldset>
+                    </form>
+                    {% endblock search_form %}
                     </div>
                 </div>
+                <a href="/search"><h3 class="main_nav_button">Browse</h3></a>
+                <a href="/collections"><h3 class="main_nav_button">All Collections</h3></a>
+                <a href="/about"><h3 class="main_nav_button">About</h3></a>
+                <a href="/contact"><h3 class="main_nav_button">Contact</h3></a>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        <h2>Navigation</h2>
-                        <a href="/search"><h3 class="main_nav_button">Search and Browse</h3></a>
-                        <a href="/collections"><h3 class="main_nav_button">All Collections</h3></a>
-                        <a href="/about"><h3 class="main_nav_button">About</h3></a>
-                        <a href="/contact"><h3 class="main_nav_button">Contact</h3></a>
-                    </div>
-                    <div class="col-md-7">                        
-                        <h2>Featured Collections</h2>
-                        <div class="row">
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionvmc">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionvmc/preview"/>
-                                    <p>Virtual Motor City</p>
-                                </a>
-                            </div>
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionCFAI">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionCFAI/preview"/>
-                                    <p>Changing Face of the Auto Industry</p>
-                                </a>
-                            </div>
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionRamsey">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionRamsey/preview"/>
-                                    <p>Eloise Ramsey Collection of Literature for Young People</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionDigDressColl">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDigDressColl/preview"/>
-                                    <p>Digital Dress Collection</p>
-                                </a>
-                            </div>
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionDSJ">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionDSJ/preview"/>
-                                    <p>The Detroit Sunday Journal</p>
-                                </a>
-                            </div>
-                            <div class="col-md-4 featured">
-                                <a href="/collection/wayne:collectionMOTprogram">
-                                    <img src="http://graham.digidev.library.wayne.edu/item/wayne:collectionMOTprogram/preview"/>
-                                    <p>Michigan Opera Theatre Archive Programs Collection</p>
-                                </a>
-                            </div>
-                        </div>
+                <div class="container" id="littlefooter">
+                    <div class="row">
+                      <div class="col-xs-7 pull-right">
+                        <ul class="links">
+                          <li><a href="https://libraries.wayne.edu">Libraries</a></li>
+                          <li><a href="https://www.surveymonkey.com/s/QHWX3V7">Feedback</a></li>
+                          <li><a href="https://libraries.wayne.edu/info/policies/privacy.php">Privacy</a></li>
+                          <li><a href="https://libraries.wayne.edu/info/policies/eresources.php">Acceptable Use</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-xs-5 copyright">
+                        Site &copy; 2009 - <script type="text/javascript"> document.write(new Date().getFullYear()); </script> Wayne State University Board of Governors
+                      </div>
                     </div>
                 </div>
 
             </div>
-
         </div>
 
     </div>
