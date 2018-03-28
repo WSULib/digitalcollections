@@ -77,24 +77,36 @@
 
 	    	<div id="facet_modal" class="row" style="display:none;">
 	    		<div class="col-md-12">
-	    			<table id="facet_modal_table" class="table">
-	    				<thead>
-	    					<tr>
-	    						<th>Facet Value</th>
-	    						<th>Facet Count</th>
-    						</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Georgia</td>
-								<td>42</td>
-							</tr>
-							<tr>
-								<td>Arkansas</td>
-								<td>44</td>
-							</tr>
-						</tbody>
-    				</table>
+
+	    			<!-- facets modal -->
+	    			<div class="row" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px;">
+	    				<div class="col-md-12">
+	    					<h2>Refine by Facet</h2>
+    					</div>
+    					<div class="col-md-12">
+			    			<table id="facet_modal_table" class="table">
+			    				<thead>
+			    					<tr>
+			    						<th>Facet Value</th>
+			    						<th>Facet Count</th>
+		    						</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Georgia</td>
+										<td>42</td>
+									</tr>
+									<tr>
+										<td>Arkansas</td>
+										<td>44</td>
+									</tr>
+								</tbody>
+		    				</table>
+	    				</div>
+	    				<div class="col-md-12">
+		    				<p><button type="btn" class="btn btn-sm" onclick="facet_select(null, true); return false;">Cancel</button></p>	    				
+	    				</div>
+	    			</div>
     			</div>
 			</div>
 
@@ -319,37 +331,67 @@
 	/////////////////////////////////////////////////////
 	// select facets
 	/////////////////////////////////////////////////////
-	function facet_select(facet_id){
-		
-		console.log('opening facet party for:',facet_id);
+	function facet_select(facet_id, close_facet_sel=false, toggle_view=true){
 
-		// if not already set, prep and build table
-		if (!$("#facet_modal").attr('current_facet_id') || $("#facet_modal").attr('current_facet_id') != facet_id ){
+		if (close_facet_sel != true ){
 
-			console.log('current_facet_id either not set, or does not equal current request - creating table');
+			console.log('opening facet party for:',facet_id);
 
-			// add facet_id as attr, in case return to immediately, don't reload data		
-			$("#facet_modal").attr('current_facet_id',facet_id);
+			// if not already set, prep and build table
+			if (!$("#facet_modal").attr('current_facet_id') || $("#facet_modal").attr('current_facet_id') != facet_id ){
 
-			// build and prep table
-		    $('#facet_modal_table').DataTable({
-		    	ajax: {
-					url: 'http://graham.digidev.library.wayne.edu/api/search?facet.limit=-1',
-					dataSrc: 'response.solr_results.facet_counts.facet_fields.' + facet_id,					
-				},
-				columns: [
-					{data: 0},
-					{data: 1}
-				],
-				order: [[1,'desc']]
-	    	});
+				console.log('current_facet_id either not set, or does not equal current request - creating table');
 
-		}
+				var old_facet_id = $("#facet_modal").attr('current_facet_id');		
+				var current_vis = $("#facet_modal").css('display');
+				console.log('OLD facet id:',old_facet_id);
+				console.log('NEW facet id:',facet_id);				
+				console.log('CURRENT VISIBILITY:',current_vis);
+
+				// set toggling flag
+				if ( current_vis != 'none' && old_facet_id != undefined && old_facet_id != facet_id ) {
+					toggle_view = false;
+				}				
+				
+				// add facet_id as attr, in case return to immediately, don't reload data
+				$("#facet_modal").attr('current_facet_id',facet_id);
+
+				// build and prep table
+			    $('#facet_modal_table').DataTable({
+			    	"ajax": {
+						"url": 'http://graham.digidev.library.wayne.edu/api/search?facet.limit=-1&facet.field=' + facet_id,
+						"dataSrc": 'response.solr_results.facet_counts.facet_fields.' + facet_id,					
+					},
+					"columns": [
+						{
+							"data": 0,
+							"render": function ( data, type, row, meta ) {
+								return '<a href="#">'+ data +'</a>';
+							}
+						},
+						{
+							"data": 1,
+							"render": function ( data, type, row, meta ) {
+								return '<a href="#">'+ data +'</a>';
+							}
+						}
+					],
+					"order": [[1,'desc']],
+					"lengthMenu": [[10, 20, 100, -1], [10, 20, 100, "All"]],
+					"pageLength":20,
+					"destroy":true, // destroys table each time
+		    	});
+			}	
+		}		
 
 		// after table built, or if returning to pre-built table, show
-		$("#non_modal").toggle();
-		$("#facet_modal").toggle();
-
+		console.log('toggling facet modal view');
+		console.log('TOGGLE VIEW:',toggle_view);
+		if (toggle_view) {
+			$("#non_modal").toggle();
+			$("#facet_modal").toggle();	
+		}
+		
 	}
 
 </script>

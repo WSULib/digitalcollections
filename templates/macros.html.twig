@@ -57,7 +57,7 @@
 	    		{% for facet_value in data.response.solr_results.facet_counts.facet_fields[facet_id] %}
 	        		<li>{{m.facetBuilder("add", facet_id, facet_value[0], facet_value[1], true, query_string)}}</li>
 	    		{% endfor %}
-    			<li><a style="font-weight:bold;" href="#" onclick="facet_select('{{facet_id}}'); return false;">More >></a></li>
+    			<li><span style="font-weight:bold; cursor:pointer;" href="#" onclick="facet_select('{{facet_id}}'); return false;">more >></span></li>
 	    	</ul>
 	    </li>
 	</ul>
