@@ -47,28 +47,28 @@
 		        </ul>
 
 		        <!-- ContentModel -->
-			    {{ m.facetBlockBuilder(data, 'Content-Type', 'human_hasContentModel') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Content-Type', 'human_hasContentModel') }}
 
 			    <!-- Collection -->
-			    {{ m.facetBlockBuilder(data, 'Collection', 'human_isMemberOfCollection') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Collection', 'human_isMemberOfCollection') }}
 
 			    <!-- MODS Year -->
-			    {{ m.facetBlockBuilder(data, 'Date', 'facet_mods_year') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Date', 'facet_mods_year') }}
 
 			    <!-- DC Subject -->
-			    {{ m.facetBlockBuilder(data, 'Subject', 'dc_subject') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Subject', 'dc_subject') }}
 
 			    <!-- Creator -->
-			    {{ m.facetBlockBuilder(data, 'Creator', 'dc_creator') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Creator', 'dc_creator') }}
 
 			    <!-- Coverage -->
-			    {{ m.facetBlockBuilder(data, 'Coverage', 'dc_coverage') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Coverage', 'dc_coverage') }}
 
 			    <!-- Language -->
-			    {{ m.facetBlockBuilder(data, 'Language', 'dc_language') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Language', 'dc_language') }}
 
 			    <!-- Publisher -->
-			    {{ m.facetBlockBuilder(data, 'Publisher', 'dc_publisher') }}
+			    {{ m.facetBlockBuilder(data, query_string, 'Publisher', 'dc_publisher') }}
 		        
 		    </div>
 	    </div> <!-- /facets -->
@@ -91,16 +91,7 @@
 			    						<th>Facet Count</th>
 		    						</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>Georgia</td>
-										<td>42</td>
-									</tr>
-									<tr>
-										<td>Arkansas</td>
-										<td>44</td>
-									</tr>
-								</tbody>
+								<tbody></tbody>
 		    				</table>
 	    				</div>
 	    				<div class="col-md-12">
@@ -260,6 +251,7 @@
 		}
 	}
 
+
 	/////////////////////////////////////////////////////
 	// update results per page
 	/////////////////////////////////////////////////////
@@ -278,6 +270,7 @@
 			window.location = nURL;
 		});  
 	});
+
 
 	/////////////////////////////////////////////////////
 	// init grid freewall code
@@ -335,12 +328,8 @@
 
 		if (close_facet_sel != true ){
 
-			// console.log('opening facet party for:',facet_id);
-
 			// if not already set, prep and build table
 			if (!$("#facet_modal").attr('current_facet_id') || $("#facet_modal").attr('current_facet_id') != facet_id ){
-
-				// console.log('current_facet_id either not set, or does not equal current request - creating table');
 
 				// set toggling flag
 				var old_facet_id = $("#facet_modal").attr('current_facet_id');		
@@ -373,7 +362,7 @@
 						}
 					],
 					"order": [[1,'desc']],
-					"lengthMenu": [[10, 20, 100, -1], [10, 20, 100, "All"]],
+					"lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
 					"pageLength":20,
 					"destroy":true, // destroys table each time
 		    	});
@@ -382,13 +371,11 @@
 
 		// after table built, or if returning to pre-built table, show
 		if (toggle_view) {
-			// console.log('toggling facet modal view');
 			$("#non_modal").toggle();
 			$("#facet_modal").toggle();	
 		}
 
 		// always scroll to top
-		// console.log("SCROLLING");
 		$("html").scrollTop(0);
 		
 	}

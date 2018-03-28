@@ -49,7 +49,7 @@
 {% endmacro %}
 
 {# Facet sideblock #}
-{% macro facetBlockBuilder(data, facet_name, facet_id) %}
+{% macro facetBlockBuilder(data, query_string, facet_name, facet_id) %}
 	{% import _self as m %}
 	<ul class="facet_container filter" id="{{ facet_id }}_facet"><li>
 		<h3 class="tree-toggler"><span class="icon-minus-thin"></span>{{ facet_name }}</h3>
