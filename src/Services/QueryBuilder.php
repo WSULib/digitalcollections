@@ -212,7 +212,6 @@ class QueryBuilder
             $new_query_string = $query_string."&layout=grid";
         }
 
-        // $new_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
         return $this->query_string_cleaner($new_query_string);        
     }
 

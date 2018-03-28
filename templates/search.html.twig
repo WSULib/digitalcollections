@@ -84,7 +84,7 @@
 	    					<h2>Refine by Facet</h2>
     					</div>
     					<div class="col-md-12">
-			    			<table id="facet_modal_table" class="table">
+			    			<table id="facet_modal_table" class="table stripe">
 			    				<thead>
 			    					<tr>
 			    						<th>Facet Value</th>
@@ -398,7 +398,8 @@
 	function add_facet(facet_id, facet_value){		
 
 		// build new URL
-		new_url = '/search?{{query_string|raw}}'+'&fq%5B%5D='+facet_id+'%3A'+encodeURIComponent(facet_value).replace(/%20/g, '+');
+		encoded_facet_value = encodeURIComponent(facet_value).replace(/%20/g, '+').replace(/\(/g,'%28').replace(/\)/g,'%29');
+		new_url = '/search?{{query_string|raw}}'+'&fq%5B%5D='+facet_id+'%3A'+encoded_facet_value;
 		// console.log(new_url);
 
 		// return
