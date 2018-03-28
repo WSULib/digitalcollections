@@ -154,11 +154,18 @@ class QueryBuilder
      * Add parameter to current URL
      * @param  string $param  key=value string to add to query string
      * @param  string $query_string all parameters as single query string
+     * @param  boolean $remove_start_param if true, remove `start` parameter from query string
      * @return Return new query string
      */
-    public function add_param_to_query_string($param, $query_string)
+    public function add_param_to_query_string($param, $query_string, $remove_start_param)
     {
-        // $this->logger->debug("Adding: ".urlencode($param)." to ".$query_string);
+
+        // remove start param if param true
+        if ($remove_start_param == true) {
+            $query_string = preg_replace('/start=[0-9]+/i', '', $query_string);
+        }
+
+        // add new param
         $new_query_string = $query_string."&fq%5B%5D=".urlencode($param);
         return $this->query_string_cleaner($new_query_string);
     }
@@ -168,10 +175,17 @@ class QueryBuilder
      * Removes parameter from current URL
      * @param  string $param  key=value string to remove from query string
      * @param  string $query_string all parameters as single query string
+     * @param  boolean $remove_start_param if true, remove `start` parameter from query string
      * @return Return new query string
      */
-    public function del_param_from_query_string($param, $query_string)
+    public function del_param_from_query_string($param, $query_string, $remove_start_param)
     {
+
+        // remove start param if param true
+        if ($remove_start_param == true) {
+            $query_string = preg_replace('/start=[0-9]+/i', '', $query_string);
+        }
+
         $this->logger->debug("Looking for: ".urlencode($param)." in ".$query_string);
         $new_query_string = str_replace("fq%5B%5D=".urlencode($param), '', $query_string);
         return $this->query_string_cleaner($new_query_string);
