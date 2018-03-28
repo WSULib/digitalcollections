@@ -104,7 +104,7 @@
 		    				</table>
 	    				</div>
 	    				<div class="col-md-12">
-		    				<p><button type="btn" class="btn btn-sm" onclick="facet_select(null, true); return false;">Cancel</button></p>	    				
+		    				<p><button type="btn" class="btn btn-sm" style="border: 1px solid #8c8c8c;" onclick="facet_select(null, true); return false;">Cancel</button></p>	    				
 	    				</div>
 	    			</div>
     			</div>
@@ -335,20 +335,16 @@
 
 		if (close_facet_sel != true ){
 
-			console.log('opening facet party for:',facet_id);
+			// console.log('opening facet party for:',facet_id);
 
 			// if not already set, prep and build table
 			if (!$("#facet_modal").attr('current_facet_id') || $("#facet_modal").attr('current_facet_id') != facet_id ){
 
-				console.log('current_facet_id either not set, or does not equal current request - creating table');
-
-				var old_facet_id = $("#facet_modal").attr('current_facet_id');		
-				var current_vis = $("#facet_modal").css('display');
-				console.log('OLD facet id:',old_facet_id);
-				console.log('NEW facet id:',facet_id);				
-				console.log('CURRENT VISIBILITY:',current_vis);
+				// console.log('current_facet_id either not set, or does not equal current request - creating table');
 
 				// set toggling flag
+				var old_facet_id = $("#facet_modal").attr('current_facet_id');		
+				var current_vis = $("#facet_modal").css('display');
 				if ( current_vis != 'none' && old_facet_id != undefined && old_facet_id != facet_id ) {
 					toggle_view = false;
 				}				
@@ -385,12 +381,15 @@
 		}		
 
 		// after table built, or if returning to pre-built table, show
-		console.log('toggling facet modal view');
-		console.log('TOGGLE VIEW:',toggle_view);
 		if (toggle_view) {
+			// console.log('toggling facet modal view');
 			$("#non_modal").toggle();
 			$("#facet_modal").toggle();	
 		}
+
+		// always scroll to top
+		// console.log("SCROLLING");
+		$("html").scrollTop(0);
 		
 	}
 
