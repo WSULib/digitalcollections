@@ -1,0 +1,11 @@
+{% import "macros.html.twig" as m %}
+{% extends "item.html.twig" %}
+
+{% block item_content %}
+
+<!-- default -->
+<ul class="row-fluid objects-container" id="results_container" style="display:block;">
+    {{ m.containerThumbs(data.response.content_type_specific.object_hierarchy, 0) }}
+</ul>
+
+{% endblock %}
