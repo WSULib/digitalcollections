@@ -114,13 +114,13 @@
 
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-		<ul class='SELF'>
-    		<li data-jstree='{"opened":true,"selected":true}' class="self">
+		<ul>
+    		<li data-jstree='{"opened":true,"selected":true,"icon":"/item/{{object_hierarchy.self.pid}}/loris/THUMBNAIL/full/24,/0/default.jpg"}' class="self">
     			<a href="/item/{{object_hierarchy.self.pid}}"><span {# class="hierarchy_self" #}>{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
     					{% for child in object_hierarchy.children %}
-    						<li><a href="/item/{{child.pid}}">{{ child.title}}</a></li>
+    						<li data-jstree='{"opened":false,"icon":"/item/{{child.pid}}/loris/THUMBNAIL/full/24,/0/default.jpg"}'><a href="/item/{{child.pid}}">{{ child.title}}</a></li>
 						{% endfor %}
 					</ul>
 				{% endif %}
@@ -134,10 +134,10 @@
 	{# set ancestors if exist #}
 	{% if object_hierarchy.ancestors|length > 0 %}
 		{% set ancestor = object_hierarchy.ancestors[i] %}
-	    <li data-jstree='{"opened":true}'> 
+	    <li data-jstree='{"opened":true,"icon":"/item/{{ancestor.pid}}/loris/THUMBNAIL/full/24,/0/default.jpg"}'> 
 	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
 	        {% if ancestor.level > 1 %}
-        		<ul class="HORSE">
+        		<ul>
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
 	            </ul>
 	        {% else %}

@@ -16,11 +16,11 @@
 
 	<div id="hier_tree" id="hierarchy">
 		{% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 %}		
-		<ul class="GOOBER">
+			<ul>
 		{% endif %}
 			{{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
 		{% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 %}		
-		</ul>
+			</ul>
 		{% endif %}
 	</div>
 
@@ -29,7 +29,7 @@
 			$('#hier_tree').jstree({
 				'core':{
 					'themes':{
-						'icons':false
+						'icons':true
 					}
 				}
 			}).bind("select_node.jstree", function (e, data) {
