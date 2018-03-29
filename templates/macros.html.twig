@@ -58,7 +58,9 @@
 		    		{% for facet_value in data.response.solr_results.facet_counts.facet_fields[facet_id] %}
 		        		<li>{{m.facetBuilder("add", facet_id, facet_value[0], facet_value[1], true, query_string)}}</li>
 		    		{% endfor %}
-	    			<li><span style="font-weight:bold; cursor:pointer;" href="#" onclick="facet_select('{{facet_id}}','{{facet_name}}'); return false;">more >></span></li>
+		    		{% if data.response.solr_results.facet_counts.facet_fields[facet_id]|length > 1 %}
+	    				<li><span style="font-weight:bold; cursor:pointer;" href="#" onclick="facet_select('{{facet_id}}','{{facet_name}}'); return false;">more >></span></li>
+    				{% endif %}
 		    	</ul>
 		    </li>
 		</ul>
