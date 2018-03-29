@@ -12,49 +12,75 @@
     <!-- load site-wide dependencies -->
     <!-- general site-wide JS / CSS dependencies -->
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/main.css" type="text/css">
-    <link rel="stylesheet" href="/inc/sidr/stylesheets/jquery.sidr.dark.css">
-    <link rel="stylesheet" href="/ico/style.css">
-    <link rel="stylesheet" href="/old/css/temp.css">
+<!-- CSS -->
+<link rel="stylesheet" href="/css/main.css" type="text/css">
+<link rel="stylesheet" href="/inc/sidr/stylesheets/jquery.sidr.dark.css">
+<link rel="stylesheet" href="/ico/style.css">
+<link rel="stylesheet" href="/old/css/temp.css">
 
-    <!-- Typography -->
-    <link href='/css/fonts.css' rel='stylesheet' type='text/css'>
+<!-- Typography -->
+<link href='/css/fonts.css' rel='stylesheet' type='text/css'>
 
-    <!-- jQuery -->
-    <script src="/js/jquery.min.js" type="text/javascript"></script>
+<!-- jQuery -->
+<script src="/js/jquery.min.js" type="text/javascript"></script>
 
-    <!-- WSUDOR -->
-    <script src="/config/config.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
-    <script src="/js/userData.js"></script>             
-    <script src="/js/utilities.js"></script>
+<!-- WSUDOR -->
+<script src="/config/config.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/userData.js"></script>             
+<script src="/js/utilities.js"></script>
 
-    <!-- 3rd Party -->
-    <script src="/js/vendor/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/js/jquery.cookie.js" type="text/javascript"></script> 
-    <script src="/js/js.cookie.js" type="text/javascript"></script> 
-    <script src="/inc/sidr/jquery.sidr.min.js"></script>
-    <script src="/js/vendor/enquire.min.js"></script>
-    <script src="/inc/imagesloaded.pkgd.min.js" type="text/javascript"></script>
-    <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/inc/freewall/freewall.js"></script>    
+<!-- 3rd Party -->
+<script src="/js/vendor/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/jquery.cookie.js" type="text/javascript"></script> 
+<script src="/js/js.cookie.js" type="text/javascript"></script> 
+<script src="/inc/sidr/jquery.sidr.min.js"></script>
+<script src="/js/vendor/enquire.min.js"></script>
+<script src="/inc/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+<script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/inc/freewall/freewall.js"></script>
+{# <script src="/old/js/CollapsibleLists.compressed.js"></script> #}
 
-    <!--datatables-->
-    <script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
-    <link href='/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+<!--datatables-->
+<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+<link href='/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
 
-    <!--Pagination-->
-    <script type="text/javascript" src="/inc/jquery.bootpag.min.js"></script> 
+<!--Pagination-->
+<script type="text/javascript" src="/inc/jquery.bootpag.min.js"></script> 
 
-    <!-- Mousetrap (key binding) -->
-    <script src="/js/mousetrap.min.js"></script>
+<!-- Mousetrap (key binding) -->
+<script src="/js/mousetrap.min.js"></script>
 
-    <!-- jstree -->
-    <link rel="stylesheet" href="/inc/jstree/dist/themes/default/style.min.css" />
-    <script src="/inc/jstree/dist/jstree.min.js"></script>
+<!-- jstree -->
+<link rel="stylesheet" href="/inc/jstree/dist/themes/default/style.min.css" />
+<script src="/inc/jstree/dist/jstree.min.js"></script>
 
-    <!-- END general site-wide JS / CSS dependencies -->
+<!-- END general site-wide JS / CSS dependencies -->
+
+<style type="text/css">
+        em {
+            font-style:italic;
+        }
+        div.container {
+            clear:both;
+        }
+        fieldset {
+            position: relative;
+        }
+        @media (max-width:767px) {
+            h2 { margin-top:22px;}
+            .search-form fieldset button {
+                top: 0;
+                background: #fc3;
+                color: #000;
+            }
+            .search-form fieldset input {
+                width:99.8%;
+                border-radius:5px;
+            }
+        }
+</style>
+
     {% endblock head %}
 </head>
 
