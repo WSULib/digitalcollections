@@ -1,14 +1,45 @@
 {% import "macros.html.twig" as m %}
 {% block hierarchicalTree %}
 
-<div class="row" style="margin-top:20px;">
-	<div id="hier_tree" id="hierarchy" class="col-md-12">		
-		<div class="facets" style="width:100%;">
-			<ul class="facet_container filter hierarchy_navigation" style="display: block;">				
-        	{{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
-        	</ul>
-   		</div>
+	<style>
+		#hier_tree {
+			background-color:rgba(255, 219, 116, 0.3);
+			padding:20px 40px 20px 5px;
+			border-radius:5px;
+		}		
+		#hier_tree a {
+		    white-space: normal !important;
+		    height: auto;
+		    padding: 1px 2px;
+		}
+		li.jstree-node {
+			margin-top:3px;
+		}
+	</style>
+
+	<div id="hier_tree" id="hierarchy">
+		{% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 %}		
+			<ul>
+		{% endif %}
+			{{ m.objectHierarchy(data.response.content_type_specific.object_hierarchy, 0) }}
+		{% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 %}		
+			</ul>
+		{% endif %}
 	</div>
-</div>
+
+	<script>
+		$(document).ready(function(){
+			$('#hier_tree').jstree({
+				'core':{
+					'themes':{
+						'icons':true
+					}
+				}
+			}).bind("select_node.jstree", function (e, data) {
+				var href = data.node.a_attr.href;
+				document.location.href = href;
+			});
+		})
+	</script>
 
 {% endblock %}

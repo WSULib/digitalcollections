@@ -5,14 +5,10 @@
 
 	<div class="row">
 		<div style="text-align:center;" class="col-md-12">
-			<p><img src="/item/{{data.response.pid}}/thumbnail"/></p>
+			<p><img src="/item/{{data.response.pid}}/preview" style="max-height:480px; margin-left: auto; margin-right: auto; display:block;"/></p>
 			<p><a href="/item/{{data.response.pid}}/file/FILE"><button type="btn" class="btn viewer">View Document</button></a> <a href="/item/{{data.response.pid}}/file/FILE?download=true"><button type="btn" class="btn viewer">Download Document</button></a></p>
 		</div>
 	</div>
-	
-	{# <object data="/item/{{data.response.pid}}/file/FILE" type="application/pdf" width="100%" height="900px"> #}
- 
-	{# <p>It appears you don't have a PDF plugin for this browser.  <a href="/item/{{data.response.pid}}/file/FILE">click here to download the PDF file.</a></p> #}
   
 </object>
 

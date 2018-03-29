@@ -16,7 +16,10 @@
             background-color:rgba(255, 204, 51, 0.7);
         }
         h3.colltitle { margin-top: 0px; }
-        img.collimage { margin-bottom: 22px; }
+        img.collimage { 
+        	margin-bottom: 22px;
+        	box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+        }
         div.collectionnav {
         	clear:both;
         }
@@ -46,9 +49,12 @@
 				<h2 id="maincollections">Main Collections</h2>
 				
 				<!-- loop through collections -->
+
 					<div class="row" style="margin-top:40px;">
 						<div class="col-md-3">
+
 							<a href="/item/wayne:collectionvmc"><img src="/item/wayne:collectionvmc/preview" class="collimage" /></a>
+
 						</div>
 						<div class="col-md-9">
 							<a href="/item/wayne:collectionvmc"><h3 class="colltitle">Virtual Motor City</h3></a>
@@ -59,7 +65,9 @@
 						{% if doc.id != "wayne:collectionvmc" %}
 							<div class="row" style="margin-top:40px;">
 								<div class="col-md-3">
+
 									<a href="/item/{{doc.id}}"><img src="/item/{{doc.id}}/preview" class="collimage" /></a>
+
 								</div>
 								<div class="col-md-9">
 									<a href="/item/{{doc.id}}"><h3 class="colltitle">{{doc.dc_title.0}}</h3></a>
@@ -85,12 +93,14 @@
 
 					<div class="row" style="margin-top:40px;">
 						<div class="col-md-3">
+
 							<a href="http://digital.library.wayne.edu/aft/"><img src="/img/aft.gif" class="collimage" /></a>
 						</div>
 						<div class="col-md-9">
 							<a href="http://digital.library.wayne.edu/aft/"><h3 class="colltitle">American Federation of Teachers:
 Antecedents to Education Reform Historical Collection</h3></a>
 							<p><em>The American Federation of Teachers</em> (AFT) historical collection consists of almost 100 years of historical records covering subjects that deal with US public education, tenure and academic freedom for K-16 teachers, civil rights, collective bargaining in the public sector and public employee unionism. The collection has documents from the national headquarters; over 30 affiliate locals and state federations of the AFT as well as 70 personal collections.</p>
+
 						</div>
 					</div>
 

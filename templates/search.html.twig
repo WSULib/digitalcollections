@@ -79,7 +79,7 @@
 	    		<div class="col-md-12">
 
 	    			<!-- facets modal -->
-	    			<div class="row" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px;">
+	    			<div class="row" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px; border-radius:5px;">
 	    				<div class="col-md-12">
 	    					<h2>Refine by: <span id="facet_label" style="font-weight:bold;"></span></h2>
     					</div>
@@ -103,7 +103,7 @@
 
 			<div id="non_modal">
 
-		    	<div id="results_header" class="row row-fluid filtered-by refined-by" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px;">
+		    	<div id="results_header" class="row row-fluid filtered-by refined-by" style="background-color: rgba(255, 219, 116, 0.3); padding-top: 15px; margin-bottom: 20px; border-radius:5px;">
 
 		    		<div class="row">
 
@@ -113,7 +113,7 @@
 
 		    			<div class="col-md-8" style="float:right; text-align:right;">
 							<span style="font-weight:bold; display:inline-block;">Results per Page</span>
-					    	<div style="display:inline-block; padding-right:10px;" class="form-group">
+					    	<div style="display:inline-block; padding-right:10px; margin-bottom:0px;" class="form-group">
 					    		<select id="results_per_page" class="resPerPage form-control" name="results_per_page">
 					    			{# <label for="results_per_page">Results per Page</label> #}
 					        		<option {% if search_params.rows == 10 %}selected{% endif %} value=10>10</option>
@@ -164,13 +164,16 @@
 					        	<li class="obj-cnt object-container-list">
 								    <div class="crop">
 								        <a href="/item/{{doc.id}}">
-						                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+								        	{% if doc.rels_preferredContentModel.0 != 'info:fedora/CM:Container' %}
+						                		<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); max-height: 195px; margin-right:3px;" src="/item/{{doc.id}}/thumbnail" width="100%" alt="{{doc.dc_title.0}}">
+					                		{% else %}
+					                			<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="{{doc.dc_title.0}}">
+				                			{% endif %}								        	
 								        </a>
 								    </div>
 								    <h3>
 								        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
-								    </h3>
-								    <!-- what is this reserved for? -->
+								    </h3>								    
 								    <h4></h4>
 								    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
 								</li>
@@ -180,9 +183,9 @@
 							<!-- grid -->
 							{% if search_params.layout == 'grid' %}
 								{% for doc in data.response.solr_results.response.docs %}
-									<div class='tile'>
+									<div class='tile' style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); border: 3px solid white; border:none;">
 										<a href="/item/{{doc.id}}">		
-											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
+											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{doc.dc_title.0}}" />
 											<div class="info">
 												<p>{{doc.dc_title[0]}}</p>						
 											</div>
