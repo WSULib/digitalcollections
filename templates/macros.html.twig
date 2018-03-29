@@ -109,11 +109,14 @@
 {# recursive hierarchy #}
 {% macro objectHierarchy(object_hierarchy, i) %}
 
+	{# allows recursive use of this macro #}	
+	{% import _self as self %}
+
 	{# self, siblings, and children macro #}
 	{% macro self_siblings_children(object_hierarchy) %}
-		<ul class="tree hierarchy_navigation" style="display: block;">
-    		<li class="self">
-    			{# {% if object_hierarchy.children|length > 0 %}<span class="hierarchy_toggle">+</span>{% endif %}  #}<a href="/item/{{object_hierarchy.self.pid}}"><span class="hierarchy_self">{{ object_hierarchy.self.title }}</span></a>
+		<ul class='SELF'>
+    		<li data-jstree='{"opened":true,"selected":true}' class="self">
+    			<a href="/item/{{object_hierarchy.self.pid}}"><span {# class="hierarchy_self" #}>{{ object_hierarchy.self.title }}</span></a>
     			{% if object_hierarchy.children|length > 0 %}
     				<ul>
     					{% for child in object_hierarchy.children %}
@@ -128,16 +131,13 @@
 		</ul>
 	{% endmacro %}
 
-	{# allows recursive use of this macro #}	
-	{% import _self as self %}
-
 	{# set ancestors if exist #}
 	{% if object_hierarchy.ancestors|length > 0 %}
 		{% set ancestor = object_hierarchy.ancestors[i] %}
-	    <li>
-	        {# <span class="hierarchy_toggle">+</span>  #}<a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
+	    <li data-jstree='{"opened":true}'> 
+	        <a href="/item/{{ancestor.pid}}">{{ ancestor.title }}</a>
 	        {% if ancestor.level > 1 %}
-        		<ul>
+        		<ul class="HORSE">
 	                {{ self.objectHierarchy(object_hierarchy, i + 1) }}
 	            </ul>
 	        {% else %}
@@ -147,7 +147,7 @@
 	    </li>
     {% else %}
     	{{ self.self_siblings_children(object_hierarchy) }}
-	{% endif %}    
+	{% endif %}
 
 {% endmacro %}
 

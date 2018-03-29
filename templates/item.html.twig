@@ -10,23 +10,23 @@
 
 <!-- piwik.library.wayne code here-->
 <script type="text/javascript"> 
-    var _paq = _paq || [];  
-    _paq.push(['setCustomVariable', '1', 'content_model', 'Collection', 'visit'])
-    _paq.push(["setDomains", ["*.digital.library.wayne.edu"]]);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        var u="//piwik.library.wayne.edu/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', 28]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-    })();
+    // var _paq = _paq || [];  
+    // _paq.push(['setCustomVariable', '1', 'content_model', 'Collection', 'visit'])
+    // _paq.push(["setDomains", ["*.digital.library.wayne.edu"]]);
+    // _paq.push(['trackPageView']);
+    // _paq.push(['enableLinkTracking']);
+    // (function() {
+    //     var u="//piwik.library.wayne.edu/";
+    //     _paq.push(['setTrackerUrl', u+'piwik.php']);
+    //     _paq.push(['setSiteId', 28]);
+    //     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    //     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    // })();
 </script>
 <!--end piwik-->
 
 <!-- hidden schema.org stuctured data -->
-<div id="struct_data" style="display:none;" itemscope="" itemtype="https://schema.org/CreativeWork">
+{# <div id="struct_data" style="display:none;" itemscope="" itemtype="https://schema.org/CreativeWork">
     <span itemprop="name">{{data.response.solr_doc.dc_title[0]}}<br></span>
     <span itemprop="description">{{ data.response.solr_doc.mods_abstract_ms }}<br></span>       
     <span itemprop="text"></span>
@@ -34,25 +34,19 @@
     <span itemprop="dateCreated">{{ data.response.solr_doc.dc_date }}</span>
     <img src="//digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/" class="primary-image" itemprop="image">
     <meta itemprop="thumbnailUrl" content="https://digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/">
-</div>
+</div> #}
 <!-- ******************************** -->
 
 
 <div id="templateCM" class="container">
 
-    {# object hierarchy #}
-    {# a hierarchical tree viewer is shown if an object has .object_hierarchy #}
-    {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
-        <div class="row">
-            <div class="col-md-12 related-objects">                
-                {% include "item_view/hierarchicalTree.html.twig" %}                
-            </div>
-        </div>
-    {% endif %}
+    
 
     <div class="row">
         
         <div class="col-md-8 primary-object">
+
+          
             
             <div class="primary-object-container">
 
@@ -63,9 +57,15 @@
         </div>
         
         <div class="info-panel col-md-3">
+            
             <h2 class="title">{{data.response.solr_doc.dc_title[0]}}</h2>
 
             <h4>{{ data.response.solr_doc.dc_date[0] }}</h4>
+
+            {# object hierarchy - a hierarchical tree viewer is shown if an object has .object_hierarchy #}
+            {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
+                {% include "item_view/hierarchicalTree.html.twig" %}                
+            {% endif %}
 
             <p style="max-height:395px; overflow-y:scroll;" class="description">
                 {{ m.metadataField('Description', data.response.solr_doc.mods_abstract_ms, 'mods_abstract_ms', false) }}
@@ -83,13 +83,6 @@
                 <li class="more-info-clickr">
                     <i class="icon-info"></i> <span class="more-info">Less Info</span>
                 </li>
-                
-                <!-- Add citation button if WSUebook -->
-                
-                <!-- Favorite -->
-                <!-- <li class="add-to-favorites" onclick="addFav();">
-                    <i class="icon-star"></i> Add to Favorites
-                </li> -->
 
                 <!-- Share -->
                 {{ m.socialMedia() }}
@@ -461,7 +454,7 @@
 
                         <script>
                             // remove instances of <mods:relatedItem> if includes @type attribute, as we handle other ways
-                            $('.relatedItem').each(function(){
+                            $('.relatedItem').each(function() {
                                 if ($(this).attr('type') != '') {
                                     $(this).remove();
                                 }

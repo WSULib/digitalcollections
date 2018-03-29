@@ -164,7 +164,11 @@
 					        	<li class="obj-cnt object-container-list">
 								    <div class="crop">
 								        <a href="/item/{{doc.id}}">
-						                	<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); max-height: 195px; margin-right:3px;" src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+								        	{% if doc.rels_preferredContentModel.0 != 'info:fedora/CM:Container' %}
+						                		<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); max-height: 195px; margin-right:3px;" src="/item/{{doc.id}}/thumbnail" width="100%" alt="{{doc.dc_title.0}}">
+					                		{% else %}
+					                			<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="{{doc.dc_title.0}}">
+				                			{% endif %}								        	
 								        </a>
 								    </div>
 								    <h3>
@@ -181,7 +185,7 @@
 								{% for doc in data.response.solr_results.response.docs %}
 									<div class='tile' style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); border: 3px solid white; border:none;">
 										<a href="/item/{{doc.id}}">		
-											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
+											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{doc.dc_title.0}}" />
 											<div class="info">
 												<p>{{doc.dc_title[0]}}</p>						
 											</div>
