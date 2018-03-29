@@ -52,6 +52,31 @@
 <script src="/js/mousetrap.min.js"></script>
 
 <!-- END general site-wide JS / CSS dependencies -->
+
+<style type="text/css">
+        em {
+            font-style:italic;
+        }
+        div.container {
+            clear:both;
+        }
+        fieldset {
+            position: relative;
+        }
+        @media (max-width:767px) {
+            h2 { margin-top:22px;}
+            .search-form fieldset button {
+                top: 0;
+                background: #fc3;
+                color: #000;
+            }
+            .search-form fieldset input {
+                width:99.8%;
+                border-radius:5px;
+            }
+        }
+</style>
+
     {% endblock head %}
 </head>
 
