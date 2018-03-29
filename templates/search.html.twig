@@ -164,13 +164,12 @@
 					        	<li class="obj-cnt object-container-list">
 								    <div class="crop">
 								        <a href="/item/{{doc.id}}">
-						                	<img src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
+						                	<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); max-height: 195px; margin-right:3px;" src="/item/{{doc.id}}/thumbnail" width="100%" alt="White Star Refining Company. Exterior.">				            
 								        </a>
 								    </div>
 								    <h3>
 								        <a href="/item/{{doc.id}}">{{doc.dc_title[0]}}<br> </a>
-								    </h3>
-								    <!-- what is this reserved for? -->
+								    </h3>								    
 								    <h4></h4>
 								    <p class="truncate" style="margin:0px;">{{(doc.dc_description[0]|length > 500 ? doc.dc_description[0]|slice(0, 500) ~ '&hellip;' : doc.dc_description[0])|raw}}</p>    
 								</li>
@@ -180,7 +179,7 @@
 							<!-- grid -->
 							{% if search_params.layout == 'grid' %}
 								{% for doc in data.response.solr_results.response.docs %}
-									<div class='tile'>
+									<div class='tile' style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4); border: 3px solid white; border:none;">
 										<a href="/item/{{doc.id}}">		
 											<img src="/item/{{doc.id}}/thumbnail" width='100%' alt="{{solr_data.dc_title}}"/>
 											<div class="info">

@@ -40,15 +40,12 @@
 
 <div id="templateCM" class="container">
 
-    {# optional navigation #}
+    {# object hierarchy #}
+    {# a hierarchical tree viewer is shown if an object has .object_hierarchy #}
     {% if data.response.content_type_specific.object_hierarchy.ancestors|length > 0 or data.response.content_type_specific.object_hierarchy.children|length > 0 %}
         <div class="row">
-            <div class="col-md-12 related-objects">
-                {# show hierarchy if exists #}            
-                {# {% block hierarchicalTree %}{% endblock %} #}
-                {% include "item_view/hierarchicalTree.html.twig" %}
-                {# show related if exists #}            
-                {# {% block hierarchicalTree %}{% endblock %} #}
+            <div class="col-md-12 related-objects">                
+                {% include "item_view/hierarchicalTree.html.twig" %}                
             </div>
         </div>
     {% endif %}

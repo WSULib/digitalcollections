@@ -303,7 +303,7 @@ img {
 .img-rounded {
   border-radius: 6px; }
 
-.img-thumbnail, .thumbnail {
+/*.img-thumbnail, .thumbnail {
   padding: 4px;
   line-height: 1.42857;
   background-color: white;
@@ -313,7 +313,14 @@ img {
   transition: all 0.2s ease-in-out;
   display: inline-block;
   max-width: 100%;
-  height: auto; }
+  height: auto;
+}*/
+
+/*.thumbnail img {
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+    border: 3px solid white;
+    max-height: 195px;    
+  }*/
 
 .img-circle {
   border-radius: 50%; }
@@ -4845,7 +4852,9 @@ a.list-group-item.active > .badge,
   .thumbnail > img {
     display: block;
     max-width: 100%;
-    height: auto; }
+    /*height: auto; */
+    max-height:195px;
+  }
 
 a.thumbnail:hover,
 a.thumbnail:focus {

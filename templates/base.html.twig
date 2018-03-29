@@ -56,68 +56,73 @@
 </head>
 
 <body class="index-bg">
+
     <header class="header">
-    <div class="container">
-        <div id="mobile-header">
-            <a href="#sidr-main" id="responsive-menu-button"><i class="icon-menu"></i></a>
-        </div>
-        <div class="logo-container">
-            <h1>
-                <a href="/"><img src="/img/logo.png" alt="" class="logo"></a>
-            </h1>
-        </div>
-        <div class="search-container">
-            <div class="search-box">
-                {% block search_form %}
-                <form action="/search" class="inline-form search-form" >
-                    <fieldset>
-                        <legend class="hide">Search</legend>
-                        <label for="q" class="hide">Search</label>                        
-                        <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
-                        <button type="submit" class="search-submit">
-                            <span class="icon-search" aria-hidden="true"></span>
-                            <span class="hide">Search</span>
-                        </button>
-                    </fieldset>
-                </form>
-                {% endblock search_form %}
+        <div class="container">
+            <div id="mobile-header">
+                <a href="#sidr-main" id="responsive-menu-button"><i class="icon-menu"></i></a>
             </div>
-        </div>
+            <div class="logo-container">
+                <h1>
+                    <a href="/"><img src="/img/logo.png" alt="" class="logo"></a>
+                </h1>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    {% block search_form %}
+                    <form action="/search" class="inline-form search-form" >
+                        <fieldset>
+                            <legend class="hide">Search</legend>
+                            <label for="q" class="hide">Search</label>                        
+                            <input id="header-search-nest-input" type="text" name="q" placeholder="Search collections, images, documents, ebooks and more" value="{% block search_form_string %}{% endblock %}" autocomplete="off" />
+                            <button type="submit" class="search-submit">
+                                <span class="icon-search" aria-hidden="true"></span>
+                                <span class="hide">Search</span>
+                            </button>
+                        </fieldset>
+                    </form>
+                    {% endblock search_form %}
+                </div>
+            </div>
 
-        <div id="navigation" class="col-sm-12">
-            <nav class="header-primary nav navbar" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li><a href="/collections">Collections</a></li>
-                    <li><a href="/search">Browse</a></li>
-                    <li><a href="/advanced_search">Advanced Search</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </nav>
-            <nav class="header-login">
-                <ul class="login_nav nav navbar-nav navbar-right">
-                    <li class="login_status" style="display:none;"><a href="/login">Log In</a></li>
-                </ul>
-            </nav>
-        </div>
+            <div id="navigation" class="col-sm-12">
+                <nav class="header-primary nav navbar" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/collections">Collections</a></li>
+                        <li><a href="/search">Browse</a></li>
+                        <li><a href="/advanced_search">Advanced Search</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <nav class="header-login">
+                    <ul class="login_nav nav navbar-nav navbar-right">
+                        <li class="login_status" style="display:none;"><a href="/login">Log In</a></li>
+                    </ul>
+                </nav>
+            </div>
 
+        </div>
+    </header>
+
+
+    {# Uncomment the HTML block below, and add text to the <span> tag that
+    will show up as text in a thing yellow banner on all pages #}
+    <div class="feedback">
+        {# <span>Please excuse any intermittent downtime,  we are performing some maintenance</span> #}
     </div>
-</header>
-<div class="feedback">
-    <!-- insert content here to show up in slim yellow line at top of all pages -->
-    <!--<span>Please excuse any intermittent downtime,  we are performing some maintenance</span>--> 
-</div>
-        <div id="content">{% block content %}{% endblock content %}</div>
+    
+    <div id="content">{% block content %}{% endblock content %}</div>
 
     <footer>
         <div class="container">
             <div class="row">
               <div class="col-xs-6 pull-right">
                 <ul class="links">
-                  <li><a href="https://libraries.wayne.edu">Libraries</a></li>
-                  <li><a href="https://www.surveymonkey.com/s/QHWX3V7">Feedback</a></li>
-                  <li><a href="https://libraries.wayne.edu/info/policies/privacy.php">Privacy</a></li>
-                  <li><a href="https://libraries.wayne.edu/info/policies/eresources.php">Acceptable Use</a></li>
+                  <li><a href="https://library.wayne.edu">Libraries</a></li>
+                  <li><a href="/contact">Feedback</a></li>
+                  <li><a href="https://library.wayne.edu/info/policies/privacy.php">Privacy</a></li>
+                  <li><a href="https://library.wayne.edu/info/policies/eresources.php">Acceptable Use</a></li>
                 </ul>
               </div>
               <div class="col-xs-6 copyright">
@@ -126,6 +131,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 <script>
     var data = {{data|json_encode|raw}};    

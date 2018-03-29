@@ -18,20 +18,24 @@
 				<!-- loop through collections -->
 				<div class="row" style="margin-top:40px;">
 					<div class="col-md-3">
-						<a href="/item/wayne:collectionvmc"><img src="/item/wayne:collectionvmc/preview"/></a>
+						<a class="thumbnail" href="/item/wayne:collectionvmc">
+							<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4);" src="/item/wayne:collectionvmc/preview"/>
+						</a>
 					</div>
 					<div class="col-md-9">
-						<a href="/item/wayne:collectionvmc"><h3>Virtual Motor City</h3></a>
+						<a href="/item/wayne:collectionvmc"><h3 style="margin-top:0px;">Virtual Motor City</h3></a>
 						<p>Virtual Motor City contains images from the Detroit News Photograph Collection, a premier photojournalistic resource that primarily documents the city of Detroit, its people, places and events from the late 19th century through the 1980s (bulk 1900-1980). This digital collection was originally made possible by DALNET, IMLS, and Library of Michigan grants in 2002-2007. It represents only a fraction of the original collection—more than 800,000 negatives and prints housed at the Walter P. Reuther Library.</p>
 					</div>
 				</div>
 				{% for doc in data.response.solr_results.response.docs %}
 					<div class="row" style="margin-top:40px;">
 						<div class="col-md-3">
-							<a href="/item/{{doc.id}}"><img src="/item/{{doc.id}}/preview"/></a>
+							<a href="/item/{{doc.id}}">
+								<img style="box-shadow: 2px 2px 3px rgba(0,0,0,0.4);" src="/item/{{doc.id}}/preview"/>
+							</a>
 						</div>
 						<div class="col-md-9">
-							<a href="/item/{{doc.id}}"><h3>{{doc.dc_title.0}}</h3></a>
+							<a href="/item/{{doc.id}}"><h3 style="margin-top:0px;">{{doc.dc_title.0}}</h3></a>
 							<p>{{doc.mods_abstract_ms.0|raw}}</p>
 						</div>
 					</div>
