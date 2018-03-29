@@ -7,13 +7,24 @@
 {% endblock %}
 
 {% block content %}
+
     
 	<div class="container">
 
 		<div class="row">
 			
 			<div class="col-md-12">
-				<h2>Collections</h2>
+
+				<div class="row">
+					<div class="col-md-6">
+						<a href="#maincollections" class="first"><h3 class="main_nav_button">Main Collections</h3></a>
+					</div>
+					<div class="col-md-6">
+						<a href="#standalonecollections"><h3 class="main_nav_button">Offsite Collections</h3></a>
+					</div>
+				</div>
+
+				<h2 id="maincollections">Main Collections</h2>
 				
 				<!-- loop through collections -->
 					<div class="row" style="margin-top:40px;">
@@ -38,6 +49,30 @@
 							</div>
 						{% endif %}
 					{% endfor %}
+
+					<h2 id="standalonecollections">Offsite Collections</h2>
+
+					<div class="row" style="margin-top:40px;">
+						<div class="col-md-3">
+							<a href="http://peacockroom.wayne.edu/"><img src="http://peacockroom.wayne.edu/themes/default/images/lush5.jpg" style="width:245px;height:auto;"/></a>
+						</div>
+						<div class="col-md-9">
+							<a href="http://peacockroom.wayne.edu/"><h3>The Story of the Beautiful</h3></a>
+							<p><em>The Story of the Beautiful</em> connects virtual tours of the Peacock Room to places and faces associated with its dynamic, cosmopolitan history. A research collaboration between the Smithsonian’s Freer Gallery of Art|Arthur M. Sackler Gallery and Wayne State University’s Library System, supported in part with grants from the Smithsonian Web 2.0 Fund and the Mr. and Mrs. Raymond J. Horowitz Foundation for the Arts. </p>
+						</div>
+					</div>
+
+					<div class="row" style="margin-top:40px;">
+						<div class="col-md-3">
+							<a href="http://digital.library.wayne.edu/aft/"><img src="/img/aft.gif" /></a>
+						</div>
+						<div class="col-md-9">
+							<a href="http://digital.library.wayne.edu/aft/"><h3>American Federation of Teachers:
+Antecedents to Education Reform Historical Collection</h3></a>
+							<p><em>The American Federation of Teachers (AFT) historical collection consists of almost 100 years of historical records covering subjects that deal with US public education, tenure and academic freedom for K-16 teachers, civil rights, collective bargaining in the public sector and public employee unionism. The collection has documents from the national headquarters; over 30 affiliate locals and state federations of the AFT as well as 70 personal collections.</p>
+						</div>
+					</div>
+
 
 			</div>
 
