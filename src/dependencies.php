@@ -13,6 +13,11 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+// Twig Profiler
+$container['twig_profile'] = function () {
+    return new Twig_Profiler_Profile();
+};
+
 // Register Twig View helper
 $container['view'] = function ($c) {
     $settings = $c->get('settings')['renderer'];
@@ -25,6 +30,9 @@ $container['view'] = function ($c) {
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+
+    // Add Twig Profiler Extension
+    $view->addExtension(new Twig_Extension_Profiler($c['twig_profile']));
 
     // Add Twig Debug Extension
     $view->addExtension(new Twig_Extension_Debug());

@@ -20,6 +20,7 @@
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 use Slim\App;
+use Tracy\Debugger;
 
 $app->add(function (Request $request, Response $response, callable $next) {
 
@@ -129,10 +130,10 @@ $app->add(function (Request $request, Response $response, callable $next) {
 /**
  * Debug Mode
  * Currently using:
- * PHP Debug Bar Middleware
- * Uses https://github.com/php-middleware/phpdebugbar
+ * Tracy Debugger Bar
+ * Uses https://github.com/runcmf/runtracy
  * Add other middleware below in similar format; also add any dependencies into the debug section found
- * in the dependency container (dependencies.php)
+ * in the dependency container (dependencies.php); finally, has a section in settings.php that sets its default features/display
  */
 $container = $app->getContainer();
 $settings = $container->get('settings');
@@ -141,14 +142,20 @@ if ($settings['debug']) {
     if (!isset($_COOKIE['SLIMDEBUG'])) {
         setcookie("SLIMDEBUG", true, time()+3600);
     }
-    $app->add($app->getContainer()->get('DebugBar'));
+    $app->add(new RunTracy\Middlewares\TracyMiddleware($app));
+    Debugger::enable(Debugger::DEVELOPMENT,  __DIR__ . '/../logs' );
+    Debugger::$maxDepth = 20; // default: 3
+    Debugger::$maxLength = 150; // default: 150
 } else {
     // Since debug is not on right now, let's make sure there is no old debug mode cookie set
-    if (isset($_COOKIE['SLIMDEBUG'])) {
+    if (isset($_COOKIE['SLIMDEBUG'], $_COOKIE['tracyPanelsEnabled'])) {
         setcookie("SLIMDEBUG", "", time()-3600);
+        $params = session_get_cookie_params();
+        setcookie("tracyPanelsEnabled", '', 0, $params['path'], $params['domain'], $params['secure'], isset($params['httponly']));
     }
 }
-        
+
+       
 /**
  * Redirects/rewrites URLs with a / to a non-trailing / equivalent
  * @param  \Psr\Http\Message\ServerRequestInterface $request  PSR7 request

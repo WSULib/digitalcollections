@@ -1,7 +1,6 @@
 <?php
 // Routes
 
-
 // ROOT
 $app->get('/', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('/'));
@@ -10,11 +9,16 @@ $app->get('/', function ($request, $response, $args) {
     // scan frontpages directory
     $dir = '../public/img/frontpage';
     $frontpage_images = preg_grep('/^([^.|^..])/', scandir($dir));;
-    $this->logger->debug(print_r($frontpage_images,True));
     $args['frontpage_images'] = $frontpage_images;
+
+    // Log/Dump Debug Data
+    $this->logger->debug(print_r($frontpage_images,True));
+    Tracy\Debugger::barDump($args['data']);
 
     return $this->view->render($response, "index.html.twig", $args);
 });
+
+$app->post('/console', 'RunTracy\Controllers\RunTracyConsole:index');
 
 
 // SEARCH VIEW
@@ -36,6 +40,10 @@ $app->get('/search', function ($request, $response, $args) {
     $this->logger->debug(print_r($args['search_params'],True));
     $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
     $args['data'] = json_decode($api->getBody(), true);
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
     return $this->view->render($response, 'search.html.twig', $args);
 })->setName('search');
 
@@ -45,6 +53,10 @@ $app->get('/advanced_search', function ($request, $response, $args) {
     // This will need an API route that returns some values to populate dropdowns
     $api = $this->APIRequest->get("/api/search_limiters");
     $args['data'] = json_decode($api->getBody(), true);
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
     return $this->view->render($response, 'advanced_search.html.twig', $args);
 });
 
@@ -69,6 +81,10 @@ $app->post('/advanced_search', function ($request, $response, $args) {
 $app->get('/collections', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
     return $this->view->render($response, 'collections.html.twig', $args);
 });
 
@@ -77,6 +93,10 @@ $app->get('/collections', function ($request, $response, $args = []) {
 $app->get('/collection[/{pid}]', function ($request, $response, $args = []) {
     $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
     $args['data'] = json_decode($api->getBody(), true);
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
     return $this->view->render($response, 'item_view/collection.html.twig', $args);
 });
 
@@ -96,6 +116,9 @@ $app->get('/item/{pid}', function ($request, $response, $args) {
     // determine content type
     $content_type = strtolower($args['data']['response']['content_type']);
     $this->logger->debug("loading item type: $content_type");
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
 
     // load template
     return $this->view->render($response, 'item_view/'.$content_type.'.html.twig', $args);
@@ -212,7 +235,11 @@ $app->get('/contact', function ($request, $response, $args) {
 
     // final prep
     $args['contact_type'] = $contact_type;
-    
+ 
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args);
+
     return $this->view->render($response, 'contact.html.twig', $args);
 });
 
@@ -281,6 +308,10 @@ $app->post('/contact', function ($request, $response, $args) {
 $app->get('/about', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'));
     $args['data'] = json_decode($api->getBody(), true);
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
     return $this->view->render($response, 'about.html.twig', $args);
 });
 
