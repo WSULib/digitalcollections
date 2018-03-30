@@ -4,6 +4,28 @@
 {% block title %}{{data.response.solr_doc.dc_title[0]}}{% endblock %}
 {% block head %}
 {{ parent() }}
+
+<!-- social media markup -->
+
+<meta property="og:title" content="{{data.response.solr_doc.dc_title[0]}}" />
+<meta property="og:description" content="From the Wayne State University Libraries' Digital Collections" />
+<meta property="og:image" content="{{data.response.solr_doc.mods_location_url_ms[0]}}/preview" />
+<meta property="og:url" content="{{data.response.solr_doc.mods_location_url_ms[0]}}" />
+<meta property="og:site_name" content="Wayne State University Digital Collections" />
+<meta property="og:type" content="website" />
+
+<link rel="image_src" href="{{data.response.solr_doc.mods_location_url_ms[0]}}/preview" />
+
+<meta name="twitter:site" content="@waynestatelib" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{data.response.solr_doc.dc_title[0]}}" />
+<meta name="twitter:description" content="From the Wayne State University Libraries' Digital Collections" />
+<meta name="twitter:image" content="{{data.response.solr_doc.mods_location_url_ms[0]}}/preview" />
+<meta name="twitter:image:alt" content="{{data.response.solr_doc.dc_title[0]}}" />
+<meta name="twitter:creator" content="@waynestatelib" />
+
+<!-- end social media markup -->
+
 {% endblock %}
 
 {% block content %}
