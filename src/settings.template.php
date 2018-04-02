@@ -53,5 +53,47 @@ return [
             'metadata' => 'Metadata Keyword',
             'int_fullText' => 'Fulltext Keyword'
         ]
+        'tracy' => [
+            'showPhpInfoPanel' => 1,
+            'showSlimRouterPanel' => 1,
+            'showSlimEnvironmentPanel' => 1,
+            'showSlimRequestPanel' => 1,
+            'showSlimResponsePanel' => 1,
+            'showSlimContainer' => 1,
+            'showTwigPanel' => 1,
+            'showProfilerPanel' => 1,
+            'showVendorVersionsPanel' => 1,
+            'showXDebugHelper' => 1,
+            'showIncludedFiles' => 1,
+            'showConsolePanel' => 1,
+            'configs' => [
+                // XDebugger IDE key
+                //'XDebugHelperIDEKey' => 'PHPSTORM',
+                // Disable login (don't ask for credentials, be careful) values ( 1 | 0 )
+                'ConsoleNoLogin' => 0,
+                // Multi-user credentials values( ['user1' => 'password1', 'user2' => 'password2'] )
+                'ConsoleAccounts' => [
+                    'ouroboros' => 'e64bac687bae68fc17b8923beb6089b1fcad796e' // = sha1(Whatever password you want to put here)
+                ],
+                // Password hash algorithm (password must be hashed) values('md5', 'sha256' ...)
+                'ConsoleHashAlgorithm' => 'sha1',
+                // Home directory (multi-user mode supported) values ( var || array )
+                // '' || '/tmp' || ['user1' => '/home/user1', 'user2' => '/home/user2']
+                'ConsoleHomeDirectory' => DIR,
+                // terminal.js full URI
+                'ConsoleTerminalJs' => '/js/jquery.terminal.min.js',
+                // terminal.css full URI
+                'ConsoleTerminalCss' => '/css/jquery.terminal.min.css',
+                'ProfilerPanel' => [
+                    // Memory usage 'primaryValue' set as Profiler::enable() or Profiler::enable(1)
+//                    'primaryValue' =>                   'effective',    // or 'absolute'
+                    'show' => [
+                        'memoryUsageChart' => 1, // or false
+                        'shortProfiles' => true, // or false
+                        'timeLines' => true // or false
+                    ]
+                ]
+            ]
+        ] //tracy
     ],
 ];
