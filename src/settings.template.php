@@ -73,7 +73,7 @@ return [
                 'ConsoleNoLogin' => 0,
                 // Multi-user credentials values( ['user1' => 'password1', 'user2' => 'password2'] )
                 'ConsoleAccounts' => [
-                    'ouroboros' => 'e64bac687bae68fc17b8923beb6089b1fcad796e' // = sha1(Whatever password you want to put here)
+                    'ouroboros' => 'changeME' // = sha1(Whatever password you want to put here)
                 ],
                 // Password hash algorithm (password must be hashed) values('md5', 'sha256' ...)
                 'ConsoleHashAlgorithm' => 'sha1',
