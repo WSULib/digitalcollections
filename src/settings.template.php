@@ -79,7 +79,7 @@ return [
                 'ConsoleHashAlgorithm' => 'sha1',
                 // Home directory (multi-user mode supported) values ( var || array )
                 // '' || '/tmp' || ['user1' => '/home/user1', 'user2' => '/home/user2']
-                'ConsoleHomeDirectory' => DIR,
+                'ConsoleHomeDirectory' => __DIR__,
                 // terminal.js full URI
                 'ConsoleTerminalJs' => '/js/jquery.terminal.min.js',
                 // terminal.css full URI
