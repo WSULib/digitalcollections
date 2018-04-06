@@ -35,6 +35,9 @@ $app->get('/search', function ($request, $response, $args) {
     if (!array_key_exists('layout', $args['search_params'])){
         $args['search_params']['layout'] = 'list';
     }
+    if (!array_key_exists('q', $args['search_params'])){
+        $args['search_params']['sort'] = 'random_'.date('ljSFY').' asc';
+    }
 
     $args['query_string'] = $request->getUri()->getQuery();
     $this->logger->debug(print_r($args['search_params'],True));
