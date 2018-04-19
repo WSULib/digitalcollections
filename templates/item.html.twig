@@ -94,7 +94,8 @@
 
                     <!-- Looking for items that have the same title -->
                     {% if data.response.matches is not empty %}
-                    <a href='/search?q="{{data.response.solr_doc.dc_title[0]|raw}}"' style="text-decoration: underline; color: #093f39;"><img src="/../img/search-icon.png">See Images with this same title.</a><i class="fas fa-info-circle" style="margin-left:5px;" data-toggle="collapse" data-target="#explanation"></i>
+
+                    <a href='/search?q="{{data.response.solr_doc.dc_title[0]|replace({"“":"","”":"","‘":"","’":""})}}"' style="text-decoration: underline; color: #093f39;"><img src="/../img/search-icon.png">See Images with this same title.</a><i class="fas fa-info-circle" style="margin-left:5px;" data-toggle="collapse" data-target="#explanation"></i>
                     <div id="explanation" class="collapse" style="padding-top:15px;">
                         <em>Some content, including the item here, have similar titles. This type of overlap many times has origins in the item's original physical form. For example, with the Virtual Motor City Collection, photographs were grouped in envelopes with a few descriptive words scrawled on the front. Those words then formed the basis for titles. You can find instances of overlapping titles throughout our collections.</em>
                     </div>
