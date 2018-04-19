@@ -12,7 +12,7 @@ $app->get('/', function ($request, $response, $args) {
     $args['frontpage_images'] = $frontpage_images;
 
     // Log/Dump Debug Data
-    $this->logger->debug(print_r($frontpage_images,True));
+    $this->logger->debug(print_r($frontpage_images, true));
     Tracy\Debugger::barDump($args['data']);
 
     return $this->view->render($response, "index.html.twig", $args);
@@ -26,22 +26,22 @@ $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING, $request->getQueryParams());
 
     // set search view defaults
-    if (!array_key_exists('start', $args['search_params'])){
+    if (!array_key_exists('start', $args['search_params'])) {
         $args['search_params']['start'] = 0;
     }
-    if (!array_key_exists('rows', $args['search_params'])){
+    if (!array_key_exists('rows', $args['search_params'])) {
         $args['search_params']['rows'] = 20;
     }
-    if (!array_key_exists('layout', $args['search_params'])){
+    if (!array_key_exists('layout', $args['search_params'])) {
         $args['search_params']['layout'] = 'list';
     }
-    if (!array_key_exists('q', $args['search_params'])){
+    if (!array_key_exists('q', $args['search_params'])) {
         $args['search_params']['sort'] = 'random_'.date('ljSFY').' asc';
     }
 
     $args['query_string'] = $request->getUri()->getQuery();
-    $this->logger->debug(print_r($args['search_params'],True));
-    $api = $this->APIRequest->get($request->getAttribute('path'),$args['search_params'],true);
+    $this->logger->debug(print_r($args['search_params'], true));
+    $api = $this->APIRequest->get($request->getAttribute('path'), $args['search_params'], true);
     $args['data'] = json_decode($api->getBody(), true);
 
     // Dump Debug Data
@@ -52,7 +52,7 @@ $app->get('/search', function ($request, $response, $args) {
 
 
 // ADVANCED SEARCH VIEW
-$app->get('/advanced_search', function ($request, $response, $args) {    
+$app->get('/advanced_search', function ($request, $response, $args) {
     // This will need an API route that returns some values to populate dropdowns
     $api = $this->APIRequest->get("/api/search_limiters");
     $args['data'] = json_decode($api->getBody(), true);
@@ -65,10 +65,10 @@ $app->get('/advanced_search', function ($request, $response, $args) {
 
 
 // ADVANCED SEARCH PROCESS
-$app->post('/advanced_search', function ($request, $response, $args) {    
+$app->post('/advanced_search', function ($request, $response, $args) {
 
     // get post parameters
-    $qp = $request->getParsedBody();    
+    $qp = $request->getParsedBody();
 
     // run advanced_query_build from QueryBuilder, with "true" flag to return as query string
     $prepared_query_string = $this->QueryBuilder->advanced_query_build($qp, true);
@@ -76,7 +76,6 @@ $app->post('/advanced_search', function ($request, $response, $args) {
     // Redirect to /search, with prepared query string
     $uri = $this->router->pathFor('search')."?".$prepared_query_string;
     return $response->withRedirect($uri);
-
 });
 
 
@@ -125,7 +124,6 @@ $app->get('/item/{pid}', function ($request, $response, $args) {
 
     // load template
     return $this->view->render($response, 'item_view/'.$content_type.'.html.twig', $args);
-
 })->setName('item');
 
 
