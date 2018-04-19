@@ -8,7 +8,7 @@ $app->get('/', function ($request, $response, $args) {
 
     // scan frontpages directory
     $dir = '../public/img/frontpage';
-    $frontpage_images = preg_grep('/^([^.|^..])/', scandir($dir));;
+    $frontpage_images = preg_grep('/^([^.|^..])/', scandir($dir));
     $args['frontpage_images'] = $frontpage_images;
 
     // Log/Dump Debug Data
@@ -23,7 +23,7 @@ $app->post('/console', 'RunTracy\Controllers\RunTracyConsole:index');
 
 // SEARCH VIEW
 $app->get('/search', function ($request, $response, $args) {
-    $args['search_params'] = $request->getQueryParams();
+    $args['search_params'] = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING, $request->getQueryParams());
 
     // set search view defaults
     if (!array_key_exists('start', $args['search_params'])){
