@@ -529,18 +529,36 @@
                         </tr>  
 
                         <!--Downloads-->
-                        <tr class="downloads" style="display: none;">
+                       {% if (data.response.content_type == "Image") or data.response.content_type == "WSUebook" %}
+                        <tr class="downloads">
                             <td>Downloads</td>
-                            <td id="downloads_target"></td>
-                        </tr>                                  
+                            <td id="downloads_target">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- For Images and complex images -->
+                                        {% if data.response.content_type == "Image" %}
+                                            {% for image in data.response.content_type_specific.imageParts.sorted %}
+                                                <a class="linebreak" href="/loris/fedora:{{data.response.pid}}|{{image.jp2}}/full/full/0/default.jpg"><img style="width:15%;" src="/loris/fedora:{{data.response.pid}}|{{image.jp2}}/full/full/0/default.jpg"><br/>{{image.ds_id}}</a><br/>
+                                            {% endfor %}
+                                        {% endif %}
+                                    <!-- for ebooks and serials (for PDF and HTML) -->
+                                        {% if data.response.content_type == "WSUebook" %}
+                                                <a class="linebreak" href="/item/{{data.response.pid}}/file/PDF_FULL"><img style="width:15%;" src="/item/{{data.response.pid}}/thumbnail"><br/>Full-Text PDF</a><br/>
+                                                <a class="linebreak" href="/item/{{data.response.pid}}/file/HTML_FULL"><img style="width:15%;" src="/item/{{data.response.pid}}/thumbnail"><br/>Full-Text HTML</a>
+                                        {% endif %}                                    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endif %}                                 
 
                     </tbody>
 
                 </table>                    
             </div>
         </div>
-    </div>
-</div>
+    </div> {# end class="row" which contains additonal information section #}
+</div> {# end of id="templateCM" class="container" #}
 
 <footer>
     <div class="container">
