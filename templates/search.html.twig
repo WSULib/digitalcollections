@@ -7,7 +7,7 @@
 {% endblock %}
 
 {# search form in header #}
-{% block search_form_string %}{{search_params.q}}{% endblock search_form_string %}
+{% block search_form_string %}{{search_params.q|escape}}{% endblock search_form_string %}
 
 {% block content %}
 
@@ -131,9 +131,9 @@
 						<div class="row">
 							<div class="col-md-12">
 								{% if search_params.field_skip_escape %}
-									<p><strong>Boolean Searching:</strong> <span style="font-style:italic;">{{search_params.q|raw}}</span></p>
+									<p><strong>Boolean Searching:</strong> <span style="font-style:italic;">{{search_params.q|escape}}</span></p>
 								{% else %}
-									<p><strong>Searching:</strong> <span style="font-style:italic;">{{search_params.q|raw}}</span></p>
+									<p><strong>Searching:</strong> <span style="font-style:italic;">{{search_params.q|escape}}</span></p>
 								{% endif %}
 							</div>
 						</div>
