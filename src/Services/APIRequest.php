@@ -141,7 +141,7 @@ class APIRequest
     {
         
         if ($this->type == 'GET') { 
-            // if user logged in, include "isDiscoverable=true"        
+            // if user logged in, include "isDiscoverable=false"        
             if (isset($_SESSION['admin']) && $_SESSION['admin']) {
                 $this->params['query']['isDiscoverable'] = false;
             }
