@@ -3,7 +3,7 @@
 
 {% block item_content %}
 
-<a href="{{ m.facetLinkBuilder('add','human_isMemberOfCollection',data.response.solr_doc.dc_title[0]) }}"><img style="width:100%;" src="/item/{{data.response.pid}}/preview" onerror="this.style.display='none';"/></a>
+<a href="{{ m.facetLinkBuilder('add','human_isMemberOfCollection',data.response.solr_doc.dc_title[0]) }}"><img style="max-height:640px; margin-left: auto; margin-right: auto; display:block;" src="/item/{{data.response.pid}}/preview" onerror="this.style.display='none';"/></a>
 
 <p style="width:100%; text-align:center; margin-top:10px;">
 	<a href="{{ m.facetLinkBuilder('add','human_isMemberOfCollection',data.response.solr_doc.dc_title[0]) }}"><button type="btn" class="btn">Browse Items in this Collection</button></a>
