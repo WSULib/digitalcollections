@@ -336,10 +336,19 @@ $app->get('/mirador', function ($request, $response, $args) {
 // Catches all /item/{pid}/* routes not already specified above sends request to API
 $app->get('/item/{pid}/[{params:.*}]', function ($request, $response, $args) {
     $api = $this->APIRequest->get($request->getAttribute('path'), $request->getQueryParams());
-    return $api;
-    // echo "<pre>";
-    // var_dump($api);
-    // echo "</pre>";
-    // $args['data'] = json_decode($api->getBody(), true);
-    // return $this->view->render($response, 'item.html', $args);
+    return $api;    
+});
+
+
+// AFT Omeka redirect
+$app->get('/aft', function ($request, $response, $args) {
+    // return 302
+    return $response->withStatus(302)->withHeader('Location', 'http://projects.lib.wayne.edu/aft');
+});
+
+
+// IAMAMAN Omeka redirect
+$app->get('/iamaman', function ($request, $response, $args) {
+    // return 302
+    return $response->withStatus(302)->withHeader('Location', 'http://projects.lib.wayne.edu/iamaman');
 });
