@@ -1,4 +1,8 @@
 <?php
+
+defined('DS') || define('DS', DIRECTORY_SEPARATOR);
+define('DIR', realpath(__DIR__ . '/../') . DS);
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
