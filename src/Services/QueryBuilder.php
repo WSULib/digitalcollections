@@ -199,8 +199,7 @@ class QueryBuilder
      * @return Return new query string
      */
     public function set_layout_param($target_layout, $query_string)
-    {
-        $this->logger->debug("setting layout as: $target_layout");
+    {        
 
         // handle list
         if ($target_layout == 'list'){

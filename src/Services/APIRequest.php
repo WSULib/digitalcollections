@@ -72,14 +72,14 @@ class APIRequest
         }
 
         // debug
-        $this->logger->debug($this->uri);
-        $this->logger->debug(print_r($this->params,True));
+        // $this->logger->debug($this->uri);
+        // $this->logger->debug(print_r($this->params,True));
         
         // send request to API
         $start = microtime(true);
         $response = $this->client->request($type, $this->uri, $this->params);
         $time_spent = microtime(true) - $start;
-        $this->logger->info("Request took: $time_spent");
+        // $this->logger->info("Request took: $time_spent");
 
         // parse status code
         $httpStatus = $response->getStatusCode();
