@@ -61,7 +61,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
     $host = $settings['server']['host'];
     // Check for the WSUDOR Cookie
     if (isset($_COOKIE['WSUDOR'])) {
-        $this->logger->debug("WSUDOR cookie found, checking");
+        // $this->logger->debug("WSUDOR cookie found, checking");
         if (!isset($_SESSION['wsudorauth'])) {
             // No active wsudorauth session; ask /wsudorauth service if cookie is valid
             try {
@@ -81,12 +81,11 @@ $app->add(function (Request $request, Response $response, callable $next) {
         else {
             // if there's an active wsudorauth session, no need to query wsudorauth with a WSUDOR cookie for a valid session
             // Let's just check to see if they are admin
+            // $this->logger->debug("wsudorauth session set, checking status of user");
             try {
                 if (!$_SESSION['admin']) {
                     $username = $_SESSION['wsudorauth']->username;
-
                     $admin = $this->guzzle->get("http://$host/api/user/$username/whoami");
-
                     $admin = json_decode($admin->getBody());
                     $_SESSION['admin'] = $admin->response->exists; // they are Ouroboros user, so we consider "admin" here
                 }

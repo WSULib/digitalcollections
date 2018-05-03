@@ -25,16 +25,32 @@ $app->post('/console', 'RunTracy\Controllers\RunTracyConsole:index');
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
 
+
+
     // set search view defaults
     if (!array_key_exists('start', $args['search_params'])) {
         $args['search_params']['start'] = 0;
     }
+
     if (!array_key_exists('rows', $args['search_params'])) {
         $args['search_params']['rows'] = 20;
     }
+
+    // handle layout parameters
+    // if not in args, check if default set, set if not
     if (!array_key_exists('layout', $args['search_params'])) {
-        $args['search_params']['layout'] = 'list';
+        // if layout not in session, add
+        if (!array_key_exists('layout', $_SESSION)) {
+            $_SESSION['layout'] = 'list';
+            $args['search_params']['layout'] = 'list';
+        }
     }
+    // else, set session from params
+    else {
+        $_SESSION['layout'] = $args['search_params']['layout'];
+    }
+    $args['search_params']['layout'] = $_SESSION['layout'];
+
     if (!array_key_exists('q', $args['search_params'])) {
         $args['search_params']['sort'] = 'random_'.date('ljSFY').' asc';
     }

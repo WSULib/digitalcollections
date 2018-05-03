@@ -199,17 +199,21 @@ class QueryBuilder
      * @return Return new query string
      */
     public function set_layout_param($target_layout, $query_string)
-    {
-        $this->logger->debug("setting layout as: $target_layout");
+    {       
+
+        // strip everytime
+        $new_query_string = str_replace("layout=list", '', $query_string); 
+        $new_query_string = str_replace("layout=grid", '', $new_query_string); 
 
         // handle list
         if ($target_layout == 'list'){
-            $new_query_string = str_replace("layout=grid", '', $query_string);
+            // $new_query_string = str_replace("layout=grid", '', $query_string);
+            $new_query_string = $new_query_string."&layout=list";
         }
 
         // handle grid
         if ($target_layout == 'grid'){
-            $new_query_string = $query_string."&layout=grid";
+            $new_query_string = $new_query_string."&layout=grid";
         }
 
         return $this->query_string_cleaner($new_query_string);        

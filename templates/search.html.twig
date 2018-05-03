@@ -312,11 +312,9 @@
 	}
 
 	function facetLayoutRefresh(){
-		if (getUrlParameter('layout') == 'grid'){
-			var wall = new freewall("#results_container");
-			wall.refresh();	
-			window.dispatchEvent(new Event('resize'));		
-		}
+		var wall = new freewall("#results_container");
+		wall.refresh();	
+		window.dispatchEvent(new Event('resize'));
 	}
 
 	function getUrlParameter(sParam) {
