@@ -30,6 +30,7 @@
 
 {% block content %}
 
+
 <!-- piwik.library.wayne code here-->
 <script type="text/javascript"> 
     // var _paq = _paq || [];  
@@ -48,15 +49,15 @@
 <!--end piwik-->
 
 <!-- hidden schema.org stuctured data -->
-{# <div id="struct_data" style="display:none;" itemscope="" itemtype="https://schema.org/CreativeWork">
+<div id="struct_data" style="display:none;" itemscope="" itemtype="https://schema.org/CreativeWork">
     <span itemprop="name">{{data.response.solr_doc.dc_title[0]}}<br></span>
     <span itemprop="description">{{ data.response.solr_doc.mods_abstract_ms }}<br></span>       
     <span itemprop="text"></span>
-    <span itemprop="genre">{{ data.response.solr_doc.mods_resource_type_ms}}<br></span>
-    <span itemprop="dateCreated">{{ data.response.solr_doc.dc_date }}</span>
-    <img src="//digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/" class="primary-image" itemprop="image">
-    <meta itemprop="thumbnailUrl" content="https://digital.library.wayne.edu/item/{{data.response.pid}}/thumbnail/">
-</div> #}
+    <span itemprop="genre">{{ data.response.solr_doc.mods_resource_type_ms[0]}}<br></span>
+    <span itemprop="dateCreated">{{ data.response.solr_doc.dc_date[0] }}</span>
+    <img src="{{data.response.solr_doc.mods_location_url_ms[0]}}/preview" class="primary-image" itemprop="image">
+    <meta itemprop="thumbnailUrl" content="{{data.response.solr_doc.mods_location_url_ms[0]}}/thumbnail/">
+</div>
 <!-- ******************************** -->
 
 
