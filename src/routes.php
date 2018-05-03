@@ -37,24 +37,16 @@ $app->get('/search', function ($request, $response, $args) {
     }
 
     // handle layout parameters
-
     // if not in args, check if default set, set if not
     if (!array_key_exists('layout', $args['search_params'])) {
-
         // if layout not in session, add
         if (!array_key_exists('layout', $_SESSION)) {
-            $this->logger->debug("setting default layout --> list");
             $_SESSION['layout'] = 'list';
             $args['search_params']['layout'] = 'list';
         }
-        else {
-            $this->logger->debug("layout not in params, but we got a default!");
-        }
-
     }
     // else, set session from params
     else {
-        $this->logger->debug("found in params, using and setting");
         $_SESSION['layout'] = $args['search_params']['layout'];
     }
     $args['search_params']['layout'] = $_SESSION['layout'];
