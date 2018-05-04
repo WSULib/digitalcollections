@@ -288,7 +288,51 @@
 	/////////////////////////////////////////////////////
 	// init grid freewall code
 	/////////////////////////////////////////////////////
+	// fire freewall js for grid view
+	function gridInit(){
+		
+		var wall = new freewall("#results_container");
+		wall.reset({
+			selector: '.tile',
+			animate: false,
+			cellW: 200,
+			cellH: 'auto',
+			onResize: function() {
+				wall.fitWidth();
+			}
+		});
+
+		var images = wall.container.find('.tile');
+		images.find('img').load(function() {
+			wall.fitWidth();
+		});
+
+	}
 	gridInit();
+
+
+	/////////////////////////////////////////////////////
+	// search
+	/////////////////////////////////////////////////////
+	function updateURLParameter(url, param, paramVal){
+		var newAdditionalURL = "";
+		var tempArray = url.split("?");
+		var baseURL = tempArray[0];
+		var additionalURL = tempArray[1];
+		var temp = "";
+		if (additionalURL) {
+				tempArray = additionalURL.split("&");
+				for (i=0; i<tempArray.length; i++){
+						if(tempArray[i].split('=')[0] != param){
+								newAdditionalURL += temp + tempArray[i];
+								temp = "&";
+						}
+				}
+		}
+
+		var rows_txt = temp + "" + param + "=" + paramVal;
+		return baseURL + "?" + newAdditionalURL + rows_txt;
+	}
 
 
 	/////////////////////////////////////////////////////

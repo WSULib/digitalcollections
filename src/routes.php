@@ -25,8 +25,6 @@ $app->post('/console', 'RunTracy\Controllers\RunTracyConsole:index');
 $app->get('/search', function ($request, $response, $args) {
     $args['search_params'] = $request->getQueryParams();
 
-
-
     // set search view defaults
     if (!array_key_exists('start', $args['search_params'])) {
         $args['search_params']['start'] = 0;
@@ -41,12 +39,17 @@ $app->get('/search', function ($request, $response, $args) {
     if (!array_key_exists('layout', $args['search_params'])) {
         // if layout not in session, add
         if (!array_key_exists('layout', $_SESSION)) {
+            $this->logger->debug("layout not in terms, and not in session, setting");
             $_SESSION['layout'] = 'list';
             $args['search_params']['layout'] = 'list';
+        }
+        else {
+            $this->logger->debug("layout found in session, using");
         }
     }
     // else, set session from params
     else {
+        $this->logger->debug("layout in terms, setting");
         $_SESSION['layout'] = $args['search_params']['layout'];
     }
     $args['search_params']['layout'] = $_SESSION['layout'];
