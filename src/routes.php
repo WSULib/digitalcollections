@@ -350,6 +350,33 @@ $app->get('/mirador', function ($request, $response, $args) {
     return $this->view->render($response, 'mirador.html.twig', $args);
 });
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// V1 Redirects
+
+// root digital collections
+$app->get('/digitalcollections', function ($request, $response, $args) {
+    return $response->withStatus(302)->withHeader('Location', '/');
+});
+
+// single item
+$app->get('/digitalcollections/item', function ($request, $response, $args) {    
+    $args['params'] = $request->getQueryParams();
+    $pid = $args['params']['id'];
+    // $this->logger->debug($pid);
+    return $response->withStatus(302)->withHeader('Location', '/item/'.$pid);
+});
+
+// search
+$app->get('/digitalcollections/search.php', function ($request, $response, $args) {
+    $args['params'] = $request->getQueryParams();
+    $q = $args['params']['q'];
+    // $this->logger->debug($q);
+    $url = $this->router->pathFor('search')."?q=".$q;
+    return $response->withStatus(302)->withHeader('Location', $url);
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Dynamic Route
 // Catches all /item/{pid}/* routes not already specified above sends request to API
