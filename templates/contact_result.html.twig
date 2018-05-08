@@ -9,11 +9,15 @@
 {% block content %}
 	<div id="page">
     <div class="container">
+    {% if result.error is not empty %}
+    	<div class="alert alert-warning alert-dismissible" role="alert">Something went wrong! Please try again later.</div>
+    {% else %}
 		<h1>Message Sent!</h1>
 		<p>To: {{result.to}}</p>
 		<p>From: {{result.from}}</p>
 		<p>Subject: {{result.subject}}</p>
 		<p>Message: {{result.msg}}</p>
+    {% endif %}
 	</div>
 	</div>
 {% endblock %}

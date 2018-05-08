@@ -306,18 +306,21 @@ $app->post('/contact', function ($request, $response, $args) {
     $url = "http://$host/ouroboros/email";
     try {
         $this->guzzle->request('POST', $url, $params);
+        // confirmation package
+        $args['result'] = [
+            'to'=>"Digital Collections Team",
+            'from'=>$from,
+            'subject'=>$subject,
+            'msg'=>$msg
+        ];
+
     } catch (GuzzleHttp\Exception\ClientException $e) {
-        // set some sort of something to flash and tell people to try again later
-        echo "TEMP - flashing a request that something went wrong";
+        // confirmation package
+        $args['result'] = [
+            'error'=>"true"
+        ];
     }
 
-    // confirmation package
-    $args['result'] = [
-        'to'=>"Digital Collections Team",
-        'from'=>$from,
-        'subject'=>$subject,
-        'msg'=>$msg
-    ];
     
     // return response
     return $this->view->render($response, 'contact_result.html.twig', $args);
