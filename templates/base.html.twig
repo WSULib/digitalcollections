@@ -146,9 +146,17 @@
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
+                <!-- administrative extras -->
                 <nav class="header-login">
                     <ul class="login_nav nav navbar-nav navbar-right">
-                        <li class="login_status" style="display:none;"><a href="/login">Log In</a></li>
+                        <!-- manage item -->
+                        {% if session.admin %}
+                          {# if item page #}
+                          {% if data.response.pid %}
+                            <li class="login_status"><a style="color:#00ffec; font-weight:bold;" target="_blank" href="/ouroboros/admin_object_overview/{{data.response.pid}}"><i class="icon-pencil"></i> Manage Item</a></li>
+                          {% endif %}
+                          {# <li class="login_status"><a style="color:#ff00b8;" href="/ouroboros/logout">Logout</a></li> #}
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
@@ -160,7 +168,7 @@
     {# Uncomment the HTML block below, and add text to the <span> tag that
     will show up as text in a thing yellow banner on all pages #}
     <div class="feedback">
-        {# <span>We have made some updates to this site!  Please <a href="/contact">use our contact form</a> to report any errors, or provide comments or suggestions.</span> #}
+        <span>We are currently making updates to this site!  Please excuse any downtime.</span>
     </div>
     
     <div id="content">{% block content %}{% endblock content %}</div>
