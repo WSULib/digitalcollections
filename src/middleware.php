@@ -75,6 +75,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
                 // trigger an exception if getting a 400 level error
                 // destroy cookie; destroy session
                 setcookie("WSUDOR", "", time()-3600);
+                $this->logger->debug("wsudorauth: destroying session from bad session check");
                 session_destroy();
             } //catch
         } //isset
@@ -92,21 +93,18 @@ $app->add(function (Request $request, Response $response, callable $next) {
             } catch (GuzzleHttp\Exception\ClientException $e) {
                 // destroy session; no need to destroy cookie because this still allows them to use other related services
                 session_destroy();
-            } //catch
-
-            // DEBUG - admin?
-            if ($_SESSION['admin']){
-                $this->logger->debug('ADMIN USER CONFIRMED');
-            }            
+            } //catch            
 
         } //else
     } //$_COOKIE['WSUDOR']
-    else {
-        // no cookie; kill any session that's still active;
-        // we're assuming they logged out, so killing any session will prevent them from
-        // floating around with no cookie and an old (but still good) session
-        session_destroy();
-    }
+
+    /* Removing: can look into more surgically doing this, but for time being, breaking "sticky" layouts from search */
+    // else {
+    //     // no cookie; kill any session that's still active;
+    //     // we're assuming they logged out, so killing any session will prevent them from
+    //     // floating around with no cookie and an old (but still good) session
+    //     session_destroy();
+    // }
     return $next($request, $response);
 });
 
