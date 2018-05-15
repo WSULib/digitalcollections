@@ -34,6 +34,9 @@ $app->get('/search', function ($request, $response, $args) {
         $args['search_params']['rows'] = 20;
     }
 
+    // store search params in session
+    $_SESSION['last_search'] = $request->getUri();
+
     // handle layout parameters
     // if not in args, check if default set, set if not
     if (!array_key_exists('layout', $args['search_params'])) {
@@ -54,8 +57,25 @@ $app->get('/search', function ($request, $response, $args) {
     }
     $args['search_params']['layout'] = $_SESSION['layout'];
 
+    // if no q prepare for sorting decisions    
     if (!array_key_exists('q', $args['search_params'])) {
-        $args['search_params']['sort'] = 'random_'.date('ljSFY').' asc';
+
+        // if collection browsing fq[]=human_isMemberOfCollection:..., sort by id asc
+        if (array_key_exists('fq', $args['search_params'])){
+
+            // loop through fq's, see if any of them start with human_isMemberOfCollection
+            foreach ($args['search_params']['fq'] as $fq) {                
+                if (strpos($fq, 'human_isMemberOfCollection:') === 0) {                    
+                    $args['search_params']['sort'] = 'id asc';
+                }
+            }
+        }
+
+        // else, sort randomly
+        else {
+            $args['search_params']['sort'] = 'random_'.date('ljSFY').' asc';    
+        }
+        
     }
 
     $args['query_string'] = $request->getUri()->getQuery();
