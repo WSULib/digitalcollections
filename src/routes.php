@@ -376,11 +376,6 @@ $app->get('/mirador', function ($request, $response, $args) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // V1 Redirects
 
-// root digital collections
-$app->get('/digitalcollections', function ($request, $response, $args) {
-    return $response->withStatus(302)->withHeader('Location', '/');
-});
-
 // single item
 $app->get('/digitalcollections/item', function ($request, $response, $args) {    
     $args['params'] = $request->getQueryParams();
@@ -396,6 +391,11 @@ $app->get('/digitalcollections/search.php', function ($request, $response, $args
     // $this->logger->debug($q);
     $url = $this->router->pathFor('search')."?q=".$q;
     return $response->withStatus(302)->withHeader('Location', $url);
+});
+
+// root digital collections
+$app->get('/digitalcollections', function ($request, $response, $args) {
+    return $response->withStatus(302)->withHeader('Location', '/');
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
