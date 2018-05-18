@@ -107,7 +107,7 @@
                       <button style="margin-top:-11px;" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                       
-                      <a href='/search?q=dc_title:"{{data.response.solr_doc.dc_title[0]|replace({'"':"","“":'" * AND "',"”":'" * AND "',"‘":'" * AND "',"’":'" * AND "'})|url_encode}}"&field_skip_escape=q' style="color: #c09853;"><strong>See more!</strong>  Click to view other items that share this title</a> <i class="fas fa-info-circle" style="margin-left:5px;" data-toggle="collapse" data-target="#explanation"></i>
+                      <a href='/search?q=dc_title:* AND "{{data.response.solr_doc.dc_title[0]|replace({'"':"","“":'" * AND "',"”":'" * AND "',"‘":'" * AND "',"’":'" * AND "'})|url_encode}}"&field_skip_escape=q' style="color: #c09853;"><strong>See more!</strong>  Click to view other items that share this title</a> <i class="fas fa-info-circle" style="margin-left:5px;" data-toggle="collapse" data-target="#explanation"></i>
                       
                       <div id="explanation" class="collapse" style="padding-top:15px;">
                         <em>Some content, including the item here, have similar titles. This type of overlap many times has origins in the item's original physical form. For example, with the Virtual Motor City Collection, photographs were grouped in envelopes with a few descriptive words written on the front. Those words then formed the basis for titles.</em>
