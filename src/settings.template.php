@@ -43,7 +43,7 @@ return [
             'passphrase' => 'string'
         ]
 
-        // contact form settings
+        // facet map
         'facet_map' => [
             'human_isMemberOfCollection' => 'Collection',
             'human_hasContentModel' => 'Content Type',
@@ -55,7 +55,8 @@ return [
             'dc_publisher' => 'Publisher',
             'text' => 'Keyword',
             'metadata' => 'Metadata Keyword',
-            'int_fullText' => 'Fulltext Keyword'
+            'int_fullText' => 'Fulltext Keyword',
+            'mods_key_date_year' => 'Date'
         ]
         'tracy' => [
             'showPhpInfoPanel' => 1,
