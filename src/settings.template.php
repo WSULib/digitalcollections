@@ -41,7 +41,7 @@ return [
             'permissions' => 'email',
             'rap' => 'email',
             'passphrase' => 'string'
-        ]
+        ],
 
         // facet map
         'facet_map' => [
@@ -57,7 +57,8 @@ return [
             'metadata' => 'Metadata Keyword',
             'int_fullText' => 'Fulltext Keyword',
             'mods_key_date_year' => 'Date'
-        ]
+        ],
+        
         'tracy' => [
             'showPhpInfoPanel' => 1,
             'showSlimRouterPanel' => 1,
