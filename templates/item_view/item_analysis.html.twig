@@ -1,0 +1,79 @@
+{% import "macros.html.twig" as m %}
+{% extends "base.html.twig" %}
+
+{% block title %}{{data.response.solr_doc.dc_title[0]}}{% endblock %}
+{% block head %}
+{{ parent() }}
+
+<!-- analysis head content -->
+
+	<!-- custom css -->
+	<style>
+        #templateCM a {
+            text-decoration: underline;
+            color:#093f39;
+        }
+        #fulltext_annotation {
+        	padding:20px;
+        	background-color:#F9F8F3;
+        }
+    </style>
+
+<!-- hypothes.is -->
+<script type="application/json" class="js-hypothesis-config">
+  {
+    "openSidebar": true
+  }
+</script>
+<script src="https://hypothes.is/embed.js" async></script>
+
+{% endblock %}
+
+{% block content %}
+
+	<div id="templateCM" class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+
+            <!-- ebooks -->
+            {% if data.response.content_type == 'WSUebook' %}
+				  <h2>eBook Analysis: <a href="/item/{{pid}}"><em>{{data.response.solr_doc.dc_title.0}}</em></a></h2>				
+            {% endif %}            
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				
+				<h3>Full-Text Analysis</h3>
+				
+				<p><a href="https://voyant-tools.org/">Voyant</a> is a, "is a web-based text reading and analysis environment."  Voyant provides an interface for viewing the full-text as a wordcloud, limiting by searches, word and phrase co-locations, terms distribution throughout a text, and more!</p>
+
+				<p><a href="http://voyant-tools.org/?stopList=stop.en.taporware.txt&archive=URL_GOES_HERE"><button class="btn btn-info">Analyze Fulltext with Voyant</button></a></p>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				
+				<h3>Annotate</h3>
+
+				<p>Annotate the full-text using the <a href="https://hypothes.is/">Hypothes.is</a> annotation platform.  The full-text is provided as single document, but page images can be displayed for blocks of text when needed.</p> 
+				
+				<div id="fulltext_annotation">
+					<div id="tei_container">						
+
+                 {{data.response.analysis.tei_as_html|raw}}
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+{% endblock %}

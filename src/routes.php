@@ -183,6 +183,46 @@ $app->get('/item/{pid}/MODS', function ($request, $response, $args) {
 });
 
 
+// SINGLE ITEM ANALYSIS VIEW
+$app->get('/item/{pid}/analysis', function ($request, $response, $args) {
+
+    /*
+
+    View to support analysis of a single item
+
+    Currently supported item types:
+        - WSUebook
+
+    */
+
+    $api = $this->APIRequest->get($request->getAttribute('path'));
+    $args['data'] = json_decode($api->getBody(), true);
+    $args['settings'] = $this->get('settings');
+    
+    // confirm exists
+    if ($api->getStatusCode() == 404) {
+        $this->logger->debug('item does not exist, pushing to 404');
+        return $response->withStatus(404)->withHeader('Location', '/404');
+    }
+
+    // determine content type
+    $content_type = strtolower($args['data']['response']['content_type']);
+    $this->logger->debug("loading item type: $content_type");
+
+    // Dump Debug Data
+    Tracy\Debugger::barDump($args['data']);
+
+    // load template
+    return $this->view->render($response, 'item_view/item_analysis.html.twig', $args);
+})->setName('item');
+
+
+// ITEM TEXT
+$app->get('/item/{pid}/text/{text_format}', function ($request, $response, $args) {    
+    return $api;
+});
+
+
 // Streaming Content e.g. A/V and to Download Files -- Work in Progress
 // See https://www.slimframework.com/docs/objects/response.html#the-response-body
 // AV Stream

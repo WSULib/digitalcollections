@@ -3,8 +3,6 @@
 
 {% block item_content %}
 
-	{# <iframe src="/eTextReader/eTextReader.php?ItemID={{data.response.pid}}#page/1/mode/2up" width="100%" height="900px" frameborder="0" ></iframe> #}
-	
 	<div id="viewer">
 		<iframe title="Mirador" src="/mirador?id={{data.response.pid}}&type=BookView" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" height="740px" width="100%"></iframe>		
 	</div>
@@ -34,38 +32,49 @@
 </style>
 
 <div class="row">
-	<div class="col-md-12">
-		<div class="col-md-4">
-			<a target="_blank" href="/eTextReader/eTextReader.php?ItemID={{data.response.pid}}#page/1/mode/2up"><button type="btn" class="btn viewer">
-				<span>BookReader</span>
-				<br>
-				<ul>
-					<li>Full-Text Search</li>
-					<li>Page Flipping</li>
-					<li>Image Clipping</li>
-				</ul>
-			</button></a>
-		</div>
-		<div class="col-md-4">
-			<a target="_blank" href="/mirador?id={{data.response.pid}}&type=BookView"><button type="btn" class="btn viewer">
-				<span>Mirador (default)</span>
-				<br>
-				<ul>
-					<li>Zooming and Scanning</li>
-					<li>Side-by-Side Book Comparison</li>
-				</ul>
-			</button></a>
-		</div>
-		<div class="col-md-4">
-			<a target="_blank" href="/item/{{data.response.pid}}/file/PDF_FULL"><button type="btn" class="btn viewer">
-				<span>PDF</span>
-				<br>
-				<ul>
-					<li>Cross-broswer compatible</li>
-					<li>Full-Text Overlay</li>
-				</ul>
-			</button></a>
-		</div>
+	<div class="col-md-6">
+		<a target="_blank" href="/mirador?id={{data.response.pid}}&type=BookView"><button type="btn" class="btn viewer">
+			<span>Mirador</span>
+			<br>
+			<ul>
+				<li>Zooming and Scanning</li>
+				<li>Side-by-Side Book Comparison</li>
+			</ul>
+		</button></a>
+	</div>
+	<div class="col-md-6">
+		<a target="_blank" href="/eTextReader/eTextReader.php?ItemID={{data.response.pid}}#page/1/mode/2up"><button type="btn" class="btn viewer">
+			<span>BookReader</span>
+			<br>
+			<ul>
+				<li>Full-Text Search</li>
+				<li>Page Flipping</li>
+				<li>Image Clipping</li>
+			</ul>
+		</button></a>
+	</div>
+</div>
+
+<div class="row" style="margin-top:10px;">
+	<div class="col-md-6">
+		<a target="_blank" href="/item/{{data.response.pid}}/file/PDF_FULL"><button type="btn" class="btn viewer">
+			<span>PDF</span>
+			<br>
+			<ul>
+				<li>Cross-broswer compatible</li>
+				<li>Full-Text Overlay</li>
+			</ul>
+		</button></a>
+	</div>
+	<div class="col-md-6">
+		<a target="_blank" href="/item/{{data.response.pid}}/analysis"><button type="btn" class="btn viewer">
+			<span>Analysis</span>
+			<br>
+			<ul>				
+				<li>Full-text analysis</li>
+				<li>Annotation</li>
+			</ul>
+		</button></a>
 	</div>
 </div>
 
