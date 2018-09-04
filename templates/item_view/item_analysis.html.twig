@@ -17,6 +17,18 @@
         	padding:20px;
         	background-color:#F9F8F3;
         }
+        hr.hr_page_break {
+         border-top: 1px solid #cccccc;
+        }
+        .page_image {
+         display:none;
+         width:100%;
+        }
+        .page_img_link{
+         color:blue;
+         text-decoration: underline;
+         cursor: pointer;
+        }
     </style>
 
 <!-- hypothes.is -->
@@ -66,6 +78,25 @@
 					<div id="tei_container">						
 
                  {{data.response.analysis.tei_as_html|raw}}
+
+                 <script>
+                  $(document).ready(function(){
+                     $('.page_img_link').click(function(){
+
+                        // get image id
+                        img_id = "img_" + $(this).attr('data');
+                        console.log(img_id);
+
+                        // toggle flip data to src
+                        $("#" + img_id).toggle();
+                        $("#" + img_id).attr({
+                           'src':$("#" + img_id).attr('data')
+                        });
+
+                     })
+                  });
+
+                 </script>
 						
 					</div>
 				</div>
