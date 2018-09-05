@@ -29,6 +29,10 @@
          text-decoration: underline;
          cursor: pointer;
         }
+        text p {
+         font-size:125%;
+         font-weight: 350;
+        }
     </style>
 
 <!-- hypothes.is -->
@@ -50,8 +54,10 @@
 
             <!-- ebooks -->
             {% if data.response.content_type == 'WSUebook' %}
-				  <h2>eBook Analysis: <a href="/item/{{pid}}"><em>{{data.response.solr_doc.dc_title.0}}</em></a></h2>				
-            {% endif %}            
+               <h2>eBook Annotate and Analyze</h2>
+               <h3><a href="/item/{{pid}}"><em>{{data.response.solr_doc.dc_title.0}}</em></a></h3>
+            {% endif %}
+
 			</div>
 		</div>
 
@@ -60,7 +66,7 @@
 				
 				<h3>Full-Text Analysis</h3>
 				
-				<p><a href="https://voyant-tools.org/">Voyant</a> is a, "is a web-based text reading and analysis environment."  Voyant provides an interface for viewing the full-text as a wordcloud, limiting by searches, word and phrase co-locations, terms distribution throughout a text, and more!</p>
+				<p><a href="https://voyant-tools.org/">Voyant</a> is a, "is a web-based text reading and analysis environment," that provides a graphical interface for analyzing the full-text as a wordcloud, limiting by searches, word and phrase co-locations, terms distribution throughout a text, and much more!  Click the button below to analyze this text in Voyant:</p>
 
 				<p><a href="http://voyant-tools.org/?stopList=stop.en.taporware.txt&archive=URL_GOES_HERE"><button class="btn btn-info">Analyze Fulltext with Voyant</button></a></p>
 
@@ -72,8 +78,42 @@
 				
 				<h3>Annotate</h3>
 
-				<p>Annotate the full-text using the <a href="https://hypothes.is/">Hypothes.is</a> annotation platform.  The full-text is provided as single document, but page images can be displayed for blocks of text when needed.</p> 
-				
+				<p>Below is the full-text of this text that may be annotated by users using the <a href="https://hypothes.is/">Hypothes.is</a> platform.  The full-text will display on the left, with links to reveal the image of each page if desired.  To use, select the text from the left-hand side to annotate, and using the Hypothes.is window on the right, record an annotation for that passage of text.</p>
+
+            <div style="width:150px;">
+               <p>               
+                  <div class="form-group">
+                     <label for="collection" class="nameLabel">Jump to page:</label>
+                     <select id="page_jump" class="form-control" name="collection">
+                        
+                        {% for page in data.response.analysis.page_list %}
+                           <option value="{{page}}">Page {{page}}</option>
+                        {% endfor %}
+
+                     </select>
+                  </div>
+
+                  <script>
+
+                     // page jump listener
+                     $("#page_jump").change(function(){
+
+                        // jump to <pb> with attrib "n"
+                        page_num = $(this).val();
+                        var pos = $('pb[n='+page_num+']').offset();
+                        console.log(pos);
+                        // $('body').animate({ scrollTop: pos.top });
+                        // e.preventDefault();
+                        $('html,body').animate({
+                           scrollTop: (pos.top - 100)
+                        });
+
+                     })
+
+                  </script>
+               </p>
+            </div>
+
 				<div id="fulltext_annotation">
 					<div id="tei_container">						
 
@@ -83,9 +123,16 @@
                   $(document).ready(function(){
                      $('.page_img_link').click(function(){
 
+                        // toggle link text
+                        if ($(this).text().includes('see')) {
+                           $(this).text($(this).text().replace('see','hide'));
+                        }
+                        else {
+                           $(this).text($(this).text().replace('hide','see'));
+                        }
+
                         // get image id
-                        img_id = "img_" + $(this).attr('data');
-                        console.log(img_id);
+                        img_id = "img_" + $(this).attr('data');                        
 
                         // toggle flip data to src
                         $("#" + img_id).toggle();
