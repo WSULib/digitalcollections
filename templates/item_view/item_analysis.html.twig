@@ -67,7 +67,7 @@
 				
 				<p><a href="https://voyant-tools.org/">Voyant</a> is a, "is a web-based text reading and analysis environment," that provides a graphical interface for analyzing the full-text as a wordcloud, limiting by searches, word and phrase co-locations, terms distribution throughout a text, and much more!  Click the button below to analyze this text in Voyant:</p>
 
-				<p><a target="_blank" href="http://voyant-tools.org/?stopList=stop.en.taporware.txt&corpus={{data.response.pid}}&archive=http://{{settings.server.host}}/api/item/{{data.response.pid}}/text/raw"><button class="btn btn-info">Analyze Fulltext with Voyant</button></a></p>
+				<p><a target="_blank" href="http://voyant-tools.org/?stopList=stop.en.taporware.txt&corpus={{data.response.pid}}:analysis&archive={{data.response.analysis.encoded_raw_text_url}}"><button class="btn btn-info">Analyze Fulltext with Voyant</button></a></p>
 
 			</div>
 		</div>
