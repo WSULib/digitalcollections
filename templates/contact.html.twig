@@ -7,12 +7,17 @@
 {% endblock %}
 
 {% block content %}
-	<div id="page">
+    <div id="page">
     <div class="container">
-        <h2>{{form_title}}</h2>
+        <h2>Contact Options</h2>
+        <p>Our forms are currently being upgraded. Please use the following methods to contact us:</p>
+        <p><span style="font-weight:bold;">For General Comment:</span> email <a href="mailto:libwebmaster@wayne.edu" style="text-decoration:underline; color:blue">libwebmaster@wayne.edu</a>
+        <p><span style="font-weight:bold;">For Problems with an image/item:</span> email <a href="mailto:libwebmaster@wayne.edu"  style="text-decoration:underline; color:blue">libwebmaster@wayne.edu</a>
+        <p><span style="font-weight:bold;">For Permissions Request:</span> please use the following link: <a href="http://reuther.wayne.edu/node/116"  style="text-decoration:underline; color:blue">http://reuther.wayne.edu/node/116</a>
+<!--         <h2>{{form_title}}</h2>
             <div class="row">
                 <div class="hidden-xs col-sm-6 col-md-6 contact">
-                	{% set image = m.randomImage() %}
+                    {% set image = m.randomImage() %}
                     <a href="/item/{{ image }}"><img id="imagery" src="/item/{{ image }}/preview" alt=""></a>
                     <p class="caption"></p>
                 </div>
@@ -32,7 +37,7 @@
                 {% endif %}         
                 {% endif %}
                 <button type="submit" class="btn">Send Message</button>
-            </form>
+            </form> -->
         </div> <!-- contact-form -->
         </div> <!-- row -->
         {% if result %}<h2>{{result}}</h2>{% endif %}
