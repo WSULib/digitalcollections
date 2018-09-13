@@ -49,13 +49,13 @@
 
 	<div id="templateCM" class="container">
 
+    {% if data.response.content_type == 'WSUebook' %}
+
 		<div class="row">
 			<div class="col-md-12">
 
-            <!-- ebooks -->
-            {% if data.response.content_type == 'WSUebook' %}
-               <h1>eBook Analysis: <a href="/item/{{pid}}"><em>{{data.response.solr_doc.dc_title.0}}</em></a></h1>
-            {% endif %}
+               <h1>Text Analysis and Annotation</h1>
+               <h3><a href="/item/{{pid}}"><em>{{data.response.solr_doc.dc_title.0}}</em></a></h3>
 
 			</div>
 		</div>
@@ -147,6 +147,9 @@
 
 			</div>
 		</div>
+
+    {% endif %}
+
 
 
 	</div>
