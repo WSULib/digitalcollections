@@ -34,13 +34,16 @@
 							},
 							data: [
 								{
-									manifestUri: "//{{settings.server.host}}/{{settings.API.prefix}}/item/{{params.id}}/iiif",
+									manifestUri: "//{{settings.server.host}}/item/{{params.id}}/iiif",
 									location: "Wayne State University Library Digital Collections"
-								}								
+								},
+								{
+									collectionUri: "//{{settings.server.host}}/{{settings.API.prefix}}/item/{{params.id}}/iiif/related_collection_manifest.json"
+								}
 							],
 							windowObjects: [                 
 								{
-									loadedManifest : "//{{settings.server.host}}/{{settings.API.prefix}}/item/{{params.id}}/iiif", 
+									loadedManifest : "//{{settings.server.host}}/item/{{params.id}}/iiif", 
 									viewType : "{{params.type}}",
 									layoutOptions: 
 									{
